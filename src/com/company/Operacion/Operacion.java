@@ -1,4 +1,5 @@
 package com.company.Operacion;
+package com.company.Persona;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
