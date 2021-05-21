@@ -1,5 +1,7 @@
 package com.company.Operacion;
 
+import com.company.Articulo.Articulo;
+
 import java.util.ArrayList;
 
 public class Carrito {

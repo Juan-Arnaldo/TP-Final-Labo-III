@@ -1,5 +1,6 @@
 package com.company.Operacion;
-package com.company.Persona;
+
+import com.company.Persona.Persona;
 
 import com.company.Persona.Persona;
 
