@@ -16,6 +16,7 @@ public class Local {
 
     public Local(int idLocal, String nombre, String direccion, ArrayList<Articulo> listaArticulos, ArrayList<Cliente> listaClientes, ArrayList<Proveedor> listaProveedores) {
         this.idLocal = idLocal;
+
         this.nombre = nombre;
         this.direccion = direccion;
         this.listaArticulos = listaArticulos;
