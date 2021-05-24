@@ -2,8 +2,6 @@ package com.company.Operacion;
 
 import com.company.Persona.Persona;
 
-import com.company.Persona.Persona;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
