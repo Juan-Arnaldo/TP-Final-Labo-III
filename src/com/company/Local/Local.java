@@ -136,4 +136,16 @@ public class Local {
         }
         return resultado;
     }
+
+    @Override
+    public String toString() {
+        return "Local{" +
+                "\nidLocal=" + idLocal +
+                ", \nnombre='" + nombre + '\'' +
+                ", \ndireccion='" + direccion + '\'' +
+                ", \nlistaArticulos=" + listaArticulos +
+                ", \nlistaClientes=" + listaClientes +
+                ", \nlistaProveedores=" + listaProveedores +
+                '}';
+    }
 }
