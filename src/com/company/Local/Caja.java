@@ -1,2 +1,4 @@
-package com.company.Local;public class Caja {
+package com.company.Local;
+
+public class Caja {
 }
