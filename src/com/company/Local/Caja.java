@@ -26,7 +26,7 @@ public class Caja {
     }
 
     boolean cargarVenta() {
-        /*  */
+
         return true;
     }
 }

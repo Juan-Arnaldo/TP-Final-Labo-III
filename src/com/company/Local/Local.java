@@ -1,10 +1,11 @@
 package com.company.Local;
 
+import com.company.Main;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
-import static com.company.Main.crearCliente;
-import static com.company.Main.crearProv;
+
+import static com.company.Main.cargarProv;
 
 import java.util.ArrayList;
 
@@ -15,15 +16,16 @@ public class Local {
     private ArrayList<Articulo> listaArticulos;
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Proveedor> listaProveedores;
+    private ArrayList<Caja> listaCajas;
 
-    public Local(int idLocal, String nombre, String direccion, ArrayList<Articulo> listaArticulos, ArrayList<Cliente> listaClientes, ArrayList<Proveedor> listaProveedores) {
+    public Local(int idLocal, String nombre, String direccion, ArrayList<Articulo> listaArticulos, ArrayList<Cliente> listaClientes, ArrayList<Proveedor> listaProveedores, ArrayList<Caja> listaCajas) {
         this.idLocal = idLocal;
-
         this.nombre = nombre;
         this.direccion = direccion;
         this.listaArticulos = listaArticulos;
         this.listaClientes = listaClientes;
         this.listaProveedores = listaProveedores;
+        this.listaCajas = listaCajas;
     }
 
     public int getIdLocal() {
@@ -76,10 +78,10 @@ public class Local {
 
 
     public void cargarCliente(ArrayList<Cliente> listaClientes, int idCliente){
-        Cliente cliente = null;
+        Cliente cliente;
         cliente = corroborarCliente(listaClientes, idCliente);
         if (cliente == null) {
-            cliente = crearCliente();
+            cliente = Main.cargarCliente();
             cliente.setCodInterno((dimArrayCliente(listaClientes))+1);
             listaClientes.add(cliente);
         } else {
@@ -107,10 +109,10 @@ public class Local {
     }
 
     public void cargarProveedor(ArrayList<Proveedor> listaProveedores, int idProv){
-        Proveedor proveedor = null;
+        Proveedor proveedor;
         proveedor = corroborarProv(listaProveedores, idProv);
         if (proveedor == null) {
-            proveedor = crearProv();
+            proveedor = cargarProv();
             proveedor.setCodInterno((dimArrayProv(listaProveedores))+1);
             listaProveedores.add(proveedor);
         } else {
@@ -135,6 +137,10 @@ public class Local {
             }
         }
         return resultado;
+    }
+
+    public void crearCaja(Caja caja) {
+        this.listaCajas.add(caja);
     }
 
 
