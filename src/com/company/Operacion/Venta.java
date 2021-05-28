@@ -1,34 +1,36 @@
 package com.company.Operacion;
 
+import com.company.Articulo.Articulo;
+
 import java.util.ArrayList;
 
-public class Venta extends Operacion{
+import static com.company.Main.cargarCantidadArticulo;
 
-    private ArrayList<Carrito> listaCarrito;
+public class Venta {
+    private int idVenta = 0;
+    private int idCaja;
+    private String metodoPago;
 
     public Venta(){
 
     }
 
-    public Venta(ArrayList<Carrito> listaCarrito){
-        this.listaCarrito = listaCarrito;
+    public Venta(int idCaja, String metodoPago){
+        idVenta ++;
+        this.idCaja = idCaja;
+        this.metodoPago = metodoPago;
     }
 
-    public ArrayList<Carrito> getListaCarrito() {
-        return listaCarrito;
+    private double generarPrecioFinal(Articulo articulo, int cantidad){ ;
+        return articulo.getCosto() + ((articulo.getCosto() * articulo.getUtilidad()) / 100);
     }
 
-
-
-
-
-
-
-    public boolean actualizarCaja() {
-        return false;
-    }
-
-    public boolean actualizarStock() {
-        return false;
+    public void agregarArticulo(ArrayList<Linea> listaLineas,String metodoPago){
+        //Articulo aAgregar = buscarArticulo();
+        //int cantidad = cargarCantidadArticulo(aAgregar);
+        if(cant != 0){
+            Linea nueva = new Linea(aAgregar, cant);
+            listaLineas.add(nueva);
+        }
     }
 }

@@ -88,4 +88,23 @@ public class Main {
         Cliente clien3 = new Cliente("Agus","Pasaje","333","22222","chango@gmail.com",2);
         listaCliente.add(clien3);
     }
+
+    public static int cargarCantidadArticulo(Articulo articulo) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese la cantidad de " + articulo.getNombre() + " desea llevar: ");
+        int cant = input.nextInt();
+        do{
+            if(verificarCantidadArticulo(cant)){
+                return cant;
+            }else{
+                int aux;
+                System.out.println("Noy hay stock suficiente, ingrese una nueva cantidad (en caso de no querer ingrese 0): \n ");
+                cant = input.nextInt();
+            }
+        }while(verificarCantidadArticulo(cant) && cant != 0);
+
+        return cant;
+    }
+
+
 }
