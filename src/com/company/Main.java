@@ -8,10 +8,15 @@ import com.company.Persona.Proveedor;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 public class Main {
 
     public static void main(String[] args) {
-        Local local = new Local(1,"Lo de martin","Colon 3001",local.getListaArticulos(), local.getListaClientes(),local.getListaProveedores());
+        ArrayList<Articulo> listaArticulos = new ArrayList<>();
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        ArrayList<Proveedor> listaProveedores = new ArrayList<>();
+        Local local = new Local(1,"Lo de martin","Colon 3001",listaArticulos, listaClientes,listaProveedores);
 
         loteDeClientes(local.getListaClientes());
         local.cargarCliente(local.getListaClientes(),3);
@@ -29,6 +34,33 @@ public class Main {
 
         System.out.println("Ingrese el nombre del cliente: ");
         nombre = sc.nextLine();
+
+        System.out.println("Ingrese la direccion del cliente: ");
+        direccion = sc.nextLine();
+
+        System.out.println("Ingrese el telefono del cliente: ");
+        telefono = sc.next();
+
+        System.out.println("Ingrese el cuit del cliente: ");
+        cuit = sc.next();
+
+        System.out.println("Ingrese el email del cliente: ");
+        email = sc.next();
+
+
+        Cliente cliente = new Cliente(nombre,direccion,cuit,telefono,email,codInterno);
+        return cliente;
+    }
+    public static Cliente crearClienteJOption() {
+        Scanner sc = new Scanner(System.in);
+        String nombre, direccion;
+        String telefono;
+        String cuit;
+        String email;
+        int codInterno = 0;
+
+
+        nombre = JOptionPane.showInputDialog("Ingrese el nombre del cliente: ");
 
         System.out.println("Ingrese la direccion del cliente: ");
         direccion = sc.nextLine();

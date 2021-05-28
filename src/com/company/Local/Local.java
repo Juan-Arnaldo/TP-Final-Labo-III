@@ -3,10 +3,11 @@ package com.company.Local;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
-import static com.company.Main.crearCliente;
-import static com.company.Main.crearProv;
 
+import javax.swing.*;
 import java.util.ArrayList;
+
+import static com.company.Main.*;
 
 public class Local {
     private int idLocal;
@@ -21,9 +22,9 @@ public class Local {
 
         this.nombre = nombre;
         this.direccion = direccion;
-        this.listaArticulos = listaArticulos;
-        this.listaClientes = listaClientes;
-        this.listaProveedores = listaProveedores;
+        this.listaArticulos = new ArrayList<Articulo>();
+        this.listaClientes = new ArrayList<Cliente>();
+        this.listaProveedores = new ArrayList<Proveedor>();
     }
 
     public int getIdLocal() {
@@ -79,11 +80,11 @@ public class Local {
         Cliente cliente = null;
         cliente = corroborarCliente(listaClientes, idCliente);
         if (cliente == null) {
-            cliente = crearCliente();
+            cliente = crearClienteJOption();
             cliente.setCodInterno((dimArrayCliente(listaClientes))+1);
             listaClientes.add(cliente);
         } else {
-            System.out.println("El cliente ya existe!!");
+            JOptionPane.showMessageDialog(null, "El cliente ya existe!!");
         }
     }
 
