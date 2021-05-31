@@ -2,7 +2,7 @@ package com.company.Operacion;
 
 import java.util.ArrayList;
 
-public class Venta extends Operacion implements ActualizacionRegistro{
+public class Venta extends Operacion{
 
     private ArrayList<Carrito> listaCarrito;
 
@@ -18,12 +18,16 @@ public class Venta extends Operacion implements ActualizacionRegistro{
         return listaCarrito;
     }
 
-    @Override
+
+
+
+
+
+
     public boolean actualizarCaja() {
         return false;
     }
 
-    @Override
     public boolean actualizarStock() {
         return false;
     }

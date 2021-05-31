@@ -76,19 +76,19 @@ public class Local {
     }
 
 
-    public void cargarCliente(ArrayList<Cliente> listaClientes, int idCliente){
+    public void agregarCliente(int idCliente){
         Cliente cliente = null;
-        cliente = corroborarCliente(listaClientes, idCliente);
+        cliente = corroborarCliente(idCliente);
         if (cliente == null) {
-            cliente = crearClienteJOption();
-            cliente.setCodInterno((dimArrayCliente(listaClientes))+1);
+            cliente = cargarCliente();
+            cliente.setCodInterno((dimArrayCliente())+1);
             listaClientes.add(cliente);
         } else {
             JOptionPane.showMessageDialog(null, "El cliente ya existe!!");
         }
     }
 
-    public Integer dimArrayCliente(ArrayList<Cliente> listaClientes){
+    public Integer dimArrayCliente(){
         int dimension=0;
         for(Cliente cliente:listaClientes){
             dimension++;
@@ -96,7 +96,7 @@ public class Local {
         return dimension;
     }
 
-    public Cliente corroborarCliente(ArrayList<Cliente> listaClientes, int idCliente) {
+    public Cliente corroborarCliente(int idCliente) {
         Cliente resultado = null;
         for (Cliente cliente : listaClientes) {
             if (cliente.getCodInterno() == idCliente) {
@@ -107,19 +107,19 @@ public class Local {
         return resultado;
     }
 
-    public void cargarProveedor(ArrayList<Proveedor> listaProveedores, int idProv){
+    public void cargarProveedor(, int idProv){
         Proveedor proveedor = null;
-        proveedor = corroborarProv(listaProveedores, idProv);
+        proveedor = corroborarProv(idProv);
         if (proveedor == null) {
             proveedor = crearProv();
-            proveedor.setCodInterno((dimArrayProv(listaProveedores))+1);
+            proveedor.setCodInterno((dimArrayProv())+1);
             listaProveedores.add(proveedor);
         } else {
             System.out.println("El proveedor ya existe!!");
         }
     }
 
-    public Integer dimArrayProv(ArrayList<Proveedor> listaProveedores){
+    public Integer dimArrayProv(){
         int dimension=0;
         for(Proveedor proveedor:listaProveedores){
             dimension++;
@@ -127,7 +127,7 @@ public class Local {
         return dimension;
     }
 
-    public Proveedor corroborarProv(ArrayList<Proveedor> listaProveedores, int idProv) {
+    public Proveedor corroborarProv(int idProv) {
         Proveedor resultado = null;
         for (Proveedor proveedor : listaProveedores) {
             if (proveedor.getCodInterno() == idProv) {
@@ -137,6 +137,7 @@ public class Local {
         }
         return resultado;
     }
+
 
     @Override
     public String toString() {
@@ -149,4 +150,5 @@ public class Local {
                 ", \nlistaProveedores=" + listaProveedores +
                 '}';
     }
+
 }
