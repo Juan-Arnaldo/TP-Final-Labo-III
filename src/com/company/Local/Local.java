@@ -77,14 +77,14 @@ public class Local {
     }
 
 
-<<<<<<<HEAD
+
 
     public Object cargarCliente(int idCliente) {
         Cliente cliente = null;
-=======
+
+
     /*public void cargarCliente(ArrayList<Cliente> listaClientes, int idCliente){
         Cliente cliente;
->>>>>>> develop
         cliente = corroborarCliente(listaClientes, idCliente);
         if (cliente == null) {
             cliente = crearCliente();
@@ -117,7 +117,6 @@ public class Local {
     /*public void cargarProveedor(ArrayList<Proveedor> listaProveedores, int idProv){
         Proveedor proveedor;
         proveedor = corroborarProv(listaProveedores, idProv);
->>>>>>> develop
         if (proveedor == null) {
             proveedor = crearProv();
             proveedor.setCodInterno((dimArrayProv())+1);

@@ -9,7 +9,9 @@ public class Teclado {
         sc = new Scanner(System.in);
     }
 
-    // Métodos de Carga para Artículos
+
+// Métodos de Carga para Artículos
+
 
     /**
      * Método para cargar por teclado el nombre de un artículo.
