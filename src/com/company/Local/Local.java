@@ -6,6 +6,7 @@ import com.company.Articulo.Articulo;
 
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.company.Main.*;
 
@@ -17,7 +18,7 @@ public class Local {
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Proveedor> listaProveedores;
 
-    public Local(int idLocal, String nombre, String direccion, ArrayList<Articulo> listaArticulos, ArrayList<Cliente> listaClientes, ArrayList<Proveedor> listaProveedores) {
+    public Local(int idLocal, String nombre, String direccion, List<Articulo> listaArticulos, List<Cliente> listaClientes, List<Proveedor> listaProveedores) {
         this.idLocal = idLocal;
 
         this.nombre = nombre;
@@ -107,7 +108,7 @@ public class Local {
         return resultado;
     }
 
-    public void cargarProveedor(, int idProv){
+    public void cargarProveedor(int idProv){
         Proveedor proveedor = null;
         proveedor = corroborarProv(idProv);
         if (proveedor == null) {
