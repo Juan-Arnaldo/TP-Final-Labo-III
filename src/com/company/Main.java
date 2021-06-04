@@ -4,6 +4,7 @@ import com.company.Articulo.Articulo;
 import com.company.Local.Local;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
+import com.company.Operacion.Venta;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,7 +12,14 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+        /*Local local = new Local(1,"Lo de martin","Colon 3001", local.getListaArticulos(), local.getListaClientes(),local.getListaProveedores());
 
+        loteDeClientes(local.getListaClientes());
+        local.cargarCliente(local.getListaClientes(),3);
+        local.toString();*/
+
+        Venta a = new Venta();
+        a.agregarArticulo();
     }
 
     public static Cliente crearCliente() {
@@ -21,6 +29,7 @@ public class Main {
         String cuit;
         String email;
         int codInterno = 0;
+
 
 
         System.out.println("Ingrese el nombre del cliente: ");
@@ -84,4 +93,21 @@ public class Main {
         Cliente clien3 = new Cliente("Agus","Pasaje","333","22222","chango@gmail.com",2);
         listaCliente.add(clien3);
     }
+
+    public static int cargarCantidadArticulo(Articulo articulo) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Ingrese la cantidad de " + articulo.getNombre() + " desea llevar: ");
+        int cant = input.nextInt();
+        do{
+            if(verificarCantidadArticulo(cant)){
+                return cant;
+            }else{
+                System.out.println("Noy hay stock suficiente (" + articulo.getStock() + "), ingrese una nueva cantidad (en caso de no querer ingrese 0): \n ");
+                cant = input.nextInt();
+            }
+        }while(verificarCantidadArticulo(cant) && cant != 0);
+
+        return cant;
+    }
+
 }
