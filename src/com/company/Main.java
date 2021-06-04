@@ -11,11 +11,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Local local = new Local(1,"Lo de martin","Colon 3001",local.getListaArticulos(), local.getListaClientes(),local.getListaProveedores());
 
-        loteDeClientes(local.getListaClientes());
-        local.cargarCliente(local.getListaClientes(),3);
-        local.toString();
     }
 
     public static Cliente crearCliente() {
