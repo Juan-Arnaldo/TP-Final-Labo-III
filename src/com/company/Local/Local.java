@@ -1,15 +1,11 @@
 package com.company.Local;
 
-import com.company.Main;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.company.Main.*;
 
 public class Local {
     private int idLocal;
@@ -81,8 +77,14 @@ public class Local {
     }
 
 
-    public void cargarCliente(int idCliente){
+<<<<<<<HEAD
+
+    public Object cargarCliente(int idCliente) {
         Cliente cliente = null;
+=======
+    /*public void cargarCliente(ArrayList<Cliente> listaClientes, int idCliente){
+        Cliente cliente;
+>>>>>>> develop
         cliente = corroborarCliente(listaClientes, idCliente);
         if (cliente == null) {
             cliente = crearCliente();
@@ -91,30 +93,31 @@ public class Local {
         } else {
             System.out.println("El cliente ya existe!!");
         }
-    }
+    }*/
 
-    public Integer dimArrayCliente(ArrayList<Cliente> listaClientes){
-        int dimension=0;
-        for(Cliente cliente: this.listaClientes){
-            dimension++;
-        }
-        return dimension;
-    }
-
-    public Cliente corroborarCliente(ArrayList<Cliente> listaClientes, int idCliente) {
-        Cliente resultado = null;
-        for (Cliente cliente : this.listaClientes) {
-            if (cliente.getCodInterno() == idCliente) {
-                resultado = cliente;
-                break;
+        public Integer dimArrayCliente (ArrayList < Cliente > listaClientes) {
+            int dimension = 0;
+            for (Cliente cliente : this.listaClientes) {
+                dimension++;
             }
+            return dimension;
         }
-        return resultado;
-    }
 
-    public void cargarProveedor(int idProv){
-        Proveedor proveedor = null;
-        proveedor = corroborarProv(idProv);
+        public Cliente corroborarCliente (ArrayList < Cliente > listaClientes,int idCliente){
+            Cliente resultado = null;
+            for (Cliente cliente : this.listaClientes) {
+                if (cliente.getCodInterno() == idCliente) {
+                    resultado = cliente;
+                    break;
+                }
+            }
+            return resultado;
+        }
+
+    /*public void cargarProveedor(ArrayList<Proveedor> listaProveedores, int idProv){
+        Proveedor proveedor;
+        proveedor = corroborarProv(listaProveedores, idProv);
+>>>>>>> develop
         if (proveedor == null) {
             proveedor = crearProv();
             proveedor.setCodInterno((dimArrayProv())+1);
@@ -122,42 +125,58 @@ public class Local {
         } else {
             System.out.println("El proveedor ya existe!!");
         }
-    }
+    }*/
 
-    public Integer dimArrayProv(){
-        int dimension=0;
-        for(Proveedor proveedor:listaProveedores){
-            dimension++;
-        }
-        return dimension;
-    }
-
-    public Proveedor corroborarProv(int idProv) {
-        Proveedor resultado = null;
-        for (Proveedor proveedor : listaProveedores) {
-            if (proveedor.getCodInterno() == idProv) {
-                resultado = proveedor;
-                break;
+        public Integer dimArrayProv () {
+            int dimension = 0;
+            for (Proveedor proveedor : listaProveedores) {
+                dimension++;
             }
+            return dimension;
         }
-        return resultado;
+
+        public Proveedor corroborarProv ( int idProv){
+            Proveedor resultado = null;
+            for (Proveedor proveedor : listaProveedores) {
+                if (proveedor.getCodInterno() == idProv) {
+                    resultado = proveedor;
+                    break;
+                }
+            }
+            return resultado;
+        }
+
+        public void crearCaja (Caja caja){
+            this.listaCajas.add(caja);
+        }
+
+        /**
+         * Metodo para buscar un Articulo en especial por nombre
+         * @param nombre
+         * @return Objeto a Buscar
+         */
+        public Articulo buscarArticuloNombre (String nombre){
+            Articulo aux = null;
+            for (Articulo aBuscar : listaArticulos) {
+                if (aBuscar.getNombre().equals(nombre)) {
+                    aux = aBuscar;
+                }
+            }
+            return aux;
+        }
+
+
+        @Override
+        public String toString(){
+            return "Local{" +
+                    "\nidLocal=" + idLocal +
+                    ", \nnombre='" + nombre + '\'' +
+                    ", \ndireccion='" + direccion + '\'' +
+                    ", \nlistaArticulos=" + listaArticulos +
+                    ", \nlistaClientes=" + listaClientes +
+                    ", \nlistaProveedores=" + listaProveedores +
+                    '}';
+        }
+
     }
-
-    public void crearCaja(Caja caja) {
-        this.listaCajas.add(caja);
-    }
-
-
-    @Override
-    public String toString() {
-        return "Local{" +
-                "\nidLocal=" + idLocal +
-                ", \nnombre='" + nombre + '\'' +
-                ", \ndireccion='" + direccion + '\'' +
-                ", \nlistaArticulos=" + listaArticulos +
-                ", \nlistaClientes=" + listaClientes +
-                ", \nlistaProveedores=" + listaProveedores +
-                '}';
-    }
-
 }

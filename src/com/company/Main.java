@@ -20,7 +20,6 @@ public class Main {
         Local local = new Local(0,"Lo de juan","Colon",listaArticulo,listaCliente,listaProveedor);
 
         Venta a = new Venta();
-        a.agregarArticulo();
     }
 
     public static Cliente crearCliente() {
@@ -95,20 +94,6 @@ public class Main {
         listaCliente.add(clien3);
     }
 
-    public static int cargarCantidadArticulo(Articulo articulo) {
-        Scanner input = new Scanner(System.in);
-        System.out.println("Ingrese la cantidad de " + articulo.getNombre() + " desea llevar: ");
-        int cant = input.nextInt();
-        do{
-            if(verificarCantidadArticulo(cant)){
-                return cant;
-            }else{
-                System.out.println("Noy hay stock suficiente (" + articulo.getStock() + "), ingrese una nueva cantidad (en caso de no querer ingrese 0): \n ");
-                cant = input.nextInt();
-            }
-        }while(verificarCantidadArticulo(cant) && cant != 0);
 
-        return cant;
-    }
 
 }

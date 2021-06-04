@@ -11,9 +11,10 @@ public class Linea {
 
     }
 
-    public Linea(Articulo articulo, int cantidad){
+    public Linea(Articulo articulo, int cantidad, double totalArticulo){
         this.articulo = articulo;
         this.cantidad = cantidad;
+        this.totalArticulo = totalArticulo;
     }
 
     public Articulo getArticulo() {
