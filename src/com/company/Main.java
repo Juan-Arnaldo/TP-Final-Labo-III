@@ -17,6 +17,7 @@ public class Main {
         List<Proveedor> listaProveedor = new ArrayList<Proveedor>();
 
         Local local = new Local(0,"Lo de juan","Colon",listaArticulo,listaCliente,listaProveedor);
+
     }
 
     public static Cliente cargarCliente() {
