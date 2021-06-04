@@ -4,12 +4,11 @@ import com.company.Articulo.Articulo;
 
 import java.util.ArrayList;
 
-import static com.company.Main.cargarCantidadArticulo;
-
 public class Venta {
     private int idVenta = 0;
     private int idCaja;
     private String metodoPago;
+    private ArrayList<Linea> listaLinea;
 
     public Venta(){
 
@@ -19,18 +18,17 @@ public class Venta {
         idVenta ++;
         this.idCaja = idCaja;
         this.metodoPago = metodoPago;
+        this.listaLinea = new ArrayList<Linea>();
     }
 
     private double generarPrecioFinal(Articulo articulo, int cantidad){ ;
         return articulo.getCosto() + ((articulo.getCosto() * articulo.getUtilidad()) / 100);
     }
 
-    public void agregarArticulo(ArrayList<Linea> listaLineas,String metodoPago){
-        Articulo aAgregar = buscarArticulo();
-        int cant = cargarCantidadArticulo(aAgregar);
-        if(cant != 0){
-            Linea nueva = new Linea(aAgregar, cant);
-            listaLineas.add(nueva);
+    public void agregarArticulo(Articulo aAgregar, int cant){
+            Linea nueva = new Linea(aAgregar, cant, generarPrecioFinal(aAgregar, cant));
+            listaLinea.add(nueva);
         }
-    }
+
+
 }
