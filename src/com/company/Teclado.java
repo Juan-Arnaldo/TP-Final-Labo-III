@@ -3,15 +3,31 @@ package com.company;
 import java.util.Scanner;
 
 public class Teclado {
-    private Scanner sc = new Scanner(System.in);
+    private Scanner sc;
 
     public Teclado() {
+        sc = new Scanner(System.in);
     }
 
+
+// Métodos de Carga para Artículos
+
+
+    /**
+     * Método para cargar por teclado el nombre de un artículo.
+     * @return nombre - nombre del artículo cargado.
+     */
     public String cargarNombreArticulo() {
-        String nombre;
         System.out.println("Ingrese el nombre del artículo: ");
-        nombre = sc.nextLine();
-        return nombre;
+        return sc.nextLine();
+    }
+
+    /**
+     * Método para cargar por teclado la cantidad deseada.
+     * @return cantidad deseada
+     */
+    public int cargarCantidadArticlo(){
+        System.out.println("Ingrese la cantidad del articulo: ");
+        return sc.nextInt();
     }
 }

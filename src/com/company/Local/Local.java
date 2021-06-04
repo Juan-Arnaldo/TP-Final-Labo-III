@@ -82,7 +82,6 @@ public class Local {
     }
 
 
-
     public void cargarCliente(ArrayList<Cliente> listaClientes, int idCliente){
         Cliente cliente;
         cliente = corroborarCliente(listaClientes, idCliente);
@@ -95,13 +94,13 @@ public class Local {
         }
     }
 
-        public Integer dimArrayCliente (ArrayList < Cliente > listaClientes) {
-            int dimension = 0;
-            for (Cliente cliente : this.listaClientes) {
-                dimension++;
-            }
-            return dimension;
+    public Integer dimArrayCliente (ArrayList < Cliente > listaClientes) {
+        int dimension = 0;
+        for (Cliente cliente : this.listaClientes) {
+            dimension++;
         }
+        return dimension;
+    }
 
     public Cliente corroborarCliente(ArrayList<Cliente> listaClientes, int idCliente){
         Cliente resultado = null;
