@@ -1,10 +1,8 @@
 package com.company.Local;
 
-import com.company.Main;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
-
 
 import java.util.ArrayList;
 
@@ -76,7 +74,7 @@ public class Local {
     }
 
 
-    public void cargarCliente(ArrayList<Cliente> listaClientes, int idCliente){
+    /*public void cargarCliente(ArrayList<Cliente> listaClientes, int idCliente){
         Cliente cliente;
         cliente = corroborarCliente(listaClientes, idCliente);
         if (cliente == null) {
@@ -86,7 +84,7 @@ public class Local {
         } else {
             System.out.println("El cliente ya existe!!");
         }
-    }
+    }*/
 
     public Integer dimArrayCliente(ArrayList<Cliente> listaClientes){
         int dimension=0;
@@ -107,7 +105,7 @@ public class Local {
         return resultado;
     }
 
-    public void cargarProveedor(ArrayList<Proveedor> listaProveedores, int idProv){
+    /*public void cargarProveedor(ArrayList<Proveedor> listaProveedores, int idProv){
         Proveedor proveedor;
         proveedor = corroborarProv(listaProveedores, idProv);
         if (proveedor == null) {
@@ -117,7 +115,7 @@ public class Local {
         } else {
             System.out.println("El proveedor ya existe!!");
         }
-    }
+    }*/
 
     public Integer dimArrayProv(ArrayList<Proveedor> listaProveedores){
         int dimension=0;
@@ -140,6 +138,21 @@ public class Local {
 
     public void crearCaja(Caja caja) {
         this.listaCajas.add(caja);
+    }
+
+    /**
+     * Metodo para buscar un Articulo en especial por nombre
+     * @param nombre
+     * @return Objeto a Buscar
+     */
+    public Articulo buscarArticuloNombre(String nombre){
+        Articulo aux = null;
+        for (Articulo aBuscar : listaArticulos){
+            if(aBuscar.getNombre().equals(nombre)){
+                aux = aBuscar;
+            }
+        }
+        return aux;
     }
 
 

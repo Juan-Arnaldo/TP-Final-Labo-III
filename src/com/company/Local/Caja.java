@@ -1,5 +1,7 @@
 package com.company.Local;
 
+import com.company.Articulo.Articulo;
+
 public class Caja {
     private int idCaja;
     private double dinero;
@@ -29,4 +31,18 @@ public class Caja {
 
         return true;
     }
+
+    /*public static int cargarCantidadArticulo(Articulo articulo, int cant) {
+        carga cant
+        do{
+            if(verificarCantidadArticulo(cant)){
+                return cant;
+            }else{
+                System.out.println("Noy hay stock suficiente (" + articulo.getStock() + "), ingrese una nueva cantidad (en caso de no querer ingrese 0): \n ");
+                cant = cargaCantidadTeclado();
+            }
+        }while(verificarCantidadArticulo(cant) && cant != 0);
+
+        return cant;
+    }*/
 }
