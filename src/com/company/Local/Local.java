@@ -1,5 +1,6 @@
 package com.company.Local;
 
+import com.company.Operacion.Operacion;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
@@ -18,6 +19,7 @@ public class Local {
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Proveedor> listaProveedores;
     private ArrayList<Caja> listaCajas;
+    private ArrayList<Operacion> listaOperacion;
 
 
     public Local(int idLocal, String nombre, String direccion, List<Articulo> listaArticulos, List<Cliente> listaClientes, List<Proveedor> listaProveedores) {
@@ -101,16 +103,16 @@ public class Local {
             return dimension;
         }
 
-        public Cliente corroborarCliente(ArrayList<Cliente> listaClientes, int idCliente){
-            Cliente resultado = null;
-            for (Cliente cliente : this.listaClientes) {
-                if (cliente.getCodInterno() == idCliente) {
-                    resultado = cliente;
-                    break;
-                }
+    public Cliente corroborarCliente(ArrayList<Cliente> listaClientes, int idCliente){
+        Cliente resultado = null;
+        for (Cliente cliente : listaClientes) {
+            if (cliente.getCodInterno() == idCliente) {
+                resultado = cliente;
+                break;
             }
-            return resultado;
         }
+        return resultado;
+    }
 
     public void cargarProveedor(ArrayList<Proveedor> listaProveedores, int idProv){
         Proveedor proveedor;
@@ -124,55 +126,54 @@ public class Local {
         }
     }
 
-        public Integer dimArrayProv () {
-            int dimension = 0;
-            for (Proveedor proveedor : listaProveedores) {
-                dimension++;
-            }
-            return dimension;
+    public Integer dimArrayProv () {
+        int dimension = 0;
+        for (Proveedor proveedor : listaProveedores) {
+            dimension++;
         }
-
-        public Proveedor corroborarProv(ArrayList<Proveedor> listaProveedores, int idProv){
-            Proveedor resultado = null;
-            for (Proveedor proveedor : this.listaProveedores) {
-                if (proveedor.getCodInterno() == idProv) {
-                    resultado = proveedor;
-                    break;
-                }
-            }
-            return resultado;
-        }
-
-        public void crearCaja (Caja caja){
-            this.listaCajas.add(caja);
-        }
-
-        /**
-         * Metodo para buscar un Articulo en especial por nombre
-         * @param nombre
-         * @return Objeto a Buscar
-         */
-        public Articulo buscarArticuloNombre (String nombre){
-            Articulo aux = null;
-            for (Articulo aBuscar : listaArticulos) {
-                if (aBuscar.getNombre().equals(nombre)) {
-                    aux = aBuscar;
-                }
-            }
-            return aux;
-        }
-
-
-        public String toString(){
-            return "Local{" +
-                    "\nidLocal=" + idLocal +
-                    ", \nnombre='" + nombre + '\'' +
-                    ", \ndireccion='" + direccion + '\'' +
-                    ", \nlistaArticulos=" + listaArticulos +
-                    ", \nlistaClientes=" + listaClientes +
-                    ", \nlistaProveedores=" + listaProveedores +
-                    '}';
-        }
-
+        return dimension;
     }
+
+    public Proveedor corroborarProv(ArrayList<Proveedor> listaProveedores, int idProv){
+        Proveedor resultado = null;
+        for (Proveedor proveedor : this.listaProveedores) {
+            if (proveedor.getCodInterno() == idProv) {
+                resultado = proveedor;
+                break;
+            }
+        }
+        return resultado;
+    }
+
+    public void crearCaja (Caja caja){
+        this.listaCajas.add(caja);
+    }
+
+    /**
+     * Metodo para buscar un Articulo en especial por nombre
+     * @param nombre
+     * @return Objeto a Buscar
+     */
+    public Articulo buscarArticuloNombre (String nombre){
+        Articulo aux = null;
+        for (Articulo aBuscar : listaArticulos) {
+            if (aBuscar.getNombre().equals(nombre)) {
+                aux = aBuscar;
+            }
+        }
+        return aux;
+    }
+
+
+    public String toString(){
+        return "Local{" +
+                "\nidLocal=" + idLocal +
+                ", \nnombre='" + nombre + '\'' +
+                ", \ndireccion='" + direccion + '\'' +
+                ", \nlistaArticulos=" + listaArticulos +
+                ", \nlistaClientes=" + listaClientes +
+                ", \nlistaProveedores=" + listaProveedores;
+    }
+
+}
 
