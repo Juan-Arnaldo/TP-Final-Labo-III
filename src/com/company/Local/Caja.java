@@ -1,14 +1,18 @@
 package com.company.Local;
 
 import com.company.Articulo.Articulo;
+import com.company.Operacion.Venta;
+import com.company.Teclado;
 
 public class Caja {
     private int idCaja;
     private double dinero;
+    private Local local;
 
-    public Caja(int idCaja, double dinero) {
+    public Caja(int idCaja, double dinero, Local local) {
         this.idCaja = idCaja;
         this.dinero = dinero;
+        this.local = local;
     }
 
     public int getIdCaja() {
@@ -27,22 +31,22 @@ public class Caja {
         this.dinero = dinero;
     }
 
-    boolean cargarVenta() {
+    //public METODO DE FORMA DE PAGO
 
-        return true;
+    public void cargarVenta() {
+        Venta nueva = new Venta(idCaja, "Tarjeta");
+
+  /*    do{
+
+            nueva.agregarArticulo(local.buscarArticulo(), nueva.cargarCantidadArticulo());
+
+
+        }while (true);
+
+        listaOperaciones.add(nueva);
+
     }
+*/
 
-    /*public static int cargarCantidadArticulo(Articulo articulo, int cant) {
-        carga cant
-        do{
-            if(verificarCantidadArticulo(cant)){
-                return cant;
-            }else{
-                System.out.println("Noy hay stock suficiente (" + articulo.getStock() + "), ingrese una nueva cantidad (en caso de no querer ingrese 0): \n ");
-                cant = cargaCantidadTeclado();
-            }
-        }while(verificarCantidadArticulo(cant) && cant != 0);
-
-        return cant;
-    }*/
+    }
 }
