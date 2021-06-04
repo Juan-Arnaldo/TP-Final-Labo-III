@@ -4,6 +4,7 @@ import com.company.Articulo.Articulo;
 import com.company.Local.Local;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
+import com.company.Operacion.Venta;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -16,6 +17,9 @@ public class Main {
         loteDeClientes(local.getListaClientes());
         local.cargarCliente(local.getListaClientes(),3);
         local.toString();*/
+
+        Venta a = new Venta();
+        a.agregarArticulo();
     }
 
     public static Cliente crearCliente() {
@@ -25,6 +29,7 @@ public class Main {
         String cuit;
         String email;
         int codInterno = 0;
+
 
 
         System.out.println("Ingrese el nombre del cliente: ");
@@ -97,14 +102,12 @@ public class Main {
             if(verificarCantidadArticulo(cant)){
                 return cant;
             }else{
-                int aux;
-                System.out.println("Noy hay stock suficiente, ingrese una nueva cantidad (en caso de no querer ingrese 0): \n ");
+                System.out.println("Noy hay stock suficiente (" + articulo.getStock() + "), ingrese una nueva cantidad (en caso de no querer ingrese 0): \n ");
                 cant = input.nextInt();
             }
         }while(verificarCantidadArticulo(cant) && cant != 0);
 
         return cant;
     }
-
 
 }

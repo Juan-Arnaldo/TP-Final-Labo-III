@@ -26,8 +26,8 @@ public class Venta {
     }
 
     public void agregarArticulo(ArrayList<Linea> listaLineas,String metodoPago){
-        //Articulo aAgregar = buscarArticulo();
-        //int cantidad = cargarCantidadArticulo(aAgregar);
+        Articulo aAgregar = buscarArticulo();
+        int cant = cargarCantidadArticulo(aAgregar);
         if(cant != 0){
             Linea nueva = new Linea(aAgregar, cant);
             listaLineas.add(nueva);
