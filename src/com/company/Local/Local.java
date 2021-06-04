@@ -7,6 +7,9 @@ import com.company.Articulo.Articulo;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.company.Main.crearCliente;
+import static com.company.Main.crearProv;
+
 public class Local {
     private int idLocal;
     private String nombre;
@@ -25,7 +28,7 @@ public class Local {
         this.listaArticulos = new ArrayList<Articulo>();
         this.listaClientes = new ArrayList<Cliente>();
         this.listaProveedores = new ArrayList<Proveedor>();
-        this.listaCajas = listaCajas;
+        this.listaCajas = new ArrayList<Caja>();
     }
 
     public int getIdLocal() {
@@ -77,14 +80,9 @@ public class Local {
     }
 
 
-<<<<<<<HEAD
 
-    public Object cargarCliente(int idCliente) {
-        Cliente cliente = null;
-=======
-    /*public void cargarCliente(ArrayList<Cliente> listaClientes, int idCliente){
+    public void cargarCliente(ArrayList<Cliente> listaClientes, int idCliente){
         Cliente cliente;
->>>>>>> develop
         cliente = corroborarCliente(listaClientes, idCliente);
         if (cliente == null) {
             cliente = crearCliente();
@@ -93,7 +91,7 @@ public class Local {
         } else {
             System.out.println("El cliente ya existe!!");
         }
-    }*/
+    }
 
         public Integer dimArrayCliente (ArrayList < Cliente > listaClientes) {
             int dimension = 0;
@@ -103,7 +101,7 @@ public class Local {
             return dimension;
         }
 
-        public Cliente corroborarCliente (ArrayList < Cliente > listaClientes,int idCliente){
+        public Cliente corroborarCliente(ArrayList<Cliente> listaClientes, int idCliente){
             Cliente resultado = null;
             for (Cliente cliente : this.listaClientes) {
                 if (cliente.getCodInterno() == idCliente) {
@@ -114,10 +112,9 @@ public class Local {
             return resultado;
         }
 
-    /*public void cargarProveedor(ArrayList<Proveedor> listaProveedores, int idProv){
+    public void cargarProveedor(ArrayList<Proveedor> listaProveedores, int idProv){
         Proveedor proveedor;
         proveedor = corroborarProv(listaProveedores, idProv);
->>>>>>> develop
         if (proveedor == null) {
             proveedor = crearProv();
             proveedor.setCodInterno((dimArrayProv())+1);
@@ -125,7 +122,7 @@ public class Local {
         } else {
             System.out.println("El proveedor ya existe!!");
         }
-    }*/
+    }
 
         public Integer dimArrayProv () {
             int dimension = 0;
@@ -135,9 +132,9 @@ public class Local {
             return dimension;
         }
 
-        public Proveedor corroborarProv ( int idProv){
+        public Proveedor corroborarProv(ArrayList<Proveedor> listaProveedores, int idProv){
             Proveedor resultado = null;
-            for (Proveedor proveedor : listaProveedores) {
+            for (Proveedor proveedor : this.listaProveedores) {
                 if (proveedor.getCodInterno() == idProv) {
                     resultado = proveedor;
                     break;
@@ -166,7 +163,6 @@ public class Local {
         }
 
 
-        @Override
         public String toString(){
             return "Local{" +
                     "\nidLocal=" + idLocal +
@@ -179,4 +175,4 @@ public class Local {
         }
 
     }
-}
+
