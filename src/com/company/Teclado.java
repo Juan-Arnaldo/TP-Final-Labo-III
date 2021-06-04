@@ -3,12 +3,15 @@ package com.company;
 import java.util.Scanner;
 
 public class Teclado {
-    private Scanner sc = new Scanner(System.in);
+    private Scanner sc;
 
     public Teclado() {
+        sc = new Scanner(System.in);
     }
 
+
 // Métodos de Carga para Artículos
+
 
     /**
      * Método para cargar por teclado el nombre de un artículo.
