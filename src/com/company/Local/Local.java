@@ -1,5 +1,6 @@
 package com.company.Local;
 
+import com.company.Main;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
@@ -17,15 +18,18 @@ public class Local {
     private ArrayList<Articulo> listaArticulos;
     private ArrayList<Cliente> listaClientes;
     private ArrayList<Proveedor> listaProveedores;
+    private ArrayList<Caja> listaCajas;
+
 
     public Local(int idLocal, String nombre, String direccion, List<Articulo> listaArticulos, List<Cliente> listaClientes, List<Proveedor> listaProveedores) {
-        this.idLocal = idLocal;
 
+        this.idLocal = idLocal;
         this.nombre = nombre;
         this.direccion = direccion;
         this.listaArticulos = new ArrayList<Articulo>();
         this.listaClientes = new ArrayList<Cliente>();
         this.listaProveedores = new ArrayList<Proveedor>();
+        this.listaCajas = listaCajas;
     }
 
     public int getIdLocal() {
@@ -77,29 +81,29 @@ public class Local {
     }
 
 
-    public void agregarCliente(int idCliente){
+    public void cargarCliente(int idCliente){
         Cliente cliente = null;
-        cliente = corroborarCliente(idCliente);
+        cliente = corroborarCliente(listaClientes, idCliente);
         if (cliente == null) {
-            cliente = cargarCliente();
-            cliente.setCodInterno((dimArrayCliente())+1);
+            cliente = crearCliente();
+            cliente.setCodInterno((dimArrayCliente(listaClientes))+1);
             listaClientes.add(cliente);
         } else {
-            JOptionPane.showMessageDialog(null, "El cliente ya existe!!");
+            System.out.println("El cliente ya existe!!");
         }
     }
 
-    public Integer dimArrayCliente(){
+    public Integer dimArrayCliente(ArrayList<Cliente> listaClientes){
         int dimension=0;
-        for(Cliente cliente:listaClientes){
+        for(Cliente cliente: this.listaClientes){
             dimension++;
         }
         return dimension;
     }
 
-    public Cliente corroborarCliente(int idCliente) {
+    public Cliente corroborarCliente(ArrayList<Cliente> listaClientes, int idCliente) {
         Cliente resultado = null;
-        for (Cliente cliente : listaClientes) {
+        for (Cliente cliente : this.listaClientes) {
             if (cliente.getCodInterno() == idCliente) {
                 resultado = cliente;
                 break;
@@ -137,6 +141,10 @@ public class Local {
             }
         }
         return resultado;
+    }
+
+    public void crearCaja(Caja caja) {
+        this.listaCajas.add(caja);
     }
 
 

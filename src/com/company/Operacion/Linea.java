@@ -14,7 +14,6 @@ public class Linea {
     public Linea(Articulo articulo, int cantidad){
         this.articulo = articulo;
         this.cantidad = cantidad;
-        this.totalArticulo = generarPrecioFinal(articulo, cantidad);
     }
 
     public Articulo getArticulo() {
@@ -29,7 +28,4 @@ public class Linea {
         return totalArticulo;
     }
 
-    private double generarPrecioFinal(Articulo articulo, int cantidad){ ;
-        return articulo.getCosto() + ((articulo.getCosto() * articulo.getUtilidad()) / 100);
-    }
 }
