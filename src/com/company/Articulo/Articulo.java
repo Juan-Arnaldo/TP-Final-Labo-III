@@ -85,5 +85,16 @@ public class Articulo {
         this.precio = precio;
     }
 
-
+    @Override
+    public String toString() {
+        return
+                 "\n" + nombre +
+                ":\nId " + idArticulo +
+                "\nDepartamento " + departamento +
+                "\nMarca " + marca +
+                "\nStock " + stock +
+                "\nCosto " + costo +
+                "\nUtilidad " + utilidad +
+                "\nPrecio " + precio;
+    }
 }

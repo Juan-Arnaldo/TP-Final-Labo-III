@@ -7,16 +7,17 @@ import com.company.Persona.Proveedor;
 import com.company.Operacion.Venta;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        /*Local local = new Local(1,"Lo de martin","Colon 3001", local.getListaArticulos(), local.getListaClientes(),local.getListaProveedores());
+        List<Articulo> listaArticulo = new ArrayList<Articulo>();
+        List<Cliente> listaCliente = new ArrayList<Cliente>();
+        List<Proveedor> listaProveedor = new ArrayList<Proveedor>();
 
-        loteDeClientes(local.getListaClientes());
-        local.cargarCliente(local.getListaClientes(),3);
-        local.toString();*/
+        Local local = new Local(0,"Lo de juan","Colon",listaArticulo,listaCliente,listaProveedor);
 
         Venta a = new Venta();
     }
