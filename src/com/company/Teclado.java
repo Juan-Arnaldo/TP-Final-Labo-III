@@ -41,7 +41,26 @@ public class Teclado {
         return sc.nextInt();
     }
 
+    /**
+     * Método para cargar por teclado el metodo de pago
+     * @return
+     */
+    public int cargarMetodoPago(){
+        System.out.println("1.Efectivo");
+        System.out.println("\n2.Tarjeta");
+        System.out.println("\n3.Cheque");
+        System.out.println("\nIngrese el metodo con el que va a pagar: ");
+        return sc.nextInt();
+    }
 
+    public boolean deseaContinuar(){
+        System.out.println("Ingrese 1 si desea continuar \n");
+        int aux = sc.nextInt();
+        if(aux == 1){
+            return true;
+        }
+        return false;
+    }
 
 
 }

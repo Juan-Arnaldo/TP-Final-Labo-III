@@ -22,7 +22,7 @@ public class Local {
     private ArrayList<Operacion> listaOperacion;
 
 
-    public Local(int idLocal, String nombre, String direccion, List<Articulo> listaArticulos, List<Cliente> listaClientes, List<Proveedor> listaProveedores) {
+    public Local(int idLocal, String nombre, String direccion) {
 
         this.idLocal = idLocal;
         this.nombre = nombre;
@@ -31,6 +31,7 @@ public class Local {
         this.listaClientes = new ArrayList<Cliente>();
         this.listaProveedores = new ArrayList<Proveedor>();
         this.listaCajas = new ArrayList<Caja>();
+        this.listaOperacion = new ArrayList<Operacion>();
     }
 
     public int getIdLocal() {
@@ -81,6 +82,13 @@ public class Local {
         this.listaProveedores = listaProveedores;
     }
 
+    public ArrayList<Operacion> getListaOperacion() {
+        return listaOperacion;
+    }
+
+    public void setListaOperacion(ArrayList<Operacion> listaOperacion) {
+        this.listaOperacion = listaOperacion;
+    }
 
     public void cargarCliente(ArrayList<Cliente> listaClientes, int idCliente){
         Cliente cliente;
@@ -162,7 +170,6 @@ public class Local {
         }
         return aux;
     }
-
 
     public String toString(){
         return "Local{" +

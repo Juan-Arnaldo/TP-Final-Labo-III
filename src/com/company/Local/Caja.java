@@ -1,6 +1,7 @@
 package com.company.Local;
 
 import com.company.Articulo.Articulo;
+import com.company.Operacion.MetodoPago;
 import com.company.Operacion.Venta;
 import com.company.Teclado;
 
@@ -31,22 +32,53 @@ public class Caja {
         this.dinero = dinero;
     }
 
-    //public METODO DE FORMA DE PAGO
+    public String cargarMetodoDePago(){
+        int aux;
+        MetodoPago metodoPago = null ;
+        Teclado teclado = new Teclado();
+        do{
+            aux = teclado.cargarMetodoPago();
+            switch (aux){
+                case 1 :
+                    metodoPago = MetodoPago.Efectivo;
+                    break;
+                case 2 :
+                    metodoPago = MetodoPago.Tarjeta;
+                    break;
+                case 3 :
+                    metodoPago = MetodoPago.Cheque;
+                    break;
+                default:
+                    System.out.println("La opcion que ingresaste no es valida");
+                    break;
+            }
+        }while(aux != 1 && aux !=2 && aux != 3 && aux != 0);
+
+        return metodoPago.name();
+    }
 
     public void cargarVenta() {
-        Venta nueva = new Venta(idCaja, "Tarjeta");
+        Teclado teclado = new Teclado();
+        Venta nueva = new Venta(idCaja);
+        int aux;
+        Articulo aux2 = null;
+        String aux3 = cargarMetodoDePago();
 
-  /*    do{
+        do{
+            aux2 = local.buscarArticuloNombre("Metodo");
+            if (aux2 != null){
+                aux = nueva.cargarCantidadArticulo(aux2);
+                if(aux != -1){
+                    nueva.agregarArticulo(aux2, aux);
+                }
+            }
 
-            nueva.agregarArticulo(local.buscarArticulo(), nueva.cargarCantidadArticulo());
+        }while (teclado.deseaContinuar());
 
-
-        }while (true);
-
-        listaOperaciones.add(nueva);
-
-    }
-*/
-
+        if(aux3 != null){
+            nueva.setMetodoPago(aux3);
+            local.getListaOperacion().add(nueva);
+        }
     }
 }
+

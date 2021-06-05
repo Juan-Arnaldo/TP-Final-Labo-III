@@ -17,9 +17,8 @@ public class Main {
         List<Cliente> listaCliente = new ArrayList<Cliente>();
         List<Proveedor> listaProveedor = new ArrayList<Proveedor>();
 
-        Local local = new Local(0,"Lo de juan","Colon",listaArticulo,listaCliente,listaProveedor);
+        Local local = new Local(0,"Lo de juan","Colon");
 
-        Venta a = new Venta();
     }
 
     public static Cliente crearCliente() {
