@@ -5,16 +5,16 @@ import com.company.Articulo.Articulo;
 public class Linea {
     private Articulo articulo;
     private int cantidad;
-    private double totalArticulo;
+    private double totalLinea;
 
     public Linea (){
 
     }
 
-    public Linea(Articulo articulo, int cantidad, double totalArticulo){
+    public Linea(Articulo articulo, int cantidad, double totalLinea){
         this.articulo = articulo;
         this.cantidad = cantidad;
-        this.totalArticulo = totalArticulo;
+        this.totalLinea = totalLinea;
     }
 
     public Articulo getArticulo() {
@@ -26,7 +26,7 @@ public class Linea {
     }
 
     public double getTotalArticulo() {
-        return totalArticulo;
+        return totalLinea;
     }
 
 }
