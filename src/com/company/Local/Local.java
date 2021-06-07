@@ -12,8 +12,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import static com.company.Main.crearCliente;
-import static com.company.Main.crearProv;
+import static com.company.Teclado.crearCliente;
+import static com.company.Teclado.crearProv;
+
 
 public class Local {
     private int idLocal;
@@ -94,27 +95,39 @@ public class Local {
         this.listaOperacion = listaOperacion;
     }
 
-    public void cargarCliente(ArrayList<Cliente> listaClientes, int idCliente){
-        Cliente cliente;
-        cliente = corroborarCliente(listaClientes, idCliente);
+    /**
+     * Metodo para crear un cliente y agregarlo a la lista de clientes si es que no existe.
+     * @param idCliente Id del cliente a buscar.
+     */
+    public void cargarCliente(int idCliente){
+        Cliente cliente = corroborarCliente(idCliente);
         if (cliente == null) {
             cliente = crearCliente();
-            cliente.setCodInterno((dimArrayCliente(listaClientes))+1);
+            cliente.setCodInterno((dimArrayCliente())+1);
             listaClientes.add(cliente);
         } else {
             System.out.println("El cliente ya existe!!");
         }
     }
 
-    public Integer dimArrayCliente (ArrayList < Cliente > listaClientes) {
+    /**
+     * Metodo para saber la dimension del arreglo de clientes.
+     * @return dimension del arreglo de clientes.
+     */
+    public Integer dimArrayCliente () {
         int dimension = 0;
-        for (Cliente cliente : this.listaClientes) {
+        for (Cliente cliente : listaClientes) {
             dimension++;
         }
         return dimension;
     }
 
-    public Cliente corroborarCliente(ArrayList<Cliente> listaClientes, int idCliente){
+    /**
+     * Metodo para buscar un cliente de la lista de clientes conociendo su Id.
+     * @return cliente buscado.
+     * @param idCliente Id del cliente a buscar.
+     */
+    public Cliente corroborarCliente(int idCliente){
         Cliente resultado = null;
         for (Cliente cliente : listaClientes) {
             if (cliente.getCodInterno() == idCliente) {
@@ -125,9 +138,13 @@ public class Local {
         return resultado;
     }
 
-    public void cargarProveedor(ArrayList<Proveedor> listaProveedores, int idProv){
+    /**
+     * Metodo para crear un proveedor y agregarlo a la lista de clientes si es que no existe.
+     * @param idProv Id del proveedor a buscar.
+     */
+    public void cargarProveedor( int idProv){
         Proveedor proveedor;
-        proveedor = corroborarProv(listaProveedores, idProv);
+        proveedor = corroborarProv(idProv);
         if (proveedor == null) {
             proveedor = crearProv();
             proveedor.setCodInterno((dimArrayProv())+1);
@@ -137,6 +154,10 @@ public class Local {
         }
     }
 
+    /**
+     * Metodo para saber la dimension del arreglo de proveedores.
+     * @return dimension del arreglo de proveedores.
+     */
     public Integer dimArrayProv () {
         int dimension = 0;
         for (Proveedor proveedor : listaProveedores) {
@@ -145,7 +166,12 @@ public class Local {
         return dimension;
     }
 
-    public Proveedor corroborarProv(ArrayList<Proveedor> listaProveedores, int idProv){
+    /**
+     * Metodo para buscar un proveedor de la lista de proveedores conociendo su Id.
+     * @return proveedor buscado.
+     * @param idProv Id del proveedor a buscar.
+     */
+    public Proveedor corroborarProv(int idProv){
         Proveedor resultado = null;
         for (Proveedor proveedor : this.listaProveedores) {
             if (proveedor.getCodInterno() == idProv) {
