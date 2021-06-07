@@ -252,7 +252,6 @@ public class Local {
         String departamento;
         String marca;
         double utilidad;
-
         do {
             //TODO - Autoincrementar los idArticulo teniendo en cuenta la lista de local y la lista parcial de este método.
             nombre = teclado.cargarNombreArticulo();
