@@ -44,7 +44,7 @@ public class Caja {
                     break;
                 case 2 :
                     metodoPago = MetodoPago.Tarjeta;
-                    break;
+                    return seleccionTarjeta();
                 case 3 :
                     metodoPago = MetodoPago.Cheque;
                     break;
@@ -57,9 +57,44 @@ public class Caja {
         return metodoPago.name();
     }
 
+    private String seleccionTarjeta(){
+        int aux;
+        String tarjeta = null;
+        Teclado teclado = new Teclado();
+        do{
+            aux = teclado.cargarTarjeta();
+            switch (aux){
+                case 1:
+                    tarjeta = "Visa";
+                    break;
+                case 2:
+                    tarjeta = "Mastercad";
+                    break;
+                case 3:
+                    tarjeta = "Cabal";
+                    break;
+                case 4 :
+                    tarjeta = "American Express";
+                    break;
+                case 5 :
+                    tarjeta = "Maestro";
+                    break;
+                case 6 :
+                    tarjeta = "Naranja";
+                    break;
+                default:
+                    System.out.println("La opcion ingresada es incorrecta, ingrese 0 de si desea salir");
+                    break;
+            }
+
+        }while(aux !=1 && aux !=2 && aux !=3 && aux !=4 && aux !=5 && aux !=6 && aux !=0);
+
+        return  tarjeta;
+    }
+
     public void cargarVenta() {
         Teclado teclado = new Teclado();
-        Venta nueva = new Venta(idCaja);
+        Venta nueva = new Venta(local.corroborarCliente(5), idCaja);  //TODO - Falta hacer bien lo de corroborrar el cliente
         int aux;
         Articulo aux2 = null;
         String aux3 = cargarMetodoDePago();

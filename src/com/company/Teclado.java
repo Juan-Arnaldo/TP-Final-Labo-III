@@ -160,6 +160,18 @@ public class Teclado {
         return sc.nextInt();
     }
 
+    public int cargarTarjeta(){
+        System.out.println("1. Visa");
+        System.out.println("\n2. Mastercard");
+        System.out.println("\n3. Cabal");
+        System.out.println("\n4. American Express");
+        System.out.println("\n5. Maestro");
+        System.out.println("\n6. Naranja");
+        System.out.println("\nIngrese la tarjeta del cliente: ");
+
+        return sc.nextInt();
+    }
+
     /**
      * Método para elegir cómo seguir en caso de que el nombre ingresado no corresponda a un artículo existente en los registros de local.
      * @param nombre - Nombre ingresado.
