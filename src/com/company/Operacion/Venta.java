@@ -1,6 +1,7 @@
 package com.company.Operacion;
 
 import com.company.Articulo.Articulo;
+import com.company.Local.Descuento;
 import com.company.Persona.Persona;
 import com.company.Teclado;
 
@@ -39,8 +40,14 @@ public class Venta extends Operacion {
      * @param cantidad
      * @return double
      */
-    private double generarPrecioFinal(Articulo articulo, int cantidad){ ;
-        return articulo.getCosto() + ((articulo.getCosto() * articulo.getUtilidad()) / 100);
+    private double generarPrecioFinal(Articulo articulo, int cantidad, ArrayList<Descuento> listaDesc){
+        double aux = articulo.getCosto() + (articulo.getCosto() * articulo.getUtilidad() /100) * cantidad;
+        for (Descuento desc : listaDesc){
+            if(desc.getNombreTarjeta().equals(metodoPago)){
+                return aux - (aux * desc.getPorcentaje() /100);
+            }
+        }
+        return aux;
     }
 
     /**
