@@ -11,8 +11,8 @@ import com.company.Teclado;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public class Local {
@@ -104,6 +104,7 @@ public class Local {
             cliente = crearCliente();
             cliente.setCodInterno((dimArrayCliente())+1);
             listaClientes.add(cliente);
+            System.out.println("Cliente cargado correctamente.");
         } else {
             System.out.println("El cliente ya existe!!");
         }
@@ -111,13 +112,13 @@ public class Local {
 
     public Cliente crearCliente(){
         Teclado teclado = new Teclado();
-        Cliente cliente = new Cliente(teclado.cargarNombrePersona(),teclado.cargarDireccionPersona(),teclado.cargarCuitPersona(),teclado.cargarTelefonoPersona(),teclado.cargarEmailPersona());
+        Cliente cliente = new Cliente(teclado.cargarNombre(),teclado.cargarDireccion(),teclado.cargarCuit(),teclado.cargarTelefono(),emailValido());
         return cliente;
     }
 
     public Proveedor crearProv(){
         Teclado teclado = new Teclado();
-        Proveedor prov = new Proveedor(teclado.cargarNombreProveedor(),teclado.cargarDireccionProveedor(),teclado.cargarCuitProveedor(),teclado.cargarTelefonoProveedor(),teclado.cargarEmailProveedor(), teclado.cargarLocalidadProveedor());
+        Proveedor prov = new Proveedor(teclado.cargarNombre(),teclado.cargarDireccion(),teclado.cargarCuit(),teclado.cargarTelefono(),teclado.cargarEmail(), teclado.cargarLocalidad());
         return prov;
     }
 
@@ -316,6 +317,32 @@ public class Local {
                 return true;
         }
         return false;
+    }
+
+    public String emailValido(){
+        Teclado teclado = new Teclado();
+        boolean op = false;
+        String email;
+        do{
+            Pattern pattern = Pattern
+                    .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+
+            email= teclado.cargarEmail();
+
+            Matcher mather = pattern.matcher(email);
+
+            if (mather.find()) {
+                System.out.println("El email ingresado es válido.");
+                op=true;
+            } else {
+                System.out.println("El email ingresado es inválido.");
+                op=false;
+            }
+        }while(!op);
+
+        return email;
+
     }
 
     public String toString(){

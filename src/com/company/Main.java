@@ -39,7 +39,7 @@ public class Main {
 
                     break;
                 case 3:
-
+                    local.crearCliente();
                     break;
                 case 4:
 
@@ -56,6 +56,9 @@ public class Main {
                 case 8:
 
                     break;
+                case 9:
+                    System.out.println("Saliendo..");
+                    break;
                 default:
                     System.out.println("Opcion erronea.\nVuelva a intentarlo.");
                     break;
@@ -65,19 +68,6 @@ public class Main {
 
 
     }
-
-
-
-
-    /*public static void loteDeClientes(ArrayList<Cliente> listaCliente){
-        Cliente clien1 = new Cliente("Cristian","Puerto","2000","30000","cristian@gmail.com",0);
-        listaCliente.add(clien1);
-        Cliente clien2 = new Cliente("Martin","En la calle","2222","11232","martin@gmail.com",1);
-        listaCliente.add(clien2);
-        Cliente clien3 = new Cliente("Agus","Pasaje","333","22222","chango@gmail.com",2);
-        listaCliente.add(clien3);
-    }*/
-
 
 
 }

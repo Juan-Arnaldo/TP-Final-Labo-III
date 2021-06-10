@@ -191,24 +191,28 @@ public class Teclado {
      * Método para cargar por teclado el nombre de una Persona.
      * @return nombre - nombre de la persana cargado.
      */
-    public String cargarNombrePersona() {
-        System.out.println("Ingrese el nombre de la persona: ");
+    public String cargarNombre() {
+        System.out.println("Ingrese el nombre: ");
         return sc.nextLine();
     }
-    public String cargarDireccionPersona() {
-        System.out.println("Ingrese la direccion de la persona: ");
+    public String cargarDireccion() {
+        System.out.println("Ingrese la direccion: ");
         return sc.nextLine();
     }
-    public String cargarTelefonoPersona() {
-        System.out.println("Ingrese el telefono de la persona: ");
+    public String cargarTelefono() {
+        System.out.println("Ingrese el telefono: ");
         return sc.nextLine();
     }
-    public String cargarCuitPersona() {
-        System.out.println("Ingrese el cuit de la persona: ");
+    public String cargarCuit() {
+        System.out.println("Ingrese el cuit: ");
         return sc.nextLine();
     }
-    public String cargarEmailPersona() {
-        System.out.println("Ingrese el email de la persona: ");
+    public String cargarEmail() {
+        System.out.println("Ingrese el email: ");
+        return sc.nextLine();
+    }
+    public String  cargarLocalidad(){
+        System.out.println("Ingrese la localidad: ");
         return sc.nextLine();
     }
 
@@ -224,30 +228,6 @@ public class Teclado {
      * Metodo para ingresar el nuevo proveedor por teclado.
      * @return Proveedor creado.
      */
-    public String cargarNombreProveedor() {
-        System.out.println("Ingrese el nombre del proveedor: ");
-        return sc.nextLine();
-    }
-    public String cargarDireccionProveedor() {
-        System.out.println("Ingrese la direccion del proveedor: ");
-        return sc.nextLine();
-    }
-    public String cargarTelefonoProveedor() {
-        System.out.println("Ingrese el telefono del proveedor: ");
-        return sc.nextLine();
-    }
-    public String cargarCuitProveedor() {
-        System.out.println("Ingrese el cuit del proveedor: ");
-        return sc.nextLine();
-    }
-    public String cargarEmailProveedor() {
-        System.out.println("Ingrese el email del proveedor: ");
-        return sc.nextLine();
-    }
-    public String cargarLocalidadProveedor() {
-        System.out.println("Ingrese la localidad del proveedor: ");
-        return sc.nextLine();
-    }
 
     public int cargarOpMain(){
         System.out.println("Ingrese una opcion para continuar: ");
