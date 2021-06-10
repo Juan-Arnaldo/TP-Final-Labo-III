@@ -72,9 +72,10 @@ public class Venta extends Operacion {
      * @param aAgregar
      * @param cant
      */
-    public void agregarArticulo(Articulo aAgregar, int cant){
+    public void agregarArticulo(Articulo aAgregar, int cant, ArrayList<Descuento> listaDescuento){
         if(cant != -1){
-            Linea nueva = new Linea(aAgregar, cant, generarPrecioFinal(aAgregar, cant, ));
+            Linea nueva = new Linea(aAgregar, cant, generarPrecioFinal(aAgregar, cant, listaDescuento));
+
             listaLinea.add(nueva);
         }
     }

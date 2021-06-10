@@ -24,6 +24,7 @@ public class Local {
     private ArrayList<Proveedor> listaProveedores;
     private ArrayList<Caja> listaCajas;
     private ArrayList<Operacion> listaOperacion;
+    private ArrayList<Descuento> listaDescuento;
 
 
     public Local(int idLocal, String nombre, String direccion) {
@@ -36,6 +37,7 @@ public class Local {
         this.listaProveedores = new ArrayList<Proveedor>();
         this.listaCajas = new ArrayList<Caja>();
         this.listaOperacion = new ArrayList<Operacion>();
+        this.listaDescuento = new ArrayList<Descuento>();
     }
 
     public int getIdLocal() {
@@ -92,6 +94,14 @@ public class Local {
 
     public void setListaOperacion(ArrayList<Operacion> listaOperacion) {
         this.listaOperacion = listaOperacion;
+    }
+
+    public ArrayList<Descuento> getListaDescuento() {
+        return listaDescuento;
+    }
+
+    public void setListaDescuento(ArrayList<Descuento> listaDescuento) {
+        this.listaDescuento = listaDescuento;
     }
 
     /**
@@ -316,6 +326,16 @@ public class Local {
                 return true;
         }
         return false;
+    }
+
+    public void agregarDescuento(){
+        Teclado teclado = new Teclado();
+        String nombre = null;
+        String nombreTarjera = null;
+        int porcentaje = 0;
+
+
+
     }
 
     public String toString(){

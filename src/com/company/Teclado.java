@@ -28,7 +28,7 @@ public class Teclado {
         return false;
     }
 
-//---------- Métodos de Carga para Artículos ----------
+//---------- Métodos de Carga para Artículos ----------//
 
     /**
      * Método para cargar por teclado el nombre de un artículo.
@@ -185,7 +185,7 @@ public class Teclado {
         return sc.nextInt();
     }
 
-////---------- Métodos de Carga para Personas/Proveedores ----------
+////---------- Métodos de Carga para Personas/Proveedores ----------////
 
     /**
      * Método para cargar por teclado el nombre de una Persona.
