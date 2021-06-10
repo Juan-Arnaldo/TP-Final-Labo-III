@@ -104,7 +104,7 @@ public class Caja {
             if (aux2 != null){
                 aux = nueva.cargarCantidadArticulo(aux2);
                 if(aux != -1){
-                    nueva.agregarArticulo(aux2, aux);
+                   // nueva.agregarArticulo(aux2, aux);
                 }
             }
 

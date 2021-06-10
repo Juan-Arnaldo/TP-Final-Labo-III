@@ -12,8 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
-import static com.company.Teclado.crearCliente;
-import static com.company.Teclado.crearProv;
+
 
 
 public class Local {
@@ -108,6 +107,18 @@ public class Local {
         } else {
             System.out.println("El cliente ya existe!!");
         }
+    }
+
+    public Cliente crearCliente(){
+        Teclado teclado = new Teclado();
+        Cliente cliente = new Cliente(teclado.cargarNombrePersona(),teclado.cargarDireccionPersona(),teclado.cargarCuitPersona(),teclado.cargarTelefonoPersona(),teclado.cargarEmailPersona());
+        return cliente;
+    }
+
+    public Proveedor crearProv(){
+        Teclado teclado = new Teclado();
+        Proveedor prov = new Proveedor(teclado.cargarNombreProveedor(),teclado.cargarDireccionProveedor(),teclado.cargarCuitProveedor(),teclado.cargarTelefonoProveedor(),teclado.cargarEmailProveedor(), teclado.cargarLocalidadProveedor());
+        return prov;
     }
 
     /**

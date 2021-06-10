@@ -5,7 +5,7 @@ public abstract class Descuento {
     private int porcentaje;
     private String nombreTarjeta;
 
-    public Descuento(int porcentaje, String nombre, String nombreTarjeta) {
+    public Descuento(int porcentaje) {
         this.porcentaje = porcentaje;
         this.nombre = nombre;
         this.nombreTarjeta = nombreTarjeta;
