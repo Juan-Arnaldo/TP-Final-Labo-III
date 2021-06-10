@@ -32,38 +32,38 @@ public class Caja {
         this.dinero = dinero;
     }
 
-    public String cargarMetodoDePago(){
+    public String cargarMetodoDePago() {
         int aux;
-        MetodoPago metodoPago = null ;
+        MetodoPago metodoPago = null;
         Teclado teclado = new Teclado();
-        do{
+        do {
             aux = teclado.cargarMetodoPago();
-            switch (aux){
-                case 1 :
+            switch (aux) {
+                case 1:
                     metodoPago = MetodoPago.Efectivo;
                     break;
-                case 2 :
+                case 2:
                     metodoPago = MetodoPago.Tarjeta;
                     return seleccionTarjeta();
-                case 3 :
+                case 3:
                     metodoPago = MetodoPago.Cheque;
                     break;
                 default:
                     System.out.println("La opcion que ingresaste no es valida");
                     break;
             }
-        }while(aux != 1 && aux !=2 && aux != 3 && aux != 0);
+        } while (aux != 1 && aux != 2 && aux != 3 && aux != 0);
 
         return metodoPago.name();
     }
 
-    private String seleccionTarjeta(){
+    private String seleccionTarjeta() {
         int aux;
         String tarjeta = null;
         Teclado teclado = new Teclado();
-        do{
+        do {
             aux = teclado.cargarTarjeta();
-            switch (aux){
+            switch (aux) {
                 case 1:
                     tarjeta = "Visa";
                     break;
@@ -73,13 +73,13 @@ public class Caja {
                 case 3:
                     tarjeta = "Cabal";
                     break;
-                case 4 :
+                case 4:
                     tarjeta = "American Express";
                     break;
-                case 5 :
+                case 5:
                     tarjeta = "Maestro";
                     break;
-                case 6 :
+                case 6:
                     tarjeta = "Naranja";
                     break;
                 default:
@@ -87,31 +87,30 @@ public class Caja {
                     break;
             }
 
-        }while(aux !=1 && aux !=2 && aux !=3 && aux !=4 && aux !=5 && aux !=6 && aux !=0);
+        } while (aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
 
-        return  tarjeta;
+        return tarjeta;
     }
 
-    public void cargarVenta() {
+    public void cargaVenta() {
         Teclado teclado = new Teclado();
-        Venta nueva = new Venta(local.corroborarCliente(5), idCaja);  //TODO - Falta hacer bien lo de corroborrar el cliente
-        int aux;
-        Articulo aux2 = null;
-        String aux3 = cargarMetodoDePago();
 
-        do{
-            aux2 = local.buscarArticuloNombre("Metodo");
-            if (aux2 != null){
-                aux = nueva.cargarCantidadArticulo(aux2);
-                if(aux != -1){
-                   nueva.agregarArticulo(aux2, aux, local.getListaDescuento());
+        Venta nueva = new Venta(local.buscarCliente(), idCaja);
+        do {
+            Articulo art = local.buscarArticuloNombre(teclado.cargarNombreArticulo());
+            if (art != null) {
+                int cant = nueva.cargarCantidadArticulo(art);
+                if(cant != -1){
+                    nueva.agregarArticulo(art, cant, local.getListaDescuento());
                 }
             }
 
         }while (teclado.deseaContinuar());
 
-        if(aux3 != null){
-            nueva.setMetodoPago(aux3);
+        String metodoPago = cargarMetodoDePago();
+
+        if(metodoPago != null && nueva.getListaLinea().size() > 0){
+            nueva.setMetodoPago(metodoPago);
             local.getListaOperacion().add(nueva);
         }
     }

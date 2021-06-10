@@ -18,12 +18,20 @@ public class Venta extends Operacion {
         this.idCaja = idCaja;
     }
 
-    public Venta(Persona persona, int idVenta, int idCaja, String metodoPago) {
+    public Venta(Persona persona, int idVenta, int idCaja, String metodoPago, ArrayList<Linea> listaLinea) {
         super(persona);
         this.idVenta = idVenta;
         this.idCaja = idCaja;
         this.metodoPago = metodoPago;
-        this.listaLinea = new ArrayList<Linea>();
+        this.listaLinea = listaLinea;
+    }
+
+    public ArrayList<Linea> getListaLinea() {
+        return listaLinea;
+    }
+
+    public void setListaLinea(ArrayList<Linea> listaLinea) {
+        this.listaLinea = listaLinea;
     }
 
     public void setIdCaja(int idCaja) {

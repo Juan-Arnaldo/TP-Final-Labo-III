@@ -209,22 +209,6 @@ public class Local {
     }
 
     /**
-     * Metodo para buscar un artículo de la lista de artículos por su nombre.
-     * @return Articulo buscado.
-     */
-    public Articulo buscarArticuloNombre (){
-        Teclado teclado = new Teclado();
-        String nombre = teclado.cargarNombreArticulo();
-        Articulo aux = null;
-        for (Articulo aBuscar : listaArticulos) {
-            if (aBuscar.getNombre().equals(nombre)) {
-                aux = aBuscar;
-            }
-        }
-        return aux;
-    }
-
-    /**
      * Metodo para buscar un artículo de la lista de artículos conociendo su nombre.
      * @return Articulo buscado.
      * @param nombre nombre del artículo a buscar.
@@ -329,7 +313,6 @@ public class Local {
         return false;
     }
 
-<<<<<<< HEAD
     public String emailValido(){
         Teclado teclado = new Teclado();
         boolean op = false;
@@ -355,15 +338,15 @@ public class Local {
         return email;
     }
 
-    public void agregarDescuento(){
-        Teclado teclado = new Teclado();
-        String nombre = null;
-        String nombreTarjera = null;
-        int porcentaje = 0;
-
-
-
-    }
+//    public void agregarDescuento(){
+//        Teclado teclado = new Teclado();
+//        String nombre = null;
+//        String nombreTarjera = null;
+//        int porcentaje = 0;
+//
+//
+//
+//    }
 
     public String toString(){
         return "Local{" +
