@@ -161,7 +161,7 @@ public class Local {
     /**
      * Metodo para mostrar una lista de clientes optimizada
      */
-
+    //TODO a checkear!
     public void mostrarListaClienteOptimizada(){
         Teclado teclado = new Teclado();
         String nombre = teclado.cargarNombre();
@@ -278,7 +278,7 @@ public class Local {
 
     /**
      * Método cargar un nuevo artículo.
-      */
+     */
     public void cargarArticulo() {
         Teclado teclado = new Teclado();
 
@@ -340,15 +340,45 @@ public class Local {
         return email;
     }
 
-//    public void agregarDescuento(){
+//    public void agregarDescuentoTarjeta(){
 //        Teclado teclado = new Teclado();
-//        String nombre = null;
-//        String nombreTarjera = null;
-//        int porcentaje = 0;
+//        String nombre = teclado.cargarNombre();
+//        String tarjeta =
 //
 //
 //
 //    }
+
+    public void modificarArticulo(Articulo articulo){
+        Teclado teclado = new Teclado();
+        int aux;
+        do{
+            aux = teclado.modificiarArticulo();
+            switch (aux){
+                case 1:
+                    articulo.setNombre(teclado.cargarNombreArticulo());
+                    break;
+                case 2:
+                    articulo.setDepartamento(teclado.cargarDepartamentoArticulo());
+                    break;
+                case 3:
+                    articulo.setMarca(teclado.cargarMarcaArticulo());
+                    break;
+                case 4:
+                    articulo.setCosto(teclado.cargarCostoArticulo());
+                    break;
+                case 5:
+                    articulo.setUtilidad(teclado.cargarUtilidadArticulo());
+                    break;
+                case 6:
+                    articulo.setStock(teclado.cargarCantidadArticulo());
+                    break;
+                default:
+                    System.out.println("La opcion ingresada no es correcta!\n");
+                    break;
+            }
+        }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
+    }
 
     public String toString(){
         return "Local{" +

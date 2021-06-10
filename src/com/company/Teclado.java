@@ -50,6 +50,11 @@ public class Teclado {
         return sc.nextLine();
     }
 
+    public  double cargarCostoArticulo(){
+        System.out.println("Ingrese el costo del articulo: ");
+        return sc.nextDouble();
+    }
+
     /**
      * Método para cargar por teclado el departamento de un artículo.
      * @return departamento del artículo cargado.
@@ -240,6 +245,22 @@ public class Teclado {
         System.out.println("7 - Lista proveedores.");
         System.out.println("8 - Lista articulos.");
         System.out.println("9 - Salir.");
+        return sc.nextInt();
+    }
+
+    /**
+     * Metodo para ingresar lo que quiere modificar
+     * @return el numero
+     */
+    public int modificiarArticulo(){
+        System.out.println("1. Nombre");
+        System.out.println("\n2. Departamento");
+        System.out.println("\n3. Marca");
+        System.out.println("\n4. Costo");
+        System.out.println("\n5. Utilidad");
+        System.out.println("\n6. Precio");
+        System.out.println("\n0. Salir");
+        System.out.println("\nIngrese lo que quiere modificar: ");
         return sc.nextInt();
     }
 }
