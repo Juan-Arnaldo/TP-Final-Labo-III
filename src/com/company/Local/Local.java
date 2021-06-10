@@ -105,54 +105,52 @@ public class Local {
     }
 
     /**
-     * Metodo para crear un cliente y agregarlo a la lista de clientes si es que no existe.
-     * @param idCliente Id del cliente a buscar.
+     * Metodo para la creacion de cliente, carga de sus datos y lo agrega a la lista
+     * @return El cliente cargado
      */
-    public void cargarCliente(int idCliente){
-        Cliente cliente = corroborarCliente(idCliente);
-        if (cliente == null) {
-            cliente = crearCliente();
-            cliente.setCodInterno((dimArrayCliente())+1);
-            listaClientes.add(cliente);
-            System.out.println("Cliente cargado correctamente.");
-        } else {
-            System.out.println("El cliente ya existe!!");
-        }
-    }
-
-    public Cliente crearCliente(){
+    public void crearCliente(){
         Teclado teclado = new Teclado();
-        Cliente cliente = new Cliente(teclado.cargarNombre(),teclado.cargarDireccion(),teclado.cargarCuit(),teclado.cargarTelefono(),emailValido());
-        return cliente;
-    }
 
-    public Proveedor crearProv(){
-        Teclado teclado = new Teclado();
-        Proveedor prov = new Proveedor(teclado.cargarNombre(),teclado.cargarDireccion(),teclado.cargarCuit(),teclado.cargarTelefono(),teclado.cargarEmail(), teclado.cargarLocalidad());
-        return prov;
+        String nombre = teclado.cargarNombre();
+        String direc = teclado.cargarDireccion();
+        String cuit = teclado.cargarCuit();
+        String tel = teclado.cargarTelefono();
+        String correo = teclado.cargarEmail();
+
+        Cliente cliente = new Cliente(nombre, direc, cuit, tel, correo);
+        listaClientes.add(cliente);
     }
 
     /**
-     * Metodo para saber la dimension del arreglo de clientes.
-     * @return dimension del arreglo de clientes.
+     * Metodo para la creacion de proveedor y carga de sus datos
+     * @return El proveedor cargado
      */
-    public Integer dimArrayCliente () {
-        int dimension = 0;
-        for (Cliente cliente : listaClientes) {
-            dimension++;
-        }
-        return dimension;
+
+    public Proveedor crearProv(){
+        Teclado teclado = new Teclado();
+
+        String nombre = teclado.cargarNombre();
+        String direc = teclado.cargarDireccion();
+        String cuit = teclado.cargarCuit();
+        String tel = teclado.cargarTelefono();
+        String correo = teclado.cargarEmail();
+        String localidad = teclado.cargarLocalidad();
+
+        Proveedor prov = new Proveedor(nombre, direc, cuit, tel, correo, localidad);
+        listaProveedores.add(prov);
+
+        return prov;
     }
 
     /**
      * Metodo para buscar un cliente de la lista de clientes conociendo su Id.
      * @return cliente buscado.
-     * @param idCliente Id del cliente a buscar.
+     * @param cuitCliente Id del cliente a buscar.
      */
-    public Cliente corroborarCliente(int idCliente){
+    public Cliente corroborarCliente(String cuitCliente){
         Cliente resultado = null;
         for (Cliente cliente : listaClientes) {
-            if (cliente.getCodInterno() == idCliente) {
+            if (cliente.getCuit() == cuitCliente) {
                 resultado = cliente;
                 break;
             }
@@ -161,42 +159,46 @@ public class Local {
     }
 
     /**
-     * Metodo para crear un proveedor y agregarlo a la lista de clientes si es que no existe.
-     * @param idProv Id del proveedor a buscar.
+     * Metodo para mostrar una lista de clientes optimizada
      */
-    public void cargarProveedor( int idProv){
-        Proveedor proveedor;
-        proveedor = corroborarProv(idProv);
-        if (proveedor == null) {
-            proveedor = crearProv();
-            proveedor.setCodInterno((dimArrayProv())+1);
-            listaProveedores.add(proveedor);
-        } else {
-            System.out.println("El proveedor ya existe!!");
+
+    public void mostrarListaClienteOptimizada(){
+        Teclado teclado = new Teclado();
+        String nombre = teclado.cargarNombre();
+        for (Cliente aux : listaClientes){
+            if (aux.getNombre() == nombre){
+                aux.toStringOpt();
+            }
         }
     }
 
     /**
-     * Metodo para saber la dimension del arreglo de proveedores.
-     * @return dimension del arreglo de proveedores.
+     * Se le muestra una lista de clientes y se ingresa el CUIT del cliente para retornar
+     * @return El cliente seleccionado
      */
-    public Integer dimArrayProv () {
-        int dimension = 0;
-        for (Proveedor proveedor : listaProveedores) {
-            dimension++;
+    public Cliente buscarCliente(){
+        Teclado teclado = new Teclado();
+        Cliente cliente = null;
+        mostrarListaClienteOptimizada();
+        String CUIT = teclado.cargarCuit();
+        for (Cliente aux : listaClientes){
+            if(aux.getCuit() == CUIT){
+                cliente = aux;
+            }
         }
-        return dimension;
+
+        return cliente;
     }
 
     /**
      * Metodo para buscar un proveedor de la lista de proveedores conociendo su Id.
      * @return proveedor buscado.
-     * @param idProv Id del proveedor a buscar.
+     * @param cuitProv Id del proveedor a buscar.
      */
-    public Proveedor corroborarProv(int idProv){
+    public Proveedor corroborarProv(String cuitProv){
         Proveedor resultado = null;
         for (Proveedor proveedor : this.listaProveedores) {
-            if (proveedor.getCodInterno() == idProv) {
+            if (proveedor.getCuit() == cuitProv) {
                 resultado = proveedor;
                 break;
             }

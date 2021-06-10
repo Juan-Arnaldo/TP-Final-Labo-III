@@ -32,6 +32,11 @@ public class Caja {
         this.dinero = dinero;
     }
 
+    /**
+     * Metodo para elegir el metodo de pago
+     * @return de retorna un String del metodo seleccionado
+     */
+
     public String cargarMetodoDePago() {
         int aux;
         MetodoPago metodoPago = null;
@@ -56,6 +61,11 @@ public class Caja {
 
         return metodoPago.name();
     }
+
+    /**
+     * Funcion para la seleccion de la tarjeta
+     * @return el nombre de la tarjeta seleccionada
+     */
 
     private String seleccionTarjeta() {
         int aux;
@@ -91,6 +101,10 @@ public class Caja {
 
         return tarjeta;
     }
+
+    /**
+     * Metodo para cargar una nueva venta
+     */
 
     public void cargaVenta() {
         Teclado teclado = new Teclado();

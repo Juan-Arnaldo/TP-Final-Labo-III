@@ -77,13 +77,13 @@ public class Venta extends Operacion {
 
     /**
      * Funcion para agregar el articulo en la lista de lineas
-     * @param aAgregar
+     * @param aAgregar,
      * @param cant
+     * @param listaDescuento
      */
     public void agregarArticulo(Articulo aAgregar, int cant, ArrayList<Descuento> listaDescuento){
         if(cant != -1){
             Linea nueva = new Linea(aAgregar, cant, generarPrecioFinal(aAgregar, cant, listaDescuento));
-
             listaLinea.add(nueva);
         }
     }
