@@ -8,7 +8,6 @@ import com.company.Operacion.Venta;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Main {
 
@@ -32,7 +31,4 @@ public class Main {
         Cliente clien3 = new Cliente("Agus","Pasaje","333","22222","chango@gmail.com",2);
         listaCliente.add(clien3);
     }*/
-
-
-
 }
