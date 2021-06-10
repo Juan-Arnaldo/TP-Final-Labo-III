@@ -8,7 +8,7 @@ import com.company.Teclado;
 import java.util.ArrayList;
 
 public class Venta extends Operacion {
-    private int idVenta = 0;
+    private int idVenta;
     private int idCaja;
     private String metodoPago;
     private ArrayList<Linea> listaLinea;
@@ -72,12 +72,12 @@ public class Venta extends Operacion {
      * @param aAgregar
      * @param cant
      */
-//    public void agregarArticulo(Articulo aAgregar, int cant){
-//        if(cant != -1){
-//            Linea nueva = new Linea(aAgregar, cant, generarPrecioFinal(aAgregar, cant));
-//            listaLinea.add(nueva);
-//        }
-//    }
+    public void agregarArticulo(Articulo aAgregar, int cant){
+        if(cant != -1){
+            Linea nueva = new Linea(aAgregar, cant, generarPrecioFinal(aAgregar, cant, ));
+            listaLinea.add(nueva);
+        }
+    }
 
 
 }
