@@ -74,7 +74,7 @@ public class Venta extends Operacion {
      */
     public void agregarArticulo(Articulo aAgregar, int cant){
         if(cant != -1){
-            Linea nueva = new Linea(aAgregar, cant, generarPrecioFinal(aAgregar, cant));
+            Linea nueva = new Linea(aAgregar, cant, generarPrecioFinal(aAgregar, cant,lista));
             listaLinea.add(nueva);
         }
     }

@@ -6,6 +6,7 @@ import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Operacion.Venta;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,11 +15,20 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         List<Articulo> listaArticulo = new ArrayList<Articulo>();
         List<Cliente> listaCliente = new ArrayList<Cliente>();
         List<Proveedor> listaProveedor = new ArrayList<Proveedor>();
 
+        File f = new File("path/tpfinal.txt");
+
         Local local = new Local(0,"Lo de juan","Colon");
+
+
+
+    }
+
+    public void menuMain(){
 
     }
 
