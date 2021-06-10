@@ -1,6 +1,6 @@
 package com.company.Persona;
 
-public class Persona {
+public abstract class Persona {
     private String nombre;
     private String domicilio;
     private String cuit;
@@ -8,13 +8,12 @@ public class Persona {
     private String email;
     private int codInterno;
 
-    public Persona(String nombre, String domicilio, String cuit, String telefono, String email, int codInterno) {
+    public Persona(String nombre, String domicilio, String cuit, String telefono, String email) {
         this.nombre = nombre;
         this.domicilio = domicilio;
         this.cuit = cuit;
         this.telefono = telefono;
         this.email = email;
-        this.codInterno = codInterno;
     }
 
 

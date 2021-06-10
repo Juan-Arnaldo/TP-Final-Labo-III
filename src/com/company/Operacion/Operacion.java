@@ -2,13 +2,10 @@ package com.company.Operacion;
 
 import com.company.Persona.Persona;
 
-import com.company.Persona.Persona;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 
-public class Operacion {
+public abstract class Operacion {
     private Persona persona;
     private LocalDate fecha;
     private LocalTime hora;
@@ -26,6 +23,34 @@ public class Operacion {
 
     public Persona getPersona() {
         return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
+
+    public int getIdOperacion() {
+        return idOperacion;
+    }
+
+    public void setIdOperacion(int idOperacion) {
+        this.idOperacion = idOperacion;
     }
 
     @Override
