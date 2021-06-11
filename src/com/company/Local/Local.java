@@ -186,7 +186,7 @@ public class Local {
      * Metodo para mostrar una lista de clientes optimizada
      */
     //TODO a checkear!
-    public void mostrarListaClienteOptimizada(){
+    public void mostrarListaClienteOptimizada() {
         Teclado teclado = new Teclado();
         String nombre = teclado.cargarNombre();
         for (Cliente aux : listaClientes.getElementos()){
@@ -200,7 +200,7 @@ public class Local {
      * Se le muestra una lista de clientes y se ingresa el CUIT del cliente para retornar
      * @return El cliente seleccionado
      */
-    public Cliente buscarCliente(){
+    public Cliente buscarCliente() {
         Teclado teclado = new Teclado();
         Cliente cliente = null;
         mostrarListaClienteOptimizada();
@@ -219,7 +219,7 @@ public class Local {
      * @param cuitProv Id del proveedor a buscar.
      * @return proveedor buscado.
      */
-    public Proveedor buscarProveedorCuit(String cuitProv){
+    public Proveedor buscarProveedorCuit(String cuitProv) {
         Proveedor resultado = null;
         for (Proveedor proveedor : listaProveedores.getElementos()) {
             if (proveedor.getCuit() == cuitProv) {
@@ -233,7 +233,7 @@ public class Local {
     /**
      * Método para crear una nueva caja.
      */
-    public void crearCaja (){
+    public void crearCaja() {
 
         Caja nuevaCaja = new Caja(listaCajas.getContadorId(), 0, this);
         listaCajas.aumentarContadorId();
@@ -245,7 +245,7 @@ public class Local {
      * @param nombre nombre del artículo a buscar.
      * @return Articulo buscado.
      */
-    public Articulo buscarArticuloNombre (String nombre){
+    public Articulo buscarArticuloNombre (String nombre) {
         Articulo articulo = null;
         for (Articulo aBuscar : listaArticulos.getElementos()) {
             if (aBuscar.getNombre().equals(nombre)) {
@@ -361,7 +361,7 @@ public class Local {
      */
 
 
-    public boolean emailValido(String email){
+    public boolean emailValido(String email) {
 
         Pattern pattern = Pattern
                 .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -384,7 +384,7 @@ public class Local {
 //
 //    }
 
-    public void modificarArticulo(Articulo articulo){
+    public void modificarArticulo(Articulo articulo) {
         Teclado teclado = new Teclado();
         int aux;
         do{
@@ -415,7 +415,7 @@ public class Local {
         }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
     }
 
-    public String toString(){
+    public String toString() {
         return "Local{" +
                 "\nidLocal=" + idLocal +
                 ", \nnombre='" + nombre + '\'' +
