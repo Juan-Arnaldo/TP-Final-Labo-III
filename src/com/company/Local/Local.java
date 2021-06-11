@@ -118,6 +118,8 @@ public class Local {
         String correo = teclado.cargarEmail();
 
         Cliente cliente = new Cliente(nombre, direc, cuit, tel, correo);
+        cliente.setCodInterno(listaClientes.getContadorId());
+        listaClientes.aumentarContadorId();
         listaClientes.agregar(cliente);
     }
 
@@ -142,6 +144,9 @@ public class Local {
         String localidad = teclado.cargarLocalidad();
 
         Proveedor prov = new Proveedor(nombre, direc, cuit, tel, email, localidad);
+
+        prov.setCodInterno(listaProveedores.getContadorId());
+        listaProveedores.aumentarContadorId();
         listaProveedores.agregar(prov);
 
         return prov;
@@ -225,8 +230,14 @@ public class Local {
         return resultado;
     }
 
-    public void crearCaja (Caja caja){
-        this.listaCajas.agregar(caja);
+    /**
+     * Método para crear una nueva caja.
+     */
+    public void crearCaja (){
+
+        Caja nuevaCaja = new Caja(listaCajas.getContadorId(), 0, this);
+        listaCajas.aumentarContadorId();
+        listaCajas.agregar(nuevaCaja);
     }
 
     /**
@@ -292,6 +303,8 @@ public class Local {
 
         } while(teclado.deseaContinuar());
 
+        nuevaCompra.setIdOperacion(listaOperacion.getContadorId());
+        listaOperacion.aumentarContadorId();
         getListaOperacion().agregar(nuevaCompra);
     }
 
@@ -321,6 +334,8 @@ public class Local {
             }
 
             Articulo nuevo = new Articulo(nombre, departamento, marca, utilidad);
+            nuevo.setIdArticulo(listaArticulos.getContadorId());
+            listaArticulos.aumentarContadorId();
             listaArticulos.agregar(nuevo);
         } while (teclado.continuarCargandoArticulos());
     }

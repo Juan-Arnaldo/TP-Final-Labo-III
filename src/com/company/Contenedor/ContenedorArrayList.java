@@ -75,10 +75,9 @@ public class ContenedorArrayList<T> {
     }
 
     /**
-     * Método para setear el contador de ID.
-     * @param contadorId a setear.
+     * Método para aumentar en 1 el contador de ID.
      */
-    public void setContadorId(int contadorId) {
-        this.contadorId = contadorId;
+    public void aumentarContadorId() {
+        this.contadorId = contadorId++;
     }
 }
