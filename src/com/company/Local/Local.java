@@ -202,7 +202,7 @@ public class Local {
      */
     public Proveedor buscarProveedorCuit(String cuitProv) {
         Proveedor resultado = null;
-        for (Proveedor proveedor : listaProveedores.getElementos()) {
+        for (Proveedor proveedor : listaProveedores.getLista()) {
             if (proveedor.getCuit() == cuitProv) {
                 resultado = proveedor;
                 break;
