@@ -1,6 +1,8 @@
 package com.company.Operacion;
 
 import com.company.Articulo.Articulo;
+import com.company.Contenedor.ContenedorArrayList;
+import com.company.Local.DescTarjeta;
 import com.company.Local.Descuento;
 import com.company.Persona.Persona;
 import com.company.Teclado;
@@ -18,12 +20,20 @@ public class Venta extends Operacion {
         this.idCaja = idCaja;
     }
 
-    public Venta(Persona persona, int idVenta, int idCaja, String metodoPago) {
+    public Venta(Persona persona, int idVenta, int idCaja, String metodoPago, ArrayList<Linea> listaLinea) {
         super(persona);
         this.idVenta = idVenta;
         this.idCaja = idCaja;
         this.metodoPago = metodoPago;
-        this.listaLinea = new ArrayList<Linea>();
+        this.listaLinea = listaLinea;
+    }
+
+    public ArrayList<Linea> getListaLinea() {
+        return listaLinea;
+    }
+
+    public void setListaLinea(ArrayList<Linea> listaLinea) {
+        this.listaLinea = listaLinea;
     }
 
     public void setIdCaja(int idCaja) {
@@ -40,11 +50,13 @@ public class Venta extends Operacion {
      * @param cantidad
      * @return double
      */
-    private double generarPrecioFinal(Articulo articulo, int cantidad, ArrayList<Descuento> listaDesc){
-        double aux = articulo.getCosto() + (articulo.getCosto() * articulo.getUtilidad() /100) * cantidad;
-        for (Descuento desc : listaDesc){
-            if(desc.getNombreTarjeta().equals(metodoPago)){
-                return aux - (aux * desc.getPorcentaje() /100);
+    private double generarPrecioFinal(Articulo articulo, int cantidad, ContenedorArrayList<Descuento> listaDesc) {
+        double aux = articulo.getCosto() + (articulo.getCosto() * articulo.getUtilidad() / 100) * cantidad;
+        for (Descuento desc : listaDesc.getElementos()) {
+            if (desc instanceof DescTarjeta) {
+                if (((DescTarjeta) desc).getNombreTarjeta().equals(metodoPago)) {
+                    return aux - (aux * desc.getPorcentaje() / 100);
+                }
             }
         }
         return aux;
@@ -69,16 +81,14 @@ public class Venta extends Operacion {
 
     /**
      * Funcion para agregar el articulo en la lista de lineas
-     * @param aAgregar
+     * @param aAgregar,
      * @param cant
+     * @param listaDescuento
      */
-    public void agregarArticulo(Articulo aAgregar, int cant, ArrayList<Descuento> listaDescuento){
+    public void agregarArticulo(Articulo aAgregar, int cant, ContenedorArrayList<Descuento> listaDescuento){
         if(cant != -1){
             Linea nueva = new Linea(aAgregar, cant, generarPrecioFinal(aAgregar, cant, listaDescuento));
-
             listaLinea.add(nueva);
         }
     }
-
-
 }

@@ -15,4 +15,8 @@ public class Cliente extends Persona{
                 "\nTelefono: "+ getTelefono()+
                 "\nEmail: "+ getEmail();
     }
+
+    public String toStringOpt(){
+        return "\nNombre: " + getNombre() + "CUIT: " + getCuit();
+    }
 }

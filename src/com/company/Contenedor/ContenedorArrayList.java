@@ -1,20 +1,22 @@
-package Contenedor;
+package com.company.Contenedor;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ContenedorArrayList<T> {
     private ArrayList<T> listaDeElementos;
+    private int contadorId;
 
     public ContenedorArrayList()
     {
+        this.contadorId = 0;
         this.listaDeElementos = new ArrayList<T>();
     }
 
-    public ContenedorArrayList(ArrayList<T> listaDeElementos)
+    public ContenedorArrayList(ArrayList<T> listaDeElementos, int contadorId)
     {
         super();
         this.listaDeElementos = listaDeElementos;
+        this.contadorId = contadorId;
     }
 
     /**
@@ -64,6 +66,19 @@ public class ContenedorArrayList<T> {
         return listaDeElementos.size();
     }
 
+    /**
+     * Método para conseguir el contador de ID
+     * @return contadorId.
+     */
+    public int getContadorId() {
+        return contadorId;
+    }
 
-
+    /**
+     * Método para setear el contador de ID.
+     * @param contadorId a setear.
+     */
+    public void setContadorId(int contadorId) {
+        this.contadorId = contadorId;
+    }
 }
