@@ -329,7 +329,6 @@ public class Local {
         return false;
     }
 
-<<<<<<< HEAD
     public String emailValido(){
         Teclado teclado = new Teclado();
         boolean op = false;
