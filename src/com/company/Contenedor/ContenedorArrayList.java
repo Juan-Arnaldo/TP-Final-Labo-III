@@ -1,7 +1,6 @@
-package Contenedor;
+package com.company.Contenedor;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ContenedorArrayList<T> {
     private ArrayList<T> listaDeElementos;
