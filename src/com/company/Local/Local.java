@@ -1,7 +1,6 @@
 package com.company.Local;
 
 import com.company.Operacion.Compra;
-import com.company.Operacion.MetodoPago;
 import com.company.Operacion.Operacion;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
@@ -125,27 +124,46 @@ public class Local {
      * Metodo para la creacion de proveedor y carga de sus datos
      * @return El proveedor cargado
      */
-
     public Proveedor crearProv(){
         Teclado teclado = new Teclado();
 
+        String cuit = teclado.cargarCuit();
+        while(cuitProveedorRepetido(cuit)) {                                // TODO: En caso de que el proveedor sí exista entrará en un bucle, por lo en las compras hay que asegurarse de buscar
+            cuit = teclado.cargarNuevamenteCuitPersona(cuit);
+        }
         String nombre = teclado.cargarNombre();
         String direc = teclado.cargarDireccion();
-        String cuit = teclado.cargarCuit();
         String tel = teclado.cargarTelefono();
-        String correo = teclado.cargarEmail();
+        String email = teclado.cargarEmail();
+        while(!emailValido(email)) {
+            email = teclado.cargarNuevamenteEmailPersona(email);
+        }
         String localidad = teclado.cargarLocalidad();
 
-        Proveedor prov = new Proveedor(nombre, direc, cuit, tel, correo, localidad);
+        Proveedor prov = new Proveedor(nombre, direc, cuit, tel, email, localidad);
         listaProveedores.add(prov);
 
         return prov;
     }
 
     /**
+     * Método para verificar si determinado cuit ya figura en los registros vinculado a un proveedor.
+     * @param cuit - CUIT a verificar.
+     * @return true si el cuit se encuntra; false si el cuit no se encuentra.
+     */
+    public boolean cuitProveedorRepetido(String cuit) {
+
+        for (Proveedor aBuscar : listaProveedores) {
+            if (aBuscar.getCuit().equals(cuit))
+                return true;
+        }
+        return false;
+    }
+
+    /**
      * Metodo para buscar un cliente de la lista de clientes conociendo su Id.
-     * @return cliente buscado.
      * @param cuitCliente Id del cliente a buscar.
+     * @return cliente buscado.
      */
     public Cliente corroborarCliente(String cuitCliente){
         Cliente resultado = null;
@@ -192,10 +210,10 @@ public class Local {
 
     /**
      * Metodo para buscar un proveedor de la lista de proveedores conociendo su Id.
-     * @return proveedor buscado.
      * @param cuitProv Id del proveedor a buscar.
+     * @return proveedor buscado.
      */
-    public Proveedor corroborarProv(String cuitProv){
+    public Proveedor buscarProveedorCuit(String cuitProv){
         Proveedor resultado = null;
         for (Proveedor proveedor : this.listaProveedores) {
             if (proveedor.getCuit() == cuitProv) {
@@ -212,8 +230,8 @@ public class Local {
 
     /**
      * Metodo para buscar un artículo de la lista de artículos conociendo su nombre.
-     * @return Articulo buscado.
      * @param nombre nombre del artículo a buscar.
+     * @return Articulo buscado.
      */
     public Articulo buscarArticuloNombre (String nombre){
         Articulo articulo = null;
@@ -306,6 +324,11 @@ public class Local {
         } while (teclado.continuarCargandoArticulos());
     }
 
+    /**
+     * Método para verificar si determinado nombre ya figura en los registros vinculado a un artículo.
+     * @param nombre - nombre a verificar.
+     * @return true si el nombre se encuntra; false si el nombre no se encuentra.
+     */
     public boolean nombreArticuloRepetido(String nombre) {
 
         for (Articulo aBuscar : listaArticulos) {
@@ -315,29 +338,23 @@ public class Local {
         return false;
     }
 
-    public String emailValido(){
-        Teclado teclado = new Teclado();
-        boolean op = false;
-        String email;
-        do{
-            Pattern pattern = Pattern
-                    .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+    /**
+     * Método para verificar si el mail ingresado cumple con el formato correspondiente.
+     * @param email - email a verificar.
+     * @return true si el mail es válido; false si el mail no es válido.
+     */
+    public boolean emailValido(String email){
 
-            email= teclado.cargarEmail();
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 
-            Matcher mather = pattern.matcher(email);
+        Matcher mather = pattern.matcher(email);
 
-            if (mather.find()) {
-                System.out.println("El email ingresado es válido.");
-                op=true;
-            } else {
-                System.out.println("El email ingresado es inválido.");
-                op=false;
-            }
-        }while(!op);
-
-        return email;
+        if (mather.find())
+            return true;
+        else
+            return false;
     }
 
 //    public void agregarDescuentoTarjeta(){
