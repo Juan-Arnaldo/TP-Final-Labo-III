@@ -4,7 +4,7 @@ import com.company.Articulo.Articulo;
 import com.company.Local.Local;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
-import com.company.Operacion.Venta;
+import com.company.Utilidad.Teclado;
 
 import java.io.File;
 import java.util.ArrayList;

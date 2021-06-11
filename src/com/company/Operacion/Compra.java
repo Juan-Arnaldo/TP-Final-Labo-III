@@ -1,8 +1,6 @@
 package com.company.Operacion;
 
 import com.company.Articulo.Articulo;
-import com.company.Persona.Persona;
-import com.company.Teclado;
 
 import java.util.ArrayList;
 

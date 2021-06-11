@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Utilidad;
 
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
@@ -197,7 +197,16 @@ public class Teclado {
         System.out.println(nombre + " no corresponde a un artículo registrado.");
         System.out.println("1 - Intentar nuevamente.");
         System.out.println("2 - Agregar " + nombre + " al registro.");
-        System.out.println("Seleccione acción a realizar.");
+        System.out.println("Seleccione la acción a realizar:");
+        return sc.nextInt();
+    }
+
+    public int clienteNoExiste(){
+        System.out.println("\nEl cliente buscado no exite. ");
+        System.out.println("\n1. Volver a cargar el CUIT");
+        System.out.println("\n2. Pasar venta como consumidor final");
+        System.out.println("\n3. Crear nuevo cliente");
+        System.out.println("\n4. Ingrese la accion a realizar: ");
         return sc.nextInt();
     }
 

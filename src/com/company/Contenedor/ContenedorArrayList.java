@@ -23,7 +23,7 @@ public class ContenedorArrayList<T> {
      * Método que devuelve los elementos del ArrayList
      * @return listaDeElementos
      */
-    public ArrayList<T> getElementos()
+    public ArrayList<T> getLista()
     {
         return listaDeElementos;
     }
@@ -80,5 +80,14 @@ public class ContenedorArrayList<T> {
      */
     public void setContadorId(int contadorId) {
         this.contadorId = contadorId;
+    }
+
+    /**
+     * Metodo para conseguir un elemento por id
+     * @param id
+     * @return El object deseado
+     */
+    public T getElemento(int id){
+        return listaDeElementos.get(id);
     }
 }
