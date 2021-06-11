@@ -125,7 +125,7 @@ public class Local {
      * Metodo para la creacion de proveedor y carga de sus datos
      * @return El proveedor cargado
      */
-    public Proveedor crearProv(){
+    public void crearProv(){
         Teclado teclado = new Teclado();
 
         String cuit = teclado.cargarCuit();
@@ -144,7 +144,6 @@ public class Local {
         Proveedor prov = new Proveedor(nombre, direc, cuit, tel, email, localidad);
         listaProveedores.agregar(prov);
 
-        return prov;
     }
 
     /**

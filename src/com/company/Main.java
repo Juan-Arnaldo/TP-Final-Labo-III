@@ -22,9 +22,11 @@ public class Main {
 
         File f = new File("tpfinal.txt");
 
-        Local local = new Local(0, "Lo de juan", "Colon");
+        int nCaja=teclado.numeroCaja();
 
-        System.out.println("Bienvenido!");
+        Local local = new Local(nCaja, "Lo de juan", "Colon");
+
+        System.out.println("Bienvenido caja "+nCaja+"!");
         int op1=0;
 
         do{

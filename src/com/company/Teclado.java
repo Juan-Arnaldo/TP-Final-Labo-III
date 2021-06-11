@@ -320,4 +320,9 @@ public class Teclado {
         System.out.println("\nIngrese lo que quiere modificar: ");
         return sc.nextInt();
     }
+
+    public int numeroCaja(){
+        System.out.println("Ingrese el numero de caja a operar: ");
+        return sc.nextInt();
+    }
 }
