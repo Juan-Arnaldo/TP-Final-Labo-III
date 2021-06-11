@@ -5,7 +5,7 @@ import com.company.Contenedor.ContenedorArrayList;
 import com.company.Local.DescTarjeta;
 import com.company.Local.Descuento;
 import com.company.Persona.Persona;
-import com.company.Teclado;
+import com.company.Utilidad.Teclado;
 
 import java.util.ArrayList;
 
@@ -52,7 +52,7 @@ public class Venta extends Operacion {
      */
     private double generarPrecioFinal(Articulo articulo, int cantidad, ContenedorArrayList<Descuento> listaDesc) {
         double aux = articulo.getCosto() + (articulo.getCosto() * articulo.getUtilidad() / 100) * cantidad;
-        for (Descuento desc : listaDesc.getElementos()) {
+        for (Descuento desc : listaDesc.getLista()) {
             if (desc instanceof DescTarjeta) {
                 if (((DescTarjeta) desc).getNombreTarjeta().equals(metodoPago)) {
                     return aux - (aux * desc.getPorcentaje() / 100);
@@ -71,11 +71,10 @@ public class Venta extends Operacion {
         Teclado teclado = new Teclado();
         int cant = teclado.cargarCantidadArticulo();
 
-        if(cant <= 0 && cant > articulo.getStock()){
-            do{
+        while(cant < 0 && cant > articulo.getStock()){
                 cant = teclado.cargarNuevamenteCantidadArticulo();
-            }while(cant > 0 && cant <= articulo.getStock() && cant == -1);
         }
+
         return cant;
     }
 
@@ -86,9 +85,7 @@ public class Venta extends Operacion {
      * @param listaDescuento
      */
     public void agregarArticulo(Articulo aAgregar, int cant, ContenedorArrayList<Descuento> listaDescuento){
-        if(cant != -1){
             Linea nueva = new Linea(aAgregar, cant, generarPrecioFinal(aAgregar, cant, listaDescuento));
             listaLinea.add(nueva);
-        }
     }
 }

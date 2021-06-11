@@ -4,13 +4,14 @@ import com.company.Contenedor.ContenedorArrayList;
 import com.company.Operacion.Compra;
 import com.company.Operacion.Operacion;
 import com.company.Persona.Cliente;
+import com.company.Persona.Persona;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
-import com.company.Teclado;
+import com.company.Utilidad.Teclado;
+import com.company.Utilidad.Validacion;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -110,16 +111,23 @@ public class Local {
      */
     public void crearCliente(){
         Teclado teclado = new Teclado();
+        Validacion validacion = new Validacion();
+
+        String cuit = teclado.cargarCuit();
+        while(validacion.validarCuitCliente(cuit, listaClientes.getLista())) {                                // TODO: En caso de que el proveedor sí exista entrará en un bucle, por lo en las compras hay que asegurarse de buscar
+            cuit = teclado.cargarNuevamenteCuitPersona(cuit);
+        }
 
         String nombre = teclado.cargarNombre();
         String direc = teclado.cargarDireccion();
-        String cuit = teclado.cargarCuit();
         String tel = teclado.cargarTelefono();
-        String correo = teclado.cargarEmail();
 
-        Cliente cliente = new Cliente(nombre, direc, cuit, tel, correo);
-        cliente.setCodInterno(listaClientes.getContadorId());
-        listaClientes.aumentarContadorId();
+        String email = teclado.cargarEmail();
+        while(!validacion.validacionEmailValido(email)) {
+            email = teclado.cargarNuevamenteEmailPersona(email);
+        }
+
+        Cliente cliente = new Cliente(nombre, direc, cuit, tel, email);
         listaClientes.agregar(cliente);
     }
 
@@ -129,16 +137,19 @@ public class Local {
      */
     public Proveedor crearProv(){
         Teclado teclado = new Teclado();
+        Validacion validacion = new Validacion();
 
         String cuit = teclado.cargarCuit();
-        while(cuitProveedorRepetido(cuit)) {                                // TODO: En caso de que el proveedor sí exista entrará en un bucle, por lo en las compras hay que asegurarse de buscar
+        while(validacion.validarCuitProveedor(cuit, listaProveedores.getLista())) {                                // TODO: En caso de que el proveedor sí exista entrará en un bucle, por lo en las compras hay que asegurarse de buscar
             cuit = teclado.cargarNuevamenteCuitPersona(cuit);
         }
+
         String nombre = teclado.cargarNombre();
         String direc = teclado.cargarDireccion();
         String tel = teclado.cargarTelefono();
         String email = teclado.cargarEmail();
-        while(!emailValido(email)) {
+
+        while(!validacion.validacionEmailValido(email)) {
             email = teclado.cargarNuevamenteEmailPersona(email);
         }
         String localidad = teclado.cargarLocalidad();
@@ -153,43 +164,13 @@ public class Local {
     }
 
     /**
-     * Método para verificar si determinado cuit ya figura en los registros vinculado a un proveedor.
-     * @param cuit - CUIT a verificar.
-     * @return true si el cuit se encuntra; false si el cuit no se encuentra.
-     */
-    public boolean cuitProveedorRepetido(String cuit) {
-
-        for (Proveedor aBuscar : listaProveedores.getElementos()) {
-            if (aBuscar.getCuit().equals(cuit))
-                return true;
-        }
-        return false;
-    }
-
-    /**
-     * Metodo para buscar un cliente de la lista de clientes conociendo su Id.
-     * @param cuitCliente Id del cliente a buscar.
-     * @return cliente buscado.
-     */
-    public Cliente corroborarCliente(String cuitCliente){
-        Cliente resultado = null;
-        for (Cliente cliente : listaClientes.getElementos()) {
-            if (cliente.getCuit() == cuitCliente) {
-                resultado = cliente;
-                break;
-            }
-        }
-        return resultado;
-    }
-
-    /**
      * Metodo para mostrar una lista de clientes optimizada
      */
     //TODO a checkear!
     public void mostrarListaClienteOptimizada() {
         Teclado teclado = new Teclado();
         String nombre = teclado.cargarNombre();
-        for (Cliente aux : listaClientes.getElementos()){
+        for (Cliente aux : listaClientes.getLista()){
             if (aux.getNombre() == nombre){
                 aux.toStringOpt();
             }
@@ -205,7 +186,7 @@ public class Local {
         Cliente cliente = null;
         mostrarListaClienteOptimizada();
         String CUIT = teclado.cargarCuit();
-        for (Cliente aux : listaClientes.getElementos()){
+        for (Cliente aux : listaClientes.getLista()){
             if(aux.getCuit() == CUIT){
                 cliente = aux;
             }
@@ -247,7 +228,7 @@ public class Local {
      */
     public Articulo buscarArticuloNombre (String nombre) {
         Articulo articulo = null;
-        for (Articulo aBuscar : listaArticulos.getElementos()) {
+        for (Articulo aBuscar : listaArticulos.getLista()) {
             if (aBuscar.getNombre().equals(nombre)) {
                 articulo = aBuscar;
             }
@@ -347,33 +328,14 @@ public class Local {
      */
     public boolean nombreArticuloRepetido(String nombre) {
 
-        for (Articulo aBuscar : listaArticulos.getElementos()) {
+        for (Articulo aBuscar : listaArticulos.getLista()) {
             if (aBuscar.getNombre().equals(nombre))
                 return true;
         }
         return false;
     }
 
-    /**
-     * Método para verificar si el mail ingresado cumple con el formato correspondiente.
-     * @param email - email a verificar.
-     * @return true si el mail es válido; false si el mail no es válido.
-     */
 
-
-    public boolean emailValido(String email) {
-
-        Pattern pattern = Pattern
-                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-
-        Matcher mather = pattern.matcher(email);
-
-        if (mather.find())
-            return true;
-        else
-            return false;
-    }
 
 //    public void agregarDescuentoTarjeta(){
 //        Teclado teclado = new Teclado();
