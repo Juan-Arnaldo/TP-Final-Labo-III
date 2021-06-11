@@ -1,6 +1,7 @@
 package com.company.Operacion;
 
 import com.company.Articulo.Articulo;
+import com.company.Contenedor.ContenedorArrayList;
 import com.company.Local.DescTarjeta;
 import com.company.Local.Descuento;
 import com.company.Persona.Persona;
@@ -49,9 +50,9 @@ public class Venta extends Operacion {
      * @param cantidad
      * @return double
      */
-    private double generarPrecioFinal(Articulo articulo, int cantidad, ArrayList<Descuento> listaDesc) {
+    private double generarPrecioFinal(Articulo articulo, int cantidad, ContenedorArrayList<Descuento> listaDesc) {
         double aux = articulo.getCosto() + (articulo.getCosto() * articulo.getUtilidad() / 100) * cantidad;
-        for (Descuento desc : listaDesc) {
+        for (Descuento desc : listaDesc.getElementos()) {
             if (desc instanceof DescTarjeta) {
                 if (((DescTarjeta) desc).getNombreTarjeta().equals(metodoPago)) {
                     return aux - (aux * desc.getPorcentaje() / 100);
@@ -84,7 +85,7 @@ public class Venta extends Operacion {
      * @param cant
      * @param listaDescuento
      */
-    public void agregarArticulo(Articulo aAgregar, int cant, ArrayList<Descuento> listaDescuento){
+    public void agregarArticulo(Articulo aAgregar, int cant, ContenedorArrayList<Descuento> listaDescuento){
         if(cant != -1){
             Linea nueva = new Linea(aAgregar, cant, generarPrecioFinal(aAgregar, cant, listaDescuento));
             listaLinea.add(nueva);

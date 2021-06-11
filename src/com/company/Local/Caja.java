@@ -125,7 +125,7 @@ public class Caja {
 
         if(metodoPago != null && nueva.getListaLinea().size() > 0){
             nueva.setMetodoPago(metodoPago);
-            local.getListaOperacion().add(nueva);
+            local.getListaOperacion().agregar(nueva);
         }
     }
 }

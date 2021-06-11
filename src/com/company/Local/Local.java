@@ -1,5 +1,6 @@
 package com.company.Local;
 
+import com.company.Contenedor.ContenedorArrayList;
 import com.company.Operacion.Compra;
 import com.company.Operacion.Operacion;
 import com.company.Persona.Cliente;
@@ -18,12 +19,12 @@ public class Local {
     private int idLocal;
     private String nombre;
     private String direccion;
-    private ArrayList<Articulo> listaArticulos;
-    private ArrayList<Cliente> listaClientes;
-    private ArrayList<Proveedor> listaProveedores;
-    private ArrayList<Caja> listaCajas;
-    private ArrayList<Operacion> listaOperacion;
-    private ArrayList<Descuento> listaDescuento;
+    private ContenedorArrayList<Articulo> listaArticulos;
+    private ContenedorArrayList<Cliente> listaClientes;
+    private ContenedorArrayList<Proveedor> listaProveedores;
+    private ContenedorArrayList<Caja> listaCajas;
+    private ContenedorArrayList<Operacion> listaOperacion;
+    private ContenedorArrayList<Descuento> listaDescuento;
 
 
     public Local(int idLocal, String nombre, String direccion) {
@@ -31,12 +32,12 @@ public class Local {
         this.idLocal = idLocal;
         this.nombre = nombre;
         this.direccion = direccion;
-        this.listaArticulos = new ArrayList<Articulo>();
-        this.listaClientes = new ArrayList<Cliente>();
-        this.listaProveedores = new ArrayList<Proveedor>();
-        this.listaCajas = new ArrayList<Caja>();
-        this.listaOperacion = new ArrayList<Operacion>();
-        this.listaDescuento = new ArrayList<Descuento>();
+        this.listaArticulos = new ContenedorArrayList<Articulo>();
+        this.listaClientes = new ContenedorArrayList<Cliente>();
+        this.listaProveedores = new ContenedorArrayList<Proveedor>();
+        this.listaCajas = new ContenedorArrayList<Caja>();
+        this.listaOperacion = new ContenedorArrayList<Operacion>();
+        this.listaDescuento = new ContenedorArrayList<Descuento>();
     }
 
     public int getIdLocal() {
@@ -63,43 +64,43 @@ public class Local {
         this.direccion = direccion;
     }
 
-    public ArrayList<Articulo> getListaArticulos() {
+    public ContenedorArrayList<Articulo> getListaArticulos() {
         return listaArticulos;
     }
 
-    public void setListaArticulos(ArrayList<Articulo> listaArticulos) {
+    public void setListaArticulos(ContenedorArrayList<Articulo> listaArticulos) {
         this.listaArticulos = listaArticulos;
     }
 
-    public ArrayList<Cliente> getListaClientes() {
+    public ContenedorArrayList<Cliente> getListaClientes() {
         return listaClientes;
     }
 
-    public void setListaClientes(ArrayList<Cliente> listaClientes) {
+    public void setListaClientes(ContenedorArrayList<Cliente> listaClientes) {
         this.listaClientes = listaClientes;
     }
 
-    public ArrayList<Proveedor> getListaProveedores() {
+    public ContenedorArrayList<Proveedor> getListaProveedores() {
         return listaProveedores;
     }
 
-    public void setListaProveedores(ArrayList<Proveedor> listaProveedores) {
+    public void setListaProveedores(ContenedorArrayList<Proveedor> listaProveedores) {
         this.listaProveedores = listaProveedores;
     }
 
-    public ArrayList<Operacion> getListaOperacion() {
+    public ContenedorArrayList<Operacion> getListaOperacion() {
         return listaOperacion;
     }
 
-    public void setListaOperacion(ArrayList<Operacion> listaOperacion) {
+    public void setListaOperacion(ContenedorArrayList<Operacion> listaOperacion) {
         this.listaOperacion = listaOperacion;
     }
 
-    public ArrayList<Descuento> getListaDescuento() {
+    public ContenedorArrayList<Descuento> getListaDescuento() {
         return listaDescuento;
     }
 
-    public void setListaDescuento(ArrayList<Descuento> listaDescuento) {
+    public void setListaDescuento(ContenedorArrayList<Descuento> listaDescuento) {
         this.listaDescuento = listaDescuento;
     }
 
@@ -117,7 +118,7 @@ public class Local {
         String correo = teclado.cargarEmail();
 
         Cliente cliente = new Cliente(nombre, direc, cuit, tel, correo);
-        listaClientes.add(cliente);
+        listaClientes.agregar(cliente);
     }
 
     /**
@@ -141,7 +142,7 @@ public class Local {
         String localidad = teclado.cargarLocalidad();
 
         Proveedor prov = new Proveedor(nombre, direc, cuit, tel, email, localidad);
-        listaProveedores.add(prov);
+        listaProveedores.agregar(prov);
 
         return prov;
     }
@@ -153,7 +154,7 @@ public class Local {
      */
     public boolean cuitProveedorRepetido(String cuit) {
 
-        for (Proveedor aBuscar : listaProveedores) {
+        for (Proveedor aBuscar : listaProveedores.getElementos()) {
             if (aBuscar.getCuit().equals(cuit))
                 return true;
         }
@@ -167,7 +168,7 @@ public class Local {
      */
     public Cliente corroborarCliente(String cuitCliente){
         Cliente resultado = null;
-        for (Cliente cliente : listaClientes) {
+        for (Cliente cliente : listaClientes.getElementos()) {
             if (cliente.getCuit() == cuitCliente) {
                 resultado = cliente;
                 break;
@@ -183,7 +184,7 @@ public class Local {
     public void mostrarListaClienteOptimizada(){
         Teclado teclado = new Teclado();
         String nombre = teclado.cargarNombre();
-        for (Cliente aux : listaClientes){
+        for (Cliente aux : listaClientes.getElementos()){
             if (aux.getNombre() == nombre){
                 aux.toStringOpt();
             }
@@ -199,7 +200,7 @@ public class Local {
         Cliente cliente = null;
         mostrarListaClienteOptimizada();
         String CUIT = teclado.cargarCuit();
-        for (Cliente aux : listaClientes){
+        for (Cliente aux : listaClientes.getElementos()){
             if(aux.getCuit() == CUIT){
                 cliente = aux;
             }
@@ -215,7 +216,7 @@ public class Local {
      */
     public Proveedor buscarProveedorCuit(String cuitProv){
         Proveedor resultado = null;
-        for (Proveedor proveedor : this.listaProveedores) {
+        for (Proveedor proveedor : listaProveedores.getElementos()) {
             if (proveedor.getCuit() == cuitProv) {
                 resultado = proveedor;
                 break;
@@ -225,7 +226,7 @@ public class Local {
     }
 
     public void crearCaja (Caja caja){
-        this.listaCajas.add(caja);
+        this.listaCajas.agregar(caja);
     }
 
     /**
@@ -235,7 +236,7 @@ public class Local {
      */
     public Articulo buscarArticuloNombre (String nombre){
         Articulo articulo = null;
-        for (Articulo aBuscar : listaArticulos) {
+        for (Articulo aBuscar : listaArticulos.getElementos()) {
             if (aBuscar.getNombre().equals(nombre)) {
                 articulo = aBuscar;
             }
@@ -291,7 +292,7 @@ public class Local {
 
         } while(teclado.deseaContinuar());
 
-        getListaOperacion().add(nuevaCompra);
+        getListaOperacion().agregar(nuevaCompra);
     }
 
     /**
@@ -320,7 +321,7 @@ public class Local {
             }
 
             Articulo nuevo = new Articulo(nombre, departamento, marca, utilidad);
-            listaArticulos.add(nuevo);
+            listaArticulos.agregar(nuevo);
         } while (teclado.continuarCargandoArticulos());
     }
 
@@ -331,7 +332,7 @@ public class Local {
      */
     public boolean nombreArticuloRepetido(String nombre) {
 
-        for (Articulo aBuscar : listaArticulos) {
+        for (Articulo aBuscar : listaArticulos.getElementos()) {
             if (aBuscar.getNombre().equals(nombre))
                 return true;
         }
