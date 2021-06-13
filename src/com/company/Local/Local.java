@@ -114,7 +114,7 @@ public class Local {
         Validacion validacion = new Validacion();
 
         String cuit = teclado.cargarCuit();
-        while(validacion.validarCuitCliente(cuit, listaClientes.getLista())) {                                // TODO: En caso de que el proveedor sí exista entrará en un bucle, por lo en las compras hay que asegurarse de buscar
+        while(validacion.validarCuitCliente(cuit, listaClientes.getLista())) {      // TODO: En caso de que el proveedor sí exista entrará en un bucle, por lo en las compras hay que asegurarse de buscar
             cuit = teclado.cargarNuevamenteCuitPersona(cuit);
         }
 
@@ -166,14 +166,39 @@ public class Local {
     /**
      * Metodo para mostrar una lista de clientes optimizada
      */
-    //TODO a checkear!
     public void mostrarListaClienteOptimizada() {
         Teclado teclado = new Teclado();
         String nombre = teclado.cargarNombre();
         for (Cliente aux : listaClientes.getLista()){
-            if (aux.getNombre() == nombre){
-                aux.toStringOpt();
+            if (compararCaracter(nombre, aux.getNombre())){
+                System.out.println(aux.toStringOpt());
             }
+        }
+    }
+
+    private boolean compararCaracter(String nombreABuscar, String nombre){
+        int cantC = nombreABuscar.length();
+        char C;
+        boolean flag = true;
+        int i = 0;
+        while (flag && i < cantC ){
+
+            C = nombreABuscar.charAt(i);
+
+            if (C == (nombre.charAt(i))){
+                flag = true;
+            }else {
+                flag = false;
+            }
+            i++;
+        }
+
+        return flag;
+    }
+
+    public void mostrarListaCliente(){
+        for (Cliente cliente : listaClientes.getLista()){
+            System.out.println(cliente.toString());
         }
     }
 
@@ -295,9 +320,8 @@ public class Local {
     public void cargarArticulo() {
         Teclado teclado = new Teclado();
 
-        String nombre;
-        String departamento;
-        String marca;
+        String nombre, departamento, marca;
+        int stock = 0;
         double utilidad;
         do {
             //TODO - Autoincrementar los idArticulo teniendo en cuenta la lista de local y la lista parcial de este método.
@@ -313,12 +337,22 @@ public class Local {
             while (utilidad < 0) {             // ¿Puede haber artículos que se vendan al costo? (Utilidad = 0)
                 utilidad = teclado.cargarNuevamenteUtilidadArticulo(utilidad);
             }
+            stock = teclado.cargaStock();
+            while(stock < 0){
+                stock = teclado.cargaStockNuevamente();
+            }
 
-            Articulo nuevo = new Articulo(nombre, departamento, marca, utilidad);
+            Articulo nuevo = new Articulo(nombre, departamento, marca, utilidad, stock);
             nuevo.setIdArticulo(listaArticulos.getContadorId());
             listaArticulos.aumentarContadorId();
             listaArticulos.agregar(nuevo);
         } while (teclado.continuarCargandoArticulos());
+    }
+
+    public void mostrarArticulos(){
+        for (Articulo art : listaArticulos.getLista()){
+            System.out.println(art.toString());
+        }
     }
 
     /**

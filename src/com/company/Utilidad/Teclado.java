@@ -16,15 +16,26 @@ public class Teclado {
 
     /**
      * Método para consultar al usuario si desea continuar con lo que está realizando.
+     *
      * @return true en caso de que desee continuar; false en caso de que no desee continuar.     *
      */
-    public boolean deseaContinuar(){
+    public boolean deseaContinuar() {
         System.out.println("Ingrese 1 si desea continuar \n");
         int aux = sc.nextInt();
-        if(aux == 1){
+        if (aux == 1) {
             return true;
         }
         return false;
+    }
+
+    public int cargaStock() {
+        System.out.println("Ingrese el stock: ");
+        return sc.nextInt();
+    }
+
+    public int cargaStockNuevamente(){
+        System.out.println("El stock ingresado no es correcto, ingrese 0 de no querer ingresar nuevamente:");
+        return sc.nextInt();
     }
 
 //---------- Métodos de Carga para Artículos ----------//

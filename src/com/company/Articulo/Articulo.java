@@ -16,11 +16,12 @@ public class Articulo {
 
     /*** Constructor para la carga real del Artículo desde Local.*/
     //TODO - Al resolver el autoincremental de idArticulo, agregarlo acá.
-    public Articulo(String nombre, String departamento, String marca, double utilidad) {
+    public Articulo(String nombre, String departamento, String marca, double utilidad, int stock) {
         this.nombre = nombre;
         this.departamento = departamento;
         this.marca = marca;
         this.utilidad = utilidad;
+        this.stock = stock;
     }
 
     public Articulo(int idArticulo, String nombre, String departamento, String marca, int stock, double costo, double utilidad, double precio) {
@@ -107,7 +108,6 @@ public class Articulo {
                 "\nMarca " + marca +
                 "\nStock " + stock +
                 "\nCosto " + costo +
-                "\nUtilidad " + utilidad +
-                "\nPrecio " + precio;
+                "\nUtilidad " + utilidad ;
     }
 }

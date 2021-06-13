@@ -32,13 +32,12 @@ public class Main {
 
             switch (op1) {
                 case 1:
-
+                    local.crearCliente();
                     break;
                 case 2:
-
+                    local.mostrarListaClienteOptimizada();
                     break;
                 case 3:
-                    local.crearCliente();
                     break;
                 case 4:
 
