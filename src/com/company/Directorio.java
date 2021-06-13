@@ -8,30 +8,26 @@ public class Directorio {
     File file = new File("tpfinal.txt");
 
 
-//    public void crearCliente(Cliente cliente){
-//        try{
-//            if (file.exists()) {
-//                try{
-//                    ///Escritura
-//                    FileOutputStream fileOutputStream = new FileOutputStream(file);
-//                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-//                    objectOutputStream.writeObject(cliente);
-//                    objectOutputStream.close();
-//
-//                    ///Escritura en Json
+    public void crearCliente(Cliente cliente) {
+        if (file.exists()) {
+            try {
+                ///Escritura
+                FileWriter fw = new FileWriter("tpfinal.txt");
+                ///Escritura en Json
 //                    File file = new File("json_tpfinal.json");
 //                    ObjectMapper mapper
 //                } catch (FileNotFoundException e) {
 //                    e.printStackTrace();
 //                } catch (IOException e) {
 //                    e.printStackTrace();
-//                }
-//
-//            }
-//            else{
-//            }
-//        }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
+}
 
 
 
