@@ -233,6 +233,15 @@ public class Teclado {
     }
 
     /**
+     * Método para cargar por teclado el nombre de una Persona.
+     * @return nombre de la persana cargado.
+     */
+    public String cargarApellido() {
+        System.out.println("Ingrese el apellido: ");
+        return sc.nextLine();
+    }
+
+    /**
      * Método para cargar por teclado la dirección de una Persona.
      * @return dirección de la persana cargado.
      */

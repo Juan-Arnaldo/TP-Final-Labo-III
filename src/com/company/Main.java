@@ -24,6 +24,14 @@ public class Main {
 
         Local local = new Local(0, "Lo de juan", "Colon");
 
+        Cliente cliente = new Cliente("Juan Martin", "asd", "123", "321", "juan@gmail.com", "Arnaldo");
+        Cliente cliente2 = new Cliente("Juan Ignacio", "asd", "123", "321", "juan@gmail.com", "Zapp");
+        Cliente cliente3 = new Cliente("Martin Arnaldo", "asd", "123", "321", "juan@gmail.com", "Juan");
+
+        local.getListaClientes().agregar(cliente);
+        local.getListaClientes().agregar(cliente2);
+        local.getListaClientes().agregar(cliente3);
+
         System.out.println("Bienvenido!");
         int op1=0;
 

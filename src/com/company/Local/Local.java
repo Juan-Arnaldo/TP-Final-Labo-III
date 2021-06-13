@@ -119,6 +119,7 @@ public class Local {
         }
 
         String nombre = teclado.cargarNombre();
+        String apellido = teclado.cargarApellido();
         String direc = teclado.cargarDireccion();
         String tel = teclado.cargarTelefono();
 
@@ -127,7 +128,7 @@ public class Local {
             email = teclado.cargarNuevamenteEmailPersona(email);
         }
 
-        Cliente cliente = new Cliente(nombre, direc, cuit, tel, email);
+        Cliente cliente = new Cliente(nombre, direc, cuit, tel, email, apellido);
         listaClientes.agregar(cliente);
     }
 
@@ -145,6 +146,7 @@ public class Local {
         }
 
         String nombre = teclado.cargarNombre();
+        String apellido = teclado.cargarApellido();
         String direc = teclado.cargarDireccion();
         String tel = teclado.cargarTelefono();
         String email = teclado.cargarEmail();
@@ -154,7 +156,7 @@ public class Local {
         }
         String localidad = teclado.cargarLocalidad();
 
-        Proveedor prov = new Proveedor(nombre, direc, cuit, tel, email, localidad);
+        Proveedor prov = new Proveedor(nombre, direc, cuit, tel, email, localidad, apellido);
 
         prov.setCodInterno(listaProveedores.getContadorId());
         listaProveedores.aumentarContadorId();
@@ -171,6 +173,11 @@ public class Local {
         String nombre = teclado.cargarNombre();
         for (Cliente aux : listaClientes.getLista()){
             if (compararCaracter(nombre, aux.getNombre())){
+                System.out.println(aux.toStringOpt());
+            }
+        }
+        for (Cliente aux : listaClientes.getLista()){
+            if (compararCaracter(nombre, aux.getApellido())){
                 System.out.println(aux.toStringOpt());
             }
         }
@@ -192,7 +199,6 @@ public class Local {
             }
             i++;
         }
-
         return flag;
     }
 
