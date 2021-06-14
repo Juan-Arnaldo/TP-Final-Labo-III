@@ -228,8 +228,6 @@ public class Teclado {
         return sc.nextInt();
     }
 
-////---------- Métodos de Carga para Personas/Proveedores ----------////
-
     /**
      * Método para cargar por teclado el nombre de una Persona.
      * @return nombre de la persana cargado.
