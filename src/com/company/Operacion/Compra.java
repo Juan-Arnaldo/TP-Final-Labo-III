@@ -27,7 +27,7 @@ public class Compra extends Operacion {
      * @param cant
      */
     public void agregarLinea(Articulo aAgregar, int cant, double total){
-        Linea nueva = new Linea(aAgregar, cant, total);
+        Linea nueva = new Linea(aAgregar, cant);
         listaLinea.add(nueva);
     }
 }

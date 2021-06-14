@@ -1,13 +1,15 @@
 package com.company.Local;
 
+import java.time.LocalDate;
+
 public class DescTarjeta extends Descuento {
     private String nombreTarjeta;
-    private String diaDeLaSemana; /// investigar e implementar classe Date
+    private LocalDate diaDeLaSemana; /// investigar e implementar classe Date
 
-    public DescTarjeta(int porcentaje, String nombreTarjeta, String diaDeLaSemana, String nombreDesc) {
+    public DescTarjeta(int porcentaje, String nombreTarjeta, String nombreDesc) {
         super(porcentaje, nombreDesc);
         this.nombreTarjeta = nombreTarjeta;
-        this.diaDeLaSemana = diaDeLaSemana;
+        this.diaDeLaSemana = LocalDate.now();
     }
 
     public String getNombreTarjeta() {
@@ -18,12 +20,15 @@ public class DescTarjeta extends Descuento {
         this.nombreTarjeta = nombreTarjeta;
     }
 
-    public String getDiaDeLaSemana() {
+    public LocalDate getDiaDeLaSemana() {
         return diaDeLaSemana;
     }
 
-    public void setDiaDeLaSemana(String diaDeLaSemana) {
-        this.diaDeLaSemana = diaDeLaSemana;
+    @Override
+    public String toString() {
+        return "Nombre del Desc: " + getNombre() +
+                "\nNombre de la Tarjeta: " + nombreTarjeta +
+                "\nPorcentaje: " + getPorcentaje() + " %" +
+                "\nDia De La Semana: " + diaDeLaSemana;
     }
-
 }

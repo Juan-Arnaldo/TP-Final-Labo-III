@@ -33,11 +33,6 @@ public class Caja {
         this.dinero = dinero;
     }
 
-    /**
-     * Metodo para elegir el metodo de pago
-     * @return de retorna un String del metodo seleccionado
-     */
-
 
 
     /**
@@ -68,23 +63,27 @@ public class Caja {
         }
 
         Venta nueva = new Venta(cliente, idCaja);
-        do {
-            Articulo art = local.buscarArticuloNombre(teclado.cargarNombreArticulo());
-            if (art != null) {
-                int cant = nueva.cargarCantidadArticulo(art);
-                if(cant != 0){
-                    nueva.agregarArticulo(art, cant, local.getListaDescuento());
-                }
-            }
-
-        }while (teclado.deseaContinuar());
-
         String metodoPago = local.cargarMetodoDePago();
+        nueva.setMetodoPago(metodoPago);
+        if(metodoPago != null){
+            do {
+                Teclado t2 = new Teclado(); //TODO a consultar al profesor
+                String nombre = t2.cargarNombreArticulo();
+                Articulo art = local.buscarArticuloNombre(nombre);
+                if (art != null) {
+                    int cant = nueva.cargarCantidadArticulo(art);
+                    if(cant != 0){
+                        nueva.agregarLinea(art, cant);
+                    }
+                }
 
-        if(metodoPago != null && nueva.getListaLinea().size() > 0){
-            nueva.setMetodoPago(metodoPago);
-            local.getListaOperacion().agregar(nueva);
+            }while (teclado.deseaContinuar());
+
+            if(nueva.getListaLinea().size() > 0){
+                local.getListaOperacion().agregar(nueva);
+            }
         }
+
     }
 }
 

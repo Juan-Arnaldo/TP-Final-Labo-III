@@ -56,7 +56,7 @@ public abstract class Operacion {
     @Override
     public String toString() {
         return "Operacion N°" + idOperacion +
-                "\nPersona: " + persona +
+                "\nPersona: " + persona.getNombre() + " CUIT: " + persona.getCuit() +
                 "\nFecha: " + fecha +
                 "\nHora: " + hora ;
     }
