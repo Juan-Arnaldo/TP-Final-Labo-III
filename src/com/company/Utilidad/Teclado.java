@@ -217,6 +217,19 @@ public class Teclado {
         return sc.nextInt();
     }
 
+    public int ingresePorcentajeDesc(){
+        System.out.println("Ingrese el porcentaje que quiere que tenga: ");
+        return sc.nextInt();
+    }
+
+    public int ingresePorcentajeDescNuevamente(){
+        System.out.println("el porcentaje ingresado no es correcto, ingreselo nuevamtene");
+        System.out.println("(tiene que ser mayor a 0 y menor o igual a 100):");
+        return sc.nextInt();
+    }
+
+////---------- Métodos de Carga para Personas/Proveedores ----------////
+
     /**
      * Método para cargar por teclado el nombre de una Persona.
      * @return nombre de la persana cargado.

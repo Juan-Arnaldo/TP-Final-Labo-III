@@ -4,8 +4,8 @@ public class DescTarjeta extends Descuento {
     private String nombreTarjeta;
     private String diaDeLaSemana; /// investigar e implementar classe Date
 
-    public DescTarjeta(int porcentaje, String nombreTarjeta, String diaDeLaSemana) {
-        super(porcentaje);
+    public DescTarjeta(int porcentaje, String nombreTarjeta, String diaDeLaSemana, String nombreDesc) {
+        super(porcentaje, nombreDesc);
         this.nombreTarjeta = nombreTarjeta;
         this.diaDeLaSemana = diaDeLaSemana;
     }

@@ -2,6 +2,7 @@ package com.company.Local;
 
 import com.company.Contenedor.ContenedorArrayList;
 import com.company.Operacion.Compra;
+import com.company.Operacion.MetodoPago;
 import com.company.Operacion.Operacion;
 import com.company.Persona.Cliente;
 import com.company.Persona.Persona;
@@ -12,8 +13,6 @@ import com.company.Utilidad.Validacion;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class Local {
@@ -378,14 +377,92 @@ public class Local {
 
 
 
-//    public void agregarDescuentoTarjeta(){
-//        Teclado teclado = new Teclado();
-//        String nombre = teclado.cargarNombre();
-//        String tarjeta =
-//
-//
-//
-//    }
+    public String cargarMetodoDePago() {
+        int aux;
+        MetodoPago metodoPago = null;
+        Teclado teclado = new Teclado();
+        do {
+            aux = teclado.cargarMetodoPago();
+            switch (aux) {
+                case 1:
+                    metodoPago = MetodoPago.Efectivo;
+                    break;
+                case 2:
+                    metodoPago = MetodoPago.Tarjeta;
+                    return seleccionTarjeta();
+                case 3:
+                    metodoPago = MetodoPago.Cheque;
+                    break;
+                default:
+                    System.out.println("La opcion que ingresaste no es valida");
+                    break;
+            }
+        } while (aux != 1 && aux != 2 && aux != 3 && aux != 0);
+
+        return metodoPago.name();
+    }
+
+    /**
+     * Funcion para la seleccion de la tarjeta
+     * @return el nombre de la tarjeta seleccionada
+     */
+
+    private String seleccionTarjeta() {
+        int aux;
+        String tarjeta = null;
+        Teclado teclado = new Teclado();
+        do {
+            aux = teclado.cargarTarjeta();
+            switch (aux) {
+                case 1:
+                    tarjeta = "Visa";
+                    break;
+                case 2:
+                    tarjeta = "Mastercad";
+                    break;
+                case 3:
+                    tarjeta = "Cabal";
+                    break;
+                case 4:
+                    tarjeta = "American Express";
+                    break;
+                case 5:
+                    tarjeta = "Maestro";
+                    break;
+                case 6:
+                    tarjeta = "Naranja";
+                    break;
+                default:
+                    System.out.println("La opcion ingresada es incorrecta, ingrese 0 de si desea salir");
+                    break;
+            }
+
+        } while (aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
+
+        return tarjeta;
+    }
+
+
+    public void agregarDescuentoTarjeta(){
+        Teclado teclado = new Teclado();
+        String nombre = teclado.cargarNombre();
+
+        int porcentaje = teclado.ingresePorcentajeDesc();
+
+        while (porcentaje <= 0 || porcentaje > 100){
+            porcentaje = teclado.ingresePorcentajeDescNuevamente();
+        }
+
+        String tarjeta = seleccionTarjeta();
+        if(tarjeta != null){
+
+            Descuento nuevo = new DescTarjeta(porcentaje, tarjeta, "asd", "nombre");
+
+            listaDescuento.agregar(nuevo);
+        }
+
+
+    }
 
     public void modificarArticulo(Articulo articulo) {
         Teclado teclado = new Teclado();

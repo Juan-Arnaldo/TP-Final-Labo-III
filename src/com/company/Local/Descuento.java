@@ -1,12 +1,12 @@
 package com.company.Local;
 
 public abstract class Descuento {
-    private String nombre;
+    private String nombreDesc;
     private int porcentaje;
 
-    public Descuento(int porcentaje) {
+    public Descuento(int porcentaje, String nombreDesc) {
         this.porcentaje = porcentaje;
-        this.nombre = nombre;
+        this.nombreDesc = nombreDesc;
     }
 
     public int getPorcentaje() {
@@ -18,11 +18,11 @@ public abstract class Descuento {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombreDesc;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombreDesc = nombre;
     }
 
 }
