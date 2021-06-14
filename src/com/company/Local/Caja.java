@@ -3,12 +3,13 @@ package com.company.Local;
 import com.company.Articulo.Articulo;
 import com.company.Operacion.MetodoPago;
 import com.company.Operacion.Venta;
-import com.company.Teclado;
+import com.company.Persona.Cliente;
+import com.company.Utilidad.Teclado;
 
 public class Caja {
     private int idCaja;
     private double dinero;
-    private Local local;
+    private final Local local;
 
     public Caja(int idCaja, double dinero, Local local) {
         this.idCaja = idCaja;
@@ -32,75 +33,7 @@ public class Caja {
         this.dinero = dinero;
     }
 
-    /**
-     * Metodo para elegir el metodo de pago
-     * @return de retorna un String del metodo seleccionado
-     */
 
-    public String cargarMetodoDePago() {
-        int aux;
-        MetodoPago metodoPago = null;
-        Teclado teclado = new Teclado();
-        do {
-            aux = teclado.cargarMetodoPago();
-            switch (aux) {
-                case 1:
-                    metodoPago = MetodoPago.Efectivo;
-                    break;
-                case 2:
-                    metodoPago = MetodoPago.Tarjeta;
-                    return seleccionTarjeta();
-                case 3:
-                    metodoPago = MetodoPago.Cheque;
-                    break;
-                default:
-                    System.out.println("La opcion que ingresaste no es valida");
-                    break;
-            }
-        } while (aux != 1 && aux != 2 && aux != 3 && aux != 0);
-
-        return metodoPago.name();
-    }
-
-    /**
-     * Funcion para la seleccion de la tarjeta
-     * @return el nombre de la tarjeta seleccionada
-     */
-
-    private String seleccionTarjeta() {
-        int aux;
-        String tarjeta = null;
-        Teclado teclado = new Teclado();
-        do {
-            aux = teclado.cargarTarjeta();
-            switch (aux) {
-                case 1:
-                    tarjeta = "Visa";
-                    break;
-                case 2:
-                    tarjeta = "Mastercad";
-                    break;
-                case 3:
-                    tarjeta = "Cabal";
-                    break;
-                case 4:
-                    tarjeta = "American Express";
-                    break;
-                case 5:
-                    tarjeta = "Maestro";
-                    break;
-                case 6:
-                    tarjeta = "Naranja";
-                    break;
-                default:
-                    System.out.println("La opcion ingresada es incorrecta, ingrese 0 de si desea salir");
-                    break;
-            }
-
-        } while (aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
-
-        return tarjeta;
-    }
 
     /**
      * Metodo para cargar una nueva venta
@@ -108,24 +41,49 @@ public class Caja {
 
     public void cargaVenta() {
         Teclado teclado = new Teclado();
+        Cliente cliente = local.buscarCliente();
 
-        Venta nueva = new Venta(local.buscarCliente(), idCaja);
-        do {
-            Articulo art = local.buscarArticuloNombre(teclado.cargarNombreArticulo());
-            if (art != null) {
-                int cant = nueva.cargarCantidadArticulo(art);
-                if(cant != -1){
-                    nueva.agregarArticulo(art, cant, local.getListaDescuento());
-                }
+        while (cliente == null){
+            int aux = teclado.clienteNoExiste();
+            switch (aux){
+                case 1:
+                    cliente = local.buscarCliente();
+                    break;
+                case 2:
+                    cliente = local.getListaClientes().getElemento(0);
+                    break;
+                case 3:
+                    local.crearCliente();
+                    cliente = local.buscarCliente();
+                    break;
+                default:
+                    System.out.println("\nLa opcion ingresada es incorrecta");
+                    break;
             }
+        }
 
-        }while (teclado.deseaContinuar());
+        Venta nueva = new Venta(cliente, idCaja);
+        String metodoPago = local.cargarMetodoDePago();
+        nueva.setMetodoPago(metodoPago);
+        if(metodoPago != null){
+            do {
+                Teclado t2 = new Teclado(); //TODO a consultar al profesor
+                String nombre = t2.cargarNombreArticulo();
+                Articulo art = local.buscarArticuloNombre(nombre);
+                if (art != null) {
+                    int cant = nueva.cargarCantidadArticulo(art);
+                    if(cant != 0){
+                        nueva.agregarLinea(art, cant);
+                    }
+                }
 
-        String metodoPago = cargarMetodoDePago();
+            }while (teclado.deseaContinuar());
 
-        if(metodoPago != null && nueva.getListaLinea().size() > 0){
-            nueva.setMetodoPago(metodoPago);
-            local.getListaOperacion().agregar(nueva);
+            if(nueva.getListaLinea().size() > 0){
+                nueva.setIdOperacion(local.getListaOperacion().getContadorId());
+                local.getListaOperacion().aumentarContadorId();
+                local.getListaOperacion().agregar(nueva);
+            }
         }
     }
 }

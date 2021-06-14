@@ -2,17 +2,19 @@ package com.company.Local;
 
 import com.company.Contenedor.ContenedorArrayList;
 import com.company.Operacion.Compra;
+import com.company.Operacion.MetodoPago;
 import com.company.Operacion.Operacion;
+import com.company.Operacion.Venta;
 import com.company.Persona.Cliente;
+import com.company.Persona.Persona;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
-import com.company.Teclado;
+import com.company.Utilidad.Teclado;
+import com.company.Utilidad.Validacion;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class Local {
@@ -110,14 +112,26 @@ public class Local {
      */
     public void crearCliente(){
         Teclado teclado = new Teclado();
+        Validacion validacion = new Validacion();
+
+        String cuit = teclado.cargarCuit();
+        while(validacion.validarCuitCliente(cuit, listaClientes.getLista())) {
+            cuit = teclado.cargarNuevamenteCuitPersona(cuit);
+        }
 
         String nombre = teclado.cargarNombre();
+        String apellido = teclado.cargarApellido();
         String direc = teclado.cargarDireccion();
-        String cuit = teclado.cargarCuit();
         String tel = teclado.cargarTelefono();
-        String correo = teclado.cargarEmail();
 
-        Cliente cliente = new Cliente(nombre, direc, cuit, tel, correo);
+        String email = teclado.cargarEmail();
+        while(!validacion.validacionEmailValido(email)) {
+            email = teclado.cargarNuevamenteEmailPersona(email);
+        }
+
+        Cliente cliente = new Cliente(nombre, direc, cuit, tel, email, apellido);
+        cliente.setCodInterno(listaClientes.getContadorId());
+        listaClientes.aumentarContadorId();
         listaClientes.agregar(cliente);
     }
 
@@ -127,66 +141,72 @@ public class Local {
      */
     public void crearProv(){
         Teclado teclado = new Teclado();
+        Validacion validacion = new Validacion();
 
         String cuit = teclado.cargarCuit();
-        while(cuitProveedorRepetido(cuit)) {                                // TODO: En caso de que el proveedor sí exista entrará en un bucle, por lo en las compras hay que asegurarse de buscar
+        while(validacion.validarCuitProveedor(cuit, listaProveedores.getLista())) {
             cuit = teclado.cargarNuevamenteCuitPersona(cuit);
         }
+
         String nombre = teclado.cargarNombre();
+        String apellido = teclado.cargarApellido();
         String direc = teclado.cargarDireccion();
         String tel = teclado.cargarTelefono();
         String email = teclado.cargarEmail();
-        while(!emailValido(email)) {
+
+        while(!validacion.validacionEmailValido(email)) {
             email = teclado.cargarNuevamenteEmailPersona(email);
         }
         String localidad = teclado.cargarLocalidad();
 
-        Proveedor prov = new Proveedor(nombre, direc, cuit, tel, email, localidad);
+        Proveedor prov = new Proveedor(nombre, direc, cuit, tel, email, localidad, apellido);
+
+        prov.setCodInterno(listaProveedores.getContadorId());
+        listaProveedores.aumentarContadorId();
         listaProveedores.agregar(prov);
 
     }
 
     /**
-     * Método para verificar si determinado cuit ya figura en los registros vinculado a un proveedor.
-     * @param cuit - CUIT a verificar.
-     * @return true si el cuit se encuntra; false si el cuit no se encuentra.
-     */
-    public boolean cuitProveedorRepetido(String cuit) {
-
-        for (Proveedor aBuscar : listaProveedores.getElementos()) {
-            if (aBuscar.getCuit().equals(cuit))
-                return true;
-        }
-        return false;
-    }
-
-    /**
-     * Metodo para buscar un cliente de la lista de clientes conociendo su Id.
-     * @param cuitCliente Id del cliente a buscar.
-     * @return cliente buscado.
-     */
-    public Cliente corroborarCliente(String cuitCliente){
-        Cliente resultado = null;
-        for (Cliente cliente : listaClientes.getElementos()) {
-            if (cliente.getCuit() == cuitCliente) {
-                resultado = cliente;
-                break;
-            }
-        }
-        return resultado;
-    }
-
-    /**
      * Metodo para mostrar una lista de clientes optimizada
      */
-    //TODO a checkear!
-    public void mostrarListaClienteOptimizada(){
+    public void mostrarListaClienteOptimizada() {
         Teclado teclado = new Teclado();
         String nombre = teclado.cargarNombre();
-        for (Cliente aux : listaClientes.getElementos()){
-            if (aux.getNombre() == nombre){
-                aux.toStringOpt();
+        for (Cliente aux : listaClientes.getLista()){
+            if (compararCaracter(nombre, aux.getNombre())){
+                System.out.println(aux.toStringOpt());
             }
+        }
+        for (Cliente aux : listaClientes.getLista()){
+            if (compararCaracter(nombre, aux.getApellido())){
+                System.out.println(aux.toStringOpt());
+            }
+        }
+    }
+
+    private boolean compararCaracter(String nombreABuscar, String nombre){
+        int cantC = nombreABuscar.length();
+        char C;
+        boolean flag = true;
+        int i = 0;
+        while (flag && i < cantC ){
+
+            C = nombreABuscar.charAt(i);
+
+            if (C == (nombre.charAt(i))){
+                flag = true;
+            }else {
+                flag = false;
+            }
+            i++;
+        }
+        return flag;
+    }
+
+    public void mostrarListaCliente(){
+        for (Cliente cliente : listaClientes.getLista()){
+            System.out.println(cliente.toString());
         }
     }
 
@@ -194,13 +214,13 @@ public class Local {
      * Se le muestra una lista de clientes y se ingresa el CUIT del cliente para retornar
      * @return El cliente seleccionado
      */
-    public Cliente buscarCliente(){
+    public Cliente buscarCliente() {
         Teclado teclado = new Teclado();
         Cliente cliente = null;
         mostrarListaClienteOptimizada();
         String CUIT = teclado.cargarCuit();
-        for (Cliente aux : listaClientes.getElementos()){
-            if(aux.getCuit() == CUIT){
+        for (Cliente aux : listaClientes.getLista()){
+            if(aux.getCuit().equals(CUIT)){
                 cliente = aux;
             }
         }
@@ -213,9 +233,9 @@ public class Local {
      * @param cuitProv Id del proveedor a buscar.
      * @return proveedor buscado.
      */
-    public Proveedor buscarProveedorCuit(String cuitProv){
+    public Proveedor buscarProveedorCuit(String cuitProv) {
         Proveedor resultado = null;
-        for (Proveedor proveedor : listaProveedores.getElementos()) {
+        for (Proveedor proveedor : listaProveedores.getLista()) {
             if (proveedor.getCuit() == cuitProv) {
                 resultado = proveedor;
                 break;
@@ -224,8 +244,14 @@ public class Local {
         return resultado;
     }
 
-    public void crearCaja (Caja caja){
-        this.listaCajas.agregar(caja);
+    /**
+     * Método para crear una nueva caja.
+     */
+    public void crearCaja() {
+
+        Caja nuevaCaja = new Caja(listaCajas.getContadorId(), 0, this);
+        listaCajas.aumentarContadorId();
+        listaCajas.agregar(nuevaCaja);
     }
 
     /**
@@ -233,10 +259,12 @@ public class Local {
      * @param nombre nombre del artículo a buscar.
      * @return Articulo buscado.
      */
-    public Articulo buscarArticuloNombre (String nombre){
+    public Articulo buscarArticuloNombre (String nombre) {
         Articulo articulo = null;
-        for (Articulo aBuscar : listaArticulos.getElementos()) {
-            if (aBuscar.getNombre().equals(nombre)) {
+        String aux;
+        for (Articulo aBuscar : listaArticulos.getLista()) {
+            aux    = aBuscar.getNombre().toLowerCase();
+            if (aux.equals(nombre)) {
                 articulo = aBuscar;
             }
         }
@@ -291,6 +319,8 @@ public class Local {
 
         } while(teclado.deseaContinuar());
 
+        nuevaCompra.setIdOperacion(listaOperacion.getContadorId());
+        listaOperacion.aumentarContadorId();
         getListaOperacion().agregar(nuevaCompra);
     }
 
@@ -300,12 +330,10 @@ public class Local {
     public void cargarArticulo() {
         Teclado teclado = new Teclado();
 
-        String nombre;
-        String departamento;
-        String marca;
+        String nombre, departamento, marca;
+        int stock = 0;
         double utilidad;
         do {
-            //TODO - Autoincrementar los idArticulo teniendo en cuenta la lista de local y la lista parcial de este método.
             nombre = teclado.cargarNombreArticulo();
             while (nombreArticuloRepetido(nombre)) {
                 nombre = teclado.cargarNuevamenteNombreArticulo(nombre);
@@ -318,10 +346,22 @@ public class Local {
             while (utilidad < 0) {             // ¿Puede haber artículos que se vendan al costo? (Utilidad = 0)
                 utilidad = teclado.cargarNuevamenteUtilidadArticulo(utilidad);
             }
+            stock = teclado.cargaStock();
+            while(stock < 0){
+                stock = teclado.cargaStockNuevamente();
+            }
 
-            Articulo nuevo = new Articulo(nombre, departamento, marca, utilidad);
+            Articulo nuevo = new Articulo(nombre, departamento, marca, utilidad, stock);
+            nuevo.setIdArticulo(listaArticulos.getContadorId());
+            listaArticulos.aumentarContadorId();
             listaArticulos.agregar(nuevo);
         } while (teclado.continuarCargandoArticulos());
+    }
+
+    public void mostrarArticulos(){
+        for (Articulo art : listaArticulos.getLista()){
+            System.out.println(art.toString());
+        }
     }
 
     /**
@@ -331,44 +371,115 @@ public class Local {
      */
     public boolean nombreArticuloRepetido(String nombre) {
 
-        for (Articulo aBuscar : listaArticulos.getElementos()) {
+        for (Articulo aBuscar : listaArticulos.getLista()) {
             if (aBuscar.getNombre().equals(nombre))
                 return true;
         }
         return false;
     }
 
-    /**
-     * Método para verificar si el mail ingresado cumple con el formato correspondiente.
-     * @param email - email a verificar.
-     * @return true si el mail es válido; false si el mail no es válido.
-     */
-
-
-    public boolean emailValido(String email){
-
-        Pattern pattern = Pattern
-                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-
-        Matcher mather = pattern.matcher(email);
-
-        if (mather.find())
-            return true;
-        else
-            return false;
+    public void mostrarVentas(){
+        for (Operacion aMostrar : listaOperacion.getLista()){
+            if (aMostrar instanceof Venta){
+                ((Venta) aMostrar).MostrarVenta(listaDescuento);
+            }
+        }
     }
 
-//    public void agregarDescuentoTarjeta(){
-//        Teclado teclado = new Teclado();
-//        String nombre = teclado.cargarNombre();
-//        String tarjeta =
-//
-//
-//
-//    }
 
-    public void modificarArticulo(Articulo articulo){
+    public String cargarMetodoDePago() {
+        int aux;
+        MetodoPago metodoPago = null;
+        Teclado teclado = new Teclado();
+        do {
+            aux = teclado.cargarMetodoPago();
+            switch (aux) {
+                case 1:
+                    metodoPago = MetodoPago.Efectivo;
+                    break;
+                case 2:
+                    metodoPago = MetodoPago.Tarjeta;
+                    return seleccionTarjeta();
+                case 3:
+                    metodoPago = MetodoPago.Cheque;
+                    break;
+                default:
+                    System.out.println("La opcion que ingresaste no es valida");
+                    break;
+            }
+        } while (aux != 1 && aux != 2 && aux != 3 && aux != 0);
+
+        return metodoPago.name();
+    }
+
+    /**
+     * Funcion para la seleccion de la tarjeta
+     * @return el nombre de la tarjeta seleccionada
+     */
+
+    private String seleccionTarjeta() {
+        int aux;
+        String tarjeta = null;
+        Teclado teclado = new Teclado();
+        do {
+            aux = teclado.cargarTarjeta();
+            switch (aux) {
+                case 1:
+                    tarjeta = "Visa";
+                    break;
+                case 2:
+                    tarjeta = "Mastercad";
+                    break;
+                case 3:
+                    tarjeta = "Cabal";
+                    break;
+                case 4:
+                    tarjeta = "American Express";
+                    break;
+                case 5:
+                    tarjeta = "Maestro";
+                    break;
+                case 6:
+                    tarjeta = "Naranja";
+                    break;
+                default:
+                    System.out.println("La opcion ingresada es incorrecta, ingrese 0 de si desea salir");
+                    break;
+            }
+
+        } while (aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
+
+        return tarjeta;
+    }
+
+
+    public void agregarDescuentoTarjeta(){
+        Teclado teclado = new Teclado();
+        String nombre = teclado.cargarNombre();
+
+        int porcentaje = teclado.ingresePorcentajeDesc();
+
+        while (porcentaje <= 0 || porcentaje > 100){
+            porcentaje = teclado.ingresePorcentajeDescNuevamente();
+        }
+
+        String tarjeta = seleccionTarjeta();
+        if(tarjeta != null){
+
+            Descuento nuevo = new DescTarjeta(porcentaje, tarjeta, nombre);
+            listaDescuento.agregar(nuevo);
+        }
+    }
+
+    public void mostrarDescuentos(){
+        for (Descuento desc : listaDescuento.getLista()){
+            if (desc instanceof DescTarjeta){
+                System.out.println(desc.toString());
+            }
+        }
+    }
+
+    public void modificarArticulo(Articulo articulo) {
         Teclado teclado = new Teclado();
         int aux;
         do{
@@ -399,7 +510,7 @@ public class Local {
         }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
     }
 
-    public String toString(){
+    public String toString() {
         return "Local{" +
                 "\nidLocal=" + idLocal +
                 ", \nnombre='" + nombre + '\'' +

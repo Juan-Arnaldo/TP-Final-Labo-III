@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Utilidad;
 
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
@@ -12,22 +12,29 @@ public class Teclado {
         sc = new Scanner(System.in);
     }
 
-//---------- Métodos de Carga Generales ----------
-
     /**
      * Método para consultar al usuario si desea continuar con lo que está realizando.
+     *
      * @return true en caso de que desee continuar; false en caso de que no desee continuar.     *
      */
-    public boolean deseaContinuar(){
+    public boolean deseaContinuar() {
         System.out.println("Ingrese 1 si desea continuar \n");
         int aux = sc.nextInt();
-        if(aux == 1){
+        if (aux == 1) {
             return true;
         }
         return false;
     }
 
-//---------- Métodos de Carga para Artículos ----------//
+    public int cargaStock() {
+        System.out.println("Ingrese el stock: ");
+        return sc.nextInt();
+    }
+
+    public int cargaStockNuevamente(){
+        System.out.println("El stock ingresado no es correcto, ingrese 0 de no querer ingresar nuevamente:");
+        return sc.nextInt();
+    }
 
     /**
      * Método para cargar por teclado el nombre de un artículo.
@@ -197,11 +204,29 @@ public class Teclado {
         System.out.println(nombre + " no corresponde a un artículo registrado.");
         System.out.println("1 - Intentar nuevamente.");
         System.out.println("2 - Agregar " + nombre + " al registro.");
-        System.out.println("Seleccione acción a realizar.");
+        System.out.println("Seleccione la acción a realizar:");
         return sc.nextInt();
     }
 
-////---------- Métodos de Carga para Personas/Proveedores ----------////
+    public int clienteNoExiste(){
+        System.out.println("\nEl cliente buscado no exite. ");
+        System.out.println("\n1. Volver a cargar el CUIT");
+        System.out.println("\n2. Pasar venta como consumidor final");
+        System.out.println("\n3. Crear nuevo cliente");
+        System.out.println("\n4. Ingrese la accion a realizar: ");
+        return sc.nextInt();
+    }
+
+    public int ingresePorcentajeDesc(){
+        System.out.println("Ingrese el porcentaje que quiere que tenga: ");
+        return sc.nextInt();
+    }
+
+    public int ingresePorcentajeDescNuevamente(){
+        System.out.println("el porcentaje ingresado no es correcto, ingreselo nuevamtene");
+        System.out.println("(tiene que ser mayor a 0 y menor o igual a 100):");
+        return sc.nextInt();
+    }
 
     /**
      * Método para cargar por teclado el nombre de una Persona.
@@ -209,6 +234,15 @@ public class Teclado {
      */
     public String cargarNombre() {
         System.out.println("Ingrese el nombre: ");
+        return sc.nextLine();
+    }
+
+    /**
+     * Método para cargar por teclado el nombre de una Persona.
+     * @return nombre de la persana cargado.
+     */
+    public String cargarApellido() {
+        System.out.println("Ingrese el apellido: ");
         return sc.nextLine();
     }
 

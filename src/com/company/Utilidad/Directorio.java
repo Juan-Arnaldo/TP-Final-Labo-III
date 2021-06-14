@@ -1,4 +1,4 @@
-package com.company;
+package com.company.Utilidad;
 
 import com.company.Persona.Cliente;
 

@@ -3,8 +3,8 @@ package com.company.Persona;
 public class Proveedor extends Persona{
     private String localidad;
 
-    public Proveedor(String nombre, String domicilio, String cuit, String telefono, String email, String localidad) {
-        super(nombre, domicilio, cuit, telefono, email);
+    public Proveedor(String nombre, String domicilio, String cuit, String telefono, String email, String localidad, String apellido) {
+        super(nombre, domicilio, cuit, telefono, email, apellido);
         this.localidad = localidad;
     }
 

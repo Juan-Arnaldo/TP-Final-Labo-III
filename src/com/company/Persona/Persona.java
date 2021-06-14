@@ -2,14 +2,16 @@ package com.company.Persona;
 
 public abstract class Persona {
     private String nombre;
+    private String apellido;
     private String domicilio;
     private String cuit;
     private String telefono;
     private String email;
     private int codInterno;
 
-    public Persona(String nombre, String domicilio, String cuit, String telefono, String email) {
+    public Persona(String nombre, String domicilio, String cuit, String telefono, String email, String apellido) {
         this.nombre = nombre;
+        this.apellido = apellido;
         this.domicilio = domicilio;
         this.cuit = cuit;
         this.telefono = telefono;
@@ -63,5 +65,13 @@ public abstract class Persona {
 
     public void setCodInterno(int codInterno) {
         this.codInterno = codInterno;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 }

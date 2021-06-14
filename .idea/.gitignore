@@ -1,5 +1,10 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+<<<<<<< HEAD
 /out/
 /.idea/
+=======
+out/
+.idea/
+>>>>>>> develop

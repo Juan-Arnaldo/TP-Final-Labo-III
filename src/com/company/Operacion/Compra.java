@@ -1,8 +1,6 @@
 package com.company.Operacion;
 
 import com.company.Articulo.Articulo;
-import com.company.Persona.Persona;
-import com.company.Teclado;
 
 import java.util.ArrayList;
 
@@ -29,7 +27,7 @@ public class Compra extends Operacion {
      * @param cant
      */
     public void agregarLinea(Articulo aAgregar, int cant, double total){
-        Linea nueva = new Linea(aAgregar, cant, total);
+        Linea nueva = new Linea(aAgregar, cant);
         listaLinea.add(nueva);
     }
 }

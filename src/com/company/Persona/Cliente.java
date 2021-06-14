@@ -2,8 +2,8 @@ package com.company.Persona;
 
 public class Cliente extends Persona{
 
-    public Cliente(String nombre, String domicilio, String cuit, String telefono, String email) {
-        super(nombre, domicilio, cuit, telefono, email);
+    public Cliente(String nombre, String domicilio, String cuit, String telefono, String email, String apellido) {
+        super(nombre, domicilio, cuit, telefono, email, apellido);
     }
 
     @Override
@@ -17,6 +17,6 @@ public class Cliente extends Persona{
     }
 
     public String toStringOpt(){
-        return "\nNombre: " + getNombre() + "CUIT: " + getCuit();
+        return "Cliente: " + getApellido()+ ", " + getNombre() + ". CUIT: " + getCuit();
     }
 }
