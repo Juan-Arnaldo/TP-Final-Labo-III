@@ -5,7 +5,7 @@ import com.company.Contenedor.ContenedorArrayList;
 import com.company.Local.DescTarjeta;
 import com.company.Local.Descuento;
 import com.company.Persona.Persona;
-import com.company.Utilidad.Menu;
+import com.company.Utilidad.Teclado;
 
 import java.util.ArrayList;
 
@@ -68,7 +68,7 @@ public class Venta extends Operacion {
      * @return int
      */
     public int cargarCantidadArticulo(Articulo articulo) {
-        Menu teclado = new Menu();
+        Teclado teclado = new Teclado();
         int cant = teclado.cargarCantidadArticulo();
 
         while(cant < 0 && cant > articulo.getStock()){

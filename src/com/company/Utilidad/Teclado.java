@@ -1,74 +1,21 @@
 package com.company.Utilidad;
 
-import com.company.Local.Local;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 
 import java.util.Scanner;
 
-public class Menu {
+public class Teclado {
     private Scanner sc;
 
-    public Menu() {
+    public Teclado() {
         sc = new Scanner(System.in);
     }
 
     /**
-     * Método para cargar los datos de un nuevo cliente, con sus correspondientes validaciones.
-     * @param local en cuyo registro se cargará el nuevo cliente.
-     * @return cliente nuevo a registrar.
-     */
-    public Cliente cargarNuevoCliente(Local local) {
-        Validacion validacion = new Validacion();
-
-        String cuit = cargarCuit();
-        while(validacion.validarCuitCliente(cuit, local.getListaClientes().getLista())) {
-            cuit = cargarNuevamenteCuitPersona(cuit);
-        }
-
-        String nombre = cargarNombre();
-        String apellido = cargarApellido();
-        String direc = cargarDireccion();
-        String tel = cargarTelefono();
-
-        String email = cargarEmail();
-        while(!validacion.validacionEmailValido(email)) {
-            email = cargarNuevamenteEmailPersona(email);
-        }
-
-        return new Cliente(nombre, direc, cuit, tel, email, apellido);
-    }
-
-    /**
-     * Método para cargar los datos de un nuevo proveedor, con sus correspondientes validaciones.
-     * @param local en cuyo registro se cargará el nuevo proveedor.
-     * @return proveedor nuevo a registrar.
-     */
-    public Proveedor cargarNuevoProveedor(Local local) {
-        Validacion validacion = new Validacion();
-
-        String cuit = cargarCuit();
-        while(validacion.validarCuitProveedor(cuit, local.getListaProveedores().getLista())) {
-            cuit = cargarNuevamenteCuitPersona(cuit);
-        }
-
-        String nombre = cargarNombre();
-        String apellido = cargarApellido();
-        String direc = cargarDireccion();
-        String tel = cargarTelefono();
-        String email = cargarEmail();
-
-        while(!validacion.validacionEmailValido(email)) {
-            email = cargarNuevamenteEmailPersona(email);
-        }
-        String localidad = cargarLocalidad();
-
-        return new Proveedor(nombre, direc, cuit, tel, email, localidad, apellido);
-    }
-
-    /**
      * Método para consultar al usuario si desea continuar con lo que está realizando.
-     * @return true en caso de que desee continuar; false en caso de que no desee continuar.
+     *
+     * @return true en caso de que desee continuar; false en caso de que no desee continuar.     *
      */
     public boolean deseaContinuar() {
         System.out.println("Ingrese 1 si desea continuar \n");
