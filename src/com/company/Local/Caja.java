@@ -80,10 +80,11 @@ public class Caja {
             }while (teclado.deseaContinuar());
 
             if(nueva.getListaLinea().size() > 0){
+                nueva.setIdOperacion(local.getListaOperacion().getContadorId());
+                local.getListaOperacion().aumentarContadorId();
                 local.getListaOperacion().agregar(nueva);
             }
         }
-
     }
 }
 
