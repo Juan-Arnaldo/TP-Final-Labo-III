@@ -5,10 +5,9 @@ import com.company.Operacion.Compra;
 import com.company.Operacion.MetodoPago;
 import com.company.Operacion.Operacion;
 import com.company.Persona.Cliente;
-import com.company.Persona.Persona;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
-import com.company.Utilidad.Teclado;
+import com.company.Utilidad.Menu;
 import com.company.Utilidad.Validacion;
 
 import java.time.LocalDate;
@@ -105,174 +104,79 @@ public class Local {
     }
 
     /**
-     * Metodo para la creacion de cliente, carga de sus datos y lo agrega a la lista
-     * @return El cliente cargado
+     * Método para cargar un nuevo cliente al registro.
+     * @param nuevoCliente a cargar.
      */
-    public void crearCliente(){
-        Teclado teclado = new Teclado();
-        Validacion validacion = new Validacion();
-
-        String cuit = teclado.cargarCuit();
-        while(validacion.validarCuitCliente(cuit, listaClientes.getLista())) {
-            cuit = teclado.cargarNuevamenteCuitPersona(cuit);
-        }
-
-        String nombre = teclado.cargarNombre();
-        String apellido = teclado.cargarApellido();
-        String direc = teclado.cargarDireccion();
-        String tel = teclado.cargarTelefono();
-
-        String email = teclado.cargarEmail();
-        while(!validacion.validacionEmailValido(email)) {
-            email = teclado.cargarNuevamenteEmailPersona(email);
-        }
-
-        Cliente cliente = new Cliente(nombre, direc, cuit, tel, email, apellido);
-        cliente.setCodInterno(listaClientes.getContadorId());
+    public void nuevoCliente(Cliente nuevoCliente){
+        nuevoCliente.setCodInterno(listaClientes.getContadorId());
         listaClientes.aumentarContadorId();
-        listaClientes.agregar(cliente);
+        listaClientes.agregar(nuevoCliente);
     }
 
     /**
-     * Metodo para la creacion de proveedor y carga de sus datos
+     * Metodo para cargar un nuevo proveedor al registro.
+     * @param nuevoProveedor a cargar
      * @return El proveedor cargado
      */
-    public Proveedor crearProv(){
-        Teclado teclado = new Teclado();
-        Validacion validacion = new Validacion();
-
-        String cuit = teclado.cargarCuit();
-        while(validacion.validarCuitProveedor(cuit, listaProveedores.getLista())) {
-            cuit = teclado.cargarNuevamenteCuitPersona(cuit);
-        }
-
-        String nombre = teclado.cargarNombre();
-        String apellido = teclado.cargarApellido();
-        String direc = teclado.cargarDireccion();
-        String tel = teclado.cargarTelefono();
-        String email = teclado.cargarEmail();
-
-        while(!validacion.validacionEmailValido(email)) {
-            email = teclado.cargarNuevamenteEmailPersona(email);
-        }
-        String localidad = teclado.cargarLocalidad();
-
-        Proveedor prov = new Proveedor(nombre, direc, cuit, tel, email, localidad, apellido);
-
-        prov.setCodInterno(listaProveedores.getContadorId());
+    public void nuevoProveedor(Proveedor nuevoProveedor){
+        nuevoProveedor.setCodInterno(listaProveedores.getContadorId());
         listaProveedores.aumentarContadorId();
-        listaProveedores.agregar(prov);
-
-        return prov;
+        listaProveedores.agregar(nuevoProveedor);
     }
 
     /**
-     * Metodo para mostrar una lista de clientes optimizada
+     * Método para cargar una nueva caja al registro.
      */
-    public void mostrarListaClienteOptimizada() {
-        Teclado teclado = new Teclado();
-        String nombre = teclado.cargarNombre();
-        for (Cliente aux : listaClientes.getLista()){
-            if (compararCaracter(nombre, aux.getNombre())){
-                System.out.println(aux.toStringOpt());
-            }
-        }
-        for (Cliente aux : listaClientes.getLista()){
-            if (compararCaracter(nombre, aux.getApellido())){
-                System.out.println(aux.toStringOpt());
-            }
-        }
-    }
-
-    private boolean compararCaracter(String nombreABuscar, String nombre){
-        int cantC = nombreABuscar.length();
-        char C;
-        boolean flag = true;
-        int i = 0;
-        while (flag && i < cantC ){
-
-            C = nombreABuscar.charAt(i);
-
-            if (C == (nombre.charAt(i))){
-                flag = true;
-            }else {
-                flag = false;
-            }
-            i++;
-        }
-        return flag;
-    }
-
-    public void mostrarListaCliente(){
-        for (Cliente cliente : listaClientes.getLista()){
-            System.out.println(cliente.toString());
-        }
-    }
-
-    /**
-     * Se le muestra una lista de clientes y se ingresa el CUIT del cliente para retornar
-     * @return El cliente seleccionado
-     */
-    public Cliente buscarCliente() {
-        Teclado teclado = new Teclado();
-        Cliente cliente = null;
-        mostrarListaClienteOptimizada();
-        String CUIT = teclado.cargarCuit();
-        for (Cliente aux : listaClientes.getLista()){
-            if(aux.getCuit() == CUIT){
-                cliente = aux;
-            }
-        }
-
-        return cliente;
-    }
-
-    /**
-     * Metodo para buscar un proveedor de la lista de proveedores conociendo su Id.
-     * @param cuitProv Id del proveedor a buscar.
-     * @return proveedor buscado.
-     */
-    public Proveedor buscarProveedorCuit(String cuitProv) {
-        Proveedor resultado = null;
-        for (Proveedor proveedor : listaProveedores.getLista()) {
-            if (proveedor.getCuit() == cuitProv) {
-                resultado = proveedor;
-                break;
-            }
-        }
-        return resultado;
-    }
-
-    /**
-     * Método para crear una nueva caja.
-     */
-    public void crearCaja() {
-
+    public void nuevaCaja() {
         Caja nuevaCaja = new Caja(listaCajas.getContadorId(), 0, this);
         listaCajas.aumentarContadorId();
         listaCajas.agregar(nuevaCaja);
     }
-
     /**
-     * Metodo para buscar un artículo de la lista de artículos conociendo su nombre.
-     * @param nombre nombre del artículo a buscar.
-     * @return Articulo buscado.
+     * Método cargar un nuevo artículo.
      */
-    public Articulo buscarArticuloNombre (String nombre) {
-        Articulo articulo = null;
-        for (Articulo aBuscar : listaArticulos.getLista()) {
-            if (aBuscar.getNombre().equals(nombre)) {
-                articulo = aBuscar;
+    public void cargarArticulo() {
+        Menu teclado = new Menu();
+
+        String nombre, departamento, marca;
+        int stock = 0;
+        double utilidad;
+        do {
+            nombre = teclado.cargarNombreArticulo();
+            while (nombreArticuloRepetido(nombre)) {
+                nombre = teclado.cargarNuevamenteNombreArticulo(nombre);
             }
+            departamento = teclado.cargarDepartamentoArticulo();
+            //TODO - Buscar la forma de validar existencia de departamentos. ¿Enum?
+            marca = teclado.cargarMarcaArticulo();
+            //TODO - Buscar la forma de validar existencia de marca. ¿Enum?
+            utilidad = teclado.cargarUtilidadArticulo();
+            while (utilidad < 0) {             // ¿Puede haber artículos que se vendan al costo? (Utilidad = 0)
+                utilidad = teclado.cargarNuevamenteUtilidadArticulo(utilidad);
+            }
+            stock = teclado.cargaStock();
+            while(stock < 0){
+                stock = teclado.cargaStockNuevamente();
+            }
+
+            Articulo nuevo = new Articulo(nombre, departamento, marca, utilidad, stock);
+            nuevo.setIdArticulo(listaArticulos.getContadorId());
+            listaArticulos.aumentarContadorId();
+            listaArticulos.agregar(nuevo);
+        } while (teclado.continuarCargandoArticulos());
+    }
+
+    public void mostrarArticulos(){
+        for (Articulo art : listaArticulos.getLista()){
+            System.out.println(art.toString());
         }
-        return articulo;
     }
 
     /**
      * Método para cargar una nueva compra.
      */
     public void cargarCompra() {
-        Teclado teclado = new Teclado();
+        Menu teclado = new Menu();
 
         Compra nuevaCompra = new Compra();
 
@@ -322,44 +226,98 @@ public class Local {
     }
 
     /**
-     * Método cargar un nuevo artículo.
+     * Metodo para mostrar una lista de clientes optimizada
      */
-    public void cargarArticulo() {
-        Teclado teclado = new Teclado();
-
-        String nombre, departamento, marca;
-        int stock = 0;
-        double utilidad;
-        do {
-            nombre = teclado.cargarNombreArticulo();
-            while (nombreArticuloRepetido(nombre)) {
-                nombre = teclado.cargarNuevamenteNombreArticulo(nombre);
+    public void mostrarListaClienteOptimizada() {
+        Menu teclado = new Menu();
+        String nombre = teclado.cargarNombre();
+        for (Cliente aux : listaClientes.getLista()){
+            if (compararCaracter(nombre, aux.getNombre())){
+                System.out.println(aux.toStringOpt());
             }
-            departamento = teclado.cargarDepartamentoArticulo();
-            //TODO - Buscar la forma de validar existencia de departamentos. ¿Enum?
-            marca = teclado.cargarMarcaArticulo();
-            //TODO - Buscar la forma de validar existencia de marca. ¿Enum?
-            utilidad = teclado.cargarUtilidadArticulo();
-            while (utilidad < 0) {             // ¿Puede haber artículos que se vendan al costo? (Utilidad = 0)
-                utilidad = teclado.cargarNuevamenteUtilidadArticulo(utilidad);
+        }
+        for (Cliente aux : listaClientes.getLista()){
+            if (compararCaracter(nombre, aux.getApellido())){
+                System.out.println(aux.toStringOpt());
             }
-            stock = teclado.cargaStock();
-            while(stock < 0){
-                stock = teclado.cargaStockNuevamente();
-            }
-
-            Articulo nuevo = new Articulo(nombre, departamento, marca, utilidad, stock);
-            nuevo.setIdArticulo(listaArticulos.getContadorId());
-            listaArticulos.aumentarContadorId();
-            listaArticulos.agregar(nuevo);
-        } while (teclado.continuarCargandoArticulos());
-    }
-
-    public void mostrarArticulos(){
-        for (Articulo art : listaArticulos.getLista()){
-            System.out.println(art.toString());
         }
     }
+
+    private boolean compararCaracter(String nombreABuscar, String nombre){
+        int cantC = nombreABuscar.length();
+        char C;
+        boolean flag = true;
+        int i = 0;
+        while (flag && i < cantC ){
+
+            C = nombreABuscar.charAt(i);
+
+            if (C == (nombre.charAt(i))){
+                flag = true;
+            }else {
+                flag = false;
+            }
+            i++;
+        }
+        return flag;
+    }
+
+    public void mostrarListaCliente(){
+        for (Cliente cliente : listaClientes.getLista()){
+            System.out.println(cliente.toString());
+        }
+    }
+
+    /**
+     * Se le muestra una lista de clientes y se ingresa el CUIT del cliente para retornar
+     * @return El cliente seleccionado
+     */
+    public Cliente buscarCliente() {
+        Menu teclado = new Menu();
+        Cliente cliente = null;
+        mostrarListaClienteOptimizada();
+        String CUIT = teclado.cargarCuit();
+        for (Cliente aux : listaClientes.getLista()){
+            if(aux.getCuit() == CUIT){
+                cliente = aux;
+            }
+        }
+
+        return cliente;
+    }
+
+    /**
+     * Metodo para buscar un proveedor de la lista de proveedores conociendo su Id.
+     * @param cuitProv Id del proveedor a buscar.
+     * @return proveedor buscado.
+     */
+    public Proveedor buscarProveedorCuit(String cuitProv) {
+        Proveedor resultado = null;
+        for (Proveedor proveedor : listaProveedores.getLista()) {
+            if (proveedor.getCuit() == cuitProv) {
+                resultado = proveedor;
+                break;
+            }
+        }
+        return resultado;
+    }
+
+    /**
+     * Metodo para buscar un artículo de la lista de artículos conociendo su nombre.
+     * @param nombre nombre del artículo a buscar.
+     * @return Articulo buscado.
+     */
+    public Articulo buscarArticuloNombre (String nombre) {
+        Articulo articulo = null;
+        for (Articulo aBuscar : listaArticulos.getLista()) {
+            if (aBuscar.getNombre().equals(nombre)) {
+                articulo = aBuscar;
+            }
+        }
+        return articulo;
+    }
+
+
 
     /**
      * Método para verificar si determinado nombre ya figura en los registros vinculado a un artículo.
@@ -380,7 +338,7 @@ public class Local {
     public String cargarMetodoDePago() {
         int aux;
         MetodoPago metodoPago = null;
-        Teclado teclado = new Teclado();
+        Menu teclado = new Menu();
         do {
             aux = teclado.cargarMetodoPago();
             switch (aux) {
@@ -410,7 +368,7 @@ public class Local {
     private String seleccionTarjeta() {
         int aux;
         String tarjeta = null;
-        Teclado teclado = new Teclado();
+        Menu teclado = new Menu();
         do {
             aux = teclado.cargarTarjeta();
             switch (aux) {
@@ -444,7 +402,7 @@ public class Local {
 
 
     public void agregarDescuentoTarjeta(){
-        Teclado teclado = new Teclado();
+        Menu teclado = new Menu();
         String nombre = teclado.cargarNombre();
 
         int porcentaje = teclado.ingresePorcentajeDesc();
@@ -465,7 +423,7 @@ public class Local {
     }
 
     public void modificarArticulo(Articulo articulo) {
-        Teclado teclado = new Teclado();
+        Menu teclado = new Menu();
         int aux;
         do{
             aux = teclado.modificiarArticulo();

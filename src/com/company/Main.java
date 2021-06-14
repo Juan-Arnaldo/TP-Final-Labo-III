@@ -4,7 +4,7 @@ import com.company.Articulo.Articulo;
 import com.company.Local.Local;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
-import com.company.Utilidad.Teclado;
+import com.company.Utilidad.Menu;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Teclado teclado = new Teclado();
+        Menu teclado = new Menu();
 
         List<Articulo> listaArticulo = new ArrayList<Articulo>();
         List<Cliente> listaCliente = new ArrayList<Cliente>();
