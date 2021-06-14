@@ -12,8 +12,6 @@ public class Teclado {
         sc = new Scanner(System.in);
     }
 
-//---------- Métodos de Carga Generales ----------
-
     /**
      * Método para consultar al usuario si desea continuar con lo que está realizando.
      *
@@ -37,8 +35,6 @@ public class Teclado {
         System.out.println("El stock ingresado no es correcto, ingrese 0 de no querer ingresar nuevamente:");
         return sc.nextInt();
     }
-
-//---------- Métodos de Carga para Artículos ----------//
 
     /**
      * Método para cargar por teclado el nombre de un artículo.
@@ -220,8 +216,6 @@ public class Teclado {
         System.out.println("\n4. Ingrese la accion a realizar: ");
         return sc.nextInt();
     }
-
-////---------- Métodos de Carga para Personas/Proveedores ----------////
 
     /**
      * Método para cargar por teclado el nombre de una Persona.

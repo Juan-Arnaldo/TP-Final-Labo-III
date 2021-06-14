@@ -114,7 +114,7 @@ public class Local {
         Validacion validacion = new Validacion();
 
         String cuit = teclado.cargarCuit();
-        while(validacion.validarCuitCliente(cuit, listaClientes.getLista())) {      // TODO: En caso de que el proveedor sí exista entrará en un bucle, por lo en las compras hay que asegurarse de buscar
+        while(validacion.validarCuitCliente(cuit, listaClientes.getLista())) {
             cuit = teclado.cargarNuevamenteCuitPersona(cuit);
         }
 
@@ -143,7 +143,7 @@ public class Local {
         Validacion validacion = new Validacion();
 
         String cuit = teclado.cargarCuit();
-        while(validacion.validarCuitProveedor(cuit, listaProveedores.getLista())) {                                // TODO: En caso de que el proveedor sí exista entrará en un bucle, por lo en las compras hay que asegurarse de buscar
+        while(validacion.validarCuitProveedor(cuit, listaProveedores.getLista())) {
             cuit = teclado.cargarNuevamenteCuitPersona(cuit);
         }
 
@@ -332,7 +332,6 @@ public class Local {
         int stock = 0;
         double utilidad;
         do {
-            //TODO - Autoincrementar los idArticulo teniendo en cuenta la lista de local y la lista parcial de este método.
             nombre = teclado.cargarNombreArticulo();
             while (nombreArticuloRepetido(nombre)) {
                 nombre = teclado.cargarNuevamenteNombreArticulo(nombre);
