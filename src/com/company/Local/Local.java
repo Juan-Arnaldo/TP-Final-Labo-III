@@ -129,6 +129,8 @@ public class Local {
         }
 
         Cliente cliente = new Cliente(nombre, direc, cuit, tel, email, apellido);
+        cliente.setCodInterno(listaClientes.getContadorId());
+        listaClientes.aumentarContadorId();
         listaClientes.agregar(cliente);
     }
 
