@@ -1,10 +1,9 @@
 package com.company.Local;
 
 import com.company.Articulo.Articulo;
-import com.company.Operacion.MetodoPago;
 import com.company.Operacion.Venta;
 import com.company.Persona.Cliente;
-import com.company.Utilidad.Teclado;
+import com.company.Utilidad.Menu;
 
 public class Caja {
     private int idCaja;
@@ -45,7 +44,7 @@ public class Caja {
      */
 
     public void cargaVenta() {
-        Teclado teclado = new Teclado();
+        Menu teclado = new Menu();
         Cliente cliente = local.buscarCliente();
 
         while (cliente == null){
