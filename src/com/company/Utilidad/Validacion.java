@@ -1,6 +1,8 @@
 package com.company.Utilidad;
 
 import com.company.Contenedor.ContenedorArrayList;
+import com.company.Local.DescTarjeta;
+import com.company.Local.Descuento;
 import com.company.Persona.Cliente;
 import com.company.Persona.Persona;
 import com.company.Persona.Proveedor;
@@ -41,5 +43,17 @@ public class Validacion {
             return true;
         else
             return false;
+    }
+
+    public Descuento validacionDescuento(String metodoPago, ContenedorArrayList<Descuento> listaDesc){
+        Descuento aux = null;
+        for (Descuento desc : listaDesc.getLista()) {
+            if (desc instanceof DescTarjeta) {
+                if (((DescTarjeta) desc).getNombreTarjeta().equals(metodoPago)) {
+                    aux = desc;
+                }
+            }
+        }
+        return aux;
     }
 }

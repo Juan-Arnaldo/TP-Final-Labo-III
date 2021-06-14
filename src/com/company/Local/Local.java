@@ -4,12 +4,14 @@ import com.company.Contenedor.ContenedorArrayList;
 import com.company.Operacion.Compra;
 import com.company.Operacion.MetodoPago;
 import com.company.Operacion.Operacion;
+import com.company.Operacion.Venta;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
 import com.company.Utilidad.Menu;
 import com.company.Utilidad.Validacion;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -278,7 +280,7 @@ public class Local {
         mostrarListaClienteOptimizada();
         String CUIT = teclado.cargarCuit();
         for (Cliente aux : listaClientes.getLista()){
-            if(aux.getCuit() == CUIT){
+            if(aux.getCuit().equals(CUIT)){
                 cliente = aux;
             }
         }
@@ -333,6 +335,13 @@ public class Local {
         return false;
     }
 
+    public void mostrarVentas(){
+        for (Operacion aMostrar : listaOperacion.getLista()){
+            if (aMostrar instanceof Venta){
+                ((Venta) aMostrar).MostrarVenta(listaDescuento);
+            }
+        }
+    }
 
 
     public String cargarMetodoDePago() {
@@ -414,12 +423,17 @@ public class Local {
         String tarjeta = seleccionTarjeta();
         if(tarjeta != null){
 
-            Descuento nuevo = new DescTarjeta(porcentaje, tarjeta, "asd", "nombre");
-
+            Descuento nuevo = new DescTarjeta(porcentaje, tarjeta, nombre);
             listaDescuento.agregar(nuevo);
         }
+    }
 
-
+    public void mostrarDescuentos(){
+        for (Descuento desc : listaDescuento.getLista()){
+            if (desc instanceof DescTarjeta){
+                System.out.println(desc.toString());
+            }
+        }
     }
 
     public void modificarArticulo(Articulo articulo) {

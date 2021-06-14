@@ -25,4 +25,9 @@ public abstract class Descuento {
         this.nombreDesc = nombre;
     }
 
+    @Override
+    public String toString() {
+        return "Nombre: " + nombreDesc +
+                "\nPorcentaje: " + porcentaje;
+    }
 }

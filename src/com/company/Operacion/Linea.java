@@ -11,10 +11,10 @@ public class Linea {
 
     }
 
-    public Linea(Articulo articulo, int cantidad, double totalLinea){
+    public Linea(Articulo articulo, int cantidad){
         this.articulo = articulo;
         this.cantidad = cantidad;
-        this.totalLinea = totalLinea;
+        this.totalLinea = generarTotal();
     }
 
     public Articulo getArticulo() {
@@ -25,8 +25,20 @@ public class Linea {
         return cantidad;
     }
 
-    public double getTotalArticulo() {
+    public double getTotalLinea() {
         return totalLinea;
     }
 
+    @Override
+    public String toString() {
+        return + cantidad + "\t\t\t" + articulo.getNombre() + "\t\t\t" + totalLinea;
+    }
+
+    /**
+     * Funcion para sacar el precio final del articulo
+     * @return double
+     */
+    private double generarTotal() {
+        return (articulo.getCosto() + (articulo.getCosto() * articulo.getUtilidad() / 100)) * cantidad;
+    }
 }
