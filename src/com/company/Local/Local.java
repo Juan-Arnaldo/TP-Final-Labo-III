@@ -186,6 +186,12 @@ public class Local {
         }
     }
 
+    /**
+     * Compara caracter por caracter
+     * @param nombreABuscar
+     * @param nombre
+     * @return falso(si no son iguales) o true(si son iguales)
+     */
     private boolean compararCaracter(String nombreABuscar, String nombre){
         int cantC = nombreABuscar.length();
         char C;
@@ -203,12 +209,6 @@ public class Local {
             i++;
         }
         return flag;
-    }
-
-    public void mostrarListaCliente(){
-        for (Cliente cliente : listaClientes.getLista()){
-            System.out.println(cliente.toString());
-        }
     }
 
     /**
