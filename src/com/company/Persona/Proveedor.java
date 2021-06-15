@@ -18,4 +18,8 @@ public class Proveedor extends Persona{
                 "\nEmail: "+ getEmail()+
                 "\nLocalidad: "+ localidad;
     }
+
+    public String toStringOpt(){
+        return "Proveedor: " + getApellido()+ ", " + getNombre() + ". CUIT: " + getCuit();
+    }
 }

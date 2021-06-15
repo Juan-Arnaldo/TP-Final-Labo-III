@@ -38,52 +38,11 @@ public class Caja {
      * Metodo para cargar una nueva venta
      */
 
-    public void cargaVenta() {
-        Menu teclado = new Menu();
-        Cliente cliente = local.buscarCliente();
-
-        while (cliente == null){
-            int aux = teclado.clienteNoExiste();
-            switch (aux){
-                case 1:
-                    cliente = local.buscarCliente();
-                    break;
-                case 2:
-                    cliente = local.getListaClientes().getElemento(0);
-                    break;
-                case 3:
-                    local.crearCliente();
-                    cliente = local.buscarCliente();
-                    break;
-                default:
-                    System.out.println("\nLa opcion ingresada es incorrecta");
-                    break;
-            }
-        }
-
-        Venta nueva = new Venta(cliente, idCaja);
-        String metodoPago = local.cargarMetodoDePago();
-        nueva.setMetodoPago(metodoPago);
-        if(metodoPago != null){
-            do {
-                Teclado t2 = new Teclado(); //TODO a consultar al profesor
-                String nombre = t2.cargarNombreArticulo();
-                Articulo art = local.buscarArticuloNombre(nombre);
-                if (art != null) {
-                    int cant = nueva.cargarCantidadArticulo(art);
-                    if(cant != 0){
-                        nueva.agregarLinea(art, cant);
-                    }
-                }
-
-            }while (teclado.deseaContinuar());
-
-            if(nueva.getListaLinea().size() > 0){
-                nueva.setIdOperacion(local.getListaOperacion().getContadorId());
-                local.getListaOperacion().aumentarContadorId();
-                local.getListaOperacion().agregar(nueva);
-            }
+    public void cargaVenta(Venta nuevaVenta) {
+        if(nuevaVenta.getListaLinea().size() > 0){
+            nuevaVenta.setIdOperacion(local.getListaOperacion().getContadorId());
+            local.getListaOperacion().aumentarContadorId();
+            local.getListaOperacion().agregar(nuevaVenta);
         }
     }
 }
-

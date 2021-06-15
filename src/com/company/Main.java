@@ -7,6 +7,7 @@ import com.company.Local.Local;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Utilidad.Menu;
+import org.xml.sax.ext.Attributes2;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -16,11 +17,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Menu teclado = new Menu();
+        //TODO crear un nuevo método en la clase menú que maneje el menú pricipal (sacarlo del main)
 
-        List<Articulo> listaArticulo = new ArrayList<Articulo>();
-        List<Cliente> listaCliente = new ArrayList<Cliente>();
-        List<Proveedor> listaProveedor = new ArrayList<Proveedor>();
+        Menu menu = new Menu();
 
         File f = new File("tpfinal.txt");
 
@@ -28,7 +27,7 @@ public class Main {
 
         Caja caja = new Caja(1, 0, local);
 
-        Cliente cliente = new Cliente("Juan Martin", "asd", "111", "321", "juan@gmail.com", "Arnaldo");
+        Cliente cliente = new Cliente("Consumidor", "", "", "", "", "Final");
         Cliente cliente2 = new Cliente("Juan Ignacio", "asd", "222", "321", "juan@gmail.com", "Zapp");
         Cliente cliente3 = new Cliente("Martin Arnaldo", "asd", "333", "321", "juan@gmail.com", "Juan");
 
@@ -36,41 +35,43 @@ public class Main {
         Articulo art2 = new Articulo(2, "Tornillo A", "asd", "dsa", 20, 50, 50, 10);
         Articulo art3 = new Articulo(3, "Tornillo B", "asd", "dsa", 20, 10, 100, 10);
 
-        local.getListaArticulos().agregar(art1);
-        local.getListaArticulos().agregar(art2);
-        local.getListaArticulos().agregar(art3);
+        local.nuevoArticulo(art1);
+        local.nuevoArticulo(art2);
+        local.nuevoArticulo(art3);
 
-        local.getListaClientes().agregar(cliente);
-        local.getListaClientes().agregar(cliente2);
-        local.getListaClientes().agregar(cliente3);
+        local.nuevoCliente(cliente);
+        local.nuevoCliente(cliente2);
+        local.nuevoCliente(cliente3);
 
-        DescTarjeta d1 = new DescTarjeta(50, "Visa", "d1");
-        DescTarjeta d2 = new DescTarjeta(50, "Maestro", "d2");
-        DescTarjeta d3 = new DescTarjeta(50, "Cabal", "d3");
+        local.nuevaCaja();
 
-        local.getListaDescuento().agregar(d1);
-        local.getListaDescuento().agregar(d2);
-        local.getListaDescuento().agregar(d3);
+        DescTarjeta d1 = new DescTarjeta(50, "Visa", "Visa 50%");
+        DescTarjeta d2 = new DescTarjeta(50, "Maestro", "Maestro 50%");
+        DescTarjeta d3 = new DescTarjeta(50, "Cabal", "Cabal 50%");
+
+        local.nuevoDescuentoTarjeta(d1);
+        local.nuevoDescuentoTarjeta(d2);
+        local.nuevoDescuentoTarjeta(d3);
 
         System.out.println("Bienvenido!");
         int op1=0;
 
         do{
-            op1 = teclado.cargarOpMain();
+            op1 = menu.cargarOpMain();
 
             switch (op1) {
                 case 1:
-                    local.crearCliente();
+                    local.nuevoCliente(menu.cargarNuevoCliente(local));
                     break;
                 case 2:
                     local.mostrarListaClienteOptimizada();
                     break;
                 case 3:
-                    local.agregarDescuentoTarjeta();
+                    local.nuevoDescuentoTarjeta(menu.cargarNuevoDescuentoTarjeta(local));
                     local.mostrarDescuentos();
                     break;
                 case 4:
-                    caja.cargaVenta();
+                    caja.cargaVenta(menu.cargarNuevaVenta(local, local.getListaCajas().getElemento(0)));
                     break;
                 case 5:
                     local.mostrarVentas();

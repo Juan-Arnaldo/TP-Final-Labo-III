@@ -105,6 +105,14 @@ public class Local {
         this.listaDescuento = listaDescuento;
     }
 
+    public ContenedorArrayList<Caja> getListaCajas() {
+        return listaCajas;
+    }
+
+    public void setListaCajas(ContenedorArrayList<Caja> listaCajas) {
+        this.listaCajas = listaCajas;
+    }
+
     /**
      * Método para cargar un nuevo cliente al registro.
      * @param nuevoCliente a cargar.
@@ -118,7 +126,6 @@ public class Local {
     /**
      * Metodo para cargar un nuevo proveedor al registro.
      * @param nuevoProveedor a cargar
-     * @return El proveedor cargado
      */
     public void nuevoProveedor(Proveedor nuevoProveedor){
         nuevoProveedor.setCodInterno(listaProveedores.getContadorId());
@@ -134,97 +141,39 @@ public class Local {
         listaCajas.aumentarContadorId();
         listaCajas.agregar(nuevaCaja);
     }
+
     /**
-     * Método cargar un nuevo artículo.
+     * Método para cargar un nuevo artículo al registro.
+     * @param nuevoArticulo a cargar
      */
-    public void cargarArticulo() {
-        Menu teclado = new Menu();
-
-        String nombre, departamento, marca;
-        int stock = 0;
-        double utilidad;
-        do {
-            nombre = teclado.cargarNombreArticulo();
-            while (nombreArticuloRepetido(nombre)) {
-                nombre = teclado.cargarNuevamenteNombreArticulo(nombre);
-            }
-            departamento = teclado.cargarDepartamentoArticulo();
-            //TODO - Buscar la forma de validar existencia de departamentos. ¿Enum?
-            marca = teclado.cargarMarcaArticulo();
-            //TODO - Buscar la forma de validar existencia de marca. ¿Enum?
-            utilidad = teclado.cargarUtilidadArticulo();
-            while (utilidad < 0) {             // ¿Puede haber artículos que se vendan al costo? (Utilidad = 0)
-                utilidad = teclado.cargarNuevamenteUtilidadArticulo(utilidad);
-            }
-            stock = teclado.cargaStock();
-            while(stock < 0){
-                stock = teclado.cargaStockNuevamente();
-            }
-
-            Articulo nuevo = new Articulo(nombre, departamento, marca, utilidad, stock);
-            nuevo.setIdArticulo(listaArticulos.getContadorId());
-            listaArticulos.aumentarContadorId();
-            listaArticulos.agregar(nuevo);
-        } while (teclado.continuarCargandoArticulos());
-    }
-
-    public void mostrarArticulos(){
-        for (Articulo art : listaArticulos.getLista()){
-            System.out.println(art.toString());
-        }
+    public void nuevoArticulo(Articulo nuevoArticulo) {
+        nuevoArticulo.setIdArticulo(listaArticulos.getContadorId());
+        listaArticulos.aumentarContadorId();
+        listaArticulos.agregar(nuevoArticulo);
     }
 
     /**
      * Método para cargar una nueva compra.
      */
-    public void cargarCompra() {
-        Menu teclado = new Menu();
-
-        Compra nuevaCompra = new Compra();
-
-        String nombreArticuloComprado = null;
-        Articulo articuloComprado = null;
-        int cantidadComprada = 0;
-        double costoLinea = 0;
-
-        do {
-            nombreArticuloComprado = teclado.cargarNombreArticulo();                             //
-            articuloComprado = buscarArticuloNombre(nombreArticuloComprado);
-            while(articuloComprado == null) {                                                    // En caso de que el nombre ingresado no corresponda con un artículo registrado
-                switch (teclado.nombreArticuloCompradoNoExiste(nombreArticuloComprado)) {        // Le pregunto al usuario qué desea hacer
-                    case 1 :
-                        nombreArticuloComprado = teclado.cargarNombreArticulo();                 // Corrige el nombre cargado
-                        break;
-                    case 2 :
-                        cargarArticulo();                                                        // El nombre es correcto y decide cargarlo en el registro de artículos
-                        break;
-                    default:
-                        System.out.println("La opcion ingresada no es valida.");                 // Toca tecla que no va
-                        break;
-                }
-            }
-
-            cantidadComprada = teclado.cargarCantidadArticulo();                                 // Carga de la Cantidad de Artículos en la Línea
-            while(cantidadComprada < 1){
-                cantidadComprada = teclado.cantidadCeroONegativa(cantidadComprada);
-            }
-
-            costoLinea = teclado.cargarCostoLinea();                                             // Carga del Costo de la Línea
-            while(costoLinea <= 0){
-                costoLinea = teclado.costoCeroONegativo(costoLinea);
-            }
-
-            nuevaCompra.agregarLinea(articuloComprado, cantidadComprada, costoLinea);
-            nuevaCompra.setFecha(LocalDate.now());
-            nuevaCompra.setHora(LocalTime.now());
-
-            //TODO - Vincular la compra con un Proveedor.
-
-        } while(teclado.deseaContinuar());
-
+    public void nuevaCompra(Compra nuevaCompra) {
         nuevaCompra.setIdOperacion(listaOperacion.getContadorId());
         listaOperacion.aumentarContadorId();
-        getListaOperacion().agregar(nuevaCompra);
+        listaOperacion.agregar(nuevaCompra);
+    }
+
+    public void nuevoDescuentoTarjeta(DescTarjeta nuevoDescTarjeta){
+        if (nuevoDescTarjeta.getNombreTarjeta() != null) {
+            nuevoDescTarjeta.setIdDescuento(listaDescuento.getContadorId());
+            listaDescuento.aumentarContadorId();
+            listaDescuento.agregar(nuevoDescTarjeta);
+        }
+    }
+
+
+    public void mostrarArticulos(){
+        for (Articulo art : listaArticulos.getLista()){
+            System.out.println(art.toString());
+        }
     }
 
     /**
@@ -239,6 +188,24 @@ public class Local {
             }
         }
         for (Cliente aux : listaClientes.getLista()){
+            if (compararCaracter(nombre, aux.getApellido())){
+                System.out.println(aux.toStringOpt());
+            }
+        }
+    }
+
+    /**
+     * Metodo para mostrar una lista de clientes optimizada
+     */
+    public void mostrarListaProveedorOptimizada() {
+        Menu teclado = new Menu();
+        String nombre = teclado.cargarNombre();
+        for (Proveedor aux : listaProveedores.getLista()){
+            if (compararCaracter(nombre, aux.getNombre())){
+                System.out.println(aux.toStringOpt());
+            }
+        }
+        for (Proveedor aux : listaProveedores.getLista()){
             if (compararCaracter(nombre, aux.getApellido())){
                 System.out.println(aux.toStringOpt());
             }
@@ -286,6 +253,24 @@ public class Local {
         }
 
         return cliente;
+    }
+
+    /**
+     * Se le muestra una lista de clientes y se ingresa el CUIT del cliente para retornar
+     * @return El cliente seleccionado
+     */
+    public Proveedor buscarProveedor() {
+        Menu teclado = new Menu();
+        Proveedor proveedor = null;
+        mostrarListaClienteOptimizada();
+        String CUIT = teclado.cargarCuit();
+        for (Proveedor aux : listaProveedores.getLista()){
+            if(aux.getCuit().equals(CUIT)){
+                proveedor = aux;
+            }
+        }
+
+        return proveedor;
     }
 
     /**
@@ -376,7 +361,7 @@ public class Local {
      * @return el nombre de la tarjeta seleccionada
      */
 
-    private String seleccionTarjeta() {
+    public String seleccionTarjeta() {
         int aux;
         String tarjeta = null;
         Menu teclado = new Menu();
@@ -409,25 +394,6 @@ public class Local {
         } while (aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
 
         return tarjeta;
-    }
-
-
-    public void agregarDescuentoTarjeta(){
-        Menu teclado = new Menu();
-        String nombre = teclado.cargarNombre();
-
-        int porcentaje = teclado.ingresePorcentajeDesc();
-
-        while (porcentaje <= 0 || porcentaje > 100){
-            porcentaje = teclado.ingresePorcentajeDescNuevamente();
-        }
-
-        String tarjeta = seleccionTarjeta();
-        if(tarjeta != null){
-
-            Descuento nuevo = new DescTarjeta(porcentaje, tarjeta, nombre);
-            listaDescuento.agregar(nuevo);
-        }
     }
 
     public void mostrarDescuentos(){

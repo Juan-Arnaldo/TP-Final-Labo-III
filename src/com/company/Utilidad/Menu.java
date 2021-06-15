@@ -1,9 +1,17 @@
 package com.company.Utilidad;
 
+import com.company.Articulo.Articulo;
+import com.company.Local.Caja;
+import com.company.Local.DescTarjeta;
+import com.company.Local.Descuento;
 import com.company.Local.Local;
+import com.company.Operacion.Compra;
+import com.company.Operacion.Venta;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Menu {
@@ -64,6 +72,172 @@ public class Menu {
         String localidad = cargarLocalidad();
 
         return new Proveedor(nombre, direc, cuit, tel, email, localidad, apellido);
+    }
+
+    /**
+     * Método para cargar los datos de un nuevo artículo, con sus correspondientes validaciones.
+     * @param local en cuyo registro se cargará el nuevo artículo.
+     * @return artículo nuevo a registrar.
+     */
+    public Articulo cargarNuevoArticulo(Local local) {
+        String nombre, departamento, marca;
+        int stock = 0;
+        double utilidad;
+        nombre = cargarNombreArticulo();
+        while (local.nombreArticuloRepetido(nombre)) {
+            nombre = cargarNuevamenteNombreArticulo(nombre);
+        }
+        departamento = cargarDepartamentoArticulo();
+        //TODO - Buscar la forma de validar existencia de departamentos. ¿Enum?
+        marca = cargarMarcaArticulo();
+        //TODO - Buscar la forma de validar existencia de marca. ¿Enum?
+        utilidad = cargarUtilidadArticulo();
+        while (utilidad < 0 || utilidad > 1000) {             // ¿Puede haber artículos que se vendan al costo? (Utilidad = 0)
+            if (utilidad < 0)
+                utilidad = cargarNuevamenteUtilidadNegativa(utilidad);
+            if (utilidad > 1000)
+                utilidad = cargarNuevamenteUtilidadExcesiva(utilidad);
+        }
+        stock = cargaStock();
+        while(stock < 0){
+            stock = cargaStockNuevamente();
+        }
+
+        return new Articulo(nombre, departamento, marca, utilidad, stock);
+    }
+
+    /**
+     * Método para cargar los datos de una nueva compra, con sus correspondientes validaciones.
+     * @param local en cuyo registro se cargará la nueva compra.
+     * @return compra nuevo a registrar.
+     */
+    public Compra cargarNuevaCompra(Local local) {
+        Compra nuevaCompra = new Compra();
+
+        String nombreArticuloComprado = null;
+        Articulo articuloComprado = null;
+        int cantidadComprada = 0;
+        double costoLinea = 0;
+
+        Proveedor proveedor = local.buscarProveedor();
+
+        while (proveedor == null){
+            int aux = proveedorNoExiste();
+            switch (aux){
+                case 1:
+                    proveedor = local.buscarProveedor();
+                    break;
+                case 2:
+                    local.nuevoProveedor(cargarNuevoProveedor(local));
+                    proveedor = local.buscarProveedor();
+                    break;
+                default:
+                    System.out.println("\nLa opcion ingresada es incorrecta");
+                    break;
+            }
+        }
+
+        do {
+            nombreArticuloComprado = cargarNombreArticulo();
+            articuloComprado = local.buscarArticuloNombre(nombreArticuloComprado);
+            while(articuloComprado == null) {                                            // En caso de que el nombre ingresado no corresponda con un artículo registrado
+                switch (nombreArticuloCompradoNoExiste(nombreArticuloComprado)) {        // Le pregunto al usuario qué desea hacer
+                    case 1 :
+                        nombreArticuloComprado = cargarNombreArticulo();                 // Corrige el nombre cargado
+                        break;
+                    case 2 :
+                        local.nuevoArticulo(cargarNuevoArticulo(local));                 // El nombre es correcto y decide cargarlo en el registro de artículos
+                        break;
+                    default:
+                        System.out.println("La opcion ingresada no es valida.");         // Toca tecla que no va
+                        break;
+                }
+            }
+
+            cantidadComprada = cargarCantidadArticulo();                                 // Carga de la Cantidad de Artículos en la Línea
+            while(cantidadComprada < 1){
+                cantidadComprada = cantidadCeroONegativa(cantidadComprada);
+            }
+
+            costoLinea = cargarCostoLinea();                                             // Carga del Costo de la Línea
+            while(costoLinea <= 0){
+                costoLinea = costoCeroONegativo(costoLinea);
+            }
+
+            nuevaCompra.agregarLinea(articuloComprado, cantidadComprada, costoLinea);
+        } while(continuarCargandoLineasCompra());
+
+
+        nuevaCompra.setFecha(LocalDate.now());
+        nuevaCompra.setHora(LocalTime.now());
+        return nuevaCompra;
+    }
+
+    /**
+     * Método para cargar los datos de una nueva venta, con sus correspondientes validaciones.
+     * @param local en cuyo registro se cargará la nueva venta.
+     * @return venta nuevo a registrar.
+     */
+    public Venta cargarNuevaVenta(Local local, Caja caja) {
+        Cliente cliente = local.buscarCliente();
+
+        while (cliente == null){
+            int aux = clienteNoExiste();
+            switch (aux){
+                case 1:
+                    cliente = local.buscarCliente();
+                    break;
+                case 2:
+                    cliente = local.getListaClientes().getElemento(0);
+                    break;
+                case 3:
+                    local.nuevoCliente(cargarNuevoCliente(local));
+                    cliente = local.buscarCliente();
+                    break;
+                default:
+                    System.out.println("\nLa opcion ingresada es incorrecta");
+                    break;
+            }
+        }
+
+        Venta nuevaVenta = new Venta(cliente, caja.getIdCaja());
+
+        String metodoPago = local.cargarMetodoDePago();
+        nuevaVenta.setMetodoPago(metodoPago);
+        if(metodoPago != null){
+            do {
+                Menu t2 = new Menu(); //TODO a consultar al profesor
+                String nombre = t2.cargarNombreArticulo();
+                Articulo art = local.buscarArticuloNombre(nombre);
+                if (art != null) {
+                    int cant = nuevaVenta.cargarCantidadArticulo(art);
+                    if(cant != 0){
+                        nuevaVenta.agregarLinea(art, cant);
+                    }
+                }
+
+            }while (deseaContinuar());
+        }
+
+        return nuevaVenta;
+    }
+
+    /**
+     * Método para cargar los datos de un nuevo descuento del tipo tarjeta, con sus correspondientes validaciones.
+     * @param local en cuyo registro se cargará el nuevo descuento.
+     * @return descuento nuevo a registrar.
+     */
+    public DescTarjeta cargarNuevoDescuentoTarjeta(Local local) {
+        String nombre = cargarNombre();
+
+        int porcentaje = ingresePorcentajeDesc();
+
+        while (porcentaje <= 0 || porcentaje > 100){
+            porcentaje = ingresePorcentajeDescNuevamente();
+        }
+        String tarjeta = local.seleccionTarjeta();
+
+        return new DescTarjeta(porcentaje, tarjeta, nombre);
     }
 
     /**
@@ -146,12 +320,23 @@ public class Menu {
     }
 
     /**
-     * Método para volver a cargar la utilidad de un articulo en caso de que el valor ingresado anteriormente no sea posible.
+     * Método para volver a cargar la utilidad de un articulo en caso de que el valor ingresado anteriormente sea negativo.
      * @param utilidad cargada anteriormente.
      * @return Utilidad presuntamente corregida.
      */
-    public double cargarNuevamenteUtilidadArticulo(double utilidad) {
+    public double cargarNuevamenteUtilidadNegativa(double utilidad) {
         System.out.println(utilidad + " no es una utilidad válida. Se desea ganar dinero con las ventas.");
+        System.out.println("Ingrese nuevamente la utilidad del articulo: ");
+        return sc.nextDouble();
+    }
+
+    /**
+     * Método para volver a cargar la utilidad de un articulo en caso de que el valor ingresado anteriormente sea excesivo.
+     * @param utilidad cargada anteriormente.
+     * @return Utilidad presuntamente corregida.
+     */
+    public double cargarNuevamenteUtilidadExcesiva(double utilidad) {
+        System.out.println(utilidad + " no es una utilidad válida.");
         System.out.println("Ingrese nuevamente la utilidad del articulo: ");
         return sc.nextDouble();
     }
@@ -163,6 +348,20 @@ public class Menu {
     public boolean continuarCargandoArticulos(){
         System.out.println("¿Desea continuar cargando artículos?");
         System.out.println("Presione 1 si es así. En caso contrario presione cualquier otro número.");
+        int aux = sc.nextInt();
+        if(aux == 1){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Método para consultar al usuario si desea continuar cargando artículos.
+     * @return true en caso de que desee continuar; false en caso de que no desee continuar.
+     */
+    public boolean continuarCargandoLineasCompra(){
+        System.out.println("¿Desea continuar cargando lineas en la compra?");
+        System.out.println("Presione 1 si es así. Para finalizar compra presione cualquier otro número.");
         int aux = sc.nextInt();
         if(aux == 1){
             return true;
@@ -270,6 +469,14 @@ public class Menu {
         return sc.nextInt();
     }
 
+    public int proveedorNoExiste(){
+        System.out.println("\nEl proveedor buscado no exite. ");
+        System.out.println("\n1. Volver a cargar el CUIT");
+        System.out.println("\n2. Crear nuevo proveedor");
+        System.out.println("\n3. Ingrese la accion a realizar: ");
+        return sc.nextInt();
+    }
+
     public int ingresePorcentajeDesc(){
         System.out.println("Ingrese el porcentaje que quiere que tenga: ");
         return sc.nextInt();
@@ -282,8 +489,8 @@ public class Menu {
     }
 
     /**
-     * Método para cargar por teclado el nombre de una Persona.
-     * @return nombre de la persana cargado.
+     * Método para cargar por teclado un nombre.
+     * @return nombre cargado.
      */
     public String cargarNombre() {
         System.out.println("Ingrese el nombre: ");

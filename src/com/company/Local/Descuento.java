@@ -1,12 +1,21 @@
 package com.company.Local;
 
 public abstract class Descuento {
+    private int idDescuento;
     private String nombreDesc;
     private int porcentaje;
 
     public Descuento(int porcentaje, String nombreDesc) {
         this.porcentaje = porcentaje;
         this.nombreDesc = nombreDesc;
+    }
+
+    public int getIdDescuento() {
+        return idDescuento;
+    }
+
+    public void setIdDescuento(int idDescuento) {
+        this.idDescuento = idDescuento;
     }
 
     public int getPorcentaje() {
