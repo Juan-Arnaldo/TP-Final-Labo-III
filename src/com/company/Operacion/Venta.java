@@ -2,14 +2,11 @@ package com.company.Operacion;
 
 import com.company.Articulo.Articulo;
 import com.company.Contenedor.ContenedorArrayList;
-import com.company.Local.DescTarjeta;
 import com.company.Local.Descuento;
 import com.company.Persona.Persona;
-import com.company.Utilidad.Teclado;
+import com.company.Utilidad.Menu;
 import com.company.Utilidad.Validacion;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Venta extends Operacion {
@@ -66,7 +63,7 @@ public class Venta extends Operacion {
      * @return int
      */
     public int cargarCantidadArticulo(Articulo articulo) {
-        Teclado teclado = new Teclado();
+        Menu teclado = new Menu();
         int cant = teclado.cargarCantidadArticulo();
 
         while(cant < 0 || cant > articulo.getStock()){
