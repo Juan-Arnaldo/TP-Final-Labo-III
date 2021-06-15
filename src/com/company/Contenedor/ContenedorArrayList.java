@@ -19,6 +19,10 @@ public class ContenedorArrayList<T> {
         this.contadorId = contadorId;
     }
 
+    public void setListaDeElementos(ArrayList<T> listaDeElementos) {
+        this.listaDeElementos = listaDeElementos;
+    }
+
     /**
      * Método que devuelve los elementos del ArrayList
      * @return listaDeElementos
