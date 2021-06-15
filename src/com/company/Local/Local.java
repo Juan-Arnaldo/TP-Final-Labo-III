@@ -264,8 +264,7 @@ public class Local {
         Articulo articulo = null;
         String aux;
         for (Articulo aBuscar : listaArticulos.getLista()) {
-            aux    = aBuscar.getNombre().toLowerCase();
-            if (aux.equals(nombre)) {
+            if (aBuscar.getNombre().equalsIgnoreCase(nombre)) {
                 articulo = aBuscar;
             }
         }
