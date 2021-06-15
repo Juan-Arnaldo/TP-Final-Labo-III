@@ -41,20 +41,21 @@ public class Caja {
 
     public void cargaVenta() {
         Teclado teclado = new Teclado();
-        Cliente cliente = local.buscarCliente();
+        String CUIT = teclado.cargarCuit();
+        Cliente cliente = local.buscarCliente(CUIT);
 
         while (cliente == null){
             int aux = teclado.clienteNoExiste();
             switch (aux){
                 case 1:
-                    cliente = local.buscarCliente();
+                    cliente = local.buscarCliente(CUIT);
                     break;
                 case 2:
                     cliente = local.getListaClientes().getElemento(0);
                     break;
                 case 3:
                     local.crearCliente();
-                    cliente = local.buscarCliente();
+                    cliente = local.buscarCliente(CUIT);
                     break;
                 default:
                     System.out.println("\nLa opcion ingresada es incorrecta");

@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="613e9072-b7fc-49bf-8292-9416e1253c59" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Directorio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Directorio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Caja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Caja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Local.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Local.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Operacion/Venta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Operacion/Venta.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +26,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/com/company/Operacion/Venta.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProblemsViewState">
+    <hideBySeverity>
+      <option value="15" />
+    </hideBySeverity>
   </component>
   <component name="ProjectId" id="1tdas8AJoWuxShoHPLRSiUU1Lqs" />
   <component name="ProjectViewState">
@@ -61,15 +70,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -78,6 +85,10 @@
       <option name="JAR_PATH" value="$PROJECT_DIR$/src/com/company/gson-2.8.7.jar" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Application.Unnamed" />
+      <item itemvalue="JAR Application.gson-2.8.7.jar" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JAR Application.gson-2.8.7.jar" />
@@ -99,6 +110,7 @@
       <workItem from="1623364101665" duration="882000" />
       <workItem from="1623420814001" duration="4997000" />
       <workItem from="1623436551490" duration="5877000" />
+      <workItem from="1623764328626" duration="5964000" />
     </task>
     <servers />
   </component>

@@ -93,7 +93,7 @@ public class Venta extends Operacion {
         }
     }
 
-    public void MostrarVenta(ContenedorArrayList<Descuento> listaDesc){
+    public void mostrarVenta(ContenedorArrayList<Descuento> listaDesc){
         System.out.println("\nID venta: " + idVenta +
                              "\nFecha: " + getFecha() + " Hora: " + getHora() +
                             "\nMetodo de Pago: " + metodoPago + "\n");

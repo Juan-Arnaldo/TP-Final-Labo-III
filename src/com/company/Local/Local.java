@@ -15,6 +15,7 @@ import com.company.Utilidad.Validacion;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Locale;
 
 
 public class Local {
@@ -194,7 +195,7 @@ public class Local {
 
             C = nombreABuscar.charAt(i);
 
-            if (C == (nombre.charAt(i))){
+            if (C== (nombre.toLowerCase().charAt(i))||C== (nombre.toUpperCase().charAt(i))){
                 flag = true;
             }else {
                 flag = false;
@@ -214,11 +215,10 @@ public class Local {
      * Se le muestra una lista de clientes y se ingresa el CUIT del cliente para retornar
      * @return El cliente seleccionado
      */
-    public Cliente buscarCliente() {
+    public Cliente buscarCliente(String CUIT) {
         Teclado teclado = new Teclado();
         Cliente cliente = null;
         mostrarListaClienteOptimizada();
-        String CUIT = teclado.cargarCuit();
         for (Cliente aux : listaClientes.getLista()){
             if(aux.getCuit().equals(CUIT)){
                 cliente = aux;
@@ -263,8 +263,7 @@ public class Local {
         Articulo articulo = null;
         String aux;
         for (Articulo aBuscar : listaArticulos.getLista()) {
-            aux    = aBuscar.getNombre().toLowerCase();
-            if (aux.equals(nombre)) {
+            if (aBuscar.getNombre().equalsIgnoreCase(nombre)) {
                 articulo = aBuscar;
             }
         }
@@ -372,7 +371,7 @@ public class Local {
     public boolean nombreArticuloRepetido(String nombre) {
 
         for (Articulo aBuscar : listaArticulos.getLista()) {
-            if (aBuscar.getNombre().equals(nombre))
+            if (aBuscar.getNombre().equalsIgnoreCase(nombre))
                 return true;
         }
         return false;
@@ -381,7 +380,7 @@ public class Local {
     public void mostrarVentas(){
         for (Operacion aMostrar : listaOperacion.getLista()){
             if (aMostrar instanceof Venta){
-                ((Venta) aMostrar).MostrarVenta(listaDescuento);
+                ((Venta) aMostrar).mostrarVenta(listaDescuento);
             }
         }
     }
