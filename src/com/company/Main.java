@@ -58,13 +58,18 @@ public class Main {
         local.getListaDescuento().agregar(d3);
 
 
-        System.out.println("Bienvenido caja "+nCaja+"!");
+//        System.out.println("Bienvenido caja "+nCaja+"!");
 
-        Directorio direcClientes = new Directorio();
+//        Directorio direcClientes = new Directorio();
+//
+//        direcClientes.guardarDescuentoArchivos(local.getListaDescuento().getLista());
+
+        //local.getListaDescuento().setListaDeElementos(direcClientes.leerDescuentosArchivo());
+
 
 //        direcClientes.guardarClientesArchivo(local.getListaClientes().getLista());
-
-        local.getListaClientes().setListaDeElementos(direcClientes.leerClientesArchivo());
+        Directorio directorio = new Directorio();
+        local.getListaClientes().setListaDeElementos(directorio.leerArchivo(new File("Clientes.json")));
 
         System.out.println("Bienvenido!");
         int op1=0;

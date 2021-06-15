@@ -94,7 +94,7 @@ public class ContenedorArrayList<T> {
         return listaDeElementos.get(id);
     }
 
-    public void mostrar(T a){
+    public void mostrarElementos(T a){
         for (T aMostrar : listaDeElementos){
             aMostrar.toString();
         }
