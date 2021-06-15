@@ -238,6 +238,7 @@ public class Local {
      */
     public Cliente buscarCliente() {
         Menu teclado = new Menu();
+        String CUIT = teclado.cargarCuit();
         Cliente cliente = null;
         mostrarListaClienteOptimizada();
         for (Cliente aux : listaClientes.getLista()){

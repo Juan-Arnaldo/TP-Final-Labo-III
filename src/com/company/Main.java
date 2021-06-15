@@ -4,6 +4,7 @@ import com.company.Articulo.Articulo;
 import com.company.Local.Caja;
 import com.company.Local.DescTarjeta;
 import com.company.Local.Local;
+import com.company.Local.LocalJson;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Utilidad.Menu;
@@ -23,12 +24,7 @@ public class Main {
 
         File f = new File("tpfinal.txt");
 
-        int nCaja=teclado.numeroCaja();
-
-        Local local = new Local(nCaja, "Lo de juan", "Colon");
-
-
-        Caja caja = new Caja(1, 0, local);
+        Local local = new Local(0, "Lo de juan", "Colon");
 
         Cliente cliente = new Cliente("Consumidor", "", "", "", "", "Final");
         Cliente cliente2 = new Cliente("Juan Ignacio", "asd", "222", "321", "juan@gmail.com", "Zapp");
@@ -56,19 +52,9 @@ public class Main {
         local.nuevoDescuentoTarjeta(d2);
         local.nuevoDescuentoTarjeta(d3);
 
+        LocalJson localJson = new LocalJson();
 
-//        System.out.println("Bienvenido caja "+nCaja+"!");
-
-//        Directorio direcClientes = new Directorio();
-//
-//        direcClientes.guardarDescuentoArchivos(local.getListaDescuento().getLista());
-
-        //local.getListaDescuento().setListaDeElementos(direcClientes.leerDescuentosArchivo());
-
-
-//        direcClientes.guardarClientesArchivo(local.getListaClientes().getLista());
-        Directorio directorio = new Directorio();
-        local.getListaClientes().setListaDeElementos(directorio.leerArchivo(new File("Clientes.json")));
+        //localJson.guardarLocalArchivo(local);
 
         System.out.println("Bienvenido!");
         int op1=0;
@@ -88,7 +74,7 @@ public class Main {
                     local.mostrarDescuentos();
                     break;
                 case 4:
-                    caja.cargaVenta(menu.cargarNuevaVenta(local, local.getListaCajas().getElemento(0)));
+                    local.getListaCajas().getLista().get(0).cargaVenta(menu.cargarNuevaVenta(local, local.getListaCajas().getElemento(0)));
                     break;
                 case 5:
                     local.mostrarVentas();
@@ -110,10 +96,5 @@ public class Main {
                     break;
             }
         }while (op1 != 9);
-
-
-
     }
-
-
 }
