@@ -335,7 +335,6 @@ public class Local {
     }
 
 
-
     /**
      * Funcion para actualizar stock
      * @param art,stockpedido articulo a modificar y stock a restar
@@ -343,7 +342,6 @@ public class Local {
     public void nuevoStock(Articulo art, int stockPedido) {
         art.setStock(art.getStock() - stockPedido);
     }
-
 
 
     public String toString() {

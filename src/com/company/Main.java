@@ -62,10 +62,5 @@ public class Main {
                     break;
             }
         }while (op1 != 9);
-
-
-
     }
-
-
 }
