@@ -58,4 +58,22 @@ public class Validacion {
         return aux;
     }
 
+    public boolean mayorQueCero(double num){
+        boolean flag = false;
+
+        if (num > 0){
+            flag = true;
+        }
+
+        return flag;
+    }    public boolean mayorQueCero(int num){
+        boolean flag = false;
+
+        if (num > 0){
+            flag = true;
+        }
+
+        return flag;
+    }
+
 }

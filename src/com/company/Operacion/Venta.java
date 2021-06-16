@@ -6,6 +6,7 @@ import com.company.Local.DescTarjeta;
 import com.company.Local.Descuento;
 import com.company.Persona.Persona;
 import com.company.Utilidad.Menu;
+import com.company.Utilidad.Teclado;
 import com.company.Utilidad.Validacion;
 
 import java.util.ArrayList;
@@ -64,11 +65,11 @@ public class Venta extends Operacion {
      * @return int
      */
     public int cargarCantidadArticulo(Articulo articulo) {
-        Menu teclado = new Menu();
-        int cant = teclado.cargarCantidadArticulo();
+        Teclado t = new Teclado();
+        int cant = t.cargarCantidadArticulo();
 
         while(cant < 0 || cant > articulo.getStock()){
-                cant = teclado.cargarNuevamenteCantidadArticulo(articulo.getStock());
+                cant = t.cargarNuevamenteCantidadArticulo(articulo.getStock());
         }
 
         return cant;
@@ -92,18 +93,29 @@ public class Venta extends Operacion {
     }
 
     public void mostrarVenta(ContenedorArrayList<DescTarjeta> listaDesc){
-        System.out.println("\nID venta: " + idVenta +
-                            "\nMetodo de Pago: " + metodoPago + "\n");
-        mostrarLineas();
-        System.out.println("Total: " + generarTotal(listaDesc));
+        Validacion v = new Validacion();
+        Descuento desc = v.validacionDescuento(metodoPago, listaDesc);
+        if(desc != null){
+            mostrarVentaConDesc(generarTotal(listaDesc), desc);
+        }else{
+            mostrarVentaSinDesc(generarTotal(listaDesc));
+        }
     }
 
+    public void mostrarVentaConDesc(double total, Descuento desc){
+        System.out.println("Cliente: " + getPersona().getNombre() + " " +getPersona().getApellido() + " " + getPersona().getCuit() +
+                "\nID venta: " + idVenta +
+                "\nMetodo de Pago: " + metodoPago);
 
+        mostrarLineas();
+        System.out.println("\nSe le aplico un: " + desc.getPorcentaje() + "% de descuento" + "\nTotal: \t\t " + total);
+    }
 
-//    @Override
-//    public String toString() {
-//        return  "\nID venta: " + idVenta +
-//                "\nFecha: " + getFecha() + " Hora: " + getHora() +
-//                "\nMetodo de Pago: " + metodoPago + "\n" + mostrarLineas();
-//    }
+    public void mostrarVentaSinDesc(double total){
+        System.out.println("Cliente: " + getPersona().getNombre() + " " +getPersona().getApellido() + " " + getPersona().getCuit() +
+                "\nID venta: " + idVenta +
+                "\nMetodo de Pago: " + metodoPago + "\n");
+        mostrarLineas();
+        System.out.println("\nTotal: \t\t " + total);
+    }
 }

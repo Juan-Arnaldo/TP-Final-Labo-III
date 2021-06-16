@@ -32,10 +32,6 @@ public class Caja {
         this.dinero = dinero;
     }
 
-
-
-
-
     /**
      * Metodo para cargar una nueva venta
      */
@@ -43,7 +39,6 @@ public class Caja {
     public void cargaVenta(Venta nuevaVenta, Local local) {
         if(nuevaVenta.getListaLinea().size() > 0){
             nuevaVenta.setIdOperacion(local.getListaOperacion().getContadorId());
-            local.getListaOperacion().aumentarContadorId();
             local.getListaOperacion().agregar(nuevaVenta);
         }
     }
