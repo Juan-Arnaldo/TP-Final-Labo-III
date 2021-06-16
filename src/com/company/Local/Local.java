@@ -9,13 +9,6 @@ import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
 import com.company.Utilidad.Menu;
-import com.company.Utilidad.Validacion;
-
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.Locale;
-
 
 public class Local {
     private int idLocal;
@@ -26,8 +19,12 @@ public class Local {
     private ContenedorArrayList<Proveedor> listaProveedores;
     private ContenedorArrayList<Caja> listaCajas;
     private ContenedorArrayList<Operacion> listaOperacion;
-    private ContenedorArrayList<Descuento> listaDescuento;
+    private ContenedorArrayList<DescTarjeta> listaDescuento;
 
+
+    public Local(){
+
+    }
 
     public Local(int idLocal, String nombre, String direccion) {
 
@@ -39,7 +36,7 @@ public class Local {
         this.listaProveedores = new ContenedorArrayList<Proveedor>();
         this.listaCajas = new ContenedorArrayList<Caja>();
         this.listaOperacion = new ContenedorArrayList<Operacion>();
-        this.listaDescuento = new ContenedorArrayList<Descuento>();
+        this.listaDescuento = new ContenedorArrayList<DescTarjeta>();
     }
 
     public int getIdLocal() {
@@ -98,11 +95,11 @@ public class Local {
         this.listaOperacion = listaOperacion;
     }
 
-    public ContenedorArrayList<Descuento> getListaDescuento() {
+    public ContenedorArrayList<DescTarjeta> getListaDescuento() {
         return listaDescuento;
     }
 
-    public void setListaDescuento(ContenedorArrayList<Descuento> listaDescuento) {
+    public void setListaDescuento(ContenedorArrayList<DescTarjeta> listaDescuento) {
         this.listaDescuento = listaDescuento;
     }
 
@@ -138,7 +135,7 @@ public class Local {
      * Método para cargar una nueva caja al registro.
      */
     public void nuevaCaja() {
-        Caja nuevaCaja = new Caja(listaCajas.getContadorId(), 0, this);
+        Caja nuevaCaja = new Caja(listaCajas.getContadorId(), this.idLocal, 0);
         listaCajas.aumentarContadorId();
         listaCajas.agregar(nuevaCaja);
     }
@@ -291,7 +288,6 @@ public class Local {
      */
     public Articulo buscarArticuloNombre (String nombre) {
         Articulo articulo = null;
-        String aux;
         for (Articulo aBuscar : listaArticulos.getLista()) {
             if (aBuscar.getNombre().equalsIgnoreCase(nombre)) {
                 articulo = aBuscar;
@@ -300,15 +296,12 @@ public class Local {
         return articulo;
     }
 
-
-
     /**
      * Método para verificar si determinado nombre ya figura en los registros vinculado a un artículo.
      * @param nombre - nombre a verificar.
      * @return true si el nombre se encuntra; false si el nombre no se encuentra.
      */
     public boolean nombreArticuloRepetido(String nombre) {
-
         for (Articulo aBuscar : listaArticulos.getLista()) {
             if (aBuscar.getNombre().equalsIgnoreCase(nombre))
                 return true;
@@ -429,10 +422,12 @@ public class Local {
         }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
     }
 
+    /**
+     * Funcion para actualizar stock
+     * @param art,stockpedido articulo a modificar y stock a restar
+     */
     public void nuevoStock(Articulo art, int stockPedido) {
-        System.out.println("viejo: " + art.getStock());
         art.setStock(art.getStock()-stockPedido);
-        System.out.println("nuevo: " + art.getStock());
     }
 
     public String toString() {

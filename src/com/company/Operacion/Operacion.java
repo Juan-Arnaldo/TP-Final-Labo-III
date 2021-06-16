@@ -7,8 +7,6 @@ import java.time.LocalTime;
 
 public abstract class Operacion {
     private Persona persona;
-    private LocalDate fecha;
-    private LocalTime hora;
     private int idOperacion;
 
     public Operacion(){
@@ -17,8 +15,6 @@ public abstract class Operacion {
 
     public Operacion(Persona persona){
         this.persona = persona;
-        this.fecha = LocalDate.now();
-        this.hora = LocalTime.now();
     }
 
     public Persona getPersona() {
@@ -27,22 +23,6 @@ public abstract class Operacion {
 
     public void setPersona(Persona persona) {
         this.persona = persona;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
-    }
-
-    public LocalTime getHora() {
-        return hora;
-    }
-
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
     }
 
     public int getIdOperacion() {
@@ -56,8 +36,6 @@ public abstract class Operacion {
     @Override
     public String toString() {
         return "Operacion N°" + idOperacion +
-                "\nPersona: " + persona.getNombre() + " CUIT: " + persona.getCuit() +
-                "\nFecha: " + fecha +
-                "\nHora: " + hora ;
+                "\nPersona: " + persona.getNombre() + " CUIT: " + persona.getCuit() ;
     }
 }

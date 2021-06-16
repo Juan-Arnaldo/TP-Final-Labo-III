@@ -24,7 +24,7 @@ public class LocalJson {
         }
     }
 
-    public void leerLocalArchivos(){
+    public Local leerLocalArchivos(){
         File file = new File(localJson);
         Local local = null;
         try{
@@ -37,5 +37,6 @@ public class LocalJson {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return local;
     }
 }
