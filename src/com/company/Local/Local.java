@@ -429,6 +429,12 @@ public class Local {
         }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
     }
 
+    public void nuevoStock(Articulo art, int stockPedido) {
+        System.out.println("viejo: " + art.getStock());
+        art.setStock(art.getStock()-stockPedido);
+        System.out.println("nuevo: " + art.getStock());
+    }
+
     public String toString() {
         return "Local{" +
                 "\nidLocal=" + idLocal +

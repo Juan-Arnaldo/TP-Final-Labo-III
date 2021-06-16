@@ -1,5 +1,6 @@
 package com.company.Utilidad;
 
+import com.company.Articulo.Articulo;
 import com.company.Contenedor.ContenedorArrayList;
 import com.company.Local.DescTarjeta;
 import com.company.Local.Descuento;
@@ -56,4 +57,5 @@ public class Validacion {
         }
         return aux;
     }
+
 }

@@ -67,7 +67,7 @@ public class Venta extends Operacion {
         int cant = teclado.cargarCantidadArticulo();
 
         while(cant < 0 || cant > articulo.getStock()){
-                cant = teclado.cargarNuevamenteCantidadArticulo();
+                cant = teclado.cargarNuevamenteCantidadArticulo(articulo.getStock());
         }
 
         return cant;
@@ -97,6 +97,8 @@ public class Venta extends Operacion {
         mostrarLineas();
         System.out.println("Total: " + generarTotal(listaDesc));
     }
+
+
 
 //    @Override
 //    public String toString() {
