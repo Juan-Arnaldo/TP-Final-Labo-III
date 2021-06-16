@@ -21,14 +21,10 @@ public class Main {
 
         Menu menu = new Menu();
 
-        File f = new File("tpfinal.txt");
-
-        int nCaja=teclado.numeroCaja();
-
-        Local local = new Local(nCaja, "Lo de juan", "Colon");
+        Local local = new Local(0, "Lo de juan", "Colon");
 
 
-        Caja caja = new Caja(1, 0, local);
+        Caja caja = new Caja(0, 0, local);
 
         Cliente cliente = new Cliente("Consumidor", "", "", "", "", "Final");
         Cliente cliente2 = new Cliente("Juan Ignacio", "asd", "222", "321", "juan@gmail.com", "Zapp");
@@ -55,20 +51,6 @@ public class Main {
         local.nuevoDescuentoTarjeta(d1);
         local.nuevoDescuentoTarjeta(d2);
         local.nuevoDescuentoTarjeta(d3);
-
-
-//        System.out.println("Bienvenido caja "+nCaja+"!");
-
-//        Directorio direcClientes = new Directorio();
-//
-//        direcClientes.guardarDescuentoArchivos(local.getListaDescuento().getLista());
-
-        //local.getListaDescuento().setListaDeElementos(direcClientes.leerDescuentosArchivo());
-
-
-//        direcClientes.guardarClientesArchivo(local.getListaClientes().getLista());
-        Directorio directorio = new Directorio();
-        local.getListaClientes().setListaDeElementos(directorio.leerArchivo(new File("Clientes.json")));
 
         System.out.println("Bienvenido!");
         int op1=0;

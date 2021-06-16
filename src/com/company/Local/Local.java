@@ -240,6 +240,7 @@ public class Local {
         Menu teclado = new Menu();
         Cliente cliente = null;
         mostrarListaClienteOptimizada();
+        String CUIT = teclado.cargarCuit();
         for (Cliente aux : listaClientes.getLista()){
             if(aux.getCuit().equals(CUIT)){
                 cliente = aux;

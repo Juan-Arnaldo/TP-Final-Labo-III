@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="613e9072-b7fc-49bf-8292-9416e1253c59" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Caja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Caja.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,28 +52,24 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Chango\Documents\TP-Final-Labo-III\src\com\company" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Unnamed">
-    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
       <module name="TP Final Labo III" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
+    <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="TP Final Labo III" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -84,6 +79,7 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Application.Main" />
       <item itemvalue="Application.Unnamed" />
       <item itemvalue="JAR Application.gson-2.8.7.jar" />
     </list>
@@ -109,7 +105,7 @@
       <workItem from="1623420814001" duration="4997000" />
       <workItem from="1623436551490" duration="5877000" />
       <workItem from="1623764328626" duration="5964000" />
-      <workItem from="1623787729410" duration="4370000" />
+      <workItem from="1623787729410" duration="3207000" />
     </task>
     <servers />
   </component>
