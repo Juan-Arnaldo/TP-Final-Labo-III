@@ -33,6 +33,14 @@ public class Caja {
     }
 
     /**
+     * Metodo para actualizar dinero en caja
+     * @param dineroEntrante dinero a sumar al total de la caja
+     */
+    public void actualizarDinero(double dineroEntrante) {
+        setDinero(dineroEntrante + getDinero());
+    }
+
+    /**
      * Metodo para cargar una nueva venta
      */
 

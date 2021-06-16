@@ -58,6 +58,7 @@ public class Validacion {
         return aux;
     }
 
+
     public boolean mayorQueCero(double num){
         boolean flag = false;
 
@@ -66,13 +67,24 @@ public class Validacion {
         }
 
         return flag;
-    }    public boolean mayorQueCero(int num){
-        boolean flag = false;
+    }
 
-        if (num > 0){
-            flag = true;
+    public boolean compararCaracter(String nombreABuscar, String nombre){
+        int cantC = nombreABuscar.length();
+        char C;
+        boolean flag = true;
+        int i = 0;
+        while (flag && i < cantC ){
+
+            C = nombreABuscar.charAt(i);
+
+            if (C== (nombre.toLowerCase().charAt(i))||C== (nombre.toUpperCase().charAt(i))){
+                flag = true;
+            }else {
+                flag = false;
+            }
+            i++;
         }
-
         return flag;
     }
 

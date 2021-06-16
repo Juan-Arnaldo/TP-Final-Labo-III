@@ -10,6 +10,8 @@ import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
 import com.company.Utilidad.Menu;
 import com.company.Utilidad.Teclado;
+import com.company.Utilidad.Validacion;
+
 
 public class Local {
     private int idLocal;
@@ -173,15 +175,18 @@ public class Local {
      * Metodo para mostrar una lista de clientes optimizada
      */
     public void mostrarListaClienteOptimizada() {
+
         Teclado t = new Teclado();
         String nombre = t.cargarNombre();
+        Validacion val = new Validacion();
+
         for (Cliente aux : listaClientes.getLista()){
-            if (compararCaracter(nombre, aux.getNombre())){
+            if (val.compararCaracter(nombre, aux.getNombre())){
                 System.out.println(aux.toStringOpt());
             }
         }
         for (Cliente aux : listaClientes.getLista()){
-            if (compararCaracter(nombre, aux.getApellido())){
+            if (val.compararCaracter(nombre, aux.getApellido())){
                 System.out.println(aux.toStringOpt());
             }
         }
@@ -189,14 +194,15 @@ public class Local {
 
     public void mostrarListaArticuloOptimizada() {
         Teclado t = new Teclado();
+        Validacion val = new Validacion();
         String nombre = t.cargarNombre();
         for (Articulo aux : listaArticulos.getLista()){
-            if (compararCaracter(nombre, aux.getNombre())){
+            if (val.compararCaracter(nombre, aux.getNombre())){
                 System.out.println(aux.toStringOpt());
             }
         }
         for (Cliente aux : listaClientes.getLista()){
-            if (compararCaracter(nombre, aux.getApellido())){
+            if (val.compararCaracter(nombre, aux.getApellido())){
                 System.out.println(aux.toStringOpt());
             }
         }
@@ -206,37 +212,21 @@ public class Local {
      * Metodo para mostrar una lista de clientes optimizada
      */
     public void mostrarListaProveedorOptimizada() {
+
         Teclado t = new Teclado();
         String nombre = t.cargarNombre();
+        Validacion val = new Validacion();
+
         for (Proveedor aux : listaProveedores.getLista()){
-            if (compararCaracter(nombre, aux.getNombre())){
+            if (val.compararCaracter(nombre, aux.getNombre())){
                 System.out.println(aux.toStringOpt());
             }
         }
         for (Proveedor aux : listaProveedores.getLista()){
-            if (compararCaracter(nombre, aux.getApellido())){
+            if (val.compararCaracter(nombre, aux.getApellido())){
                 System.out.println(aux.toStringOpt());
             }
         }
-    }
-
-    private boolean compararCaracter(String nombreABuscar, String nombre){
-        int cantC = nombreABuscar.length();
-        char C;
-        boolean flag = true;
-        int i = 0;
-        while (flag && i < cantC ){
-
-            C = nombreABuscar.charAt(i);
-
-            if (C== (nombre.toLowerCase().charAt(i))||C== (nombre.toUpperCase().charAt(i))){
-                flag = true;
-            }else {
-                flag = false;
-            }
-            i++;
-        }
-        return flag;
     }
 
     /**
@@ -299,6 +289,8 @@ public class Local {
      */
     public Articulo buscarArticuloID (int id) {
         Articulo articulo = null;
+        Teclado t2 = new Teclado();
+        int nombre = t2.cargarID();
         for (Articulo aBuscar : listaArticulos.getLista()) {
             if (aBuscar.getIdArticulo() == id) {
                 articulo = aBuscar;
@@ -329,70 +321,10 @@ public class Local {
     }
 
 
-    public String cargarMetodoDePago() {
-        int aux;
-        MetodoPago metodoPago = null;
-        Teclado t = new Teclado();
-        do {
-            aux = t.cargarMetodoPago();
-            switch (aux) {
-                case 1:
-                    metodoPago = MetodoPago.Efectivo;
-                    break;
-                case 2:
-                    metodoPago = MetodoPago.Tarjeta;
-                    return seleccionTarjeta();
-                case 3:
-                    metodoPago = MetodoPago.Cheque;
-                    break;
-                default:
-                    System.out.println("La opcion que ingresaste no es valida");
-                    break;
-            }
-        } while (aux != 1 && aux != 2 && aux != 3 && aux != 0);
 
-        return metodoPago.name();
-    }
 
-    /**
-     * Funcion para la seleccion de la tarjeta
-     * @return el nombre de la tarjeta seleccionada
-     */
 
-    public String seleccionTarjeta() {
-        int aux;
-        String tarjeta = null;
-        Teclado t = new Teclado();
-        do {
-            aux = t.cargarTarjeta();
-            switch (aux) {
-                case 1:
-                    tarjeta = "Visa";
-                    break;
-                case 2:
-                    tarjeta = "Mastercad";
-                    break;
-                case 3:
-                    tarjeta = "Cabal";
-                    break;
-                case 4:
-                    tarjeta = "American Express";
-                    break;
-                case 5:
-                    tarjeta = "Maestro";
-                    break;
-                case 6:
-                    tarjeta = "Naranja";
-                    break;
-                default:
-                    System.out.println("La opcion ingresada es incorrecta, ingrese 0 de si desea salir");
-                    break;
-            }
 
-        } while (aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
-
-        return tarjeta;
-    }
 
     public void mostrarDescuentos(){
         for (Descuento desc : listaDescuento.getLista()){
@@ -402,36 +334,7 @@ public class Local {
         }
     }
 
-    public void modificarArticulo(Articulo articulo) {
-        Teclado t = new Teclado();
-        int aux;
-        do{
-            aux = t.modificiarArticulo();
-            switch (aux){
-                case 1:
-                    articulo.setNombre(t.cargarNombreArticulo());
-                    break;
-                case 2:
-                    articulo.setDepartamento(t.cargarDepartamentoArticulo());
-                    break;
-                case 3:
-                    articulo.setMarca(t.cargarMarcaArticulo());
-                    break;
-                case 4:
-                    articulo.setCosto(t.cargarCostoArticulo());
-                    break;
-                case 5:
-                    articulo.setUtilidad(t.cargarUtilidadArticulo());
-                    break;
-                case 6:
-                    articulo.setStock(t.cargarCantidadArticulo());
-                    break;
-                default:
-                    System.out.println("La opcion ingresada no es correcta!\n");
-                    break;
-            }
-        }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
-    }
+
 
     /**
      * Funcion para actualizar stock
@@ -440,6 +343,8 @@ public class Local {
     public void nuevoStock(Articulo art, int stockPedido) {
         art.setStock(art.getStock() - stockPedido);
     }
+
+
 
     public String toString() {
         return "Local{" +
