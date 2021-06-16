@@ -105,16 +105,16 @@ public class Menu {
                     //TODO codear detalle del día para la caja
                     break;
                 case 3:
-                    menuArticulos();
+                    //menuArticulos();
                     break;
                 case 4:
-                    menuClietes();
+                    //menuClietes();
                     break;
                 case 5:
                     local.nuevaCompra(cargarNuevaCompra(local));
                     break;
                 case 6:
-                    menuProveedores();
+                    //menuProveedores();
                     break;
                 case 7:
                     System.out.println("\nSaliendo...\n");
@@ -138,6 +138,7 @@ public class Menu {
         System.out.println("4 - Menú Clientes.");
         System.out.println("5 - Nueva Compra.");
         System.out.println("6 - Menú Proveedores.");
+        System.out.println("6 - Menú Descuentos.");
         System.out.println("7 - Salir.");
         return sc.nextInt();
     }
