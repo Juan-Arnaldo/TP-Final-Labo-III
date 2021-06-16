@@ -139,8 +139,7 @@ public class Menu {
         }
 
         do {
-            nombreArticuloComprado = cargarNombreArticulo();
-            articuloComprado = local.buscarArticuloNombre(nombreArticuloComprado);
+            articuloComprado = local.buscarArticuloNombre();
             while(articuloComprado == null) {                                            // En caso de que el nombre ingresado no corresponda con un artículo registrado
                 switch (nombreArticuloCompradoNoExiste(nombreArticuloComprado)) {        // Le pregunto al usuario qué desea hacer
                     case 1 :
@@ -204,17 +203,19 @@ public class Menu {
         nuevaVenta.setMetodoPago(metodoPago);
         if(metodoPago != null){
             do {
-                Menu t2 = new Menu();
-                String nombre = t2.cargarNombreArticulo();
-                Articulo art = local.buscarArticuloNombre(nombre);
+                Articulo art = local.buscarArticuloNombre();
                 if (art != null) {
                     int cant = nuevaVenta.cargarCantidadArticulo(art);
                     if(cant != 0){
                         nuevaVenta.agregarLinea(art, cant);
-                        local.nuevoStock(art,cant);
-                        clearConsole();
+                        local.nuevoStock(art,cant);///TODO borrar estas, es solo para mostrar ahora xd
+                        System.out.println("viejo "+ caja.getDinero());
+                        caja.actualizarDinero(nuevaVenta.generarTotal(local.getListaDescuento()));
+                        System.out.println("nuevo "+ caja.getDinero());
                     }
                 }
+                else
+                    System.out.println("El articulo no existe");
 
             }while (deseaContinuar());
         }

@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="613e9072-b7fc-49bf-8292-9416e1253c59" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Local.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Local.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Operacion/Venta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Operacion/Venta.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Utilidad/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Utilidad/Menu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Utilidad/Validacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Utilidad/Validacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Caja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Caja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Local.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Local.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Operacion/Venta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Operacion/Venta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Validacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Validacion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +76,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -96,7 +110,7 @@
       <workItem from="1623858350789" duration="125000" />
       <workItem from="1623858580484" duration="1062000" />
       <workItem from="1623859713325" duration="843000" />
-      <workItem from="1623874013260" duration="617000" />
+      <workItem from="1623874013260" duration="5854000" />
     </task>
     <servers />
   </component>

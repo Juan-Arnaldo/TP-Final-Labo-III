@@ -58,4 +58,23 @@ public class Validacion {
         return aux;
     }
 
+    public boolean compararCaracter(String nombreABuscar, String nombre){
+        int cantC = nombreABuscar.length();
+        char C;
+        boolean flag = true;
+        int i = 0;
+        while (flag && i < cantC ){
+
+            C = nombreABuscar.charAt(i);
+
+            if (C== (nombre.toLowerCase().charAt(i))||C== (nombre.toUpperCase().charAt(i))){
+                flag = true;
+            }else {
+                flag = false;
+            }
+            i++;
+        }
+        return flag;
+    }
+
 }
