@@ -32,19 +32,27 @@ public class Caja {
         this.dinero = dinero;
     }
 
-
-
-
+    /**
+     * Metodo para actualizar dinero en caja
+     * @param dineroEntrante dinero a sumar al total de la caja
+     */
+    public void actualizarDinero(double dineroEntrante) {
+        setDinero(dineroEntrante + getDinero());
+    }
 
     /**
      * Metodo para cargar una nueva venta
      */
 
-    public void cargaVenta(Venta nuevaVenta, Local local) {
+    public void nuevaVenta(Venta nuevaVenta, Local local) {
         if(nuevaVenta.getListaLinea().size() > 0){
             nuevaVenta.setIdOperacion(local.getListaOperacion().getContadorId());
-            local.getListaOperacion().aumentarContadorId();
             local.getListaOperacion().agregar(nuevaVenta);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Caja " + idCaja + "\n";
     }
 }

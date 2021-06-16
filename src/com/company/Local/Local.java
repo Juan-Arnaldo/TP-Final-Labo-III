@@ -9,6 +9,9 @@ import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
 import com.company.Utilidad.Menu;
+import com.company.Utilidad.Teclado;
+import com.company.Utilidad.Validacion;
+
 
 public class Local {
     private int idLocal;
@@ -117,7 +120,6 @@ public class Local {
      */
     public void nuevoCliente(Cliente nuevoCliente){
         nuevoCliente.setCodInterno(listaClientes.getContadorId());
-        listaClientes.aumentarContadorId();
         listaClientes.agregar(nuevoCliente);
     }
 
@@ -127,7 +129,6 @@ public class Local {
      */
     public void nuevoProveedor(Proveedor nuevoProveedor){
         nuevoProveedor.setCodInterno(listaProveedores.getContadorId());
-        listaProveedores.aumentarContadorId();
         listaProveedores.agregar(nuevoProveedor);
     }
 
@@ -136,7 +137,6 @@ public class Local {
      */
     public void nuevaCaja() {
         Caja nuevaCaja = new Caja(listaCajas.getContadorId(), this.idLocal, 0);
-        listaCajas.aumentarContadorId();
         listaCajas.agregar(nuevaCaja);
     }
 
@@ -146,7 +146,6 @@ public class Local {
      */
     public void nuevoArticulo(Articulo nuevoArticulo) {
         nuevoArticulo.setIdArticulo(listaArticulos.getContadorId());
-        listaArticulos.aumentarContadorId();
         listaArticulos.agregar(nuevoArticulo);
     }
 
@@ -155,19 +154,19 @@ public class Local {
      */
     public void nuevaCompra(Compra nuevaCompra) {
         nuevaCompra.setIdOperacion(listaOperacion.getContadorId());
-        listaOperacion.aumentarContadorId();
         listaOperacion.agregar(nuevaCompra);
     }
 
     public void nuevoDescuentoTarjeta(DescTarjeta nuevoDescTarjeta){
         if (nuevoDescTarjeta.getNombreTarjeta() != null) {
             nuevoDescTarjeta.setIdDescuento(listaDescuento.getContadorId());
-            listaDescuento.aumentarContadorId();
             listaDescuento.agregar(nuevoDescTarjeta);
         }
     }
 
-
+    /**
+     * Método para mostrar todos los Articulo
+     */
     public void mostrarArticulos(){
         for (Articulo art : listaArticulos.getLista()){
             System.out.println(art.toString());
@@ -175,18 +174,62 @@ public class Local {
     }
 
     /**
+     * Método para mostrar un Articulo
+     */
+    public void mostrarUnArticulo(){
+        Teclado t = new Teclado();
+
+        mostrarListaArticuloOptimizada();
+        int aux = t.cargarID();
+
+        Articulo art = buscarArticuloID(aux);
+
+        System.out.println(art.toString());
+    }
+
+    public void eliminarUnArticulo(){
+        Teclado t = new Teclado();
+
+        mostrarListaArticuloOptimizada();
+        int aux = t.cargarID();
+
+        Articulo art = buscarArticuloID(aux);
+
+        listaArticulos.eliminar(aux);
+    }
+
+    /**
      * Metodo para mostrar una lista de clientes optimizada
      */
     public void mostrarListaClienteOptimizada() {
-        Menu teclado = new Menu();
-        String nombre = teclado.cargarNombre();
+
+        Teclado t = new Teclado();
+        String nombre = t.cargarNombre();
+        Validacion val = new Validacion();
+
         for (Cliente aux : listaClientes.getLista()){
-            if (compararCaracter(nombre, aux.getNombre())){
+            if (val.compararCaracter(nombre, aux.getNombre())){
                 System.out.println(aux.toStringOpt());
             }
         }
         for (Cliente aux : listaClientes.getLista()){
-            if (compararCaracter(nombre, aux.getApellido())){
+            if (val.compararCaracter(nombre, aux.getApellido())){
+                System.out.println(aux.toStringOpt());
+            }
+        }
+    }
+
+    public void mostrarListaArticuloOptimizada() {
+        Teclado t = new Teclado();
+        Validacion val = new Validacion();
+        String nombre = t.cargarNombre();
+        for (Articulo aux : listaArticulos.getLista()){
+            if (val.compararCaracter(nombre, aux.getNombre())){
+                System.out.println(aux.toStringOpt());
+            }
+        }
+        for (Cliente aux : listaClientes.getLista()){
+            if (val.compararCaracter(nombre, aux.getApellido())){
                 System.out.println(aux.toStringOpt());
             }
         }
@@ -196,37 +239,21 @@ public class Local {
      * Metodo para mostrar una lista de clientes optimizada
      */
     public void mostrarListaProveedorOptimizada() {
-        Menu teclado = new Menu();
-        String nombre = teclado.cargarNombre();
+
+        Teclado t = new Teclado();
+        String nombre = t.cargarNombre();
+        Validacion val = new Validacion();
+
         for (Proveedor aux : listaProveedores.getLista()){
-            if (compararCaracter(nombre, aux.getNombre())){
+            if (val.compararCaracter(nombre, aux.getNombre())){
                 System.out.println(aux.toStringOpt());
             }
         }
         for (Proveedor aux : listaProveedores.getLista()){
-            if (compararCaracter(nombre, aux.getApellido())){
+            if (val.compararCaracter(nombre, aux.getApellido())){
                 System.out.println(aux.toStringOpt());
             }
         }
-    }
-
-    private boolean compararCaracter(String nombreABuscar, String nombre){
-        int cantC = nombreABuscar.length();
-        char C;
-        boolean flag = true;
-        int i = 0;
-        while (flag && i < cantC ){
-
-            C = nombreABuscar.charAt(i);
-
-            if (C== (nombre.toLowerCase().charAt(i))||C== (nombre.toUpperCase().charAt(i))){
-                flag = true;
-            }else {
-                flag = false;
-            }
-            i++;
-        }
-        return flag;
     }
 
     /**
@@ -234,10 +261,10 @@ public class Local {
      * @return El cliente seleccionado
      */
     public Cliente buscarCliente() {
-        Menu teclado = new Menu();
+        Teclado t = new Teclado();
         Cliente cliente = null;
         mostrarListaClienteOptimizada();
-        String CUIT = teclado.cargarCuit();
+        String CUIT = t.cargarCuit();
         for (Cliente aux : listaClientes.getLista()){
             if(aux.getCuit().equals(CUIT)){
                 cliente = aux;
@@ -247,15 +274,16 @@ public class Local {
         return cliente;
     }
 
+
     /**
      * Se le muestra una lista de clientes y se ingresa el CUIT del cliente para retornar
      * @return El cliente seleccionado
      */
     public Proveedor buscarProveedor() {
-        Menu teclado = new Menu();
+        Teclado t = new Teclado();
         Proveedor proveedor = null;
         mostrarListaClienteOptimizada();
-        String CUIT = teclado.cargarCuit();
+        String CUIT = t.cargarCuit();
         for (Proveedor aux : listaProveedores.getLista()){
             if(aux.getCuit().equals(CUIT)){
                 proveedor = aux;
@@ -283,13 +311,15 @@ public class Local {
 
     /**
      * Metodo para buscar un artículo de la lista de artículos conociendo su nombre.
-     * @param nombre nombre del artículo a buscar.
+     * @param id ID del artículo a buscar.
      * @return Articulo buscado.
      */
-    public Articulo buscarArticuloNombre (String nombre) {
+    public Articulo buscarArticuloID (int id) {
         Articulo articulo = null;
+        Teclado t2 = new Teclado();
+        int nombre = t2.cargarID();
         for (Articulo aBuscar : listaArticulos.getLista()) {
-            if (aBuscar.getNombre().equalsIgnoreCase(nombre)) {
+            if (aBuscar.getIdArticulo() == id) {
                 articulo = aBuscar;
             }
         }
@@ -317,72 +347,6 @@ public class Local {
         }
     }
 
-
-    public String cargarMetodoDePago() {
-        int aux;
-        MetodoPago metodoPago = null;
-        Menu teclado = new Menu();
-        do {
-            aux = teclado.cargarMetodoPago();
-            switch (aux) {
-                case 1:
-                    metodoPago = MetodoPago.Efectivo;
-                    break;
-                case 2:
-                    metodoPago = MetodoPago.Tarjeta;
-                    return seleccionTarjeta();
-                case 3:
-                    metodoPago = MetodoPago.Cheque;
-                    break;
-                default:
-                    System.out.println("La opcion que ingresaste no es valida");
-                    break;
-            }
-        } while (aux != 1 && aux != 2 && aux != 3 && aux != 0);
-
-        return metodoPago.name();
-    }
-
-    /**
-     * Funcion para la seleccion de la tarjeta
-     * @return el nombre de la tarjeta seleccionada
-     */
-
-    public String seleccionTarjeta() {
-        int aux;
-        String tarjeta = null;
-        Menu teclado = new Menu();
-        do {
-            aux = teclado.cargarTarjeta();
-            switch (aux) {
-                case 1:
-                    tarjeta = "Visa";
-                    break;
-                case 2:
-                    tarjeta = "Mastercad";
-                    break;
-                case 3:
-                    tarjeta = "Cabal";
-                    break;
-                case 4:
-                    tarjeta = "American Express";
-                    break;
-                case 5:
-                    tarjeta = "Maestro";
-                    break;
-                case 6:
-                    tarjeta = "Naranja";
-                    break;
-                default:
-                    System.out.println("La opcion ingresada es incorrecta, ingrese 0 de si desea salir");
-                    break;
-            }
-
-        } while (aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
-
-        return tarjeta;
-    }
-
     public void mostrarDescuentos(){
         for (Descuento desc : listaDescuento.getLista()){
             if (desc instanceof DescTarjeta){
@@ -391,35 +355,26 @@ public class Local {
         }
     }
 
-    public void modificarArticulo(Articulo articulo) {
-        Menu teclado = new Menu();
-        int aux;
-        do{
-            aux = teclado.modificiarArticulo();
-            switch (aux){
-                case 1:
-                    articulo.setNombre(teclado.cargarNombreArticulo());
-                    break;
-                case 2:
-                    articulo.setDepartamento(teclado.cargarDepartamentoArticulo());
-                    break;
-                case 3:
-                    articulo.setMarca(teclado.cargarMarcaArticulo());
-                    break;
-                case 4:
-                    articulo.setCosto(teclado.cargarCostoArticulo());
-                    break;
-                case 5:
-                    articulo.setUtilidad(teclado.cargarUtilidadArticulo());
-                    break;
-                case 6:
-                    articulo.setStock(teclado.cargarCantidadArticulo());
-                    break;
-                default:
-                    System.out.println("La opcion ingresada no es correcta!\n");
-                    break;
-            }
-        }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
+    /**
+     * Funcion para actualizar stock
+     * @param art,stockpedido articulo a modificar y stock a restar
+     */
+    public void nuevoStock(Articulo art, int stockPedido) {
+        art.setStock(art.getStock() - stockPedido);
+    }
+
+
+    /**
+     * Método para buscar una caja sabiendo su id. Retorna la última de la lista en caso de recibir un id erroneo.
+     * @param idCaja
+     * @return Caja seleccionada.
+     */
+    public Caja buscarCaja(int idCaja) {
+        if(listaCajas.getLista().get(idCaja) != null)
+            return listaCajas.getElemento(idCaja);
+        else
+            return listaCajas.getElemento(listaCajas.getLista().size());
+
     }
 
     public String toString() {
@@ -431,6 +386,5 @@ public class Local {
                 ", \nlistaClientes=" + listaClientes +
                 ", \nlistaProveedores=" + listaProveedores;
     }
-
 }
 
