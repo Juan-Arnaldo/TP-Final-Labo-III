@@ -10,6 +10,7 @@ import com.company.Operacion.Venta;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
@@ -211,6 +212,7 @@ public class Menu {
                     if(cant != 0){
                         nuevaVenta.agregarLinea(art, cant);
                         local.nuevoStock(art,cant);
+                        clearConsole();
                     }
                 }
 
@@ -617,5 +619,16 @@ public class Menu {
     public int numeroCaja(){
         System.out.println("Ingrese el numero de caja a operar: ");
         return sc.nextInt();
+    }
+
+    public static void clearConsole() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            }
+            else {
+                System.out.print("\033\143");
+            }
+        } catch (IOException | InterruptedException ex) {}
     }
 }
