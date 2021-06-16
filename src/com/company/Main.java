@@ -18,9 +18,6 @@ public class Main {
 
 //        Local local = new Local(0, "Lo de juan", "Colon");
 //
-//
-//        Caja caja = new Caja(0, 0, 0);
-//
 //        Cliente cliente = new Cliente("Consumidor", "", "", "", "", "Final");
 //        Cliente cliente2 = new Cliente("Juan Ignacio", "asd", "222", "321", "juan@gmail.com", "Zapp");
 //        Cliente cliente3 = new Cliente("Martin Arnaldo", "asd", "333", "321", "juan@gmail.com", "Juan");
@@ -51,10 +48,8 @@ public class Main {
 
 //        json.guardarLocalArchivo(local);
 
-        Local local2 = new Local();
-        local2 = json.leerLocalArchivos();
+        Local local = json.leerLocalArchivos();
 
-<<<<<<< HEAD
         menu.menuInicio(local);
 
 //        System.out.println("Bienvenido!");
@@ -97,48 +92,6 @@ public class Main {
 //                    break;
 //            }
 //        }while (op1 != 9);
-=======
-        System.out.println("Bienvenido!");
-        int op1=0;
-
-        do{
-            op1 = menu.cargarOpMain();
-
-            switch (op1) {
-                case 1:
-                    local2.nuevoCliente(menu.cargarNuevoCliente(local2));
-                    break;
-                case 2:
-                    local2.mostrarListaClienteOptimizada();
-                    break;
-                case 3:
-                    local2.nuevoDescuentoTarjeta(menu.cargarNuevoDescuentoTarjeta(local2));
-                    local2.mostrarDescuentos();
-                    break;
-                case 4:
-                    local2.getListaCajas().getElemento(0).cargaVenta(menu.cargarNuevaVenta(local2, local2.getListaCajas().getElemento(0)), local2);
-                    break;
-                case 5:
-                    local2.mostrarVentas();
-                    break;
-                case 6:
-
-                    break;
-                case 7:
-
-                    break;
-                case 8:
-
-                    break;
-                case 9:
-                    System.out.println("Saliendo..");
-                    break;
-                default:
-                    System.out.println("Opcion erronea.\nVuelva a intentarlo.");
-                    break;
-            }
-        }while (op1 != 9);
->>>>>>> develop
 
 
 

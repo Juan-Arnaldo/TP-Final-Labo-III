@@ -440,5 +440,17 @@ public class Local {
                 ", \nlistaProveedores=" + listaProveedores;
     }
 
+    /**
+     * Método para buscar una caja sabiendo su id. Retorna la última de la lista en caso de recibir un id erroneo.
+     * @param idCaja
+     * @return Caja seleccionada.
+     */
+    public Caja buscarCaja(int idCaja) {
+        if(listaCajas.getLista().get(idCaja) != null)
+            return listaCajas.getElemento(idCaja);
+        else
+            return listaCajas.getElemento(listaCajas.getLista().size());
+
+    }
 }
 

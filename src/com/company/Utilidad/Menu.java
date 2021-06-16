@@ -9,8 +9,6 @@ import com.company.Operacion.Venta;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Menu {
@@ -20,25 +18,32 @@ public class Menu {
         sc = new Scanner(System.in);
     }
 
+    /**
+     * Método para el menú que aparecerá al inicio del programa.
+     * @param local en el que se trabajará.
+     */
     public void menuInicio(Local local) {
-        System.out.println("Bienvenido!");
-        int opc=0;
+        System.out.println("\nBienvenido\n");
+        int opc = 0;
         do{
             opc = cargarOpcionMenuInicio();
+            Caja caja = null;
 
             switch (opc) {
                 case 1:
-                    local.seleccionarCaja(local);
+                    caja = menuSeleccionCaja(local);
+                    menuCaja(local, caja);
                     break;
                 case 2:
                     local.nuevaCaja();
-                    //TODO ir a menú de caja con la última cargada seleccionada.
+                    caja = local.getListaCajas().getElemento(local.getListaCajas().getLista().size()-1);
+                    menuCaja(local, caja);
                     break;
                 case 3:
-                    System.out.println("Saliendo...");
+                    System.out.println("\nSaliendo...\n");
                     break;
                 default:
-                    System.out.println("Opcion erronea.\nVuelva a intentarlo.");
+                    System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
                     break;
             }
         }while (opc != 3);
@@ -53,6 +58,87 @@ public class Menu {
         System.out.println("1 - Seleccionar caja.");
         System.out.println("2 - Nueva caja.");
         System.out.println("3 - Salir.");
+        return sc.nextInt();
+    }
+
+    /**
+     * Menú que se encarga de mostrar las cajas disponibles y le permite al usuario seleccionar una para trabajar.
+     * @param local al que pertenecen las cajas
+     */
+    public Caja menuSeleccionCaja(Local local) {
+        mostrarCajas(local);
+        int idCaja = cargarIdCaja();
+        return local.buscarCaja(idCaja);
+    }
+
+    /**
+     * Método para cargar por teclado el ID de la caja a seleccionar.
+     * @return id de la caja seleccionada.
+     */
+    public int cargarIdCaja() {
+        System.out.println("Ingrese el ID de la caja a seleccionar: ");
+        return sc.nextInt();
+    }
+
+    /**
+     * Método para mostrar las cajas disponibles en el local que llega como parámetro.
+     * @param local
+     */
+    public void mostrarCajas(Local local){
+        System.out.println("Cajas disponibles en local:\n");
+        for (Caja caja : local.getListaCajas().getLista()){
+            System.out.println(caja.toString());
+        }
+    }
+
+    public void menuCaja (Local local, Caja caja) {
+        System.out.println("\nBienvenido a la Caja " + caja.getIdCaja() + "\n");
+        int opc = 0;
+        do{
+            opc = cargarOpcionMenuCaja();
+
+            switch (opc) {
+                case 1:
+                    caja.nuevaVenta(cargarNuevaVenta(local, caja), local);
+                    break;
+                case 2:
+                    //TODO codear detalle del día para la caja
+                    break;
+                case 3:
+                    menuArticulos();
+                    break;
+                case 4:
+                    menuClietes();
+                    break;
+                case 5:
+                    local.nuevaCompra(cargarNuevaCompra(local));
+                    break;
+                case 6:
+                    menuProveedores();
+                    break;
+                case 7:
+                    System.out.println("\nSaliendo...\n");
+                    break;
+                default:
+                    System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
+                    break;
+            }
+        }while (opc != 7);
+    }
+
+    /**
+     * Método para cargar la opción a elegir en el menú de caja.
+     * @return opción.
+     */
+    public int cargarOpcionMenuCaja() {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Nueva Venta.");
+        System.out.println("2 - Detalles del día.");
+        System.out.println("3 - Menú Artículos.");
+        System.out.println("4 - Menú Clientes.");
+        System.out.println("5 - Nueva Compra.");
+        System.out.println("6 - Menú Proveedores.");
+        System.out.println("7 - Salir.");
         return sc.nextInt();
     }
 
