@@ -8,12 +8,12 @@ import com.company.Utilidad.Menu;
 public class Caja {
     private int idCaja;
     private double dinero;
-    private final Local local;
+    private int idLocal;
 
-    public Caja(int idCaja, double dinero, Local local) {
+    public Caja(int idCaja, int idLocal, double dinero) {
         this.idCaja = idCaja;
         this.dinero = dinero;
-        this.local = local;
+        this.idLocal = idLocal;
     }
 
     public int getIdCaja() {
@@ -34,11 +34,13 @@ public class Caja {
 
 
 
+
+
     /**
      * Metodo para cargar una nueva venta
      */
 
-    public void cargaVenta(Venta nuevaVenta) {
+    public void cargaVenta(Venta nuevaVenta, Local local) {
         if(nuevaVenta.getListaLinea().size() > 0){
             nuevaVenta.setIdOperacion(local.getListaOperacion().getContadorId());
             local.getListaOperacion().aumentarContadorId();

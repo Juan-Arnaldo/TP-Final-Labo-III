@@ -45,7 +45,7 @@ public class Validacion {
             return false;
     }
 
-    public Descuento validacionDescuento(String metodoPago, ContenedorArrayList<Descuento> listaDesc){
+    public Descuento validacionDescuento(String metodoPago, ContenedorArrayList<DescTarjeta> listaDesc){
         Descuento aux = null;
         for (Descuento desc : listaDesc.getLista()) {
             if (desc instanceof DescTarjeta) {

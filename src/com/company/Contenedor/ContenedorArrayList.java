@@ -19,6 +19,10 @@ public class ContenedorArrayList<T> {
         this.contadorId = contadorId;
     }
 
+    public void setListaDeElementos(ArrayList<T> listaDeElementos) {
+        this.listaDeElementos = listaDeElementos;
+    }
+
     /**
      * Método que devuelve los elementos del ArrayList
      * @return listaDeElementos
@@ -90,7 +94,7 @@ public class ContenedorArrayList<T> {
         return listaDeElementos.get(id);
     }
 
-    public void mostrar(T a){
+    public void mostrarElementos(T a){
         for (T aMostrar : listaDeElementos){
             aMostrar.toString();
         }

@@ -202,9 +202,6 @@ public class Menu {
             nuevaCompra.agregarLinea(articuloComprado, cantidadComprada, costoLinea);
         } while(continuarCargandoLineasCompra());
 
-
-        nuevaCompra.setFecha(LocalDate.now());
-        nuevaCompra.setHora(LocalTime.now());
         return nuevaCompra;
     }
 
@@ -621,6 +618,11 @@ public class Menu {
         System.out.println("\n6. Precio");
         System.out.println("\n0. Salir");
         System.out.println("\nIngrese lo que quiere modificar: ");
+        return sc.nextInt();
+    }
+
+    public int numeroCaja(){
+        System.out.println("Ingrese el numero de caja a operar: ");
         return sc.nextInt();
     }
 }

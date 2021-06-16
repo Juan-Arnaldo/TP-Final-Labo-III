@@ -1,0 +1,113 @@
+{
+  "idLocal": 0,
+  "nombre": "Lo de juan",
+  "direccion": "Colon",
+  "listaArticulos": {
+    "listaDeElementos": [
+      {
+        "idArticulo": 0,
+        "nombre": "Tornillo",
+        "departamento": "asd",
+        "marca": "dsa",
+        "stock": 20,
+        "costo": 50.0,
+        "utilidad": 100.0,
+        "precio": 10.0
+      },
+      {
+        "idArticulo": 0,
+        "nombre": "Tornillo A",
+        "departamento": "asd",
+        "marca": "dsa",
+        "stock": 20,
+        "costo": 50.0,
+        "utilidad": 50.0,
+        "precio": 10.0
+      },
+      {
+        "idArticulo": 0,
+        "nombre": "Tornillo B",
+        "departamento": "asd",
+        "marca": "dsa",
+        "stock": 20,
+        "costo": 10.0,
+        "utilidad": 100.0,
+        "precio": 10.0
+      }
+    ],
+    "contadorId": 0
+  },
+  "listaClientes": {
+    "listaDeElementos": [
+      {
+        "nombre": "Consumidor",
+        "apellido": "Final",
+        "domicilio": "",
+        "cuit": "",
+        "telefono": "",
+        "email": "",
+        "codInterno": 0
+      },
+      {
+        "nombre": "Juan Ignacio",
+        "apellido": "Zapp",
+        "domicilio": "asd",
+        "cuit": "222",
+        "telefono": "321",
+        "email": "juan@gmail.com",
+        "codInterno": 0
+      },
+      {
+        "nombre": "Martin Arnaldo",
+        "apellido": "Juan",
+        "domicilio": "asd",
+        "cuit": "333",
+        "telefono": "321",
+        "email": "juan@gmail.com",
+        "codInterno": 0
+      }
+    ],
+    "contadorId": 0
+  },
+  "listaProveedores": {
+    "listaDeElementos": [],
+    "contadorId": 0
+  },
+  "listaCajas": {
+    "listaDeElementos": [
+      {
+        "idCaja": 0,
+        "dinero": 0.0,
+        "idLocal": 0
+      }
+    ],
+    "contadorId": 0
+  },
+  "listaOperacion": {
+    "listaDeElementos": [],
+    "contadorId": 0
+  },
+  "listaDescuento": {
+    "listaDeElementos": [
+      {
+        "nombreTarjeta": "Visa",
+        "idDescuento": 0,
+        "nombreDesc": "Visa 50%",
+        "porcentaje": 50
+      },
+      {
+        "nombreTarjeta": "Maestro",
+        "idDescuento": 0,
+        "nombreDesc": "Maestro 50%",
+        "porcentaje": 50
+      },
+      {
+        "nombreTarjeta": "Cabal",
+        "idDescuento": 0,
+        "nombreDesc": "Cabal 50%",
+        "porcentaje": 50
+      }
+    ],
+    "contadorId": 0
+  }
+}
