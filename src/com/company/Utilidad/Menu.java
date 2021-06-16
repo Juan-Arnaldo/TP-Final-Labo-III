@@ -3,7 +3,6 @@ package com.company.Utilidad;
 import com.company.Articulo.Articulo;
 import com.company.Local.Caja;
 import com.company.Local.DescTarjeta;
-import com.company.Local.Descuento;
 import com.company.Local.Local;
 import com.company.Operacion.Compra;
 import com.company.Operacion.MetodoPago;
@@ -11,9 +10,6 @@ import com.company.Operacion.Venta;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Menu {
@@ -21,6 +17,131 @@ public class Menu {
 
     public Menu() {
         sc = new Scanner(System.in);
+    }
+
+    /**
+     * Método para el menú que aparecerá al inicio del programa.
+     * @param local en el que se trabajará.
+     */
+    public void menuInicio(Local local) {
+        System.out.println("\nBienvenido\n");
+        int opc = 0;
+        do{
+            opc = cargarOpcionMenuInicio();
+            Caja caja = null;
+
+            switch (opc) {
+                case 1:
+                    caja = menuSeleccionCaja(local);
+                    menuCaja(local, caja);
+                    break;
+                case 2:
+                    local.nuevaCaja();
+                    caja = local.getListaCajas().getElemento(local.getListaCajas().getLista().size()-1);
+                    menuCaja(local, caja);
+                    break;
+                case 3:
+                    System.out.println("\nSaliendo...\n");
+                    break;
+                default:
+                    System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
+                    break;
+            }
+        }while (opc != 3);
+    }
+
+    /**
+     * Método para cargar la opción a elegir en el menú principal.
+     * @return opción.
+     */
+    public int cargarOpcionMenuInicio() {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Seleccionar caja.");
+        System.out.println("2 - Nueva caja.");
+        System.out.println("3 - Salir.");
+        return sc.nextInt();
+    }
+
+    /**
+     * Menú que se encarga de mostrar las cajas disponibles y le permite al usuario seleccionar una para trabajar.
+     * @param local al que pertenecen las cajas
+     */
+    public Caja menuSeleccionCaja(Local local) {
+        mostrarCajas(local);
+        int idCaja = cargarIdCaja();
+        return local.buscarCaja(idCaja);
+    }
+
+    /**
+     * Método para cargar por teclado el ID de la caja a seleccionar.
+     * @return id de la caja seleccionada.
+     */
+    public int cargarIdCaja() {
+        System.out.println("Ingrese el ID de la caja a seleccionar: ");
+        return sc.nextInt();
+    }
+
+    /**
+     * Método para mostrar las cajas disponibles en el local que llega como parámetro.
+     * @param local
+     */
+    public void mostrarCajas(Local local){
+        System.out.println("Cajas disponibles en local:\n");
+        for (Caja caja : local.getListaCajas().getLista()){
+            System.out.println(caja.toString());
+        }
+    }
+
+    public void menuCaja (Local local, Caja caja) {
+        System.out.println("\nBienvenido a la Caja " + caja.getIdCaja() + "\n");
+        int opc = 0;
+        do{
+            opc = cargarOpcionMenuCaja();
+
+            switch (opc) {
+                case 1:
+                    caja.nuevaVenta(cargarNuevaVenta(local, caja), local);
+                    break;
+                case 2:
+                    //TODO codear detalle del día para la caja
+                    break;
+                case 3:
+                    //menuArticulos();
+                    break;
+                case 4:
+                    //menuClietes();
+                    break;
+                case 5:
+                    local.nuevaCompra(cargarNuevaCompra(local));
+                    break;
+                case 6:
+                    //menuProveedores();
+                    break;
+                case 7:
+                    System.out.println("\nSaliendo...\n");
+                    break;
+                default:
+                    System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
+                    break;
+            }
+        }while (opc != 7);
+    }
+
+    /**
+     * Método para cargar la opción a elegir en el menú de caja.
+     * @return opción.
+     */
+    public int cargarOpcionMenuCaja() {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Nueva Venta.");
+        System.out.println("2 - Detalles del día.");
+        System.out.println("3 - Menú Artículos.");
+        System.out.println("4 - Menú Clientes.");
+        System.out.println("5 - Nueva Compra.");
+        System.out.println("6 - Menú Proveedores.");
+        System.out.println("6 - Menú Descuentos.");
+        System.out.println("7 - Salir.");
+        return sc.nextInt();
     }
 
     /**
@@ -535,32 +656,6 @@ public class Menu {
     public String cargarLocalidad(){
         System.out.println("Ingrese la localidad: ");
         return sc.nextLine();
-    }
-
-    /**
-     * Método para cargar la opción a elegir en el menú principal.
-     * @return (1 Nueva venta)
-     *         (2 Nueva compra)
-     *         (3 Nuevo cliente)
-     *         (4 Nuevo proveedor)
-     *         (5 Nuevo articulo)
-     *         (6 Lista clientes)
-     *         (7 Lista proveedores)
-     *         (8 Lista articulos)
-     *         (9 Salir)
-     */
-    public int cargarOpMain(){
-        System.out.println("Ingrese una opcion para continuar: ");
-        System.out.println("1 - Nueva venta.");
-        System.out.println("2 - Nueva compra.");
-        System.out.println("3 - Nuevo cliente.");
-        System.out.println("4 - Nuevo proveedor.");
-        System.out.println("5 - Nuevo articulo.");
-        System.out.println("6 - Lista clientes.");
-        System.out.println("7 - Lista proveedores.");
-        System.out.println("8 - Lista articulos.");
-        System.out.println("9 - Salir.");
-        return sc.nextInt();
     }
 
     /**
