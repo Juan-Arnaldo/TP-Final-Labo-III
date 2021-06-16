@@ -2,7 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="613e9072-b7fc-49bf-8292-9416e1253c59" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ArchivoLocal" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Json/LocalJson$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Json/LocalJson.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_8_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_8_6.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Caja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Caja.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/DescTarjeta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/DescTarjeta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Descuento.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Descuento.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Local.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Local.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Operacion/Operacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Operacion/Operacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Operacion/Venta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Operacion/Venta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Utilidad/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Utilidad/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Utilidad/Validacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Utilidad/Validacion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Json/LocalJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Json/LocalJson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Caja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Caja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Local/DescTarjeta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/DescTarjeta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Descuento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Descuento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Local.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Local.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Operacion/Operacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Operacion/Operacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Operacion/Venta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Operacion/Venta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Validacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Validacion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +66,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Prog/TP-Final-Labo-III/gson-2.8.6.jar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/gson-2.8.7.jar" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -70,17 +93,6 @@
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.company.Main" />
       <module name="TP Final Labo III" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

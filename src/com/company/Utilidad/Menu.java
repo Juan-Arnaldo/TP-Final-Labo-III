@@ -203,13 +203,14 @@ public class Menu {
         nuevaVenta.setMetodoPago(metodoPago);
         if(metodoPago != null){
             do {
-                Menu t2 = new Menu(); //TODO a consultar al profesor
+                Menu t2 = new Menu();
                 String nombre = t2.cargarNombreArticulo();
                 Articulo art = local.buscarArticuloNombre(nombre);
                 if (art != null) {
                     int cant = nuevaVenta.cargarCantidadArticulo(art);
                     if(cant != 0){
                         nuevaVenta.agregarLinea(art, cant);
+                        local.nuevoStock(art,cant);
                     }
                 }
 
@@ -218,6 +219,7 @@ public class Menu {
 
         return nuevaVenta;
     }
+
 
     /**
      * Método para cargar los datos de un nuevo descuento del tipo tarjeta, con sus correspondientes validaciones.
@@ -379,8 +381,8 @@ public class Menu {
      * Método para volver a cargar por teclado la cantidad deseada luego de la validación fallida.
      * @return cantidad deseada
      */
-    public int cargarNuevamenteCantidadArticulo(){
-        System.out.println("No se puede vender la cantidad ingresada.");
+    public int cargarNuevamenteCantidadArticulo(int cantidad){
+        System.out.println("No se puede vender la cantidad ingresada. ("+ cantidad+" en stock)");
         System.out.println("Ingrese nuevamente la cantidad del articulo: ");
         return sc.nextInt();
     }
@@ -458,7 +460,7 @@ public class Menu {
     }
 
     public int clienteNoExiste(){
-        System.out.println("\nEl cliente buscado no exite. ");
+        System.out.println("\nEl cliente buscado no existe. ");
         System.out.println("\n1. Volver a cargar el CUIT");
         System.out.println("\n2. Pasar venta como consumidor final");
         System.out.println("\n3. Crear nuevo cliente");
@@ -467,7 +469,7 @@ public class Menu {
     }
 
     public int proveedorNoExiste(){
-        System.out.println("\nEl proveedor buscado no exite. ");
+        System.out.println("\nEl proveedor buscado no existe. ");
         System.out.println("\n1. Volver a cargar el CUIT");
         System.out.println("\n2. Crear nuevo proveedor");
         System.out.println("\n3. Ingrese la accion a realizar: ");
@@ -480,7 +482,7 @@ public class Menu {
     }
 
     public int ingresePorcentajeDescNuevamente(){
-        System.out.println("el porcentaje ingresado no es correcto, ingreselo nuevamtene");
+        System.out.println("El porcentaje ingresado no es correcto, ingreselo nuevamente");
         System.out.println("(tiene que ser mayor a 0 y menor o igual a 100):");
         return sc.nextInt();
     }

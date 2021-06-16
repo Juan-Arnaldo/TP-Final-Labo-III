@@ -422,6 +422,14 @@ public class Local {
         }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
     }
 
+    /**
+     * Funcion para actualizar stock
+     * @param art,stockpedido articulo a modificar y stock a restar
+     */
+    public void nuevoStock(Articulo art, int stockPedido) {
+        art.setStock(art.getStock()-stockPedido);
+    }
+
     public String toString() {
         return "Local{" +
                 "\nidLocal=" + idLocal +
