@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="613e9072-b7fc-49bf-8292-9416e1253c59" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ArchivoLocal" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Json/LocalJson$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Json/LocalJson.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Caja.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Caja.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/DescTarjeta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/DescTarjeta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Descuento.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Descuento.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Local.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Local/Local.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Operacion/Operacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Operacion/Operacion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Operacion/Venta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Operacion/Venta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Utilidad/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Utilidad/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Utilidad/Validacion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TP Final Labo III/com/company/Utilidad/Validacion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Json/LocalJson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Json/LocalJson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Caja.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Caja.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Local/DescTarjeta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/DescTarjeta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Descuento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Descuento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Local.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Local.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Operacion/Operacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Operacion/Operacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Operacion/Venta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Operacion/Venta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Validacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Validacion.java" afterDir="false" />
-    </list>
+    <list default="true" id="613e9072-b7fc-49bf-8292-9416e1253c59" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -161,5 +137,8 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/TP_Final_Labo_III$Main.ic" NAME="Main Coverage Results" MODIFIED="1623873921379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
