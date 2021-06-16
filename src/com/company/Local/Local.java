@@ -320,12 +320,6 @@ public class Local {
         }
     }
 
-
-
-
-
-
-
     public void mostrarDescuentos(){
         for (Descuento desc : listaDescuento.getLista()){
             if (desc instanceof DescTarjeta){
@@ -333,8 +327,6 @@ public class Local {
             }
         }
     }
-
-
 
     /**
      * Funcion para actualizar stock
@@ -365,7 +357,7 @@ public class Local {
         if(listaCajas.getLista().get(idCaja) != null)
             return listaCajas.getElemento(idCaja);
         else
-            return listaCajas.getElemento(listaCajas.getLista().size());
+            return listaCajas.getElemento(listaCajas.getLista().size()-1);
 
     }
 }

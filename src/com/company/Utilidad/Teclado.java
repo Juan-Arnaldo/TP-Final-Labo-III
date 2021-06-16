@@ -396,6 +396,16 @@ public class Teclado {
         return sc.nextInt();
     }
 
+    public int cargarOpcionMenuArticulo() {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Nuevo Articulo.");
+        System.out.println("2 - Editar Articulo.");
+        System.out.println("3 - Eliminar Articulo.");
+        System.out.println("4 - Mostrar Articulo.");
+        System.out.println("5 - Salir.");
+        return sc.nextInt();
+    }
+
     public int numeroCaja(){
         System.out.println("Ingrese el numero de caja a operar: ");
         return sc.nextInt();

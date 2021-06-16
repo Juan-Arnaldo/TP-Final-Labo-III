@@ -106,7 +106,7 @@ public class Menu {
                     //TODO codear detalle del día para la caja
                     break;
                 case 3:
-                    //menuArticulos();
+
                     break;
                 case 4:
                     //menuClietes();
@@ -142,6 +142,34 @@ public class Menu {
         System.out.println("6 - Menú Descuentos.");
         System.out.println("7 - Salir.");
         return sc.nextInt();
+    }
+
+    /**
+     * Método para cargar la opción a elegir en el menú de Articulos.
+     * @return opción.
+     */
+
+
+    public void menuArticulo() {
+        Teclado t = new Teclado();
+
+        do {
+            int aux = t.cargarOpcionMenuArticulo();
+            switch (aux) {
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+                default:
+                    System.out.println("La opcion ingresada no es valida");
+                    break;
+            }
+        } while (aux != 1 && aux != 2 && aux != 3 && aux != 0);
     }
 
     /**
@@ -506,7 +534,7 @@ public class Menu {
 
     /**
      * Método para cargar por teclado el metodo de pago
-     * @return
+     * @return opcion
      */
     public int cargarMetodoPago(){
         System.out.println("1.Efectivo");
@@ -774,14 +802,4 @@ public class Menu {
         }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
     }
 
-    public static void clearConsole() {
-        try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            }
-            else {
-                System.out.print("\033\143");
-            }
-        } catch (IOException | InterruptedException ex) {}
-    }
 }

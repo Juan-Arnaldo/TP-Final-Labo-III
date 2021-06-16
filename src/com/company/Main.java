@@ -111,7 +111,7 @@ public class Main {
                     local2.mostrarDescuentos();
                     break;
                 case 4:
-                    local2.getListaCajas().getElemento(0).cargaVenta(menu.cargarNuevaVenta(local2, local2.getListaCajas().getElemento(0)), local2);
+                    local2.getListaCajas().getElemento(0).nuevaVenta(menu.cargarNuevaVenta(local2, local2.getListaCajas().getElemento(0)), local2);
                     break;
                 case 5:
                     local2.mostrarVentas();
