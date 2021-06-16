@@ -31,7 +31,7 @@ public class Linea {
 
     @Override
     public String toString() {
-        return + cantidad + "\t\t\t" + articulo.getNombre() + "\t\t\t" + totalLinea;
+        return + cantidad + "\t\t\t\t" + articulo.getNombre() + "\t\t\t " + totalLinea;
     }
 
     /**

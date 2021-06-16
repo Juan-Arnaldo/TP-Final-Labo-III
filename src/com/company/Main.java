@@ -1,12 +1,11 @@
 package com.company;
 
-import com.company.Articulo.Articulo;
+
 import com.company.Json.LocalJson;
-import com.company.Local.Caja;
-import com.company.Local.DescTarjeta;
 import com.company.Local.Local;
-import com.company.Persona.Cliente;
 import com.company.Utilidad.Menu;
+import com.company.Utilidad.Teclado;
+
 
 public class Main {
 
@@ -14,7 +13,9 @@ public class Main {
 
         //TODO crear un nuevo método en la clase menú que maneje el menú pricipal (sacarlo del main)
 
+        Teclado teclado = new Teclado();
         Menu menu = new Menu();
+        LocalJson json = new LocalJson();
 
 //        Local local = new Local(0, "Lo de juan", "Colon");
 //
@@ -44,9 +45,8 @@ public class Main {
 //        local.nuevoDescuentoTarjeta(d2);
 //        local.nuevoDescuentoTarjeta(d3);
 
-        LocalJson json = new LocalJson();
 
-//        json.guardarLocalArchivo(local);
+        Local local2 = json.leerLocalArchivos();;
 
         Local local = json.leerLocalArchivos();
 
@@ -92,6 +92,47 @@ public class Main {
 //                    break;
 //            }
 //        }while (op1 != 9);
+
+        System.out.println("Bienvenido!");
+        int op1=0;
+
+        do{
+            op1 = teclado.cargarOpMain();
+
+            switch (op1) {
+                case 1:
+                    local2.nuevoCliente(menu.cargarNuevoCliente(local2));
+                    break;
+                case 2:
+                    local2.mostrarListaClienteOptimizada();
+                    break;
+                case 3:
+                    local2.nuevoDescuentoTarjeta(menu.cargarNuevoDescuentoTarjeta(local2));
+                    local2.mostrarDescuentos();
+                    break;
+                case 4:
+                    local2.getListaCajas().getElemento(0).cargaVenta(menu.cargarNuevaVenta(local2, local2.getListaCajas().getElemento(0)), local2);
+                    break;
+                case 5:
+                    local2.mostrarVentas();
+                    break;
+                case 6:
+                    local2.nuevoArticulo(menu.cargarNuevoArticulo(local2));
+                    break;
+                case 7:
+
+                    break;
+                case 8:
+                    json.guardarLocalArchivo(local2);
+                    break;
+                case 9:
+                    System.out.println("Saliendo..");
+                    break;
+                default:
+                    System.out.println("Opcion erronea.\nVuelva a intentarlo.");
+                    break;
+            }
+        }while (op1 != 9);
 
 
 

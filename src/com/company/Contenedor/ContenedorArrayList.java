@@ -45,11 +45,13 @@ public class ContenedorArrayList<T> {
 
     /**
      * Método para agregar un objeto al Arraylist.
+     * Y aumenta el id del contador
      * @param obj - Objeto a agregar.
      */
     public void agregar(T obj)
     {
         listaDeElementos.add(obj);
+        this.contadorId++;
     }
 
     /**
@@ -76,13 +78,6 @@ public class ContenedorArrayList<T> {
      */
     public int getContadorId() {
         return contadorId;
-    }
-
-    /**
-     * Método para aumentar en 1 el contador de ID.
-     */
-    public void aumentarContadorId() {
-        this.contadorId = contadorId++;
     }
 
     /**
