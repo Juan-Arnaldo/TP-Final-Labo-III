@@ -2,6 +2,7 @@ package com.company.Operacion;
 
 import com.company.Articulo.Articulo;
 import com.company.Contenedor.ContenedorArrayList;
+import com.company.Local.DescTarjeta;
 import com.company.Local.Descuento;
 import com.company.Persona.Persona;
 import com.company.Utilidad.Menu;
@@ -41,7 +42,7 @@ public class Venta extends Operacion {
      * @param listaDesc
      * @return double, el total de la venta
      */
-    private double generarTotal(ContenedorArrayList<Descuento> listaDesc){
+    private double generarTotal(ContenedorArrayList<DescTarjeta> listaDesc){
         int aux = 0;
         for (Linea linea : listaLinea.getLista()){
             aux += linea.getTotalLinea();
@@ -90,9 +91,8 @@ public class Venta extends Operacion {
         }
     }
 
-    public void mostrarVenta(ContenedorArrayList<Descuento> listaDesc){
+    public void mostrarVenta(ContenedorArrayList<DescTarjeta> listaDesc){
         System.out.println("\nID venta: " + idVenta +
-                             "\nFecha: " + getFecha() + " Hora: " + getHora() +
                             "\nMetodo de Pago: " + metodoPago + "\n");
         mostrarLineas();
         System.out.println("Total: " + generarTotal(listaDesc));

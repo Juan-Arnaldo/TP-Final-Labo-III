@@ -167,9 +167,6 @@ public class Menu {
             nuevaCompra.agregarLinea(articuloComprado, cantidadComprada, costoLinea);
         } while(continuarCargandoLineasCompra());
 
-
-        nuevaCompra.setFecha(LocalDate.now());
-        nuevaCompra.setHora(LocalTime.now());
         return nuevaCompra;
     }
 

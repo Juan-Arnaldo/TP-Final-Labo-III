@@ -1,6 +1,6 @@
 package com.company.Local;
 
-public abstract class Descuento {
+public class Descuento {
     private int idDescuento;
     private String nombreDesc;
     private int porcentaje;

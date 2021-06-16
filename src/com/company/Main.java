@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.Articulo.Articulo;
+import com.company.Json.LocalJson;
 import com.company.Local.Caja;
 import com.company.Local.DescTarjeta;
 import com.company.Local.Local;
@@ -21,36 +22,43 @@ public class Main {
 
         Menu menu = new Menu();
 
-        Local local = new Local(0, "Lo de juan", "Colon");
+//        Local local = new Local(0, "Lo de juan", "Colon");
+//
+//
+//        Caja caja = new Caja(0, 0, 0);
+//
+//        Cliente cliente = new Cliente("Consumidor", "", "", "", "", "Final");
+//        Cliente cliente2 = new Cliente("Juan Ignacio", "asd", "222", "321", "juan@gmail.com", "Zapp");
+//        Cliente cliente3 = new Cliente("Martin Arnaldo", "asd", "333", "321", "juan@gmail.com", "Juan");
+//
+//        Articulo art1 = new Articulo(1, "Tornillo", "asd", "dsa", 20, 50, 100, 10);
+//        Articulo art2 = new Articulo(2, "Tornillo A", "asd", "dsa", 20, 50, 50, 10);
+//        Articulo art3 = new Articulo(3, "Tornillo B", "asd", "dsa", 20, 10, 100, 10);
+//
+//        local.nuevoArticulo(art1);
+//        local.nuevoArticulo(art2);
+//        local.nuevoArticulo(art3);
+//
+//        local.nuevoCliente(cliente);
+//        local.nuevoCliente(cliente2);
+//        local.nuevoCliente(cliente3);
+//
+//        local.nuevaCaja();
+//
+//        DescTarjeta d1 = new DescTarjeta(50, "Visa", "Visa 50%");
+//        DescTarjeta d2 = new DescTarjeta(50, "Maestro", "Maestro 50%");
+//        DescTarjeta d3 = new DescTarjeta(50, "Cabal", "Cabal 50%");
+//
+//        local.nuevoDescuentoTarjeta(d1);
+//        local.nuevoDescuentoTarjeta(d2);
+//        local.nuevoDescuentoTarjeta(d3);
 
+        LocalJson json = new LocalJson();
 
-        Caja caja = new Caja(0, 0, local);
+//        json.guardarLocalArchivo(local);
 
-        Cliente cliente = new Cliente("Consumidor", "", "", "", "", "Final");
-        Cliente cliente2 = new Cliente("Juan Ignacio", "asd", "222", "321", "juan@gmail.com", "Zapp");
-        Cliente cliente3 = new Cliente("Martin Arnaldo", "asd", "333", "321", "juan@gmail.com", "Juan");
-
-        Articulo art1 = new Articulo(1, "Tornillo", "asd", "dsa", 20, 50, 100, 10);
-        Articulo art2 = new Articulo(2, "Tornillo A", "asd", "dsa", 20, 50, 50, 10);
-        Articulo art3 = new Articulo(3, "Tornillo B", "asd", "dsa", 20, 10, 100, 10);
-
-        local.nuevoArticulo(art1);
-        local.nuevoArticulo(art2);
-        local.nuevoArticulo(art3);
-
-        local.nuevoCliente(cliente);
-        local.nuevoCliente(cliente2);
-        local.nuevoCliente(cliente3);
-
-        local.nuevaCaja();
-
-        DescTarjeta d1 = new DescTarjeta(50, "Visa", "Visa 50%");
-        DescTarjeta d2 = new DescTarjeta(50, "Maestro", "Maestro 50%");
-        DescTarjeta d3 = new DescTarjeta(50, "Cabal", "Cabal 50%");
-
-        local.nuevoDescuentoTarjeta(d1);
-        local.nuevoDescuentoTarjeta(d2);
-        local.nuevoDescuentoTarjeta(d3);
+        Local local2 = new Local();
+        local2 = json.leerLocalArchivos();
 
         System.out.println("Bienvenido!");
         int op1=0;
@@ -60,20 +68,20 @@ public class Main {
 
             switch (op1) {
                 case 1:
-                    local.nuevoCliente(menu.cargarNuevoCliente(local));
+                    local2.nuevoCliente(menu.cargarNuevoCliente(local2));
                     break;
                 case 2:
-                    local.mostrarListaClienteOptimizada();
+                    local2.mostrarListaClienteOptimizada();
                     break;
                 case 3:
-                    local.nuevoDescuentoTarjeta(menu.cargarNuevoDescuentoTarjeta(local));
-                    local.mostrarDescuentos();
+                    local2.nuevoDescuentoTarjeta(menu.cargarNuevoDescuentoTarjeta(local2));
+                    local2.mostrarDescuentos();
                     break;
                 case 4:
-                    caja.cargaVenta(menu.cargarNuevaVenta(local, local.getListaCajas().getElemento(0)));
+                    local2.getListaCajas().getElemento(0).cargaVenta(menu.cargarNuevaVenta(local2, local2.getListaCajas().getElemento(0)), local2);
                     break;
                 case 5:
-                    local.mostrarVentas();
+                    local2.mostrarVentas();
                     break;
                 case 6:
 
