@@ -9,6 +9,7 @@ import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 import com.company.Articulo.Articulo;
 import com.company.Utilidad.Menu;
+import com.company.Utilidad.Validacion;
 
 public class Local {
     private int idLocal;
@@ -179,14 +180,15 @@ public class Local {
      */
     public void mostrarListaClienteOptimizada() {
         Menu teclado = new Menu();
+        Validacion val = new Validacion();
         String nombre = teclado.cargarNombre();
         for (Cliente aux : listaClientes.getLista()){
-            if (compararCaracter(nombre, aux.getNombre())){
+            if (val.compararCaracter(nombre, aux.getNombre())){
                 System.out.println(aux.toStringOpt());
             }
         }
         for (Cliente aux : listaClientes.getLista()){
-            if (compararCaracter(nombre, aux.getApellido())){
+            if (val.compararCaracter(nombre, aux.getApellido())){
                 System.out.println(aux.toStringOpt());
             }
         }
@@ -197,36 +199,18 @@ public class Local {
      */
     public void mostrarListaProveedorOptimizada() {
         Menu teclado = new Menu();
+        Validacion val = new Validacion();
         String nombre = teclado.cargarNombre();
         for (Proveedor aux : listaProveedores.getLista()){
-            if (compararCaracter(nombre, aux.getNombre())){
+            if (val.compararCaracter(nombre, aux.getNombre())){
                 System.out.println(aux.toStringOpt());
             }
         }
         for (Proveedor aux : listaProveedores.getLista()){
-            if (compararCaracter(nombre, aux.getApellido())){
+            if (val.compararCaracter(nombre, aux.getApellido())){
                 System.out.println(aux.toStringOpt());
             }
         }
-    }
-
-    private boolean compararCaracter(String nombreABuscar, String nombre){
-        int cantC = nombreABuscar.length();
-        char C;
-        boolean flag = true;
-        int i = 0;
-        while (flag && i < cantC ){
-
-            C = nombreABuscar.charAt(i);
-
-            if (C== (nombre.toLowerCase().charAt(i))||C== (nombre.toUpperCase().charAt(i))){
-                flag = true;
-            }else {
-                flag = false;
-            }
-            i++;
-        }
-        return flag;
     }
 
     /**
@@ -283,11 +267,12 @@ public class Local {
 
     /**
      * Metodo para buscar un artículo de la lista de artículos conociendo su nombre.
-     * @param nombre nombre del artículo a buscar.
      * @return Articulo buscado.
      */
-    public Articulo buscarArticuloNombre (String nombre) {
+    public Articulo buscarArticuloNombre () {
         Articulo articulo = null;
+        Menu t2 = new Menu();
+        String nombre = t2.cargarNombreArticulo();
         for (Articulo aBuscar : listaArticulos.getLista()) {
             if (aBuscar.getNombre().equalsIgnoreCase(nombre)) {
                 articulo = aBuscar;
@@ -317,7 +302,6 @@ public class Local {
         }
     }
 
-
     public String cargarMetodoDePago() {
         int aux;
         MetodoPago metodoPago = null;
@@ -335,7 +319,7 @@ public class Local {
                     metodoPago = MetodoPago.Cheque;
                     break;
                 default:
-                    System.out.println("La opcion que ingresaste no es valida");
+                    System.out.println("La opcion ingresada no es valida");
                     break;
             }
         } while (aux != 1 && aux != 2 && aux != 3 && aux != 0);
@@ -429,6 +413,8 @@ public class Local {
     public void nuevoStock(Articulo art, int stockPedido) {
         art.setStock(art.getStock()-stockPedido);
     }
+
+
 
     public String toString() {
         return "Local{" +

@@ -31,9 +31,13 @@ public class Caja {
     public void setDinero(double dinero) {
         this.dinero = dinero;
     }
-
-
-
+    /**
+     * Metodo para actualizar dinero en caja
+     * @param dineroEntrante dinero a sumar al total de la caja
+     */
+    public void actualizarDinero(double dineroEntrante) {
+        setDinero(dineroEntrante + getDinero());
+    }
 
 
     /**

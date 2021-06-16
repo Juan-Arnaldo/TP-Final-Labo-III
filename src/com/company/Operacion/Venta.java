@@ -42,7 +42,7 @@ public class Venta extends Operacion {
      * @param listaDesc
      * @return double, el total de la venta
      */
-    private double generarTotal(ContenedorArrayList<DescTarjeta> listaDesc){
+    public double generarTotal(ContenedorArrayList<DescTarjeta> listaDesc){
         int aux = 0;
         for (Linea linea : listaLinea.getLista()){
             aux += linea.getTotalLinea();
@@ -54,7 +54,6 @@ public class Venta extends Operacion {
         if(desc != null){
             aux = (aux - (aux * desc.getPorcentaje() / 100));
         }
-
         return aux;
     }
 
@@ -97,6 +96,7 @@ public class Venta extends Operacion {
         mostrarLineas();
         System.out.println("Total: " + generarTotal(listaDesc));
     }
+
 
 
 
