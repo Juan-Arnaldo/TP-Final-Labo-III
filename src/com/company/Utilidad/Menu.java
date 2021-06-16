@@ -774,14 +774,4 @@ public class Menu {
         }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
     }
 
-    public static void clearConsole() {
-        try {
-            if (System.getProperty("os.name").contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            }
-            else {
-                System.out.print("\033\143");
-            }
-        } catch (IOException | InterruptedException ex) {}
-    }
 }
