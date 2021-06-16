@@ -5,13 +5,7 @@ import com.company.Local.Caja;
 import com.company.Local.DescTarjeta;
 import com.company.Local.Local;
 import com.company.Persona.Cliente;
-import com.company.Persona.Proveedor;
 import com.company.Utilidad.Menu;
-import org.xml.sax.ext.Attributes2;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
@@ -53,46 +47,48 @@ public class Main {
         local.nuevoDescuentoTarjeta(d2);
         local.nuevoDescuentoTarjeta(d3);
 
-        System.out.println("Bienvenido!");
-        int op1=0;
+        menu.menuInicio(local);
 
-        do{
-            op1 = menu.cargarOpMain();
-
-            switch (op1) {
-                case 1:
-                    local.nuevoCliente(menu.cargarNuevoCliente(local));
-                    break;
-                case 2:
-                    local.mostrarListaClienteOptimizada();
-                    break;
-                case 3:
-                    local.nuevoDescuentoTarjeta(menu.cargarNuevoDescuentoTarjeta(local));
-                    local.mostrarDescuentos();
-                    break;
-                case 4:
-                    caja.cargaVenta(menu.cargarNuevaVenta(local, local.getListaCajas().getElemento(0)));
-                    break;
-                case 5:
-                    local.mostrarVentas();
-                    break;
-                case 6:
-
-                    break;
-                case 7:
-
-                    break;
-                case 8:
-
-                    break;
-                case 9:
-                    System.out.println("Saliendo..");
-                    break;
-                default:
-                    System.out.println("Opcion erronea.\nVuelva a intentarlo.");
-                    break;
-            }
-        }while (op1 != 9);
+//        System.out.println("Bienvenido!");
+//        int op1=0;
+//
+//        do{
+//            op1 = menu.cargarOpcionMenuInicio();
+//
+//            switch (op1) {
+//                case 1:
+//                    local.nuevoCliente(menu.cargarNuevoCliente(local));
+//                    break;
+//                case 2:
+//                    local.mostrarListaClienteOptimizada();
+//                    break;
+//                case 3:
+//                    local.nuevoDescuentoTarjeta(menu.cargarNuevoDescuentoTarjeta(local));
+//                    local.mostrarDescuentos();
+//                    break;
+//                case 4:
+//                    caja.cargaVenta(menu.cargarNuevaVenta(local, local.getListaCajas().getElemento(0)));
+//                    break;
+//                case 5:
+//                    local.mostrarVentas();
+//                    break;
+//                case 6:
+//
+//                    break;
+//                case 7:
+//
+//                    break;
+//                case 8:
+//
+//                    break;
+//                case 9:
+//                    System.out.println("Saliendo..");
+//                    break;
+//                default:
+//                    System.out.println("Opcion erronea.\nVuelva a intentarlo.");
+//                    break;
+//            }
+//        }while (op1 != 9);
 
 
 
