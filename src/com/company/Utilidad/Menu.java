@@ -102,22 +102,22 @@ public class Menu {
                     menuArticulo(local);
                     break;
                 case 4:
-                    //menuClietes();
+                    //menuClientes();
                     break;
                 case 5:
                     local.nuevaCompra(cargarNuevaCompra(local));
                     break;
                 case 6:
-                    //menuProveedores();
+                    menuProveedor(local);
                     break;
-                case 7:
+                case 0:
                     System.out.println("\nSaliendo...\n");
                     break;
                 default:
                     System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
                     break;
             }
-        }while (opc != 7);
+        }while (opc != 0);
     }
 
     /**
@@ -133,7 +133,7 @@ public class Menu {
         System.out.println("5 - Nueva Compra.");
         System.out.println("6 - Menú Proveedores.");
         System.out.println("6 - Menú Descuentos.");
-        System.out.println("7 - Salir.");
+        System.out.println("0 - Salir.");
         return sc.nextInt();
     }
 
@@ -148,7 +148,7 @@ public class Menu {
             opc = cargarOpcionMenuArticulo();
             switch (opc) {
                 case 1:
-                    //local.nuevoArticulo(menu.cargarNuevoArticulo(local));
+                    local.nuevoArticulo(cargarNuevoArticulo(local));
                     break;
                 case 2:
                     local.modificarUnArticulo();
@@ -163,7 +163,32 @@ public class Menu {
                     System.out.println("La opcion ingresada no es valida");
                     break;
             }
-        } while (opc != 1 && opc != 2 && opc != 3 && opc != 0);
+        } while (opc != 0);
+    }
+
+    public void menuProveedor(Local local) {
+        Teclado t = new Teclado();
+        int opc = 0;
+        do {
+            opc = t.menuModificarProveedor();
+            switch (opc) {
+                case 1:
+                    local.nuevoProveedor(cargarNuevoProveedor(local));
+                    break;
+                case 2:
+                    local.modificarUnProv();
+                    break;
+                case 3:
+                    local.eliminarUnProv();
+                    break;
+                case 4:
+                    local.mostrarUnProveedor();
+                    break;
+                default:
+                    System.out.println("La opcion ingresada no es valida");
+                    break;
+            }
+        } while (opc != 0);
     }
 
     /**
@@ -467,6 +492,110 @@ public class Menu {
         return sc.nextInt();
     }
 
+
+    public int ingresePorcentajeDesc(){
+        System.out.println("Ingrese el porcentaje que quiere que tenga: ");
+        return sc.nextInt();
+    }
+
+    public int ingresePorcentajeDescNuevamente(){
+        System.out.println("El porcentaje ingresado no es correcto, ingreselo nuevamente");
+        System.out.println("(tiene que ser mayor a 0 y menor o igual a 100):");
+        return sc.nextInt();
+    }
+
+    /**
+     * Método para cargar por teclado un nombre.
+     * @return nombre cargado.
+     */
+    public String cargarNombre() {
+        System.out.println("Ingrese el nombre: ");
+        return sc.nextLine();
+    }
+
+    /**
+     * Método para cargar por teclado el nombre de una Persona.
+     * @return nombre de la persana cargado.
+     */
+    public String cargarApellido() {
+        System.out.println("Ingrese el apellido: ");
+        return sc.nextLine();
+    }
+
+    /**
+     * Método para cargar por teclado la dirección de una Persona.
+     * @return dirección de la persana cargado.
+     */
+    public String cargarDireccion() {
+        System.out.println("Ingrese la direccion: ");
+        return sc.nextLine();
+    }
+
+    /**
+     * Método para cargar por teclado el teléfono de una Persona.
+     * @return teléfono de la persana cargado.
+     */
+    public String cargarTelefono() {
+        System.out.println("Ingrese el telefono: ");
+        return sc.nextLine();
+    }
+
+    /**
+     * Método para cargar por teclado el CUIT de una Persona.
+     * @return CUIT de la persana cargado.
+     */
+    public String cargarCuit() {
+        System.out.println("Ingrese el cuit: ");
+        return sc.nextLine();
+    }
+
+    /**
+     * Método para volver a cargar el CUIT de una persona en caso de que el CUIT ingresado anteriormente no sea posible.
+     * @param cuit cargado anteriormente.
+     * @return CUIT presuntamente corregido.
+     */
+    public String cargarNuevamenteCuitPersona(String cuit) {
+        System.out.println(cuit + " es el CUIT de una persona que ya existe en el registro.");
+        System.out.println("Ingrese nuevamente el CUIT: ");
+        return sc.nextLine();
+    }
+
+    /**
+     * Método para cargar por teclado el email de una Persona.
+     * @return email de la persana cargado.
+     */
+    public String cargarEmail() {
+        System.out.println("Ingrese el email: ");
+        return sc.nextLine();
+    }
+
+    /**
+     * Método para volver a cargar por teclado el email luego de la validación fallida.
+     * @param email cargado anteriormente.
+     * @return email presuntamente corregido.
+     */
+    public String cargarNuevamenteEmailPersona(String email) {
+        System.out.println(email + " no es una dirección de correo electrónico válida.");
+        System.out.println("Ingrese nuevamente el email: ");
+        return sc.nextLine();
+    }
+
+    /**
+     * Método para cargar por teclado la localidad de un Proveedor.
+     * @return localidad del proveedor cargado.
+     */
+    public String cargarLocalidad(){
+        System.out.println("Ingrese la localidad: ");
+        return sc.nextLine();
+    }
+
+
+
+    public int numeroCaja(){
+        System.out.println("Ingrese el numero de caja a operar: ");
+        return sc.nextInt();
+    }
+
     /**
      * Método para ingresar el metodo de pago
      * @return un String con el nombre del Enum
@@ -579,10 +708,10 @@ public class Menu {
      */
     public void modificarClienteSalida(Cliente cliente){
         Teclado t = new Teclado();
-        int opc;
+        int aux;
         do{
-            opc = t.modificarCliente();
-            switch (opc){
+            aux = t.menuModificarCliente();
+            switch (aux){
                 case 1:
                     cliente.setNombre(t.cargarNombreCliente());
                     break;
@@ -598,10 +727,58 @@ public class Menu {
                 case 5:
                     cliente.setEmail(t.cargarEmail());
                     break;
+                case 0:
+                    System.out.println("Saliendo..");
+                    break;
                 default:
                     System.out.println("La opcion ingresada no es correcta!\n");
             }
-        }while(opc != 1 && opc != 2 && opc != 3 && opc != 4 && opc != 5 && opc != 0);
+        }while(aux != 0);
+    }
+
+    public void modificarProvSalida(Proveedor proveedor){
+        Teclado t = new Teclado();
+        int aux;
+        do{
+            aux = t.menuModificarProveedor();
+            switch (aux){
+                case 1:
+                    proveedor.setNombre(t.cargarNombreCliente());
+                    break;
+                case 2:
+                    proveedor.setApellido(t.cargarApellido());
+                    break;
+                case 3:
+                    proveedor.setDomicilio(t.cargarDireccion());
+                    break;
+                case 4:
+                    proveedor.setTelefono(t.cargarTelefono());
+                    break;
+                case 5:
+                    proveedor.setEmail(t.cargarEmail());
+                    break;
+                case 0:
+                    System.out.println("Saliendo..");
+                    break;
+                default:
+                    System.out.println("La opcion ingresada no es correcta!\n");
+            }
+
+        }while(aux != 0);
+    }
+
+    /**
+     * Método para recibir el atributo que se modificará en cliente.
+     * @return
+     */
+    public int modificarCliente(){
+        System.out.println("1 - Nombre");
+        System.out.println("\n2 - Apellido");
+        System.out.println("\n3 - Domicilio");
+        System.out.println("\n4 - Telefono");
+        System.out.println("\n5 - Email");
+        System.out.println("\n0 - Salir");
+        return sc.nextInt();
     }
 
 }

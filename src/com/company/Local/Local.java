@@ -368,6 +368,55 @@ public class Local {
     }
 
     /**
+     * Método para mostrar un cliente
+     */
+    public void mostrarUnProveedor(){
+        Teclado t = new Teclado();
+        Proveedor aMostrar = buscarProveedor();
+
+        if (aMostrar != null){
+            System.out.println(aMostrar.toString());
+        }else{
+            t.provNoEncontrado();
+        }
+    }
+
+    /**
+     * Método para eliminar un cliente
+     */
+    public void eliminarUnProv(){
+        Teclado t = new Teclado();
+        Proveedor aBorrar = buscarProveedor();
+
+        if (aBorrar != null){
+            int i = 0;
+            for(Proveedor aux : listaProveedores.getLista()){
+                if(aux.equals(aBorrar)){
+                    listaProveedores.eliminar(i);
+                }
+                i++;
+            }
+        }else{
+            t.provNoEncontrado();
+        }
+    }
+
+    /**
+     * Método para modificar un cliente
+     */
+    public void modificarUnProv(){
+        Teclado t = new Teclado();
+        Menu menu = new Menu();
+        Proveedor aModificar = buscarProveedor();
+
+        if(aModificar != null){
+            menu.modificarProvSalida(aModificar);
+        }else {
+            t.clienteNoEncontrado();
+        }
+    }
+
+    /**
      * Se le muestra una lista de clientes y se ingresa el CUIT del cliente para retornar
      * @return El cliente seleccionado
      */

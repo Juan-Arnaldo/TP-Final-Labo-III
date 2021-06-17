@@ -2,7 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="613e9072-b7fc-49bf-8292-9416e1253c59" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_6_2021_17_18_[Default_Changelist]/Local.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_6_2021_17_18_[Default_Changelist]/Menu.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_6_2021_17_18_[Default_Changelist]/Validacion.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_6_2021_17_18_[Default_Changelist]/Venta.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_6_2021_17_18_[Default_Changelist]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_6_2021_17_18__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gson-2.8.7.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Local.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Local.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Teclado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Teclado.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
