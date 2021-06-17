@@ -15,12 +15,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Local local = hardcodearLocal(); // Esto descomentado hardcodea el local independientemente del archivo. Comentar la lectura para usarlo.
+       // Local local = hardcodearLocal(); // Esto descomentado hardcodea el local independientemente del archivo. Comentar la lectura para usarlo.
 
         Menu menu = new Menu();
       //  LocalJson json = new LocalJson();
 
-    //    Local local = json.leerLocalArchivos();
+        Local local = new Local(10, "Messi", "Messi");
+
+//        local = json.leerLocalArchivos();
 
         menu.menuInicio(local);
 

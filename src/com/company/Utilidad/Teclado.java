@@ -432,6 +432,7 @@ public class Teclado {
     }
 
 
+
     public String cargarNombreMarca(){
         System.out.println("Ingrese el nombre de la marca: ");
         return sc.nextLine();
@@ -440,7 +441,6 @@ public class Teclado {
     public void marcaYaExiste(){
         System.out.println("La marca que deseo crear ya existe! ");
     }
-
 
     /**
      * Metodo para ingresar lo que quiere modificar

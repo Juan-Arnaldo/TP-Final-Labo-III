@@ -94,4 +94,8 @@ public class ContenedorArrayList<T> {
             aMostrar.toString();
         }
     }
+
+    public boolean listaVacia(){
+        return listaDeElementos.isEmpty();
+    }
 }

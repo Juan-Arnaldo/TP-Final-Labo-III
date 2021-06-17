@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 
 public class LocalJson {
-    private final static String localJson = "ArchivoLocal";
+    private final static String localJson = "ArchivoLocal.json";
 
     public void guardarLocalArchivo(Local local){
         File file = new File(localJson);

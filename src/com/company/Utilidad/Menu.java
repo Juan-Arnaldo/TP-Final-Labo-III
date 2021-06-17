@@ -38,7 +38,7 @@ public class Menu {
                     break;
                 case 2:
                     local.nuevaCaja();
-                    caja = local.getListaCajas().getElemento(local.getListaCajas().getLista().size()-1);
+                    caja = local.getListaCajas().getElemento(local.getListaCajas().getLista().size() - 1);
                     menuCaja(local, caja);
                     break;
                 case 3:
@@ -69,6 +69,8 @@ public class Menu {
      */
     public Caja menuSeleccionCaja(Local local) {
         Teclado teclado = new Teclado();
+        if(local.getListaCajas().listaVacia())
+            local.nuevaCaja();
         mostrarCajas(local);
         int idCaja = teclado.cargarIdCaja();
         return local.buscarCaja(idCaja);
@@ -378,6 +380,7 @@ public class Menu {
      */
     public Venta cargarNuevaVenta(Local local, Caja caja) {
         Teclado t = new Teclado();
+
         Cliente cliente = local.buscarCliente();
 
         while (cliente == null){
@@ -480,21 +483,20 @@ public class Menu {
 
     public int clienteNoExiste(){
         System.out.println("El cliente buscado no existe. ");
-        System.out.println("1. Volver a cargar el CUIT");
-        System.out.println("2. Pasar venta como consumidor final");
-        System.out.println("3. Crear nuevo cliente");
-        System.out.println("4. Ingrese la accion a realizar: ");
+        System.out.println("1 - Volver a cargar el CUIT");
+        System.out.println("2 - Pasar venta como consumidor final");
+        System.out.println("3 - Crear nuevo cliente");
+        System.out.println("4 - Ingrese la accion a realizar: ");
         return sc.nextInt();
     }
 
     public int proveedorNoExiste(){
         System.out.println("El proveedor buscado no existe. ");
-        System.out.println("1. Volver a cargar el CUIT");
-        System.out.println("2. Crear nuevo proveedor");
-        System.out.println("3. Ingrese la accion a realizar: ");
+        System.out.println("1 - Volver a cargar el CUIT");
+        System.out.println("2 - Crear nuevo proveedor");
+        System.out.println("3 - Ingrese la accion a realizar: ");
         return sc.nextInt();
     }
-
 
     public int ingresePorcentajeDesc(){
         System.out.println("Ingrese el porcentaje que quiere que tenga: ");
@@ -770,7 +772,6 @@ public class Menu {
                 default:
                     System.out.println("La opcion ingresada no es correcta!\n");
             }
-
         }while(aux != 0);
     }
 
@@ -778,7 +779,7 @@ public class Menu {
      * Método para recibir el atributo que se modificará en cliente.
      * @return
      */
-    public int modificarCliente(){
+    public int modificarCliente() {
         System.out.println("1 - Nombre");
         System.out.println("2 - Apellido");
         System.out.println("3 - Domicilio");
