@@ -474,6 +474,7 @@ public class Teclado {
         System.out.println("4 - Telefono: " + cliente.getTelefono());
         System.out.println("5 - Email: " + cliente.getEmail());
         System.out.println("0 - Salir");
+        System.out.println("\nIngrese la opcion que quiera: ");
         return Integer.parseInt(sc.nextLine());
     }
 
@@ -489,6 +490,7 @@ public class Teclado {
         System.out.println("5 - Email: " + proveedor.getEmail());
         System.out.println("6 - Localidad: " + proveedor.getLocalidad());
         System.out.println("0 - Salir");
+        System.out.println("\nIngrese la opcion que quiera: ");
         return Integer.parseInt(sc.nextLine());
     }
 
