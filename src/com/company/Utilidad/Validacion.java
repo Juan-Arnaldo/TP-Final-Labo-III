@@ -23,6 +23,14 @@ public class Validacion {
         }
         return false;
     }
+    public boolean validarCuitPers(String cuit, ArrayList<Persona> listaPersona){
+        for (Persona persona : listaPersona){
+            if(persona.getCuit().equals(cuit)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public boolean validarCuitCliente(String cuit, ArrayList<Cliente> listaCliente){
         for (Persona persona : listaCliente){
@@ -94,6 +102,17 @@ public class Validacion {
             char c = cadena.charAt(x);
             // Si no está entre a y z, ni entre A y Z
             if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean contieneNumCuit(String cadena) {
+        for (int x = 0; x < cadena.length(); x++) {
+            char c = cadena.charAt(x);
+            // Si no está entre a y z, ni entre A y Z
+            if (!((c >= '0' && c <= '9') || (c == '-'))) {
                 return false;
             }
         }

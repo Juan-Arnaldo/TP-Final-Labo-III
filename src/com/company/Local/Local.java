@@ -431,7 +431,7 @@ public class Local {
         Teclado t = new Teclado();
         Cliente cliente = null;
         if(mostrarListaClienteOptimizada()){
-            String CUIT = t.cargarCuit();
+            String CUIT = t.cargarCuit(listaClientes);
             for (Cliente aux : listaClientes.getLista()){
                 if(aux.getCuit().equals(CUIT)){
                     cliente = aux;

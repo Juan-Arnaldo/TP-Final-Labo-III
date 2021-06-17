@@ -1,7 +1,10 @@
 package com.company.Utilidad;
 
 import com.company.Articulo.Articulo;
+import com.company.Contenedor.ContenedorArrayList;
+import com.company.Local.Local;
 import com.company.Persona.Cliente;
+import com.company.Persona.Persona;
 import com.company.Persona.Proveedor;
 
 import java.util.Scanner;
@@ -363,9 +366,34 @@ public class Teclado {
      * Método para cargar por teclado el CUIT de una Persona.
      * @return CUIT de la persana cargado.
      */
-    public String cargarCuit() {
+    public String cargarCuitCliente(ContenedorArrayList<Cliente>listaCliente) {
+        Validacion validacion = new Validacion();
         System.out.println("Ingrese el cuit: ");
-        return sc.nextLine();
+        String cuit = sc.nextLine();
+        while(!validacion.contieneNumCuit(cuit)) {
+            cuit = cargarNuevamenteCuitInvalido(cuit);
+            while(validacion.validarCuitPers(cuit, listaPersona.getLista())) {
+                cuit = cargarNuevamenteCuitPersona(cuit);
+            }
+        }
+        return cuit;
+    }
+
+    /**
+     * Método para cargar por teclado el CUIT de una Persona.
+     * @return CUIT de la persana cargado.
+     */
+    public String cargarCuitProv(ContenedorArrayList<Persona>listaPersona) {
+        Validacion validacion = new Validacion();
+        System.out.println("Ingrese el cuit: ");
+        String cuit = sc.nextLine();
+        while(!validacion.contieneNumCuit(cuit)) {
+            cuit = cargarNuevamenteCuitInvalido(cuit);
+            while(validacion.validarCuitPers(cuit, listaPersona.getLista())) {
+                cuit = cargarNuevamenteCuitPersona(cuit);
+            }
+        }
+        return cuit;
     }
 
     /**
@@ -373,6 +401,11 @@ public class Teclado {
      * @param cuit cargado anteriormente.
      * @return CUIT presuntamente corregido.
      */
+    public String cargarNuevamenteCuitInvalido(String cuit) {
+        System.out.println(cuit + " no es un CUIT valido.");
+        System.out.println("Ingrese nuevamente el CUIT: ");
+        return sc.nextLine();
+    }
     public String cargarNuevamenteCuitPersona(String cuit) {
         System.out.println(cuit + " es el CUIT de una persona que ya existe en el registro.");
         System.out.println("Ingrese nuevamente el CUIT: ");

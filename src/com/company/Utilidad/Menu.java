@@ -287,9 +287,6 @@ public class Menu {
         Validacion validacion = new Validacion();
 
         String cuit = t.cargarCuit();
-        while(validacion.validarCuitProveedor(cuit, local.getListaProveedores().getLista())) {
-            cuit = t.cargarNuevamenteCuitPersona(cuit);
-        }
 
         String nombre = t.cargarNombreCliente();
         String apellido = t.cargarApellido();
