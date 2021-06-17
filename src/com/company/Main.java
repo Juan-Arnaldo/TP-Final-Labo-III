@@ -15,12 +15,13 @@ public class Main {
 
     public static void main(String[] args) {
 
+
         Local local = new Local(10, "Messi", "Messi");
         local = hardcodearLocal(); // Esto descomentado hardcodea el local independientemente del archivo. Comentar la lectura para usarlo.
 
+
         Menu menu = new Menu();
       //  LocalJson json = new LocalJson();
-
 
 
 //        local = json.leerLocalArchivos();
@@ -38,17 +39,18 @@ public class Main {
         Cliente cliente2 = new Cliente("Juan Ignacio", "asd", "222", "321", "juan@gmail.com", "Zapp");
         Cliente cliente3 = new Cliente("Martin Arnaldo", "asd", "333", "321", "juan@gmail.com", "Juan");
 
+
         Proveedor prov = new Proveedor("Consumidor", "", "", "", "", "mdp", "peton");
         Proveedor prov1 = new Proveedor("Juan Ignacio", "asd", "222", "321", "juan@gmail.com", "vidal","arnaldo");
         Proveedor prov2 = new Proveedor("Martin Arnaldo", "asd", "333", "321", "juan@gmail.com", "batan","menem");
 
-        Articulo art1 = new Articulo("Tornillo", "asd", "dsa", 20, 50, 100);
-        Articulo art2 = new Articulo("Tornillo A", "asd", "dsa", 20, 50, 50);
-        Articulo art3 = new Articulo("Tornillo B", "asd", "dsa", 20, 10, 100);
+//        Articulo art1 = new Articulo("Tornillo", "asd", "dsa", 20, 50, 100);
+//        Articulo art2 = new Articulo("Tornillo A", "asd", "dsa", 20, 50, 50);
+//        Articulo art3 = new Articulo("Tornillo B", "asd", "dsa", 20, 10, 100);
 
-        local.nuevoArticulo(art1);
-        local.nuevoArticulo(art2);
-        local.nuevoArticulo(art3);
+//        local.nuevoArticulo(art1);
+//        local.nuevoArticulo(art2);
+//        local.nuevoArticulo(art3);
 
         local.nuevoCliente(cliente);
         local.nuevoCliente(cliente2);

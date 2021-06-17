@@ -179,7 +179,7 @@ public class Local {
      * Método para ingresar una nueva Marca
      * @param marcaNueva
      */
-    public void nuevoMarca(Marca marcaNueva){
+    public void nuevaMarca(Marca marcaNueva){
         if (marcaNueva != null){
             listaMarca.agregar(marcaNueva);
         }
@@ -249,20 +249,25 @@ public class Local {
     /**
      * Método para mostrar la lista de articulo de fomar optimizada
      */
-    public void mostrarListaArticuloOptimizada() {
+    public boolean mostrarListaArticuloOptimizada() {
+        boolean flag = false;
         Teclado t = new Teclado();
         Validacion val = new Validacion();
         String nombre = t.cargarNombreArticulo();
+
         for (Articulo aux : listaArticulos.getLista()){
             if (val.compararCaracter(nombre, aux.getNombre())){
                 System.out.println(aux.toStringOpt());
+                flag = true;
             }
         }
-        for (Cliente aux : listaClientes.getLista()){
-            if (val.compararCaracter(nombre, aux.getApellido())){
+        for (Articulo aux : listaArticulos.getLista()){
+            if (val.compararCaracter(nombre, aux.getMarca().getNombre())){
                 System.out.println(aux.toStringOpt());
+                flag = true;
             }
         }
+        return flag;
     }
 
     /**
@@ -326,8 +331,8 @@ public class Local {
     /**
      * Metodo para mostrar una lista de clientes optimizada
      */
-    public void mostrarListaClienteOptimizada() {
-
+    public boolean mostrarListaClienteOptimizada() {
+        boolean flag = false;
         Teclado t = new Teclado();
         String nombre = t.cargarNombre();
         Validacion val = new Validacion();
@@ -335,13 +340,16 @@ public class Local {
         for (Cliente aux : listaClientes.getLista()){
             if (val.compararCaracter(nombre, aux.getNombre())){
                 System.out.println(aux.toStringOpt());
+                flag = true;
             }
         }
         for (Cliente aux : listaClientes.getLista()){
             if (val.compararCaracter(nombre, aux.getApellido())){
                 System.out.println(aux.toStringOpt());
+                flag = true;
             }
         }
+        return flag;
     }
 
     /**
@@ -421,11 +429,12 @@ public class Local {
     public Cliente buscarCliente() {
         Teclado t = new Teclado();
         Cliente cliente = null;
-        mostrarListaClienteOptimizada();
-        String CUIT = t.cargarCuit();
-        for (Cliente aux : listaClientes.getLista()){
-            if(aux.getCuit().equals(CUIT)){
-                cliente = aux;
+        if(mostrarListaClienteOptimizada()){
+            String CUIT = t.cargarCuit();
+            for (Cliente aux : listaClientes.getLista()){
+                if(aux.getCuit().equals(CUIT)){
+                    cliente = aux;
+                }
             }
         }
 
@@ -440,7 +449,7 @@ public class Local {
     public Marca buscarMarca(){
         Teclado t = new Teclado();
         Marca aBuscar = null;
-        String nombre = t.cargarNombreMarca();
+        String nombre = t.cargarNombreMarcaBuscar();
         for (Marca marca : listaMarca.getLista()){
             if (marca.getNombre().equals(nombre)){
                 aBuscar = marca;
@@ -490,11 +499,14 @@ public class Local {
      */
     public Articulo buscarArticuloID () {
         Articulo articulo = null;
-        Teclado t2 = new Teclado();
-        int id = t2.cargarID();
-        for (Articulo aBuscar : listaArticulos.getLista()) {
-            if (aBuscar.getIdArticulo() == id) {
-                articulo = aBuscar;
+
+        if(mostrarListaArticuloOptimizada()){
+            Teclado t2 = new Teclado();
+            int id = t2.cargarID();
+            for (Articulo aBuscar : listaArticulos.getLista()) {
+                if (aBuscar.getIdArticulo() == id) {
+                    articulo = aBuscar;
+                }
             }
         }
         return articulo;

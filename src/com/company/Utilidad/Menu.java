@@ -309,7 +309,7 @@ public class Menu {
         Teclado t = new Teclado();
         Validacion v = new Validacion();
 
-        String nombre, departamento, marca;
+        String nombre, departamento;
         int stock = 0;
         double utilidad, costo;
         nombre = t.cargarNombreArticulo();
@@ -317,9 +317,22 @@ public class Menu {
             nombre = t.cargarNuevamenteNombreArticulo(nombre);
         }
         departamento = t.cargarDepartamentoArticulo();
-        //TODO - Buscar la forma de validar existencia de departamentos. ¿Enum?
-        marca = t.cargarMarcaArticulo();
-        //TODO - Buscar la forma de validar existencia de marca. ¿Enum?
+
+        Marca marca = local.buscarMarca();
+        while (marca == null){
+            int aux = t.marcaBuscadaNoSeEncuentra();
+            switch (aux){
+                case 1:
+                    marca = cargarNuevaMarca(local);
+                    local.nuevaMarca(marca);
+                    break;
+                case 2:
+                    marca = local.buscarMarca();
+                    break;
+                default:
+                    System.out.println("La opcion ingresada no es correcta...!\n");
+            }
+        }
 
         costo = t.cargarCosto();
         while (!v.mayorQueCero(costo)){
@@ -415,11 +428,11 @@ public class Menu {
      */
     public Venta cargarNuevaVenta(Local local, Caja caja) {
         Teclado t = new Teclado();
-
+        int aux = -1;
         Cliente cliente = local.buscarCliente();
 
         while (cliente == null){
-            int aux = clienteNoExiste();
+            aux = clienteNoExiste();
             switch (aux){
                 case 1:
                     cliente = local.buscarCliente();
@@ -429,7 +442,7 @@ public class Menu {
                     break;
                 case 3:
                     local.nuevoCliente(cargarNuevoCliente(local));
-                    cliente = local.buscarCliente();
+                    cliente = local.getListaClientes().getElemento(local.getListaClientes().getContadorId() - 1);
                     break;
                 default:
                     System.out.println("\nLa opcion ingresada es incorrecta");
@@ -443,9 +456,24 @@ public class Menu {
         nuevaVenta.setMetodoPago(metodoPago);
         if(metodoPago != null){
             do {
-
-                local.mostrarListaArticuloOptimizada();
                 Articulo art = local.buscarArticuloID();
+
+                while(art == null && aux != 0) {
+                    aux = t.articuloNoExiste();
+                    switch (aux){
+                        case 1 :
+                            art = local.buscarArticuloID();
+                            break;
+                        case 2 :
+                            local.nuevoArticulo(cargarNuevoArticulo(local));
+                            art = local.getListaArticulos().getElemento(local.getListaArticulos().getContadorId() - 1);
+                            break;
+                        case 0 :
+                            break;
+                        default:
+                            System.out.println("Opcion ingresada no es correcta... !\n");
+                    }
+                };
 
                 if (art != null) {
                     int cant = nuevaVenta.cargarCantidadArticulo(art);
@@ -456,7 +484,7 @@ public class Menu {
                     }
                 }
                 else
-                    System.out.println("El articulo no existe");
+                    System.out.println("Se cancelo la carga \n");
 
             }while (t.continuarCargandoArticulos());
         }
@@ -493,9 +521,9 @@ public class Menu {
     public Marca cargarNuevaMarca(Local local){
         Teclado t = new Teclado();
         Validacion v = new Validacion();
-        String nombre = t.cargarNombreMarca();
+        String nombre = t.cargarNombreNuevaMarca();
 
-        if (v.validacionMarcaNueva(local.getListaMarca(), nombre)){
+        if (!v.validacionMarcaNueva(local.getListaMarca(), nombre)){
             return new Marca(nombre);
         }else{
             t.marcaYaExiste();
@@ -721,19 +749,16 @@ public class Menu {
                     articulo.setDepartamento(t.cargarDepartamentoArticulo());
                     break;
                 case 3:
-                    articulo.setMarca(t.cargarMarcaArticulo());
-                    break;
-                case 4:
                     articulo.setCosto(t.cargarCostoArticulo());
                     break;
-                case 5:
+                case 4:
                     articulo.setUtilidad(t.cargarUtilidadArticulo());
                     break;
-                case 6:
+                case 5:
                     articulo.setStock(t.cargarCantidadArticulo());
                     break;
-                case 0:
-                    System.out.println("Saliendo..");
+                case 0 :
+                    System.out.println("Saliendo...");
                     break;
                 default:
                     System.out.println("La opcion ingresada no es correcta!\n");
