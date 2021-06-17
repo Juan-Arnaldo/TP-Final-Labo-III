@@ -4,7 +4,7 @@ public class Articulo {
     private int idArticulo;
     private String nombre;
     private String departamento;
-    private String marca;
+    private Marca marca;
     private int stock;
     private double costo;
     private double utilidad;
@@ -19,7 +19,7 @@ public class Articulo {
      * @param utilidad
      * @param stock
      */
-    public Articulo(String nombre, String departamento, String marca, double costo, double utilidad, int stock) {
+    public Articulo(String nombre, String departamento, Marca marca, double costo, double utilidad, int stock) {
         this.nombre = nombre;
         this.departamento = departamento;
         this.marca = marca;
@@ -53,11 +53,11 @@ public class Articulo {
         this.departamento = departamento;
     }
 
-    public String getMarca() {
+    public Marca getMarca() {
         return marca;
     }
 
-    public void setMarca(String marca) {
+    public void setMarca(Marca marca) {
         this.marca = marca;
     }
 
