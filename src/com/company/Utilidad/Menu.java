@@ -10,6 +10,7 @@ import com.company.Operacion.Venta;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
