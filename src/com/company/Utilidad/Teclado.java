@@ -237,8 +237,6 @@ public class Teclado {
         return sc.nextInt();
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Método para elegir cómo seguir en caso de que el nombre ingresado no corresponda a un artículo existente en los registros de local.
      * @return Opción elegida en forma de int. 1 - Intentar nuevamente. 2 - Agregar " + " al registro.");.
@@ -268,7 +266,7 @@ public class Teclado {
         return sc.nextInt();
     }
 
->>>>>>> bAgus
+
     public int ingresePorcentajeDesc(){
         System.out.println("Ingrese el porcentaje que quiere que tenga: ");
         return sc.nextInt();
@@ -384,6 +382,16 @@ public class Teclado {
     }
 
 
+
+    public String cargarNombreMarca(){
+        System.out.println("Ingrese el nombre de la marca: ");
+        return sc.nextLine();
+    }
+
+    public void marcaYaExiste(){
+        System.out.println("La marca que deseo crear ya existe! ");
+    }
+
     /**
      * Metodo para ingresar lo que quiere modificar
      * @return el numero
@@ -440,7 +448,40 @@ public class Teclado {
         System.out.println("El cliente que busca no existe...");
     }
 
+
+    /**
+     * Metodo para ingresar lo que quiere modificar
+     * @return el numero
+     */
+    public int menuModificiarArticulo(){
+        System.out.println("1 - Nombre");
+        System.out.println("2 - Departamento");
+        System.out.println("3 - Marca");
+        System.out.println("4 - Costo");
+        System.out.println("5 - Utilidad");
+        System.out.println("6 - Precio");
+        System.out.println("0 - Salir");
+        System.out.println("Ingrese lo que quiere modificar: ");
+        return sc.nextInt();
+    }
+
+    /**
+     * Método para recibir el atributo que se modificará en cliente.
+     * @return
+     */
+    public int modificarCliente(){
+        System.out.println("1 - Nombre");
+        System.out.println("\n2 - Apellido");
+        System.out.println("\n3 - Domicilio");
+        System.out.println("\n4 - Telefono");
+        System.out.println("\n5 - Email");
+        System.out.println("\n0 - Salir");
+        return sc.nextInt();
+    }
+
+
     public void provNoEncontrado(){
         System.out.println("El proveedor que busca no existe...");
     }
+
 }

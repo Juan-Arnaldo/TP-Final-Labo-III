@@ -1,6 +1,7 @@
 package com.company.Utilidad;
 
 import com.company.Articulo.Articulo;
+import com.company.Articulo.Marca;
 import com.company.Contenedor.ContenedorArrayList;
 import com.company.Local.DescTarjeta;
 import com.company.Local.Descuento;
@@ -78,12 +79,22 @@ public class Validacion {
 
             C = nombreABuscar.charAt(i);
 
-            if (C== (nombre.toLowerCase().charAt(i))||C== (nombre.toUpperCase().charAt(i))){
+            if (C == (nombre.toLowerCase().charAt(i)) || C == (nombre.toUpperCase().charAt(i))){
                 flag = true;
             }else {
                 flag = false;
             }
             i++;
+        }
+        return flag;
+    }
+
+    public boolean validacionMarcaNueva(ContenedorArrayList<Marca> listaMarca, String nombre){
+        boolean flag = false;
+        for (Marca aux : listaMarca.getLista()){
+            if(aux.getNombre().equalsIgnoreCase(nombre)){
+                flag = true;
+            }
         }
         return flag;
     }

@@ -1,6 +1,7 @@
 package com.company.Utilidad;
 
 import com.company.Articulo.Articulo;
+import com.company.Articulo.Marca;
 import com.company.Local.Caja;
 import com.company.Local.DescTarjeta;
 import com.company.Local.Local;
@@ -37,7 +38,7 @@ public class Menu {
                     break;
                 case 2:
                     local.nuevaCaja();
-                    caja = local.getListaCajas().getElemento(local.getListaCajas().getLista().size()-1);
+                    caja = local.getListaCajas().getElemento(local.getListaCajas().getLista().size() - 1);
                     menuCaja(local, caja);
                     break;
                 case 3:
@@ -68,6 +69,8 @@ public class Menu {
      */
     public Caja menuSeleccionCaja(Local local) {
         Teclado teclado = new Teclado();
+        if(local.getListaCajas().listaVacia())
+            local.nuevaCaja();
         mostrarCajas(local);
         int idCaja = teclado.cargarIdCaja();
         return local.buscarCaja(idCaja);
@@ -374,6 +377,7 @@ public class Menu {
      */
     public Venta cargarNuevaVenta(Local local, Caja caja) {
         Teclado t = new Teclado();
+
         Cliente cliente = local.buscarCliente();
 
         while (cliente == null){
@@ -440,6 +444,26 @@ public class Menu {
         String tarjeta = seleccionTarjeta();
 
         return new DescTarjeta(porcentaje, tarjeta, nombre);
+    }
+
+    /**
+     * Método para cargar una nueva marca
+     * @param local
+     * @return La nueva marca creada
+     * @return Null, en caso de que ya exista
+     */
+    public Marca cargarNuevaMarca(Local local){
+        Teclado t = new Teclado();
+        Validacion v = new Validacion();
+        String nombre = t.cargarNombreMarca();
+
+        if (v.validacionMarcaNueva(local.getListaMarca(), nombre)){
+            return new Marca(nombre);
+        }else{
+            t.marcaYaExiste();
+        }
+
+        return null;
     }
 
     /**
@@ -651,7 +675,7 @@ public class Menu {
         Teclado t = new Teclado();
         int aux;
         do{
-            aux = menuModificiarArticulo();
+            aux = t.menuModificiarArticulo();
             switch (aux){
                 case 1:
                     articulo.setNombre(t.cargarNombreArticulo());
@@ -678,21 +702,6 @@ public class Menu {
         }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
     }
 
-    /**
-     * Metodo para ingresar lo que quiere modificar
-     * @return el numero
-     */
-    public int menuModificiarArticulo(){
-        System.out.println("1 - Nombre");
-        System.out.println("2 - Departamento");
-        System.out.println("3 - Marca");
-        System.out.println("4 - Costo");
-        System.out.println("5 - Utilidad");
-        System.out.println("6 - Precio");
-        System.out.println("0 - Salir");
-        System.out.println("Ingrese lo que quiere modificar: ");
-        return sc.nextInt();
-    }
 
     /**
      * Salida para modificar el cliente
@@ -703,7 +712,6 @@ public class Menu {
         Teclado t = new Teclado();
         int aux;
         do{
-
             aux = t.menuModificarCliente();
             switch (aux){
                 case 1:

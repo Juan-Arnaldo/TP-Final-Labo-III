@@ -1,5 +1,6 @@
 package com.company.Local;
 
+import com.company.Articulo.Marca;
 import com.company.Contenedor.ContenedorArrayList;
 import com.company.Operacion.Compra;
 import com.company.Operacion.Operacion;
@@ -22,11 +23,8 @@ public class Local {
     private ContenedorArrayList<Caja> listaCajas;
     private ContenedorArrayList<Operacion> listaOperacion;
     private ContenedorArrayList<DescTarjeta> listaDescuento;
+    private ContenedorArrayList<Marca> listaMarca;
 
-
-    public Local(){
-
-    }
 
     public Local(int idLocal, String nombre, String direccion) {
 
@@ -39,6 +37,7 @@ public class Local {
         this.listaCajas = new ContenedorArrayList<Caja>();
         this.listaOperacion = new ContenedorArrayList<Operacion>();
         this.listaDescuento = new ContenedorArrayList<DescTarjeta>();
+        this.listaMarca = new ContenedorArrayList<Marca>();
     }
 
     public int getIdLocal() {
@@ -113,6 +112,14 @@ public class Local {
         this.listaCajas = listaCajas;
     }
 
+    public ContenedorArrayList<Marca> getListaMarca() {
+        return listaMarca;
+    }
+
+    public void setListaMarca(ContenedorArrayList<Marca> listaMarca) {
+        this.listaMarca = listaMarca;
+    }
+
     /**
      * Método para cargar un nuevo cliente al registro.
      * @param nuevoCliente a cargar.
@@ -137,6 +144,7 @@ public class Local {
     public void nuevaCaja() {
         Caja nuevaCaja = new Caja(listaCajas.getContadorId(), this.idLocal, 0);
         listaCajas.agregar(nuevaCaja);
+
     }
 
     /**
@@ -156,10 +164,33 @@ public class Local {
         listaOperacion.agregar(nuevaCompra);
     }
 
+    /**
+     * Método para crear nuevo descuento
+     * @param nuevoDescTarjeta
+     */
     public void nuevoDescuentoTarjeta(DescTarjeta nuevoDescTarjeta){
         if (nuevoDescTarjeta.getNombreTarjeta() != null) {
             nuevoDescTarjeta.setIdDescuento(listaDescuento.getContadorId());
             listaDescuento.agregar(nuevoDescTarjeta);
+        }
+    }
+
+    /**
+     * Método para ingresar una nueva Marca
+     * @param marcaNueva
+     */
+    public void nuevoMarca(Marca marcaNueva){
+        if (marcaNueva != null){
+            listaMarca.agregar(marcaNueva);
+        }
+    }
+
+    /**
+     * Método para mostrar la lista de Marcas
+     */
+    public void mostrarMarcas(){
+        for (Marca marca : listaMarca.getLista()){
+            System.out.println(marca.toString());
         }
     }
 
@@ -402,13 +433,31 @@ public class Local {
     }
 
     /**
+     * Método para buscar una nueva marca
+     * @return La marca buscada
+     * @return Null, si no se encuentra
+     */
+    public Marca buscarMarca(){
+        Teclado t = new Teclado();
+        Marca aBuscar = null;
+        String nombre = t.cargarNombreMarca();
+        for (Marca marca : listaMarca.getLista()){
+            if (marca.getNombre().equals(nombre)){
+                aBuscar = marca;
+            }
+        }
+
+        return aBuscar;
+    }
+
+    /**
      * Se le muestra una lista de clientes y se ingresa el CUIT del cliente para retornar
      * @return El cliente seleccionado
      */
     public Proveedor buscarProveedor() {
         Teclado t = new Teclado();
         Proveedor proveedor = null;
-        mostrarListaClienteOptimizada();
+        mostrarListaProveedorOptimizada();
         String CUIT = t.cargarCuit();
         for (Proveedor aux : listaProveedores.getLista()){
             if(aux.getCuit().equals(CUIT)){
