@@ -383,8 +383,7 @@ public class Teclado {
         return sc.nextLine();
     }
 
-<<<<<<< HEAD
-=======
+
     /**
      * Metodo para ingresar lo que quiere modificar
      * @return el numero
@@ -433,7 +432,6 @@ public class Teclado {
         return sc.nextInt();
     }
 
->>>>>>> bAgus
     public void articuloNoEncontrado(){
         System.out.println("El articulo que busca no existe...");
     }
