@@ -270,7 +270,6 @@ public class Menu {
         String apellido = t.cargarApellido();
         String direc = t.cargarDireccion();
         String tel = t.cargarTelefono();
-
         String email = t.cargarEmail();
 
         return new Cliente(nombre, direc, cuit, tel, email, apellido);

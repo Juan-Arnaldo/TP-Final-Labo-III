@@ -404,7 +404,7 @@ public class Teclado {
         while(!validacion.validacionEmailValido(email)) {
             email = cargarNuevamenteEmailPersona(email);
         }
-        return sc.nextLine();
+        return email;
     }
 
     /**
