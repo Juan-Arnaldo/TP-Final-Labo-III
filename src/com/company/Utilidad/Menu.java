@@ -24,13 +24,16 @@ public class Menu {
      * @param local en el que se trabajará.
      */
     public void menuInicio(Local local) {
-        System.out.println("\nBienvenido\n");
+        System.out.println("\nBienvenido al Sistema de Gestión Contable\n");
         int opc = 0;
         do{
             opc = cargarOpcionMenuInicio();
             Caja caja = null;
 
             switch (opc) {
+                case 0:
+                    System.out.println("Saliendo del Programa...");
+                    break;
                 case 1:
                     caja = menuSeleccionCaja(local);
                     menuCaja(local, caja);
@@ -40,14 +43,11 @@ public class Menu {
                     caja = local.getListaCajas().getElemento(local.getListaCajas().getLista().size()-1);
                     menuCaja(local, caja);
                     break;
-                case 3:
-                    System.out.println("\nSaliendo...\n");
-                    break;
                 default:
                     System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
                     break;
             }
-        }while (opc != 3);
+        }while (opc != 0);
     }
 
     /**
@@ -58,7 +58,7 @@ public class Menu {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Seleccionar caja.");
         System.out.println("2 - Nueva caja.");
-        System.out.println("3 - Salir.");
+        System.out.println("0 - Salir.");
         return sc.nextInt();
     }
 
@@ -85,12 +85,15 @@ public class Menu {
     }
 
     public void menuCaja (Local local, Caja caja) {
-        int opc = 0;
+        int opc;
         do{
             System.out.println("\nBienvenido a la Caja " + caja.getIdCaja() + "\n");
             opc = cargarOpcionMenuCaja();
 
             switch (opc) {
+                case 0:
+                    System.out.println("Saliendo de Menú de Caja...");
+                    break;
                 case 1:
                     caja.nuevaVenta(cargarNuevaVenta(local, caja), local);
                     break;
@@ -101,7 +104,7 @@ public class Menu {
                     menuArticulo(local);
                     break;
                 case 4:
-                    //menuClietes();
+                    //menuClientes();
                     break;
                 case 5:
                     local.nuevaCompra(cargarNuevaCompra(local));
@@ -109,14 +112,11 @@ public class Menu {
                 case 6:
                     //menuProveedores();
                     break;
-                case 7:
-                    System.out.println("\nSaliendo...\n");
-                    break;
                 default:
                     System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
                     break;
             }
-        }while (opc != 7);
+        }while (opc != 0);
     }
 
     /**
@@ -132,7 +132,7 @@ public class Menu {
         System.out.println("5 - Nueva Compra.");
         System.out.println("6 - Menú Proveedores.");
         System.out.println("6 - Menú Descuentos.");
-        System.out.println("7 - Salir.");
+        System.out.println("0 - Salir.");
         return sc.nextInt();
     }
 
@@ -144,10 +144,14 @@ public class Menu {
         Teclado t = new Teclado();
         int opc = 0;
         do {
+            System.out.println("\nBienvenido al Menú de Gestión de Artículos\n");
             opc = cargarOpcionMenuArticulo();
             switch (opc) {
+                case 0:
+                    System.out.println("Saliendo de Menú de Artículos...");
+                    break;
                 case 1:
-                    //local.nuevoArticulo(menu.cargarNuevoArticulo(local));
+                    local.nuevoArticulo(cargarNuevoArticulo(local));
                     break;
                 case 2:
                     local.modificarUnArticulo();
@@ -162,7 +166,7 @@ public class Menu {
                     System.out.println("La opcion ingresada no es valida");
                     break;
             }
-        } while (opc != 1 && opc != 2 && opc != 3 && opc != 0);
+        } while (opc != 0);
     }
 
     /**
@@ -172,10 +176,12 @@ public class Menu {
     public int cargarOpcionMenuArticulo() {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Nuevo Articulo.");
-        System.out.println("2 - Editar Articulo.");
-        System.out.println("3 - Eliminar Articulo.");
-        System.out.println("4 - Mostrar Articulo.");
-        System.out.println("5 - Salir.");
+        System.out.println("2 - Nueva Marca.");
+        System.out.println("3 - Nuevo Departamento.");
+        System.out.println("4 - Editar Articulo.");
+        System.out.println("5 - Eliminar Articulo.");
+        System.out.println("6 - Mostrar Articulo.");
+        System.out.println("0 - Salir.");
         return sc.nextInt();
     }
 
@@ -525,6 +531,9 @@ public class Menu {
         do{
             aux = menuModificiarArticulo();
             switch (aux){
+                case 0:
+                    System.out.println("Saliendo de Modificación de Artículo...");
+                    break;
                 case 1:
                     articulo.setNombre(t.cargarNombreArticulo());
                     break;
@@ -547,7 +556,7 @@ public class Menu {
                     System.out.println("La opcion ingresada no es correcta!\n");
                     break;
             }
-        }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
+        }while(aux != 0);
     }
 
     /**
@@ -560,7 +569,7 @@ public class Menu {
         System.out.println("3 - Marca");
         System.out.println("4 - Costo");
         System.out.println("5 - Utilidad");
-        System.out.println("6 - Precio");
+        System.out.println("6 - Stock");
         System.out.println("0 - Salir");
         System.out.println("Ingrese lo que quiere modificar: ");
         return sc.nextInt();
@@ -577,6 +586,9 @@ public class Menu {
         do{
             opc = modificarCliente();
             switch (opc){
+                case 0:
+                    System.out.println("Saliendo de Modificación de Cliente...");
+                    break;
                 case 1:
                     cliente.setNombre(t.cargarNombreCliente());
                     break;
@@ -595,11 +607,11 @@ public class Menu {
                 default:
                     System.out.println("La opcion ingresada no es correcta!\n");
             }
-        }while(opc != 1 && opc != 2 && opc != 3 && opc != 4 && opc != 5 && opc != 0);
+        }while(opc != 0);
     }
 
     /**
-     * Método para recibir el atributo que se modificará en cliente.
+     * Método para seleccionar qué atributo se modificará en cliente.
      * @return
      */
     public int modificarCliente(){
