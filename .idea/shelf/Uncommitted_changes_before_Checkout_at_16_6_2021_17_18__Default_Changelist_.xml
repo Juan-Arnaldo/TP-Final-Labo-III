@@ -1,0 +1,24 @@
+<changelist name="Uncommitted_changes_before_Checkout_at_16_6_2021_17_18_[Default_Changelist]" date="1623874706313" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_6_2021_17_18_[Default_Changelist]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 16/6/2021 17:18 [Default Changelist]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TP Final Labo III/com/company/Utilidad/Validacion.class" />
+    <option name="AFTER_PATH" value="out/production/TP Final Labo III/com/company/Utilidad/Validacion.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_6_2021_17_18_[Default_Changelist]/Validacion.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TP Final Labo III/com/company/Operacion/Venta.class" />
+    <option name="AFTER_PATH" value="out/production/TP Final Labo III/com/company/Operacion/Venta.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_6_2021_17_18_[Default_Changelist]/Venta.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TP Final Labo III/com/company/Local/Local.class" />
+    <option name="AFTER_PATH" value="out/production/TP Final Labo III/com/company/Local/Local.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_6_2021_17_18_[Default_Changelist]/Local.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/TP Final Labo III/com/company/Utilidad/Menu.class" />
+    <option name="AFTER_PATH" value="out/production/TP Final Labo III/com/company/Utilidad/Menu.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_6_2021_17_18_[Default_Changelist]/Menu.class" />
+  </binary>
+</changelist>
