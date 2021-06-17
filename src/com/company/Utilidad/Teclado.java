@@ -382,8 +382,13 @@ public class Teclado {
     }
 
 
-    public String cargarNombreMarca(){
-        System.out.println("Ingrese el nombre de la marca: ");
+    public String cargarNombreNuevaMarca(){
+        System.out.println("Ingrese el nombre de la nueva marca: ");
+        return sc.nextLine();
+    }
+
+    public String cargarNombreMarcaBuscar(){
+        System.out.println("Ingrese el nombre de la marca a buscar: ");
         return sc.nextLine();
     }
 
@@ -456,10 +461,9 @@ public class Teclado {
     public int menuModificiarArticulo(){
         System.out.println("1 - Nombre");
         System.out.println("2 - Departamento");
-        System.out.println("3 - Marca");
-        System.out.println("4 - Costo");
-        System.out.println("5 - Utilidad");
-        System.out.println("6 - Precio");
+        System.out.println("3 - Costo");
+        System.out.println("4 - Utilidad");
+        System.out.println("5 - Precio");
         System.out.println("0 - Salir");
         System.out.println("Ingrese lo que quiere modificar: ");
         return sc.nextInt();
@@ -482,6 +486,20 @@ public class Teclado {
 
     public void provNoEncontrado(){
         System.out.println("El proveedor que busca no existe...");
+    }
+
+    public int marcaBuscadaNoSeEncuentra(){
+        System.out.println("La marca buscada no existe, ingrese lo que quiera hacer: ");
+        System.out.println("1. Crear una nueva marca ");
+        System.out.println("2. Ingresar nuevamente ");
+        return sc.nextInt();
+    }
+
+    public int articuloNoExiste(){
+        System.out.println("1. Volver a cargar el ID");
+        System.out.println("\n2. Cargar un nuevo articulo");
+        System.out.println("\n0. No cargar el articulo");
+        return sc.nextInt();
     }
 
 }
