@@ -92,7 +92,7 @@ public class Validacion {
     public boolean contieneSoloLetras(String cadena) {
         for (int x = 0; x < cadena.length(); x++) {
             char c = cadena.charAt(x);
-            // Si no está entre a y z, ni entre A y Zgit rm
+            // Si no está entre a y z, ni entre A y Z
             if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
                 return false;
             }
