@@ -507,6 +507,7 @@ public class Teclado {
         System.out.println("4 - Telefono: " + cliente.getTelefono());
         System.out.println("5 - Email: " + cliente.getEmail());
         System.out.println("0 - Salir");
+        System.out.println("\nIngrese la opcion que quiera: ");
         return Integer.parseInt(sc.nextLine());
     }
 
@@ -522,6 +523,7 @@ public class Teclado {
         System.out.println("5 - Email: " + proveedor.getEmail());
         System.out.println("6 - Localidad: " + proveedor.getLocalidad());
         System.out.println("0 - Salir");
+        System.out.println("\nIngrese la opcion que quiera: ");
         return Integer.parseInt(sc.nextLine());
     }
 
@@ -544,10 +546,10 @@ public class Teclado {
         System.out.println("3 - Marca: " + articulo.getMarca().getNombre());
         System.out.println("4 - Costo: " + articulo.getCosto());
         System.out.println("5 - Utilidad: " + articulo.getUtilidad());
-        System.out.println("6 - Precio: " + articulo.getPrecio());
+        System.out.println("6 - Stock: " + articulo.getStock());
         System.out.println("0 - Salir");
         System.out.println("Ingrese lo que quiere modificar: ");
-        return Integer.parseInt(sc.nextLine());
+        return sc.nextInt();
     }
 
     public void provNoEncontrado(){

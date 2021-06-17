@@ -26,7 +26,7 @@ public class Articulo {
         this.utilidad = utilidad;
         this.stock = stock;
         this.costo = costo;
-        this.precio = costo + (costo * utilidad / 100);
+        generarPrecio();
     }
 
     public int getIdArticulo() {
@@ -75,6 +75,7 @@ public class Articulo {
 
     public void setCosto(double costo) {
         this.costo = costo;
+        generarPrecio();
     }
 
     public double getUtilidad() {
@@ -83,29 +84,31 @@ public class Articulo {
 
     public void setUtilidad(double utilidad) {
         this.utilidad = utilidad;
+        generarPrecio();
     }
 
     public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    private void generarPrecio(){
+        precio = costo + (costo * utilidad / 100);
     }
 
     @Override
     public String toString() {
         return
-                 "\n" + nombre +
-                ":\nId " + idArticulo +
-                "\nDepartamento " + departamento +
-                "\nMarca " + marca +
-                "\nStock " + stock +
-                "\nCosto " + costo +
-                "\nUtilidad " + utilidad ;
+                "\n" + nombre +
+                "\nId: " + idArticulo +
+                "\nDepartamento: " + departamento +
+                "\nMarca: " + marca +
+                "\nStock: " + stock +
+                "\nCosto: " + costo +
+                "\nUtilidad: " + utilidad +
+                "\nPrecio Final: " + getPrecio() ;
     }
 
     public String toStringOpt(){
-        return "ID: " + idArticulo + " Nombre: " + nombre + " Stock: " + stock;
+        return "ID: " + idArticulo + " Nombre: " + nombre + " Marca: " + getMarca().getNombre() +" Stock: " + stock;
     }
 }

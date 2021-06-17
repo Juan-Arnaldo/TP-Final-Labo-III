@@ -305,6 +305,7 @@ public class Local {
             for(Cliente aux : listaClientes.getLista()){
                 if(aux.equals(aBorrar)){
                     listaClientes.eliminar(i);
+                    break;
                 }
                 i++;
             }
