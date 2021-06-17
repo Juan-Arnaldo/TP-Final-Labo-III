@@ -10,30 +10,23 @@ public class Articulo {
     private double utilidad;
     private double precio;
 
-    public Articulo () {
-
-    }
-
-    /*** Constructor para la carga real del Artículo desde Local.*/
-    //TODO - Al resolver el autoincremental de idArticulo, agregarlo acá.
-    public Articulo(String nombre, String departamento, String marca,double costo, double utilidad, int stock) {
+    /**
+     * Constructor de una instancia de la clase Articulo.java.
+     * @param nombre
+     * @param departamento
+     * @param marca
+     * @param costo
+     * @param utilidad
+     * @param stock
+     */
+    public Articulo(String nombre, String departamento, String marca, double costo, double utilidad, int stock) {
         this.nombre = nombre;
         this.departamento = departamento;
         this.marca = marca;
         this.utilidad = utilidad;
         this.stock = stock;
         this.costo = costo;
-    }
-
-    public Articulo(int idArticulo, String nombre, String departamento, String marca, int stock, double costo, double utilidad, double precio) {
-        this.idArticulo = idArticulo;
-        this.nombre = nombre;
-        this.departamento = departamento;
-        this.marca = marca;
-        this.stock = stock;
-        this.costo = costo;
-        this.utilidad = utilidad;
-        this.precio = precio;
+        this.precio = costo + (costo * utilidad);
     }
 
     public int getIdArticulo() {
