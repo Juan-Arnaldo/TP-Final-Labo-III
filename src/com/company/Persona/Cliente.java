@@ -8,8 +8,7 @@ public class Cliente extends Persona{
 
     @Override
     public String toString() {
-        return "\nCliente: "+
-                "\nNombre: "+ getNombre()+
+        return "\nNombre: "+ getNombre()+
                 "\nDomicilio: "+ getDomicilio()+
                 "\nCuit: "+ getCuit()+
                 "\nTelefono: "+ getTelefono()+

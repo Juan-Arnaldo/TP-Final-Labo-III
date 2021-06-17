@@ -22,9 +22,6 @@ public class Main {
         Menu menu = new Menu();
         LocalJson json = new LocalJson();
 
-
-
-
         Local local2 = json.leerLocalArchivos();;
 
         Local local = json.leerLocalArchivos();
@@ -148,6 +145,4 @@ public class Main {
 
         return local;
     }
-
-
 }
