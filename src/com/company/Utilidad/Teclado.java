@@ -309,9 +309,29 @@ public class Teclado {
      * Método para cargar por teclado el apellido de una Persona.
      * @return nombre de la persana cargado.
      */
+    public String cargarNombre() {
+        Validacion validacion = new Validacion();
+
+        System.out.println("Ingrese el nombre: ");
+        String nombre = sc.nextLine();
+        while(!validacion.contieneSoloLetras(nombre)) {
+            nombre = cargarNuevamenteNombrePersona(nombre);
+        }
+        return nombre;
+    }
+    /**
+     * Método para cargar por teclado el apellido de una Persona.
+     * @return nombre de la persana cargado.
+     */
     public String cargarApellido() {
+        Validacion validacion = new Validacion();
+
         System.out.println("Ingrese el apellido: ");
-        return sc.nextLine();
+        String apellido = sc.nextLine();
+        while(!validacion.contieneSoloLetras(apellido)) {
+            apellido = cargarNuevamenteApellidoPersona(apellido);
+        }
+        return apellido;
     }
 
     /**
@@ -328,8 +348,14 @@ public class Teclado {
      * @return teléfono de la persana cargado.
      */
     public String cargarTelefono() {
+
+        Validacion validacion = new Validacion();
+        String telefono = sc.nextLine();
         System.out.println("Ingrese el telefono: ");
-        return sc.nextLine();
+        while(validacion.contieneSoloLetras(telefono)) {
+            telefono = cargarNuevamenteTelefonoPersona(telefono);
+        }
+        return telefono;
     }
 
     /**
@@ -352,12 +378,30 @@ public class Teclado {
         return sc.nextLine();
     }
 
+    public String cargarNuevamenteTelefonoPersona(String telefono) {
+        System.out.println(telefono + " no es un numero de telefono valido.");
+        System.out.println("Ingrese nuevamente el telefono: ");
+        return sc.nextLine();
+    }
+
+    public String cargarNuevamenteApellidoPersona(String apellido) {
+        System.out.println(apellido + " no es un apellido valido.");
+        System.out.println("Ingrese nuevamente el apellido: ");
+        return sc.nextLine();
+    }
+
     /**
      * Método para cargar por teclado el email de una Persona.
      * @return email de la persana cargado.
      */
     public String cargarEmail() {
+        Validacion validacion = new Validacion();
+
+        String email = sc.nextLine();
         System.out.println("Ingrese el email: ");
+        while(!validacion.validacionEmailValido(email)) {
+            email = cargarNuevamenteEmailPersona(email);
+        }
         return sc.nextLine();
     }
 
@@ -369,6 +413,12 @@ public class Teclado {
     public String cargarNuevamenteEmailPersona(String email) {
         System.out.println(email + " no es una dirección de correo electrónico válida.");
         System.out.println("Ingrese nuevamente el email: ");
+        return sc.nextLine();
+    }
+
+    public String cargarNuevamenteNombrePersona(String nombre) {
+        System.out.println(nombre + " no es un nombre válido.");
+        System.out.println("Ingrese nuevamente el nombre: ");
         return sc.nextLine();
     }
 
@@ -403,7 +453,7 @@ public class Teclado {
         System.out.println("3 - Eliminar Articulo.");
         System.out.println("4 - Mostrar Articulo.");
         System.out.println("0 - Salir.");
-        return sc.nextInt();
+        return Integer.parseInt(sc.nextLine());
     }
 
     /**
@@ -417,7 +467,7 @@ public class Teclado {
         System.out.println("4 - Telefono");
         System.out.println("5 - Email");
         System.out.println("0 - Salir");
-        return sc.nextInt();
+        return Integer.parseInt(sc.nextLine());
     }
 
     /**
@@ -432,7 +482,7 @@ public class Teclado {
         System.out.println("5 - Email");
         System.out.println("6 - Localidad");
         System.out.println("0 - Salir");
-        return sc.nextInt();
+        return Integer.parseInt(sc.nextLine());
     }
 
     public int numeroCaja(){

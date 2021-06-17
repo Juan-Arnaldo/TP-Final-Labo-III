@@ -89,16 +89,17 @@ public class Validacion {
         return flag;
     }
 
-    public static boolean contieneSoloLetras(String cadena) {
+    public boolean contieneSoloLetras(String cadena) {
         for (int x = 0; x < cadena.length(); x++) {
             char c = cadena.charAt(x);
-            // Si no está entre a y z, ni entre A y Z, ni es un espacio
-            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == ' ')) {
+            // Si no está entre a y z, ni entre A y Zgit rm
+            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
                 return false;
             }
         }
         return true;
     }
+
 
     public boolean validacionMarcaNueva(ContenedorArrayList<Marca> listaMarca, String nombre){
         boolean flag = false;

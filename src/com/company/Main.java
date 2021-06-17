@@ -6,6 +6,7 @@ import com.company.Json.LocalJson;
 import com.company.Local.DescTarjeta;
 import com.company.Local.Local;
 import com.company.Persona.Cliente;
+import com.company.Persona.Proveedor;
 import com.company.Utilidad.Menu;
 import com.company.Utilidad.Teclado;
 
@@ -14,16 +15,16 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        Local local = hardcodearLocal(); // Esto descomentado hardcodea el local independientemente del archivo. Comentar la lectura para usarlo.
+        Local local = hardcodearLocal(); // Esto descomentado hardcodea el local independientemente del archivo. Comentar la lectura para usarlo.
 
         Menu menu = new Menu();
-        LocalJson json = new LocalJson();
+      //  LocalJson json = new LocalJson();
 
-        Local local = json.leerLocalArchivos();
+    //    Local local = json.leerLocalArchivos();
 
         menu.menuInicio(local);
 
-        json.guardarLocalArchivo(local);
+      //  json.guardarLocalArchivo(local);
 
     }
 
@@ -33,6 +34,10 @@ public class Main {
         Cliente cliente = new Cliente("Consumidor", "", "", "", "", "Final");
         Cliente cliente2 = new Cliente("Juan Ignacio", "asd", "222", "321", "juan@gmail.com", "Zapp");
         Cliente cliente3 = new Cliente("Martin Arnaldo", "asd", "333", "321", "juan@gmail.com", "Juan");
+
+        Proveedor prov = new Proveedor("Consumidor", "", "", "", "", "mdp", "peton");
+        Proveedor prov1 = new Proveedor("Juan Ignacio", "asd", "222", "321", "juan@gmail.com", "vidal","arnaldo");
+        Proveedor prov2 = new Proveedor("Martin Arnaldo", "asd", "333", "321", "juan@gmail.com", "batan","menem");
 
         Articulo art1 = new Articulo("Tornillo", "asd", "dsa", 20, 50, 100);
         Articulo art2 = new Articulo("Tornillo A", "asd", "dsa", 20, 50, 50);
@@ -45,6 +50,10 @@ public class Main {
         local.nuevoCliente(cliente);
         local.nuevoCliente(cliente2);
         local.nuevoCliente(cliente3);
+
+        local.nuevoProveedor(prov);
+        local.nuevoProveedor(prov1);
+        local.nuevoProveedor(prov2);
 
         local.nuevaCaja();
 
