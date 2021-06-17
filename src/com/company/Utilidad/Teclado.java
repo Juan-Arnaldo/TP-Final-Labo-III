@@ -237,8 +237,6 @@ public class Teclado {
         return sc.nextInt();
     }
 
-<<<<<<< HEAD
-=======
     /**
      * Método para elegir cómo seguir en caso de que el nombre ingresado no corresponda a un artículo existente en los registros de local.
      * @return Opción elegida en forma de int. 1 - Intentar nuevamente. 2 - Agregar " + " al registro.");.
@@ -268,7 +266,6 @@ public class Teclado {
         return sc.nextInt();
     }
 
->>>>>>> bAgus
     public int ingresePorcentajeDesc(){
         System.out.println("Ingrese el porcentaje que quiere que tenga: ");
         return sc.nextInt();
@@ -383,57 +380,6 @@ public class Teclado {
         return sc.nextLine();
     }
 
-<<<<<<< HEAD
-=======
-    /**
-     * Metodo para ingresar lo que quiere modificar
-     * @return el numero
-     */
-    public int cargarOpcionMenuArticulo() {
-        System.out.println("Ingrese una opcion para continuar: ");
-        System.out.println("1 - Nuevo Articulo.");
-        System.out.println("2 - Editar Articulo.");
-        System.out.println("3 - Eliminar Articulo.");
-        System.out.println("4 - Mostrar Articulo.");
-        System.out.println("0 - Salir.");
-        return sc.nextInt();
-    }
-
-    /**
-     * Metodo para ingresar lo que quiere modificar
-     * @return el numero
-     */
-    public int menuModificarCliente(){
-        System.out.println("1 - Nombre");
-        System.out.println("2 - Apellido");
-        System.out.println("3 - Domicilio");
-        System.out.println("4 - Telefono");
-        System.out.println("5 - Email");
-        System.out.println("0 - Salir");
-        return sc.nextInt();
-    }
-
-    /**
-     * Metodo para ingresar lo que quiere modificar
-     * @return el numero
-     */
-    public int menuModificarProveedor(){
-        System.out.println("1 - Nombre");
-        System.out.println("2 - Apellido");
-        System.out.println("3 - Domicilio");
-        System.out.println("4 - Telefono");
-        System.out.println("5 - Email");
-        System.out.println("6 - Localidad");
-        System.out.println("0 - Salir");
-        return sc.nextInt();
-    }
-
-    public int numeroCaja(){
-        System.out.println("Ingrese el numero de caja a operar: ");
-        return sc.nextInt();
-    }
-
->>>>>>> bAgus
     public void articuloNoEncontrado(){
         System.out.println("El articulo que busca no existe...");
     }

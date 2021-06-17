@@ -609,6 +609,7 @@ public class Menu {
         Teclado t = new Teclado();
         int opc;
         do{
+            opc = modificarCliente();
             switch (opc){
                 case 0:
                     System.out.println("Saliendo de Modificación de Cliente...");
