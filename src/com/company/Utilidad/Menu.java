@@ -33,12 +33,12 @@ public class Menu {
 
             switch (opc) {
                 case 1:
-                    caja = menuSeleccionCaja(local);
-                    menuCaja(local, caja);
+                        caja = menuSeleccionCaja(local);
+                        menuCaja(local, caja);
                     break;
                 case 2:
                     local.nuevaCaja();
-                    caja = local.getListaCajas().getElemento(local.getListaCajas().getLista().size()-1);
+                    caja = local.getListaCajas().getElemento(local.getListaCajas().getLista().size() - 1);
                     menuCaja(local, caja);
                     break;
                 case 3:
@@ -375,6 +375,7 @@ public class Menu {
      */
     public Venta cargarNuevaVenta(Local local, Caja caja) {
         Teclado t = new Teclado();
+
         Cliente cliente = local.buscarCliente();
 
         while (cliente == null){

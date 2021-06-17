@@ -25,9 +25,6 @@ public class Local {
     private ContenedorArrayList<DescTarjeta> listaDescuento;
     private ContenedorArrayList<Marca> listaMarca;
 
-    public Local(){
-
-    }
 
     public Local(int idLocal, String nombre, String direccion) {
 
@@ -147,6 +144,7 @@ public class Local {
     public void nuevaCaja() {
         Caja nuevaCaja = new Caja(listaCajas.getContadorId(), this.idLocal, 0);
         listaCajas.agregar(nuevaCaja);
+
     }
 
     /**

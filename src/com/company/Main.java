@@ -19,7 +19,9 @@ public class Main {
         Menu menu = new Menu();
         LocalJson json = new LocalJson();
 
-        Local local = json.leerLocalArchivos();
+        Local local = new Local(10, "Messi", "Messi");
+
+//        local = json.leerLocalArchivos();
 
         menu.menuInicio(local);
 
