@@ -23,14 +23,6 @@ public class Validacion {
         }
         return false;
     }
-    public boolean validarCuitPers(String cuit, ArrayList<Persona> listaPersona){
-        for (Persona persona : listaPersona){
-            if(persona.getCuit().equals(cuit)) {
-                return true;
-            }
-        }
-        return false;
-    }
 
     public boolean validarCuitCliente(String cuit, ArrayList<Cliente> listaCliente){
         for (Persona persona : listaCliente){

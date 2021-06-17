@@ -208,7 +208,7 @@ public class Menu {
         Teclado t = new Teclado();
         Validacion validacion = new Validacion();
 
-        String cuit = t.cargarCuit();
+        String cuit = t.cargarCuitCliente(local.getListaClientes());
         while(validacion.validarCuitCliente(cuit, local.getListaClientes().getLista())) {
             cuit = t.cargarNuevamenteCuitPersona(cuit);
         }
@@ -233,7 +233,7 @@ public class Menu {
         Teclado t = new Teclado();
         Validacion validacion = new Validacion();
 
-        String cuit = t.cargarCuit();
+        String cuit = t.cargarCuitProv(local.getListaProveedores());
 
         String nombre = t.cargarNombreCliente();
         String apellido = t.cargarApellido();

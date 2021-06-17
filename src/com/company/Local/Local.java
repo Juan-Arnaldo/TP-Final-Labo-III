@@ -432,7 +432,7 @@ public class Local {
         Teclado t = new Teclado();
         Cliente cliente = null;
         if(mostrarListaClienteOptimizada()){
-            String CUIT = t.cargarCuit(listaClientes);
+            String CUIT = t.cargarCuitCliente(listaClientes);
             for (Cliente aux : listaClientes.getLista()){
                 if(aux.getCuit().equals(CUIT)){
                     cliente = aux;
@@ -469,7 +469,7 @@ public class Local {
         Teclado t = new Teclado();
         Proveedor proveedor = null;
         mostrarListaProveedorOptimizada();
-        String CUIT = t.cargarCuit();
+        String CUIT = t.cargarCuitProv(listaProveedores);
         for (Proveedor aux : listaProveedores.getLista()){
             if(aux.getCuit().equals(CUIT)){
                 proveedor = aux;
@@ -513,6 +513,11 @@ public class Local {
         }
         return articulo;
     }
+
+
+
+
+
 
     /**
      * Método para verificar si determinado nombre ya figura en los registros vinculado a un artículo.

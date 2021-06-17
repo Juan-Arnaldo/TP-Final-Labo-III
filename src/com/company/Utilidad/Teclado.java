@@ -372,7 +372,7 @@ public class Teclado {
         String cuit = sc.nextLine();
         while(!validacion.contieneNumCuit(cuit)) {
             cuit = cargarNuevamenteCuitInvalido(cuit);
-            while(validacion.validarCuitPers(cuit, listaPersona.getLista())) {
+            while(validacion.validarCuitCliente(cuit, listaCliente.getLista())) {
                 cuit = cargarNuevamenteCuitPersona(cuit);
             }
         }
@@ -383,13 +383,13 @@ public class Teclado {
      * Método para cargar por teclado el CUIT de una Persona.
      * @return CUIT de la persana cargado.
      */
-    public String cargarCuitProv(ContenedorArrayList<Persona>listaPersona) {
+    public String cargarCuitProv(ContenedorArrayList<Proveedor> listaProv) {
         Validacion validacion = new Validacion();
         System.out.println("Ingrese el cuit: ");
         String cuit = sc.nextLine();
         while(!validacion.contieneNumCuit(cuit)) {
             cuit = cargarNuevamenteCuitInvalido(cuit);
-            while(validacion.validarCuitPers(cuit, listaPersona.getLista())) {
+            while(validacion.validarCuitProveedor(cuit, listaProv.getLista())) {
                 cuit = cargarNuevamenteCuitPersona(cuit);
             }
         }
