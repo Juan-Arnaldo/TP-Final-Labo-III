@@ -479,19 +479,19 @@ public class Menu {
     }
 
     public int clienteNoExiste(){
-        System.out.println("\nEl cliente buscado no existe. ");
-        System.out.println("\n1. Volver a cargar el CUIT");
-        System.out.println("\n2. Pasar venta como consumidor final");
-        System.out.println("\n3. Crear nuevo cliente");
-        System.out.println("\n4. Ingrese la accion a realizar: ");
+        System.out.println("El cliente buscado no existe. ");
+        System.out.println("1. Volver a cargar el CUIT");
+        System.out.println("2. Pasar venta como consumidor final");
+        System.out.println("3. Crear nuevo cliente");
+        System.out.println("4. Ingrese la accion a realizar: ");
         return sc.nextInt();
     }
 
     public int proveedorNoExiste(){
-        System.out.println("\nEl proveedor buscado no existe. ");
-        System.out.println("\n1. Volver a cargar el CUIT");
-        System.out.println("\n2. Crear nuevo proveedor");
-        System.out.println("\n3. Ingrese la accion a realizar: ");
+        System.out.println("El proveedor buscado no existe. ");
+        System.out.println("1. Volver a cargar el CUIT");
+        System.out.println("2. Crear nuevo proveedor");
+        System.out.println("3. Ingrese la accion a realizar: ");
         return sc.nextInt();
     }
 
@@ -762,7 +762,7 @@ public class Menu {
                     break;
                 case 5:
                     proveedor.setEmail(t.cargarEmail());
-                    System.out.println("Telefono 1editado con exito.");
+                    System.out.println("Telefono editado con exito.");
                     break;
                 case 0:
                     System.out.println("Saliendo..");
@@ -780,11 +780,11 @@ public class Menu {
      */
     public int modificarCliente(){
         System.out.println("1 - Nombre");
-        System.out.println("\n2 - Apellido");
-        System.out.println("\n3 - Domicilio");
-        System.out.println("\n4 - Telefono");
-        System.out.println("\n5 - Email");
-        System.out.println("\n0 - Salir");
+        System.out.println("2 - Apellido");
+        System.out.println("3 - Domicilio");
+        System.out.println("4 - Telefono");
+        System.out.println("5 - Email");
+        System.out.println("0 - Salir");
         return sc.nextInt();
     }
 
