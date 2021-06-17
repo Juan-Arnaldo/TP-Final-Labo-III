@@ -455,24 +455,22 @@ public class Menu {
     }
 
     public int clienteNoExiste(){
-        System.out.println("\nEl cliente buscado no existe. ");
-        System.out.println("\n1. Volver a cargar el CUIT");
-        System.out.println("\n2. Pasar venta como consumidor final");
-        System.out.println("\n3. Crear nuevo cliente");
-        System.out.println("\n4. Ingrese la accion a realizar: ");
+        System.out.println("El cliente buscado no existe. ");
+        System.out.println("1 - Volver a cargar el CUIT");
+        System.out.println("2 - Pasar venta como consumidor final");
+        System.out.println("3 - Crear nuevo cliente");
+        System.out.println("4 - Ingrese la accion a realizar: ");
         return sc.nextInt();
     }
 
     public int proveedorNoExiste(){
-        System.out.println("\nEl proveedor buscado no existe. ");
-        System.out.println("\n1. Volver a cargar el CUIT");
-        System.out.println("\n2. Crear nuevo proveedor");
-        System.out.println("\n3. Ingrese la accion a realizar: ");
+        System.out.println("El proveedor buscado no existe. ");
+        System.out.println("1 - Volver a cargar el CUIT");
+        System.out.println("2 - Crear nuevo proveedor");
+        System.out.println("3 - Ingrese la accion a realizar: ");
         return sc.nextInt();
     }
 
-<<<<<<< HEAD
-=======
     public int ingresePorcentajeDesc(){
         System.out.println("Ingrese el porcentaje que quiere que tenga: ");
         return sc.nextInt();
@@ -576,7 +574,6 @@ public class Menu {
         return sc.nextInt();
     }
 
->>>>>>> bAgus
     /**
      * Método para ingresar el metodo de pago
      * @return un String con el nombre del Enum
@@ -704,15 +701,11 @@ public class Menu {
      */
     public void modificarClienteSalida(Cliente cliente){
         Teclado t = new Teclado();
-        int opc;
+        int aux;
         do{
-<<<<<<< HEAD
-            opc = modificarCliente();
-            switch (opc){
-=======
+
             aux = t.menuModificarCliente();
             switch (aux){
->>>>>>> bAgus
                 case 1:
                     cliente.setNombre(t.cargarNombreCliente());
                     break;
@@ -764,15 +757,14 @@ public class Menu {
                 default:
                     System.out.println("La opcion ingresada no es correcta!\n");
             }
-<<<<<<< HEAD
-        }while(opc != 1 && opc != 2 && opc != 3 && opc != 4 && opc != 5 && opc != 0);
+        }while(aux != 0);
     }
 
     /**
      * Método para recibir el atributo que se modificará en cliente.
      * @return
      */
-    public int modificarCliente(){
+    public int modificarCliente() {
         System.out.println("1 - Nombre");
         System.out.println("\n2 - Apellido");
         System.out.println("\n3 - Domicilio");
@@ -780,8 +772,6 @@ public class Menu {
         System.out.println("\n5 - Email");
         System.out.println("\n0 - Salir");
         return sc.nextInt();
-=======
-        }while(aux != 0);
->>>>>>> bAgus
     }
+
 }
