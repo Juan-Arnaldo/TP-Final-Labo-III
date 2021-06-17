@@ -205,10 +205,10 @@ public class Teclado {
      * @return
      */
     public int cargarMetodoPago(){
-        System.out.println("1.Efectivo");
-        System.out.println("\n2.Tarjeta");
-        System.out.println("\n3.Cheque");
-        System.out.println("\nIngrese el metodo con el que va a pagar: ");
+        System.out.println("1 - Efectivo");
+        System.out.println("2 - Tarjeta");
+        System.out.println("3 - Cheque");
+        System.out.println("Ingrese el metodo con el que va a pagar: ");
         return sc.nextInt();
     }
 
@@ -217,13 +217,13 @@ public class Teclado {
      * @return Opción elegida en forma de int.
      */
     public int cargarTarjeta(){
-        System.out.println("1. Visa");
-        System.out.println("\n2. Mastercard");
-        System.out.println("\n3. Cabal");
-        System.out.println("\n4. American Express");
-        System.out.println("\n5. Maestro");
-        System.out.println("\n6. Naranja");
-        System.out.println("\nIngrese la tarjeta del cliente: ");
+        System.out.println("1 - Visa");
+        System.out.println("2 - Mastercard");
+        System.out.println("3 - Cabal");
+        System.out.println("4 - American Express");
+        System.out.println("5 - Maestro");
+        System.out.println("6 - Naranja");
+        System.out.println("Ingrese la tarjeta del cliente: ");
 
         return sc.nextInt();
     }
@@ -235,25 +235,25 @@ public class Teclado {
     public int nombreArticuloCompradoNoExiste() {
         System.out.println("El id no corresponde a un artículo registrado.");
         System.out.println("1 - Intentar nuevamente.");
-        System.out.println("2 - Agregar nuevo Articulo ");
+        System.out.println("2 - Agregar nuevo Articulo. ");
         System.out.println("Seleccione la acción a realizar:");
         return sc.nextInt();
     }
 
     public int clienteNoExiste(){
-        System.out.println("\nEl cliente buscado no existe. ");
-        System.out.println("\n1. Volver a cargar el CUIT");
-        System.out.println("\n2. Pasar venta como consumidor final");
-        System.out.println("\n3. Crear nuevo cliente");
-        System.out.println("\n4. Ingrese la accion a realizar: ");
+        System.out.println("El cliente buscado no existe. ");
+        System.out.println("1 - Volver a cargar el CUIT.");
+        System.out.println("2 - Pasar venta como consumidor final.");
+        System.out.println("3 - Crear nuevo cliente.");
+        System.out.println("4 - Ingrese la accion a realizar: ");
         return sc.nextInt();
     }
 
     public int proveedorNoExiste(){
-        System.out.println("\nEl proveedor buscado no existe. ");
-        System.out.println("\n1. Volver a cargar el CUIT");
-        System.out.println("\n2. Crear nuevo proveedor");
-        System.out.println("\n3. Ingrese la accion a realizar: ");
+        System.out.println("El proveedor buscado no existe. ");
+        System.out.println("1 - Volver a cargar el CUIT.");
+        System.out.println("2 - Crear nuevo proveedor.");
+        System.out.println("3 - Ingrese la accion a realizar: ");
         return sc.nextInt();
     }
 
@@ -263,7 +263,7 @@ public class Teclado {
     }
 
     public int ingresePorcentajeDescNuevamente(){
-        System.out.println("El porcentaje ingresado no es correcto, ingreselo nuevamente");
+        System.out.println("El porcentaje ingresado no es correcto, ingreselo nuevamente.");
         System.out.println("(tiene que ser mayor a 0 y menor o igual a 100):");
         return sc.nextInt();
     }
@@ -372,50 +372,45 @@ public class Teclado {
     }
 
     /**
-     * Método para cargar la opción a elegir en el menú principal.
-     * @return (1 Nueva venta)
-     *         (2 Nueva compra)
-     *         (3 Nuevo cliente)
-     *         (4 Nuevo proveedor)
-     *         (5 Nuevo articulo)
-     *         (6 Lista clientes)
-     *         (7 Lista proveedores)
-     *         (8 Lista articulos)
-     *         (9 Salir)
+     * Metodo para ingresar lo que quiere modificar
+     * @return el numero
      */
-    public int cargarOpMain(){
-        System.out.println("Ingrese una opcion para continuar: ");
-        System.out.println("1 - Nueva venta.");
-        System.out.println("2 - Nueva compra.");
-        System.out.println("3 - Nuevo cliente.");
-        System.out.println("4 - Nuevo proveedor.");
-        System.out.println("5 - Nuevo articulo.");
-        System.out.println("6 - Lista clientes.");
-        System.out.println("7 - Lista proveedores.");
-        System.out.println("8 - Lista articulos.");
-        System.out.println("9 - Salir.");
-        return sc.nextInt();
-    }
-
-
-
     public int cargarOpcionMenuArticulo() {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Nuevo Articulo.");
         System.out.println("2 - Editar Articulo.");
         System.out.println("3 - Eliminar Articulo.");
         System.out.println("4 - Mostrar Articulo.");
-        System.out.println("5 - Salir.");
+        System.out.println("0 - Salir.");
         return sc.nextInt();
     }
 
-    public int modificarCliente(){
+    /**
+     * Metodo para ingresar lo que quiere modificar
+     * @return el numero
+     */
+    public int menuModificarCliente(){
         System.out.println("1 - Nombre");
-        System.out.println("\n2 - Apellido");
-        System.out.println("\n3 - Domicilio");
-        System.out.println("\n4 - Telefono");
-        System.out.println("\n5 - Email");
-        System.out.println("\n0 - Salir");
+        System.out.println("2 - Apellido");
+        System.out.println("3 - Domicilio");
+        System.out.println("4 - Telefono");
+        System.out.println("5 - Email");
+        System.out.println("0 - Salir");
+        return sc.nextInt();
+    }
+
+    /**
+     * Metodo para ingresar lo que quiere modificar
+     * @return el numero
+     */
+    public int menuModificarProveedor(){
+        System.out.println("1 - Nombre");
+        System.out.println("2 - Apellido");
+        System.out.println("3 - Domicilio");
+        System.out.println("4 - Telefono");
+        System.out.println("5 - Email");
+        System.out.println("6 - Localidad");
+        System.out.println("0 - Salir");
         return sc.nextInt();
     }
 
@@ -430,5 +425,9 @@ public class Teclado {
 
     public void clienteNoEncontrado(){
         System.out.println("El cliente que busca no existe...");
+    }
+
+    public void provNoEncontrado(){
+        System.out.println("El proveedor que busca no existe...");
     }
 }
