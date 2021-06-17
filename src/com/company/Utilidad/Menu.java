@@ -33,8 +33,8 @@ public class Menu {
 
             switch (opc) {
                 case 1:
-                        caja = menuSeleccionCaja(local);
-                        menuCaja(local, caja);
+                    caja = menuSeleccionCaja(local);
+                    menuCaja(local, caja);
                     break;
                 case 2:
                     local.nuevaCaja();
@@ -69,6 +69,8 @@ public class Menu {
      */
     public Caja menuSeleccionCaja(Local local) {
         Teclado teclado = new Teclado();
+        if(local.getListaCajas().listaVacia())
+            local.nuevaCaja();
         mostrarCajas(local);
         int idCaja = teclado.cargarIdCaja();
         return local.buscarCaja(idCaja);

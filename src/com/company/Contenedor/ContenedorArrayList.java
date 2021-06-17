@@ -96,12 +96,6 @@ public class ContenedorArrayList<T> {
     }
 
     public boolean listaVacia(){
-        boolean flag = false;
-
-        if(listaDeElementos == null){
-            flag = true;
-        }
-
-        return flag;
+        return listaDeElementos.isEmpty();
     }
 }
