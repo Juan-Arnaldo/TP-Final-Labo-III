@@ -178,24 +178,119 @@ public class Local {
      */
     public void mostrarUnArticulo(){
         Teclado t = new Teclado();
+        Articulo art = buscarArticuloID();
 
-        mostrarListaArticuloOptimizada();
-        int aux = t.cargarID();
-
-        Articulo art = buscarArticuloID(aux);
-
-        System.out.println(art.toString());
+        if (art != null){
+            System.out.println(art.toString());
+        }else{
+            t.articuloNoEncontrado();
+        }
     }
 
+    /**
+     * Método para eliminar un articulo
+     */
     public void eliminarUnArticulo(){
         Teclado t = new Teclado();
+        Articulo art = buscarArticuloID();
 
-        mostrarListaArticuloOptimizada();
-        int aux = t.cargarID();
+        if(art != null) {
+            listaArticulos.eliminar(art.getIdArticulo());
+        }else{
+            t.articuloNoEncontrado();
+        }
+    }
 
-        Articulo art = buscarArticuloID(aux);
+    /**
+     * Método para modificar un articulo
+     */
+    public void modificarUnArticulo(){
+        Teclado t = new Teclado();
+        Menu menu = new Menu();
+        Articulo aModificar = buscarArticuloID();
 
-        listaArticulos.eliminar(aux);
+        if(aModificar != null){
+            menu.modificarArticuloSalida(aModificar);
+        }else{
+            t.articuloNoEncontrado();
+        }
+    }
+
+    /**
+     * Método para mostrar la lista de articulo de fomar optimizada
+     */
+    public void mostrarListaArticuloOptimizada() {
+        Teclado t = new Teclado();
+        Validacion val = new Validacion();
+        String nombre = t.cargarNombre();
+        for (Articulo aux : listaArticulos.getLista()){
+            if (val.compararCaracter(nombre, aux.getNombre())){
+                System.out.println(aux.toStringOpt());
+            }
+        }
+        for (Cliente aux : listaClientes.getLista()){
+            if (val.compararCaracter(nombre, aux.getApellido())){
+                System.out.println(aux.toStringOpt());
+            }
+        }
+    }
+
+    /**
+     * Método para mostrar lista de clientes
+     */
+    public void mostrarClientes(){
+        for (Cliente cliente : listaClientes.getLista()){
+                cliente.toString();
+        }
+    }
+
+    /**
+     * Método para mostrar un cliente
+     */
+    public void mostrarUnCliente(){
+        Teclado t = new Teclado();
+        Cliente aMostrar = buscarCliente();
+
+        if (aMostrar != null){
+            System.out.println(aMostrar.toString());
+        }else{
+            t.clienteNoEncontrado();
+        }
+    }
+
+    /**
+     * Método para eliminar un cliente
+     */
+    public void eliminarUnCliente(){
+        Teclado t = new Teclado();
+        Cliente aBorrar = buscarCliente();
+
+        if (aBorrar != null){
+            int i = 0;
+            for(Cliente aux : listaClientes.getLista()){
+                if(aux.equals(aBorrar)){
+                    listaClientes.eliminar(i);
+                }
+                i++;
+            }
+        }else{
+            t.clienteNoEncontrado();
+        }
+    }
+
+    /**
+     * Método para modificar un cliente
+     */
+    public void modificarUnCliente(){
+        Teclado t = new Teclado();
+        Menu menu = new Menu();
+        Cliente aModificar = buscarCliente();
+
+        if(aModificar != null){
+            menu.modificarClienteSalida(aModificar);
+        }else {
+            t.clienteNoEncontrado();
+        }
     }
 
     /**
@@ -219,21 +314,7 @@ public class Local {
         }
     }
 
-    public void mostrarListaArticuloOptimizada() {
-        Teclado t = new Teclado();
-        Validacion val = new Validacion();
-        String nombre = t.cargarNombre();
-        for (Articulo aux : listaArticulos.getLista()){
-            if (val.compararCaracter(nombre, aux.getNombre())){
-                System.out.println(aux.toStringOpt());
-            }
-        }
-        for (Cliente aux : listaClientes.getLista()){
-            if (val.compararCaracter(nombre, aux.getApellido())){
-                System.out.println(aux.toStringOpt());
-            }
-        }
-    }
+
 
     /**
      * Metodo para mostrar una lista de clientes optimizada
@@ -311,13 +392,12 @@ public class Local {
 
     /**
      * Metodo para buscar un artículo de la lista de artículos conociendo su nombre.
-     * @param id ID del artículo a buscar.
      * @return Articulo buscado.
      */
-    public Articulo buscarArticuloID (int id) {
+    public Articulo buscarArticuloID () {
         Articulo articulo = null;
         Teclado t2 = new Teclado();
-        int nombre = t2.cargarID();
+        int id = t2.cargarID();
         for (Articulo aBuscar : listaArticulos.getLista()) {
             if (aBuscar.getIdArticulo() == id) {
                 articulo = aBuscar;

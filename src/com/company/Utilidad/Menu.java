@@ -161,7 +161,7 @@ public class Menu {
                     break;
                 case 2:
                     menuModificarArticulo();
-                    modificarArticulo(art);
+                    modificarArticulo();
                     break;
                 case 3:
                     local.eliminarUnArticulo();
@@ -307,13 +307,12 @@ public class Menu {
 
         do {
 
-            idArticuloComprado = t.cargarID();
-            articuloComprado = local.buscarArticuloID(idArticuloComprado);
+            articuloComprado = local.buscarArticuloID();
 
-            while(articuloComprado == null) {                                            // En caso de que el nombre ingresado no corresponda con un artículo registrado
-                switch (t.nombreArticuloCompradoNoExiste(idArticuloComprado)) {        // Le pregunto al usuario qué desea hacer
+            while(articuloComprado == null) {                   // En caso de que el nombre ingresado no corresponda con un artículo registrado
+                switch (t.nombreArticuloCompradoNoExiste()) {        // Le pregunto al usuario qué desea hacer
                     case 1 :
-                        idArticuloComprado = t.cargarID();                 // Corrige el nombre cargado
+                        articuloComprado = local.buscarArticuloID();                 // Corrige el nombre cargado
                         break;
                     case 2 :
                         local.nuevoArticulo(cargarNuevoArticulo(local));                 // El nombre es correcto y decide cargarlo en el registro de artículos
@@ -376,8 +375,7 @@ public class Menu {
             do {
 
                 local.mostrarListaArticuloOptimizada();
-                int  id = t.cargarID();
-                Articulo art = local.buscarArticuloID(id);
+                Articulo art = local.buscarArticuloID();
 
                 if (art != null) {
                     int cant = nuevaVenta.cargarCantidadArticulo(art);
@@ -706,11 +704,16 @@ public class Menu {
         return sc.nextInt();
     }
 
+
     public int numeroCaja(){
         System.out.println("Ingrese el numero de caja a operar: ");
         return sc.nextInt();
     }
 
+    /**
+     * Método para ingresar el metodo de pago
+     * @return un String con el nombre del Enum
+     */
     public String cargarMetodoDePago() {
         int aux;
         MetodoPago metodoPago = null;
@@ -775,7 +778,12 @@ public class Menu {
         return tarjeta;
     }
 
-    public void modificarArticulo(Articulo articulo) {
+    /**
+     * Salida para modificar el articulo
+     * Y aplicar los cambios
+     * @param articulo
+     */
+    public void modificarArticuloSalida(Articulo articulo) {
         Teclado t = new Teclado();
         int aux;
         do{
@@ -806,4 +814,35 @@ public class Menu {
         }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
     }
 
+    /**
+     * Salida para modificar el cliente
+     * Y aplicar los cambios
+     * @param cliente
+     */
+    public void modificarClienteSalida(Cliente cliente){
+        Teclado t = new Teclado();
+        int aux;
+        do{
+            aux = t.modificarCliente();
+            switch (t.modificarCliente()){
+                case 1:
+                    cliente.setNombre(t.cargarNombre());
+                    break;
+                case 2:
+                    cliente.setApellido(t.cargarApellido());
+                    break;
+                case 3:
+                    cliente.setDomicilio(t.cargarDireccion());
+                    break;
+                case 4:
+                    cliente.setTelefono(t.cargarTelefono());
+                    break;
+                case 5:
+                    cliente.setEmail(t.cargarEmail());
+                    break;
+                default:
+                    System.out.println("La opcion ingresada no es correcta!\n");
+            }
+        }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 0);
+    }
 }

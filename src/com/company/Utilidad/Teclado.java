@@ -230,11 +230,10 @@ public class Teclado {
 
     /**
      * Método para elegir cómo seguir en caso de que el nombre ingresado no corresponda a un artículo existente en los registros de local.
-     * @param id - ID ingresado.
      * @return Opción elegida en forma de int. 1 - Intentar nuevamente. 2 - Agregar " + " al registro.");.
      */
-    public int nombreArticuloCompradoNoExiste(int id) {
-        System.out.println(id + " no corresponde a un artículo registrado.");
+    public int nombreArticuloCompradoNoExiste() {
+        System.out.println("El id no corresponde a un artículo registrado.");
         System.out.println("1 - Intentar nuevamente.");
         System.out.println("2 - Agregar nuevo Articulo ");
         System.out.println("Seleccione la acción a realizar:");
@@ -406,8 +405,26 @@ public class Teclado {
         return sc.nextInt();
     }
 
+    public int modificarCliente(){
+        System.out.println("1. Nombre");
+        System.out.println("\n2. Apellido");
+        System.out.println("\n3. Domicilio");
+        System.out.println("\n4. Telefono");
+        System.out.println("\n5. Email");
+        System.out.println("\n0. Salir");
+        return sc.nextInt();
+    }
+
     public int numeroCaja(){
         System.out.println("Ingrese el numero de caja a operar: ");
         return sc.nextInt();
+    }
+
+    public void articuloNoEncontrado(){
+        System.out.println("El articulo que busca no existe...");
+    }
+
+    public void clienteNoEncontrado(){
+        System.out.println("El cliente que busca no existe...");
     }
 }
