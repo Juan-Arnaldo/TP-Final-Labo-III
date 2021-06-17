@@ -379,29 +379,25 @@ public class Teclado {
         return sc.nextInt();
     }
 
-    /**
-     * Metodo para ingresar lo que quiere modificar
-     * @return el numero
-     */
-    public int modificiarArticulo(){
-        System.out.println("1. Nombre");
-        System.out.println("\n2. Departamento");
-        System.out.println("\n3. Marca");
-        System.out.println("\n4. Costo");
-        System.out.println("\n5. Utilidad");
-        System.out.println("\n6. Precio");
-        System.out.println("\n0. Salir");
-        System.out.println("\nIngrese lo que quiere modificar: ");
+
+
+    public int cargarOpcionMenuArticulo() {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Nuevo Articulo.");
+        System.out.println("2 - Editar Articulo.");
+        System.out.println("3 - Eliminar Articulo.");
+        System.out.println("4 - Mostrar Articulo.");
+        System.out.println("5 - Salir.");
         return sc.nextInt();
     }
 
     public int modificarCliente(){
-        System.out.println("1. Nombre");
-        System.out.println("\n2. Apellido");
-        System.out.println("\n3. Domicilio");
-        System.out.println("\n4. Telefono");
-        System.out.println("\n5. Email");
-        System.out.println("\n0. Salir");
+        System.out.println("1 - Nombre");
+        System.out.println("\n2 - Apellido");
+        System.out.println("\n3 - Domicilio");
+        System.out.println("\n4 - Telefono");
+        System.out.println("\n5 - Email");
+        System.out.println("\n0 - Salir");
         return sc.nextInt();
     }
 

@@ -94,9 +94,9 @@ public class Menu {
     }
 
     public void menuCaja (Local local, Caja caja) {
-        System.out.println("\nBienvenido a la Caja " + caja.getIdCaja() + "\n");
         int opc = 0;
         do{
+            System.out.println("\nBienvenido a la Caja " + caja.getIdCaja() + "\n");
             opc = cargarOpcionMenuCaja();
 
             switch (opc) {
@@ -107,7 +107,7 @@ public class Menu {
                     //TODO codear detalle del día para la caja
                     break;
                 case 3:
-                    //menuArticulos();
+                    menuArticulo(local);
                     break;
                 case 4:
                     //menuClietes();
@@ -143,6 +143,37 @@ public class Menu {
         System.out.println("6 - Menú Descuentos.");
         System.out.println("7 - Salir.");
         return sc.nextInt();
+    }
+
+    /**
+     * Método para cargar la opción a elegir en el menú de Articulos.
+     * @return opción.
+     */
+
+
+    public void menuArticulo(Local local) {
+        Teclado t = new Teclado();
+        int opc = 0;
+        do {
+            opc = t.cargarOpcionMenuArticulo();
+            switch (opc) {
+                case 1:
+                    //local.nuevoArticulo(menu.cargarNuevoArticulo(local));
+                    break;
+                case 2:
+                    local.modificarUnArticulo();
+                    break;
+                case 3:
+                    local.eliminarUnArticulo();
+                    break;
+                case 4:
+                    local.mostrarUnArticulo();
+                    break;
+                default:
+                    System.out.println("La opcion ingresada no es valida");
+                    break;
+            }
+        } while (opc != 1 && opc != 2 && opc != 3 && opc != 0);
     }
 
     /**
@@ -505,7 +536,7 @@ public class Menu {
 
     /**
      * Método para cargar por teclado el metodo de pago
-     * @return
+     * @return opcion
      */
     public int cargarMetodoPago(){
         System.out.println("1.Efectivo");
@@ -657,6 +688,22 @@ public class Menu {
         return sc.nextLine();
     }
 
+    /**
+     * Metodo para ingresar lo que quiere modificar
+     * @return el numero
+     */
+    public int menuModificarArticulo(){
+        System.out.println("1. Nombre");
+        System.out.println("\n2. Departamento");
+        System.out.println("\n3. Marca");
+        System.out.println("\n4. Costo");
+        System.out.println("\n5. Utilidad");
+        System.out.println("\n6. Precio");
+        System.out.println("\n0. Salir");
+        System.out.println("\nIngrese lo que quiere modificar: ");
+        return sc.nextInt();
+    }
+
 
     public int numeroCaja(){
         System.out.println("Ingrese el numero de caja a operar: ");
@@ -740,7 +787,7 @@ public class Menu {
         Teclado t = new Teclado();
         int aux;
         do{
-            aux = t.modificiarArticulo();
+            aux = menuModificiarArticulo();
             switch (aux){
                 case 1:
                     articulo.setNombre(t.cargarNombreArticulo());
@@ -765,6 +812,22 @@ public class Menu {
                     break;
             }
         }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
+    }
+
+    /**
+     * Metodo para ingresar lo que quiere modificar
+     * @return el numero
+     */
+    public int menuModificiarArticulo(){
+        System.out.println("1 - Nombre");
+        System.out.println("2 - Departamento");
+        System.out.println("3 - Marca");
+        System.out.println("4 - Costo");
+        System.out.println("5 - Utilidad");
+        System.out.println("6 - Precio");
+        System.out.println("0 - Salir");
+        System.out.println("Ingrese lo que quiere modificar: ");
+        return sc.nextInt();
     }
 
     /**
