@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="58b82ecb-6725-4f25-b759-2cc089de0dfe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gson-2.8.7.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Local/Local.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Local.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Teclado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Teclado.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Validacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Validacion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
