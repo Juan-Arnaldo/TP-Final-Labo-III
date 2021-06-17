@@ -92,7 +92,7 @@ public class Menu {
         }
     }
 
-    public void menuCaja (Local local, Caja caja) {""
+    public void menuCaja (Local local, Caja caja) {
         int opc = 0;
         do{
             System.out.println("\nBienvenido a la Caja " + caja.getIdCaja() + "\n");
