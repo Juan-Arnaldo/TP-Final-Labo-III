@@ -164,11 +164,38 @@ public class Local {
         }
     }
 
-
+    /**
+     * Método para mostrar todos los Articulo
+     */
     public void mostrarArticulos(){
         for (Articulo art : listaArticulos.getLista()){
             System.out.println(art.toString());
         }
+    }
+
+    /**
+     * Método para mostrar un Articulo
+     */
+    public void mostrarUnArticulo(){
+        Teclado t = new Teclado();
+
+        mostrarListaArticuloOptimizada();
+        int aux = t.cargarID();
+
+        Articulo art = buscarArticuloID(aux);
+
+        System.out.println(art.toString());
+    }
+
+    public void eliminarUnArticulo(){
+        Teclado t = new Teclado();
+
+        mostrarListaArticuloOptimizada();
+        int aux = t.cargarID();
+
+        Articulo art = buscarArticuloID(aux);
+
+        listaArticulos.eliminar(aux);
     }
 
     /**
@@ -337,17 +364,6 @@ public class Local {
     }
 
 
-
-    public String toString() {
-        return "Local{" +
-                "\nidLocal=" + idLocal +
-                ", \nnombre='" + nombre + '\'' +
-                ", \ndireccion='" + direccion + '\'' +
-                ", \nlistaArticulos=" + listaArticulos +
-                ", \nlistaClientes=" + listaClientes +
-                ", \nlistaProveedores=" + listaProveedores;
-    }
-
     /**
      * Método para buscar una caja sabiendo su id. Retorna la última de la lista en caso de recibir un id erroneo.
      * @param idCaja
@@ -359,6 +375,16 @@ public class Local {
         else
             return listaCajas.getElemento(listaCajas.getLista().size()-1);
 
+    }
+
+    public String toString() {
+        return "Local{" +
+                "\nidLocal=" + idLocal +
+                ", \nnombre='" + nombre + '\'' +
+                ", \ndireccion='" + direccion + '\'' +
+                ", \nlistaArticulos=" + listaArticulos +
+                ", \nlistaClientes=" + listaClientes +
+                ", \nlistaProveedores=" + listaProveedores;
     }
 }
 

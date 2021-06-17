@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/src/com/company/Local/Local.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Local/Local.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Utilidad/Teclado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Utilidad/Teclado.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,6 +126,7 @@
       <workItem from="1623858350789" duration="125000" />
       <workItem from="1623858580484" duration="1062000" />
       <workItem from="1623859713325" duration="843000" />
+      <workItem from="1623874013260" duration="5854000" />
     </task>
     <servers />
   </component>
@@ -142,16 +144,6 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.IndexOutOfBoundsException" package="java.lang" />
-          <option name="timeStamp" value="3" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/TP_Final_Labo_III$Main.ic" NAME="Main Coverage Results" MODIFIED="1623873921379" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />

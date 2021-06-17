@@ -384,7 +384,7 @@ public class Teclado {
      * Metodo para ingresar lo que quiere modificar
      * @return el numero
      */
-    public int modificiarArticulo(){
+    public int menuModificiarArticulo(){
         System.out.println("1. Nombre");
         System.out.println("\n2. Departamento");
         System.out.println("\n3. Marca");

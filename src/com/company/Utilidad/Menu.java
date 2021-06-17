@@ -106,7 +106,7 @@ public class Menu {
                     //TODO codear detalle del día para la caja
                     break;
                 case 3:
-
+                    menuArticulo(local);
                     break;
                 case 4:
                     //menuClietes();
@@ -150,26 +150,30 @@ public class Menu {
      */
 
 
-    public void menuArticulo() {
+    public void menuArticulo(Local local, Articulo art) {
         Teclado t = new Teclado();
-
+        int opc = 0;
         do {
-            int aux = t.cargarOpcionMenuArticulo();
-            switch (aux) {
+            opc = t.cargarOpcionMenuArticulo();
+            switch (opc) {
                 case 1:
-
+                    //local.nuevoArticulo(menu.cargarNuevoArticulo(local2));
                     break;
                 case 2:
-
+                    menuModificarArticulo();
+                    modificarArticulo(art);
                     break;
                 case 3:
-
+                    local.eliminarUnArticulo();
+                    break;
+                case 4:
+                    local.mostrarUnArticulo();
                     break;
                 default:
                     System.out.println("La opcion ingresada no es valida");
                     break;
             }
-        } while (aux != 1 && aux != 2 && aux != 3 && aux != 0);
+        } while (opc != 1 && opc != 2 && opc != 3 && opc != 0);
     }
 
     /**
@@ -690,7 +694,7 @@ public class Menu {
      * Metodo para ingresar lo que quiere modificar
      * @return el numero
      */
-    public int modificiarArticulo(){
+    public int menuModificarArticulo(){
         System.out.println("1. Nombre");
         System.out.println("\n2. Departamento");
         System.out.println("\n3. Marca");
@@ -775,7 +779,7 @@ public class Menu {
         Teclado t = new Teclado();
         int aux;
         do{
-            aux = t.modificiarArticulo();
+            aux = t.menuModificiarArticulo();
             switch (aux){
                 case 1:
                     articulo.setNombre(t.cargarNombreArticulo());
