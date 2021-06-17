@@ -17,18 +17,18 @@ public class Main {
 
 
         Local local = new Local(10, "Messi", "Messi");
-        local = hardcodearLocal(); // Esto descomentado hardcodea el local independientemente del archivo. Comentar la lectura para usarlo.
+        //local = hardcodearLocal(); // Esto descomentado hardcodea el local independientemente del archivo. Comentar la lectura para usarlo.
 
 
         Menu menu = new Menu();
-      //  LocalJson json = new LocalJson();
+        LocalJson json = new LocalJson();
 
 
-//        local = json.leerLocalArchivos();
+       //local = json.leerLocalArchivos();
 
         menu.menuInicio(local);
 
-      //  json.guardarLocalArchivo(local);
+        json.guardarLocalArchivo(local);
 
     }
 
