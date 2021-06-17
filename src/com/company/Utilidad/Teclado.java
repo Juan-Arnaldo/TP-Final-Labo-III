@@ -1,5 +1,9 @@
 package com.company.Utilidad;
 
+import com.company.Articulo.Articulo;
+import com.company.Persona.Cliente;
+import com.company.Persona.Proveedor;
+
 import java.util.Scanner;
 
 public class Teclado {
@@ -399,12 +403,12 @@ public class Teclado {
     public String cargarEmail() {
         Validacion validacion = new Validacion();
 
-        String email = sc.nextLine();
         System.out.println("Ingrese el email: ");
+        String email = sc.nextLine();
         while(!validacion.validacionEmailValido(email)) {
             email = cargarNuevamenteEmailPersona(email);
         }
-        return sc.nextLine();
+        return email;
     }
 
     /**
@@ -463,12 +467,12 @@ public class Teclado {
      * Metodo para ingresar lo que quiere modificar
      * @return el numero
      */
-    public int menuModificarCliente(){
-        System.out.println("1 - Nombre");
-        System.out.println("2 - Apellido");
-        System.out.println("3 - Domicilio");
-        System.out.println("4 - Telefono");
-        System.out.println("5 - Email");
+    public int menuModificarCliente(Cliente cliente){
+        System.out.println("1 - Nombre: " + cliente.getNombre());
+        System.out.println("2 - Apellido: " + cliente.getApellido());
+        System.out.println("3 - Domicilio: " + cliente.getDomicilio());
+        System.out.println("4 - Telefono: " + cliente.getTelefono());
+        System.out.println("5 - Email: " + cliente.getEmail());
         System.out.println("0 - Salir");
         return Integer.parseInt(sc.nextLine());
     }
@@ -477,20 +481,15 @@ public class Teclado {
      * Metodo para ingresar lo que quiere modificar
      * @return el numero
      */
-    public int menuModificarProveedor(){
-        System.out.println("1 - Nombre");
-        System.out.println("2 - Apellido");
-        System.out.println("3 - Domicilio");
-        System.out.println("4 - Telefono");
-        System.out.println("5 - Email");
-        System.out.println("6 - Localidad");
+    public int menuModificarProveedor(Proveedor proveedor){
+        System.out.println("1 - Nombre: " + proveedor.getNombre());
+        System.out.println("2 - Apellido: " + proveedor.getApellido());
+        System.out.println("3 - Domicilio: " + proveedor.getDomicilio());
+        System.out.println("4 - Telefono: " + proveedor.getTelefono());
+        System.out.println("5 - Email: " + proveedor.getEmail());
+        System.out.println("6 - Localidad: " + proveedor.getLocalidad());
         System.out.println("0 - Salir");
         return Integer.parseInt(sc.nextLine());
-    }
-
-    public int numeroCaja(){
-        System.out.println("Ingrese el numero de caja a operar: ");
-        return sc.nextInt();
     }
 
     public void articuloNoEncontrado(){
@@ -506,38 +505,21 @@ public class Teclado {
      * Metodo para ingresar lo que quiere modificar
      * @return el numero
      */
-    public int menuModificiarArticulo(){
-        System.out.println("1 - Nombre");
-        System.out.println("2 - Departamento");
-        System.out.println("3 - Costo");
-        System.out.println("4 - Utilidad");
-        System.out.println("5 - Precio");
+    public int menuModificiarArticulo(Articulo articulo){
+        System.out.println("1 - Nombre: " + articulo.getNombre());
+        System.out.println("2 - Departamento: " + articulo.getDepartamento());
+        System.out.println("3 - Marca: " + articulo.getMarca());
+        System.out.println("4 - Costo: " + articulo.getCosto());
+        System.out.println("5 - Utilidad: " + articulo.getUtilidad());
+        System.out.println("6 - Precio: " + articulo.getPrecio());
         System.out.println("0 - Salir");
         System.out.println("Ingrese lo que quiere modificar: ");
         return Integer.parseInt(sc.nextLine());
     }
 
-    /**
-     * Método para recibir el atributo que se modificará en cliente.
-     * @return
-     */
-    public int modificarCliente(){
-        System.out.println("1 - Nombre");
-        System.out.println("\n2 - Apellido");
-        System.out.println("\n3 - Domicilio");
-        System.out.println("\n4 - Telefono");
-        System.out.println("\n5 - Email");
-        System.out.println("\n0 - Salir");
-        return sc.nextInt();
-    }
-
-
     public void provNoEncontrado(){
         System.out.println("El proveedor que busca no existe...");
     }
-
-
-
 
     public int marcaBuscadaNoSeEncuentra(){
         System.out.println("La marca buscada no existe, ingrese lo que quiera hacer: ");
