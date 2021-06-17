@@ -26,7 +26,7 @@ public class Articulo {
         this.utilidad = utilidad;
         this.stock = stock;
         this.costo = costo;
-        this.precio = costo + (costo * utilidad);
+        this.precio = costo + (costo * utilidad / 100);
     }
 
     public int getIdArticulo() {

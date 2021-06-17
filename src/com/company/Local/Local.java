@@ -240,7 +240,7 @@ public class Local {
         Articulo aModificar = buscarArticuloID();
 
         if(aModificar != null){
-            menu.modificarArticuloSalida(aModificar);
+            menu.modificarArticuloSalida(aModificar, this);
         }else{
             t.articuloNoEncontrado();
         }
@@ -334,18 +334,19 @@ public class Local {
     public boolean mostrarListaClienteOptimizada() {
         boolean flag = false;
         Teclado t = new Teclado();
-        String nombre = t.cargarNombre();
+        String nombre = t.cargarNombreCliente();
         Validacion val = new Validacion();
 
         for (Cliente aux : listaClientes.getLista()){
             if (val.compararCaracter(nombre, aux.getNombre())){
-                System.out.println(aux.toStringOpt());
+                System.out.println("\n" + aux.toStringOpt());
                 flag = true;
             }
         }
+
         for (Cliente aux : listaClientes.getLista()){
             if (val.compararCaracter(nombre, aux.getApellido())){
-                System.out.println(aux.toStringOpt());
+                System.out.println("\n" + aux.toStringOpt());
                 flag = true;
             }
         }
@@ -358,7 +359,7 @@ public class Local {
     public void mostrarListaProveedorOptimizada() {
 
         Teclado t = new Teclado();
-        String nombre = t.cargarNombre();
+        String nombre = t.cargarNombreCliente();
         Validacion val = new Validacion();
 
         for (Proveedor aux : listaProveedores.getLista()){

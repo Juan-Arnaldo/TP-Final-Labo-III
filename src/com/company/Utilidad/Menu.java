@@ -266,11 +266,13 @@ public class Menu {
             cuit = t.cargarNuevamenteCuitPersona(cuit);
         }
 
-        String nombre = t.cargarNombre();
+        String nombre = t.cargarNombreCliente();
         String apellido = t.cargarApellido();
         String direc = t.cargarDireccion();
         String tel = t.cargarTelefono();
         String email = t.cargarEmail();
+
+        System.out.println("Cliente cargado exitosamente.");
 
         return new Cliente(nombre, direc, cuit, tel, email, apellido);
     }
@@ -289,7 +291,7 @@ public class Menu {
             cuit = t.cargarNuevamenteCuitPersona(cuit);
         }
 
-        String nombre = t.cargarNombre();
+        String nombre = t.cargarNombreCliente();
         String apellido = t.cargarApellido();
         String direc = t.cargarDireccion();
         String tel = t.cargarTelefono();
@@ -319,18 +321,7 @@ public class Menu {
 
         Marca marca = local.buscarMarca();
         while (marca == null){
-            int aux = t.marcaBuscadaNoSeEncuentra();
-            switch (aux){
-                case 1:
-                    marca = cargarNuevaMarca(local);
-                    local.nuevaMarca(marca);
-                    break;
-                case 2:
-                    marca = local.buscarMarca();
-                    break;
-                default:
-                    System.out.println("La opcion ingresada no es correcta...!\n");
-            }
+            marca = menuMarcaNoExiste(local);
         }
 
         costo = t.cargarCosto();
@@ -354,6 +345,25 @@ public class Menu {
         return new Articulo(nombre, departamento, marca, costo, utilidad, stock);
     }
 
+    public Marca menuMarcaNoExiste(Local local) {
+        Teclado t = new Teclado();
+        Marca marca;
+
+        int aux = t.marcaBuscadaNoSeEncuentra();
+        switch (aux){
+            case 1:
+                marca = cargarNuevaMarca(local);
+                local.nuevaMarca(marca);
+                return marca;
+            case 2:
+                marca = local.buscarMarca();
+                return marca;
+            default:
+                System.out.println("La opcion ingresada no es correcta...!\n");
+                return null;
+        }
+    }
+
     /**
      * Método para cargar los datos de una nueva compra, con sus correspondientes validaciones.
      * @param local en cuyo registro se cargará la nueva compra.
@@ -361,7 +371,6 @@ public class Menu {
      */
     public Compra cargarNuevaCompra(Local local) {
         Teclado t = new Teclado();
-        Compra nuevaCompra = new Compra();
 
         int idArticuloComprado;
         Articulo articuloComprado = null;
@@ -385,6 +394,8 @@ public class Menu {
                     break;
             }
         }
+
+        Compra nuevaCompra = new Compra(proveedor);
 
         do {
 
@@ -426,6 +437,10 @@ public class Menu {
      * @return venta nuevo a registrar.
      */
     public Venta cargarNuevaVenta(Local local, Caja caja) {
+        System.out.println("\n---------------------------");
+        System.out.println("------- NUEVA VENTA -------");
+        System.out.println("---------------------------\n");
+
         Teclado t = new Teclado();
         int aux = -1;
         Cliente cliente = local.buscarCliente();
@@ -560,109 +575,6 @@ public class Menu {
         return sc.nextInt();
     }
 
-    public int ingresePorcentajeDesc(){
-        System.out.println("Ingrese el porcentaje que quiere que tenga: ");
-        return sc.nextInt();
-    }
-
-    public int ingresePorcentajeDescNuevamente(){
-        System.out.println("El porcentaje ingresado no es correcto, ingreselo nuevamente");
-        System.out.println("(tiene que ser mayor a 0 y menor o igual a 100):");
-        return sc.nextInt();
-    }
-
-    /**
-     * Método para cargar por teclado un nombre.
-     * @return nombre cargado.
-     */
-    public String cargarNombre() {
-        System.out.println("Ingrese el nombre: ");
-        return sc.nextLine();
-    }
-
-    /**
-     * Método para cargar por teclado el nombre de una Persona.
-     * @return nombre de la persana cargado.
-     */
-    public String cargarApellido() {
-        System.out.println("Ingrese el apellido: ");
-        return sc.nextLine();
-    }
-
-    /**
-     * Método para cargar por teclado la dirección de una Persona.
-     * @return dirección de la persana cargado.
-     */
-    public String cargarDireccion() {
-        System.out.println("Ingrese la direccion: ");
-        return sc.nextLine();
-    }
-
-    /**
-     * Método para cargar por teclado el teléfono de una Persona.
-     * @return teléfono de la persana cargado.
-     */
-    public String cargarTelefono() {
-        System.out.println("Ingrese el telefono: ");
-        return sc.nextLine();
-    }
-
-    /**
-     * Método para cargar por teclado el CUIT de una Persona.
-     * @return CUIT de la persana cargado.
-     */
-    public String cargarCuit() {
-        System.out.println("Ingrese el cuit: ");
-        return sc.nextLine();
-    }
-
-    /**
-     * Método para volver a cargar el CUIT de una persona en caso de que el CUIT ingresado anteriormente no sea posible.
-     * @param cuit cargado anteriormente.
-     * @return CUIT presuntamente corregido.
-     */
-    public String cargarNuevamenteCuitPersona(String cuit) {
-        System.out.println(cuit + " es el CUIT de una persona que ya existe en el registro.");
-        System.out.println("Ingrese nuevamente el CUIT: ");
-        return sc.nextLine();
-    }
-
-    /**
-     * Método para cargar por teclado el email de una Persona.
-     * @return email de la persana cargado.
-     */
-    public String cargarEmail() {
-        System.out.println("Ingrese el email: ");
-        return sc.nextLine();
-    }
-
-    /**
-     * Método para volver a cargar por teclado el email luego de la validación fallida.
-     * @param email cargado anteriormente.
-     * @return email presuntamente corregido.
-     */
-    public String cargarNuevamenteEmailPersona(String email) {
-        System.out.println(email + " no es una dirección de correo electrónico válida.");
-        System.out.println("Ingrese nuevamente el email: ");
-        return sc.nextLine();
-    }
-
-    /**
-     * Método para cargar por teclado la localidad de un Proveedor.
-     * @return localidad del proveedor cargado.
-     */
-    public String cargarLocalidad(){
-        System.out.println("Ingrese la localidad: ");
-        return sc.nextLine();
-    }
-
-
-
-    public int numeroCaja(){
-        System.out.println("Ingrese el numero de caja a operar: ");
-        return sc.nextInt();
-    }
-
     /**
      * Método para ingresar el metodo de pago
      * @return un String con el nombre del Enum
@@ -736,25 +648,38 @@ public class Menu {
      * Y aplicar los cambios
      * @param articulo
      */
-    public void modificarArticuloSalida(Articulo articulo) {
+    public void modificarArticuloSalida(Articulo articulo, Local local) {
         Teclado t = new Teclado();
         int aux;
         do{
-            switch (aux = t.menuModificiarArticulo()){
+            switch (aux = t.menuModificiarArticulo(articulo)){
                 case 1:
                     articulo.setNombre(t.cargarNombreArticulo());
+                    System.out.println("Nombre editado con exito.");
                     break;
                 case 2:
                     articulo.setDepartamento(t.cargarDepartamentoArticulo());
+                    System.out.println("Departamento editado con exito.");
                     break;
                 case 3:
-                    articulo.setCosto(t.cargarCostoArticulo());
+                    Marca marca = local.buscarMarca();
+                    while (marca == null){
+                        marca = menuMarcaNoExiste(local);
+                    }
+                    articulo.setMarca(marca);
+                    System.out.println("Marca editada con exito.");
                     break;
                 case 4:
-                    articulo.setUtilidad(t.cargarUtilidadArticulo());
+                    articulo.setCosto(t.cargarCostoArticulo());
+                    System.out.println("Costo editado con exito.");
                     break;
                 case 5:
+                    articulo.setUtilidad(t.cargarUtilidadArticulo());
+                    System.out.println("Utilidad editada con exito.");
+                    break;
+                case 6:
                     articulo.setStock(t.cargarCantidadArticulo());
+                    System.out.println("Stock editado con exito.");
                     break;
                 case 0 :
                     System.out.println("Saliendo...");
@@ -776,9 +701,9 @@ public class Menu {
         Teclado t = new Teclado();
         int aux;
         do{
-            switch (aux = t.menuModificarCliente()){
+            switch (aux = t.menuModificarCliente(cliente)){
                 case 1:
-                    cliente.setNombre(t.cargarNombre());
+                    cliente.setNombre(t.cargarNombreCliente());
                     System.out.println("Nombre editado con exito.");
                     break;
                 case 2:
@@ -810,9 +735,9 @@ public class Menu {
         int aux;
         Teclado t = new Teclado();
         do{
-            switch (aux = t.menuModificarProveedor()){
+            switch (aux = t.menuModificarProveedor(proveedor)){
                 case 1:
-                    proveedor.setNombre(t.cargarNombre());
+                    proveedor.setNombre(t.cargarNombreCliente());
                     System.out.println("Nombre editado con exito.");
                     break;
                 case 2:
@@ -842,19 +767,4 @@ public class Menu {
             }
         }while(aux != 0);
     }
-
-    /**
-     * Método para recibir el atributo que se modificará en cliente.
-     * @return
-     */
-    public int modificarCliente() {
-        System.out.println("1 - Nombre");
-        System.out.println("2 - Apellido");
-        System.out.println("3 - Domicilio");
-        System.out.println("4 - Telefono");
-        System.out.println("5 - Email");
-        System.out.println("0 - Salir");
-        return sc.nextInt();
-    }
-
 }

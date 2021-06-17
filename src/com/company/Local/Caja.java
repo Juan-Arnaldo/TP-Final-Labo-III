@@ -45,7 +45,7 @@ public class Caja {
      */
 
     public void nuevaVenta(Venta nuevaVenta, Local local) {
-        if(nuevaVenta.getListaLinea().size() > 0){
+        if(nuevaVenta.getListaLinea().getLista().size() > 0){
             nuevaVenta.setIdOperacion(local.getListaOperacion().getContadorId());
             local.getListaOperacion().agregar(nuevaVenta);
         }

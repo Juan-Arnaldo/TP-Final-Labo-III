@@ -1,5 +1,6 @@
 package com.company.Operacion;
 
+import com.company.Contenedor.ContenedorArrayList;
 import com.company.Persona.Persona;
 
 import java.time.LocalDate;
@@ -8,6 +9,7 @@ import java.time.LocalTime;
 public class Operacion {
     private Persona persona;
     private int idOperacion;
+    private ContenedorArrayList<Linea> listaLinea;
 
     public Operacion(){
 
@@ -15,6 +17,7 @@ public class Operacion {
 
     public Operacion(Persona persona){
         this.persona = persona;
+        this.listaLinea = new ContenedorArrayList<>();
     }
 
     public Persona getPersona() {
@@ -31,6 +34,14 @@ public class Operacion {
 
     public void setIdOperacion(int idOperacion) {
         this.idOperacion = idOperacion;
+    }
+
+    public ContenedorArrayList<Linea> getListaLinea() {
+        return listaLinea;
+    }
+
+    public void setListaLinea(ContenedorArrayList<Linea> listaLinea) {
+        this.listaLinea = listaLinea;
     }
 
     @Override
