@@ -1,6 +1,7 @@
 package com.company.Utilidad;
 
 import com.company.Articulo.Articulo;
+import com.company.Articulo.Marca;
 import com.company.Local.Caja;
 import com.company.Local.DescTarjeta;
 import com.company.Local.Local;
@@ -418,6 +419,26 @@ public class Menu {
     }
 
     /**
+     * Método para cargar una nueva marca
+     * @param local
+     * @return La nueva marca creada
+     * @return Null, en caso de que ya exista
+     */
+    public Marca cargarNuevaMarca(Local local){
+        Teclado t = new Teclado();
+        Validacion v = new Validacion();
+        String nombre = t.cargarNombreMarca();
+
+        if (v.validacionMarcaNueva(local.getListaMarca(), nombre)){
+            return new Marca(nombre);
+        }else{
+            t.marcaYaExiste();
+        }
+
+        return null;
+    }
+
+    /**
      * Método para elegir cómo seguir en caso de que el nombre ingresado no corresponda a un artículo existente en los registros de local.
      * @return Opción elegida en forma de int. 1 - Intentar nuevamente. 2 - Agregar " + " al registro.");.
      */
@@ -523,7 +544,7 @@ public class Menu {
         Teclado t = new Teclado();
         int aux;
         do{
-            aux = menuModificiarArticulo();
+            aux = t.menuModificiarArticulo();
             switch (aux){
                 case 1:
                     articulo.setNombre(t.cargarNombreArticulo());
@@ -550,21 +571,6 @@ public class Menu {
         }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
     }
 
-    /**
-     * Metodo para ingresar lo que quiere modificar
-     * @return el numero
-     */
-    public int menuModificiarArticulo(){
-        System.out.println("1 - Nombre");
-        System.out.println("2 - Departamento");
-        System.out.println("3 - Marca");
-        System.out.println("4 - Costo");
-        System.out.println("5 - Utilidad");
-        System.out.println("6 - Precio");
-        System.out.println("0 - Salir");
-        System.out.println("Ingrese lo que quiere modificar: ");
-        return sc.nextInt();
-    }
 
     /**
      * Salida para modificar el cliente
@@ -575,7 +581,7 @@ public class Menu {
         Teclado t = new Teclado();
         int opc;
         do{
-            opc = modificarCliente();
+            opc = t.modificarCliente();
             switch (opc){
                 case 1:
                     cliente.setNombre(t.cargarNombreCliente());
@@ -598,17 +604,4 @@ public class Menu {
         }while(opc != 1 && opc != 2 && opc != 3 && opc != 4 && opc != 5 && opc != 0);
     }
 
-    /**
-     * Método para recibir el atributo que se modificará en cliente.
-     * @return
-     */
-    public int modificarCliente(){
-        System.out.println("1 - Nombre");
-        System.out.println("\n2 - Apellido");
-        System.out.println("\n3 - Domicilio");
-        System.out.println("\n4 - Telefono");
-        System.out.println("\n5 - Email");
-        System.out.println("\n0 - Salir");
-        return sc.nextInt();
-    }
 }

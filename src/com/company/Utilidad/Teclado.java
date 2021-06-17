@@ -351,6 +351,15 @@ public class Teclado {
         return sc.nextLine();
     }
 
+    public String cargarNombreMarca(){
+        System.out.println("Ingrese el nombre de la marca: ");
+        return sc.nextLine();
+    }
+
+    public void marcaYaExiste(){
+        System.out.println("La marca que deseo crear ya existe! ");
+    }
+
     public void articuloNoEncontrado(){
         System.out.println("El articulo que busca no existe...");
     }
@@ -358,4 +367,35 @@ public class Teclado {
     public void clienteNoEncontrado(){
         System.out.println("El cliente que busca no existe...");
     }
+
+    /**
+     * Metodo para ingresar lo que quiere modificar
+     * @return el numero
+     */
+    public int menuModificiarArticulo(){
+        System.out.println("1 - Nombre");
+        System.out.println("2 - Departamento");
+        System.out.println("3 - Marca");
+        System.out.println("4 - Costo");
+        System.out.println("5 - Utilidad");
+        System.out.println("6 - Precio");
+        System.out.println("0 - Salir");
+        System.out.println("Ingrese lo que quiere modificar: ");
+        return sc.nextInt();
+    }
+
+    /**
+     * Método para recibir el atributo que se modificará en cliente.
+     * @return
+     */
+    public int modificarCliente(){
+        System.out.println("1 - Nombre");
+        System.out.println("\n2 - Apellido");
+        System.out.println("\n3 - Domicilio");
+        System.out.println("\n4 - Telefono");
+        System.out.println("\n5 - Email");
+        System.out.println("\n0 - Salir");
+        return sc.nextInt();
+    }
+
 }
