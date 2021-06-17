@@ -314,8 +314,6 @@ public class Local {
         }
     }
 
-
-
     /**
      * Metodo para mostrar una lista de clientes optimizada
      */
@@ -354,7 +352,6 @@ public class Local {
 
         return cliente;
     }
-
 
     /**
      * Se le muestra una lista de clientes y se ingresa el CUIT del cliente para retornar
