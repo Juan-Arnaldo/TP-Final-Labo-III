@@ -15,12 +15,10 @@ public class Venta extends Operacion {
     private int idVenta;
     private int idCaja;
     private String metodoPago;
-    private ContenedorArrayList<Linea> listaLinea;
 
     public Venta(Persona persona, int idCaja) {
         super(persona);
         this.idCaja = idCaja;
-        this.listaLinea = new ContenedorArrayList<Linea>();
     }
 
     public Venta(Persona persona, int idVenta, int idCaja, String metodoPago) {
@@ -28,10 +26,6 @@ public class Venta extends Operacion {
         this.idVenta = idVenta;
         this.idCaja = idCaja;
         this.metodoPago = metodoPago;
-    }
-
-    public ArrayList<Linea> getListaLinea() {
-        return listaLinea.getLista();
     }
 
     public void setMetodoPago(String metodoPago) {
@@ -45,7 +39,7 @@ public class Venta extends Operacion {
      */
     public double generarTotal(ContenedorArrayList<DescTarjeta> listaDesc){
         int aux = 0;
-        for (Linea linea : listaLinea.getLista()){
+        for (Linea linea : super.getListaLinea().getLista()){
             aux += linea.getTotalLinea();
         }
 
@@ -81,12 +75,12 @@ public class Venta extends Operacion {
      */
     public void agregarLinea(Articulo aAgregar, int cant){
         Linea nueva = new Linea(aAgregar, cant);
-        listaLinea.agregar(nueva);
+        super.getListaLinea().agregar(nueva);
     }
 
     private void mostrarLineas() {
         System.out.println("Cantidad \t Nombre Articulo \t Precio");
-        for (Linea linea : listaLinea.getLista()){
+        for (Linea linea : super.getListaLinea().getLista()){
             System.out.println(linea.toString());
         }
     }

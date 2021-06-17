@@ -1,6 +1,8 @@
 package com.company.Operacion;
 
 import com.company.Articulo.Articulo;
+import com.company.Contenedor.ContenedorArrayList;
+import com.company.Persona.Persona;
 
 import java.util.ArrayList;
 
@@ -9,8 +11,8 @@ public class Compra extends Operacion {
     private int costo;
     private ArrayList<Linea> listaLinea; // Está presente también en Venta, mover a Operación
 
-    public Compra() {
-        super();
+    public Compra(Persona persona) {
+        super(persona);
     }
 
     public int getCosto() {

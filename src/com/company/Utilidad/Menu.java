@@ -266,7 +266,7 @@ public class Menu {
             cuit = t.cargarNuevamenteCuitPersona(cuit);
         }
 
-        String nombre = t.cargarNombre();
+        String nombre = t.cargarNombreCliente();
         String apellido = t.cargarApellido();
         String direc = t.cargarDireccion();
         String tel = t.cargarTelefono();
@@ -292,7 +292,7 @@ public class Menu {
             cuit = t.cargarNuevamenteCuitPersona(cuit);
         }
 
-        String nombre = t.cargarNombre();
+        String nombre = t.cargarNombreCliente();
         String apellido = t.cargarApellido();
         String direc = t.cargarDireccion();
         String tel = t.cargarTelefono();
@@ -322,18 +322,7 @@ public class Menu {
 
         Marca marca = local.buscarMarca();
         while (marca == null){
-            int aux = t.marcaBuscadaNoSeEncuentra();
-            switch (aux){
-                case 1:
-                    marca = cargarNuevaMarca(local);
-                    local.nuevaMarca(marca);
-                    break;
-                case 2:
-                    marca = local.buscarMarca();
-                    break;
-                default:
-                    System.out.println("La opcion ingresada no es correcta...!\n");
-            }
+            marca = menuMarcaNoExiste(local);
         }
 
         costo = t.cargarCosto();
@@ -357,6 +346,25 @@ public class Menu {
         return new Articulo(nombre, departamento, marca, costo, utilidad, stock);
     }
 
+    public Marca menuMarcaNoExiste(Local local) {
+        Teclado t = new Teclado();
+        Marca marca;
+
+        int aux = t.marcaBuscadaNoSeEncuentra();
+        switch (aux){
+            case 1:
+                marca = cargarNuevaMarca(local);
+                local.nuevaMarca(marca);
+                return marca;
+            case 2:
+                marca = local.buscarMarca();
+                return marca;
+            default:
+                System.out.println("La opcion ingresada no es correcta...!\n");
+                return null;
+        }
+    }
+
     /**
      * Método para cargar los datos de una nueva compra, con sus correspondientes validaciones.
      * @param local en cuyo registro se cargará la nueva compra.
@@ -364,7 +372,6 @@ public class Menu {
      */
     public Compra cargarNuevaCompra(Local local) {
         Teclado t = new Teclado();
-        Compra nuevaCompra = new Compra();
 
         int idArticuloComprado;
         Articulo articuloComprado = null;
@@ -388,6 +395,8 @@ public class Menu {
                     break;
             }
         }
+
+        Compra nuevaCompra = new Compra(proveedor);
 
         do {
 
@@ -429,6 +438,10 @@ public class Menu {
      * @return venta nuevo a registrar.
      */
     public Venta cargarNuevaVenta(Local local, Caja caja) {
+        System.out.println("\n---------------------------");
+        System.out.println("------- NUEVA VENTA -------");
+        System.out.println("---------------------------\n");
+
         Teclado t = new Teclado();
         int aux = -1;
         Cliente cliente = local.buscarCliente();
@@ -636,7 +649,7 @@ public class Menu {
      * Y aplicar los cambios
      * @param articulo
      */
-    public void modificarArticuloSalida(Articulo articulo) {
+    public void modificarArticuloSalida(Articulo articulo, Local local) {
         Teclado t = new Teclado();
         int aux;
         do{
@@ -650,18 +663,22 @@ public class Menu {
                     System.out.println("Departamento editado con exito.");
                     break;
                 case 3:
-                    articulo.setMarca(t.cargarMarcaArticulo());
+                    Marca marca = local.buscarMarca();
+                    while (marca == null){
+                        marca = menuMarcaNoExiste(local);
+                    }
+                    articulo.setMarca(marca);
                     System.out.println("Marca editada con exito.");
                     break;
                 case 4:
                     articulo.setCosto(t.cargarCostoArticulo());
                     System.out.println("Costo editado con exito.");
                     break;
-                case 4:
+                case 5:
                     articulo.setUtilidad(t.cargarUtilidadArticulo());
                     System.out.println("Utilidad editada con exito.");
                     break;
-                case 5:
+                case 6:
                     articulo.setStock(t.cargarCantidadArticulo());
                     System.out.println("Stock editado con exito.");
                     break;
@@ -687,7 +704,7 @@ public class Menu {
         do{
             switch (aux = t.menuModificarCliente(cliente)){
                 case 1:
-                    cliente.setNombre(t.cargarNombre());
+                    cliente.setNombre(t.cargarNombreCliente());
                     System.out.println("Nombre editado con exito.");
                     break;
                 case 2:
@@ -721,7 +738,7 @@ public class Menu {
         do{
             switch (aux = t.menuModificarProveedor(proveedor)){
                 case 1:
-                    proveedor.setNombre(t.cargarNombre());
+                    proveedor.setNombre(t.cargarNombreCliente());
                     System.out.println("Nombre editado con exito.");
                     break;
                 case 2:

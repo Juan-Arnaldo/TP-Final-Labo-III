@@ -295,10 +295,10 @@ public class Teclado {
      * Método para cargar por teclado el nombre de una Persona.
      * @return nombre de la persona cargado.
      */
-    public String cargarNombre() {
+    public String cargarNombreCliente() {
         Validacion validacion = new Validacion();
 
-        System.out.println("Ingrese el nombre: ");
+        System.out.println("Ingrese el nombre del cliente: ");
         String nombre = sc.nextLine();
         while(!validacion.contieneSoloLetras(nombre)) {
             nombre = cargarNuevamenteNombrePersona(nombre);
@@ -423,7 +423,7 @@ public class Teclado {
     }
 
     public String cargarNuevamenteNombrePersona(String nombre) {
-        System.out.println(nombre + " no es un nombre válido.");
+        System.out.println("\n" + nombre + " no es un nombre válido.");
         System.out.println("Ingrese nuevamente el nombre: ");
         return sc.nextLine();
     }
@@ -508,7 +508,7 @@ public class Teclado {
     public int menuModificiarArticulo(Articulo articulo){
         System.out.println("1 - Nombre: " + articulo.getNombre());
         System.out.println("2 - Departamento: " + articulo.getDepartamento());
-        System.out.println("3 - Marca: " + articulo.getMarca());
+        System.out.println("3 - Marca: " + articulo.getMarca().getNombre());
         System.out.println("4 - Costo: " + articulo.getCosto());
         System.out.println("5 - Utilidad: " + articulo.getUtilidad());
         System.out.println("6 - Precio: " + articulo.getPrecio());
