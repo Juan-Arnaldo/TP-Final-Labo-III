@@ -391,4 +391,19 @@ public class Teclado {
     public void provNoEncontrado(){
         System.out.println("El proveedor que busca no existe...");
     }
+    /**
+     * Metodo para ingresar lo que quiere modificar
+     * @return el numero
+     */
+    public int menuModificarProveedor(){
+        System.out.println("1 - Nombre");
+        System.out.println("2 - Apellido");
+        System.out.println("3 - Domicilio");
+        System.out.println("4 - Telefono");
+        System.out.println("5 - Email");
+        System.out.println("6 - Localidad");
+        System.out.println("0 - Salir");
+        return sc.nextInt();
+    }
+
 }
