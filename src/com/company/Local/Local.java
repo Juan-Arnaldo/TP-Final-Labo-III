@@ -2,7 +2,6 @@ package com.company.Local;
 
 import com.company.Contenedor.ContenedorArrayList;
 import com.company.Operacion.Compra;
-import com.company.Operacion.MetodoPago;
 import com.company.Operacion.Operacion;
 import com.company.Operacion.Venta;
 import com.company.Persona.Cliente;
@@ -222,7 +221,7 @@ public class Local {
     public void mostrarListaArticuloOptimizada() {
         Teclado t = new Teclado();
         Validacion val = new Validacion();
-        String nombre = t.cargarNombre();
+        String nombre = t.cargarNombreArticulo();
         for (Articulo aux : listaArticulos.getLista()){
             if (val.compararCaracter(nombre, aux.getNombre())){
                 System.out.println(aux.toStringOpt());
@@ -299,7 +298,7 @@ public class Local {
     public void mostrarListaClienteOptimizada() {
 
         Teclado t = new Teclado();
-        String nombre = t.cargarNombre();
+        String nombre = t.cargarNombreCliente();
         Validacion val = new Validacion();
 
         for (Cliente aux : listaClientes.getLista()){
@@ -320,7 +319,7 @@ public class Local {
     public void mostrarListaProveedorOptimizada() {
 
         Teclado t = new Teclado();
-        String nombre = t.cargarNombre();
+        String nombre = t.cargarNombreProveedor();
         Validacion val = new Validacion();
 
         for (Proveedor aux : listaProveedores.getLista()){
