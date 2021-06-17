@@ -329,7 +329,7 @@ public class Local {
     public void mostrarListaClienteOptimizada() {
 
         Teclado t = new Teclado();
-        String nombre = t.cargarNombreCliente();
+        String nombre = t.cargarNombre();
         Validacion val = new Validacion();
 
         for (Cliente aux : listaClientes.getLista()){
@@ -350,7 +350,7 @@ public class Local {
     public void mostrarListaProveedorOptimizada() {
 
         Teclado t = new Teclado();
-        String nombre = t.cargarNombreProveedor();
+        String nombre = t.cargarNombre();
         Validacion val = new Validacion();
 
         for (Proveedor aux : listaProveedores.getLista()){

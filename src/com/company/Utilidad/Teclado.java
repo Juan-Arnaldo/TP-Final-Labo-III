@@ -272,28 +272,10 @@ public class Teclado {
         return sc.nextInt();
     }
 
-    public int ingresePorcentajeDescNuevamente(){
+    public int ingresePorcentajeDescNuevamente() {
         System.out.println("El porcentaje ingresado no es correcto, ingreselo nuevamente.");
         System.out.println("(tiene que ser mayor a 0 y menor o igual a 100):");
         return sc.nextInt();
-    }
-
-    /**
-     * Método para cargar por teclado un nombre de un cliente.
-     * @return nombre cargado.
-     */
-    public String cargarNombreCliente() {
-        System.out.println("Ingrese el nombre del cliente: ");
-        return sc.nextLine();
-    }
-
-    /**
-     * Método para cargar por teclado un nombrede un proveedor.
-     * @return nombre cargado.
-     */
-    public String cargarNombreProveedor() {
-        System.out.println("Ingrese el nombre del proveedor: ");
-        return sc.nextLine();
     }
 
     /**
@@ -306,8 +288,8 @@ public class Teclado {
     }
 
     /**
-     * Método para cargar por teclado el apellido de una Persona.
-     * @return nombre de la persana cargado.
+     * Método para cargar por teclado el nombre de una Persona.
+     * @return nombre de la persona cargado.
      */
     public String cargarNombre() {
         Validacion validacion = new Validacion();
@@ -321,7 +303,7 @@ public class Teclado {
     }
     /**
      * Método para cargar por teclado el apellido de una Persona.
-     * @return nombre de la persana cargado.
+     * @return apellido de la persona cargada.
      */
     public String cargarApellido() {
         Validacion validacion = new Validacion();
@@ -348,14 +330,29 @@ public class Teclado {
      * @return teléfono de la persana cargado.
      */
     public String cargarTelefono() {
-
         Validacion validacion = new Validacion();
-        String telefono = sc.nextLine();
+
         System.out.println("Ingrese el telefono: ");
+        String telefono = sc.nextLine();
         while(validacion.contieneSoloLetras(telefono)) {
             telefono = cargarNuevamenteTelefonoPersona(telefono);
         }
         return telefono;
+    }
+
+    /**
+     * Método para cargar por teclado la localidad de un Proveedor.
+     * @return localidad del proveedor cargado.
+     */
+    public String cargarLocalidad() {
+        Validacion validacion = new Validacion();
+
+        System.out.println("Ingrese la localidad: ");
+        String localidad = sc.nextLine();
+        while(!validacion.contieneSoloLetras(localidad)) {
+            localidad = cargarNuevamenteLocalidadPersona(localidad);
+        }
+        return localidad;
     }
 
     /**
@@ -381,6 +378,11 @@ public class Teclado {
     public String cargarNuevamenteTelefonoPersona(String telefono) {
         System.out.println(telefono + " no es un numero de telefono valido.");
         System.out.println("Ingrese nuevamente el telefono: ");
+        return sc.nextLine();
+    }
+    public String cargarNuevamenteLocalidadPersona(String localidad) {
+        System.out.println(localidad + " no es una localidad valida.");
+        System.out.println("Ingrese nuevamente la localidad: ");
         return sc.nextLine();
     }
 
@@ -421,17 +423,6 @@ public class Teclado {
         System.out.println("Ingrese nuevamente el nombre: ");
         return sc.nextLine();
     }
-
-    /**
-     * Método para cargar por teclado la localidad de un Proveedor.
-     * @return localidad del proveedor cargado.
-     */
-    public String cargarLocalidad(){
-        System.out.println("Ingrese la localidad: ");
-        return sc.nextLine();
-    }
-
-
 
     public String cargarNombreMarca(){
         System.out.println("Ingrese el nombre de la marca: ");
@@ -512,7 +503,7 @@ public class Teclado {
         System.out.println("6 - Precio");
         System.out.println("0 - Salir");
         System.out.println("Ingrese lo que quiere modificar: ");
-        return sc.nextInt();
+        return Integer.parseInt(sc.nextLine());
     }
 
     /**

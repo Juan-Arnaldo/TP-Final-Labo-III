@@ -8,6 +8,10 @@ public class Proveedor extends Persona{
         this.localidad = localidad;
     }
 
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
     @Override
     public String toString() {
         return "\nCliente: "+

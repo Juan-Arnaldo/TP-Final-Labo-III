@@ -104,7 +104,7 @@ public class Menu {
                     menuArticulo(local);
                     break;
                 case 4:
-                    //menuClientes();
+                    menuCliente(local);
                     break;
                 case 5:
                     local.nuevaCompra(cargarNuevaCompra(local));
@@ -168,6 +168,31 @@ public class Menu {
         } while (opc != 0);
     }
 
+    public void menuCliente(Local local) {
+        Teclado t = new Teclado();
+        int opc = 0;
+        do {
+            opc = cargarOpcionMenuCliente();
+            switch (opc) {
+                case 1:
+                    local.nuevoCliente(cargarNuevoCliente(local));
+                    break;
+                case 2:
+                    local.modificarUnCliente();
+                    break;
+                case 3:
+                    local.eliminarUnCliente();
+                    break;
+                case 4:
+                    local.mostrarUnCliente();
+                    break;
+                default:
+                    System.out.println("La opcion ingresada no es valida");
+                    break;
+            }
+        } while (opc != 0);
+    }
+
     public void menuProveedor(Local local) {
         Teclado t = new Teclado();
         int opc = 0;
@@ -207,6 +232,16 @@ public class Menu {
         return sc.nextInt();
     }
 
+    public int cargarOpcionMenuCliente() {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Nuevo Cliente.");
+        System.out.println("2 - Editar Cliente.");
+        System.out.println("3 - Eliminar Cliente.");
+        System.out.println("4 - Mostrar Cliente.");
+        System.out.println("0 - Salir.");
+        return sc.nextInt();
+    }
+
     public int cargarOpcionMenuProv() {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Nuevo Proveedor.");
@@ -231,7 +266,7 @@ public class Menu {
             cuit = t.cargarNuevamenteCuitPersona(cuit);
         }
 
-        String nombre = t.cargarNombreCliente();
+        String nombre = t.cargarNombre();
         String apellido = t.cargarApellido();
         String direc = t.cargarDireccion();
         String tel = t.cargarTelefono();
@@ -678,8 +713,7 @@ public class Menu {
         Teclado t = new Teclado();
         int aux;
         do{
-            aux = t.menuModificiarArticulo();
-            switch (aux){
+            switch (aux = t.menuModificiarArticulo()){
                 case 1:
                     articulo.setNombre(t.cargarNombreArticulo());
                     break;
@@ -698,11 +732,14 @@ public class Menu {
                 case 6:
                     articulo.setStock(t.cargarCantidadArticulo());
                     break;
+                case 0:
+                    System.out.println("Saliendo..");
+                    break;
                 default:
                     System.out.println("La opcion ingresada no es correcta!\n");
                     break;
             }
-        }while(aux != 1 && aux != 2 && aux != 3 && aux != 4 && aux != 5 && aux != 6 && aux != 0);
+        }while(aux != 0);
     }
 
 
@@ -715,22 +752,26 @@ public class Menu {
         Teclado t = new Teclado();
         int aux;
         do{
-            aux = t.menuModificarCliente();
-            switch (aux){
+            switch (aux = t.menuModificarCliente()){
                 case 1:
-                    cliente.setNombre(t.cargarNombreCliente());
+                    cliente.setNombre(t.cargarNombre());
+                    System.out.println("Nombre editado con exito.");
                     break;
                 case 2:
                     cliente.setApellido(t.cargarApellido());
+                    System.out.println("Apellido editado con exito.");
                     break;
                 case 3:
                     cliente.setDomicilio(t.cargarDireccion());
+                    System.out.println("Domicilio editado con exito.");
                     break;
                 case 4:
                     cliente.setTelefono(t.cargarTelefono());
+                    System.out.println("Telefono editado con exito.");
                     break;
                 case 5:
                     cliente.setEmail(t.cargarEmail());
+                    System.out.println("Email editado con exito.");
                     break;
                 case 0:
                     System.out.println("Saliendo..");
@@ -745,7 +786,7 @@ public class Menu {
         int aux;
         Teclado t = new Teclado();
         do{
-            switch (aux=t.menuModificarProveedor()){
+            switch (aux = t.menuModificarProveedor()){
                 case 1:
                     proveedor.setNombre(t.cargarNombre());
                     System.out.println("Nombre editado con exito.");
@@ -764,8 +805,11 @@ public class Menu {
                     break;
                 case 5:
                     proveedor.setEmail(t.cargarEmail());
-                    System.out.println("Telefono editado con exito.");
+                    System.out.println("Email editado con exito.");
                     break;
+                case 6:
+                    proveedor.setLocalidad(t.cargarLocalidad());
+                    System.out.println("Localidad editada con exito.");
                 case 0:
                     System.out.println("Saliendo..");
                     break;
