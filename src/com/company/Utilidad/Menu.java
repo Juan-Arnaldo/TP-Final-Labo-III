@@ -10,7 +10,6 @@ import com.company.Operacion.Venta;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
@@ -104,7 +103,7 @@ public class Menu {
                     caja.nuevaVenta(cargarNuevaVenta(local, caja), local);
                     break;
                 case 2:
-                    //TODO codear detalle del día para la caja
+                    local.mostrarVentas();
                     break;
                 case 3:
                     menuArticulo(local);
@@ -190,7 +189,7 @@ public class Menu {
             cuit = t.cargarNuevamenteCuitPersona(cuit);
         }
 
-        String nombre = t.cargarNombre();
+        String nombre = t.cargarNombreCliente();
         String apellido = t.cargarApellido();
         String direc = t.cargarDireccion();
         String tel = t.cargarTelefono();
@@ -217,7 +216,7 @@ public class Menu {
             cuit = t.cargarNuevamenteCuitPersona(cuit);
         }
 
-        String nombre = t.cargarNombre();
+        String nombre = t.cargarNombreProveedor();
         String apellido = t.cargarApellido();
         String direc = t.cargarDireccion();
         String tel = t.cargarTelefono();
@@ -381,16 +380,14 @@ public class Menu {
                     int cant = nuevaVenta.cargarCantidadArticulo(art);
                     if(cant != 0){
                         nuevaVenta.agregarLinea(art, cant);
-                        local.nuevoStock(art,cant);///TODO borrar estas, es solo para mostrar ahora xd
-                        System.out.println("viejo "+ caja.getDinero());
+                        local.nuevoStock(art,cant);
                         caja.actualizarDinero(nuevaVenta.generarTotal(local.getListaDescuento()));
-                        System.out.println("nuevo "+ caja.getDinero());
                     }
                 }
                 else
                     System.out.println("El articulo no existe");
 
-            }while (t.deseaContinuar());
+            }while (t.continuarCargandoArticulos());
         }
 
         return nuevaVenta;
@@ -404,7 +401,7 @@ public class Menu {
      */
     public DescTarjeta cargarNuevoDescuentoTarjeta(Local local) {
         Teclado t = new Teclado();
-        String nombre = t.cargarNombre();
+        String nombre = t.cargarNombreDescuentoTarjeta();
 
         int porcentaje = t.ingresePorcentajeDesc();
 
@@ -842,7 +839,7 @@ public class Menu {
             aux = t.modificarCliente();
             switch (t.modificarCliente()){
                 case 1:
-                    cliente.setNombre(t.cargarNombre());
+                    cliente.setNombre(t.cargarNombreCliente());
                     break;
                 case 2:
                     cliente.setApellido(t.cargarApellido());

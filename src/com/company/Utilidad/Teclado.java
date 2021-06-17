@@ -269,16 +269,34 @@ public class Teclado {
     }
 
     /**
-     * Método para cargar por teclado un nombre.
+     * Método para cargar por teclado un nombre de un cliente.
      * @return nombre cargado.
      */
-    public String cargarNombre() {
-        System.out.println("Ingrese el nombre: ");
+    public String cargarNombreCliente() {
+        System.out.println("Ingrese el nombre del cliente: ");
         return sc.nextLine();
     }
 
     /**
-     * Método para cargar por teclado el nombre de una Persona.
+     * Método para cargar por teclado un nombrede un proveedor.
+     * @return nombre cargado.
+     */
+    public String cargarNombreProveedor() {
+        System.out.println("Ingrese el nombre del proveedor: ");
+        return sc.nextLine();
+    }
+
+    /**
+     * Método para cargar por teclado un nombre de un descuento de tipo tarjeta.
+     * @return nombre cargado.
+     */
+    public String cargarNombreDescuentoTarjeta() {
+        System.out.println("Ingrese el nombre del descuento: ");
+        return sc.nextLine();
+    }
+
+    /**
+     * Método para cargar por teclado el apellido de una Persona.
      * @return nombre de la persana cargado.
      */
     public String cargarApellido() {
