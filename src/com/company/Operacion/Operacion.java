@@ -5,7 +5,7 @@ import com.company.Persona.Persona;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public abstract class Operacion {
+public class Operacion {
     private Persona persona;
     private int idOperacion;
 
