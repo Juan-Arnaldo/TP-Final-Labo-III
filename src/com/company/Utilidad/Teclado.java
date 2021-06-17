@@ -214,10 +214,10 @@ public class Teclado {
      * @return
      */
     public int cargarMetodoPago(){
-        System.out.println("1.Efectivo");
-        System.out.println("\n2.Tarjeta");
-        System.out.println("\n3.Cheque");
-        System.out.println("\nIngrese el metodo con el que va a pagar: ");
+        System.out.println("1 - Efectivo");
+        System.out.println("2 - Tarjeta");
+        System.out.println("3 - Cheque");
+        System.out.println("Ingrese el metodo con el que va a pagar: ");
         return sc.nextInt();
     }
 
@@ -226,24 +226,56 @@ public class Teclado {
      * @return Opción elegida en forma de int.
      */
     public int cargarTarjeta(){
-        System.out.println("1. Visa");
-        System.out.println("\n2. Mastercard");
-        System.out.println("\n3. Cabal");
-        System.out.println("\n4. American Express");
-        System.out.println("\n5. Maestro");
-        System.out.println("\n6. Naranja");
-        System.out.println("\nIngrese la tarjeta del cliente: ");
+        System.out.println("1 - Visa");
+        System.out.println("2 - Mastercard");
+        System.out.println("3 - Cabal");
+        System.out.println("4 - American Express");
+        System.out.println("5 - Maestro");
+        System.out.println("6 - Naranja");
+        System.out.println("Ingrese la tarjeta del cliente: ");
 
         return sc.nextInt();
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Método para elegir cómo seguir en caso de que el nombre ingresado no corresponda a un artículo existente en los registros de local.
+     * @return Opción elegida en forma de int. 1 - Intentar nuevamente. 2 - Agregar " + " al registro.");.
+     */
+    public int nombreArticuloCompradoNoExiste() {
+        System.out.println("El id no corresponde a un artículo registrado.");
+        System.out.println("1 - Intentar nuevamente.");
+        System.out.println("2 - Agregar nuevo Articulo. ");
+        System.out.println("Seleccione la acción a realizar:");
+        return sc.nextInt();
+    }
+
+    public int clienteNoExiste(){
+        System.out.println("El cliente buscado no existe. ");
+        System.out.println("1 - Volver a cargar el CUIT.");
+        System.out.println("2 - Pasar venta como consumidor final.");
+        System.out.println("3 - Crear nuevo cliente.");
+        System.out.println("4 - Ingrese la accion a realizar: ");
+        return sc.nextInt();
+    }
+
+    public int proveedorNoExiste(){
+        System.out.println("El proveedor buscado no existe. ");
+        System.out.println("1 - Volver a cargar el CUIT.");
+        System.out.println("2 - Crear nuevo proveedor.");
+        System.out.println("3 - Ingrese la accion a realizar: ");
+        return sc.nextInt();
+    }
+
+>>>>>>> bAgus
     public int ingresePorcentajeDesc(){
         System.out.println("Ingrese el porcentaje que quiere que tenga: ");
         return sc.nextInt();
     }
 
     public int ingresePorcentajeDescNuevamente(){
-        System.out.println("El porcentaje ingresado no es correcto, ingreselo nuevamente");
+        System.out.println("El porcentaje ingresado no es correcto, ingreselo nuevamente.");
         System.out.println("(tiene que ser mayor a 0 y menor o igual a 100):");
         return sc.nextInt();
     }
@@ -351,11 +383,66 @@ public class Teclado {
         return sc.nextLine();
     }
 
+<<<<<<< HEAD
+=======
+    /**
+     * Metodo para ingresar lo que quiere modificar
+     * @return el numero
+     */
+    public int cargarOpcionMenuArticulo() {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Nuevo Articulo.");
+        System.out.println("2 - Editar Articulo.");
+        System.out.println("3 - Eliminar Articulo.");
+        System.out.println("4 - Mostrar Articulo.");
+        System.out.println("0 - Salir.");
+        return sc.nextInt();
+    }
+
+    /**
+     * Metodo para ingresar lo que quiere modificar
+     * @return el numero
+     */
+    public int menuModificarCliente(){
+        System.out.println("1 - Nombre");
+        System.out.println("2 - Apellido");
+        System.out.println("3 - Domicilio");
+        System.out.println("4 - Telefono");
+        System.out.println("5 - Email");
+        System.out.println("0 - Salir");
+        return sc.nextInt();
+    }
+
+    /**
+     * Metodo para ingresar lo que quiere modificar
+     * @return el numero
+     */
+    public int menuModificarProveedor(){
+        System.out.println("1 - Nombre");
+        System.out.println("2 - Apellido");
+        System.out.println("3 - Domicilio");
+        System.out.println("4 - Telefono");
+        System.out.println("5 - Email");
+        System.out.println("6 - Localidad");
+        System.out.println("0 - Salir");
+        return sc.nextInt();
+    }
+
+    public int numeroCaja(){
+        System.out.println("Ingrese el numero de caja a operar: ");
+        return sc.nextInt();
+    }
+
+>>>>>>> bAgus
     public void articuloNoEncontrado(){
         System.out.println("El articulo que busca no existe...");
     }
 
     public void clienteNoEncontrado(){
         System.out.println("El cliente que busca no existe...");
+    }
+
+    public void provNoEncontrado(){
+        System.out.println("El proveedor que busca no existe...");
     }
 }

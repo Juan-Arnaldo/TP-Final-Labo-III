@@ -110,7 +110,7 @@ public class Menu {
                     local.nuevaCompra(cargarNuevaCompra(local));
                     break;
                 case 6:
-                    //menuProveedores();
+                    menuProveedor(local);
                     break;
                 default:
                     System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
@@ -161,6 +161,31 @@ public class Menu {
                     break;
                 case 4:
                     local.mostrarUnArticulo();
+                    break;
+                default:
+                    System.out.println("La opcion ingresada no es valida");
+                    break;
+            }
+        } while (opc != 0);
+    }
+
+    public void menuProveedor(Local local) {
+        Teclado t = new Teclado();
+        int opc = 0;
+        do {
+            opc = t.menuModificarProveedor();
+            switch (opc) {
+                case 1:
+                    local.nuevoProveedor(cargarNuevoProveedor(local));
+                    break;
+                case 2:
+                    local.modificarUnProv();
+                    break;
+                case 3:
+                    local.eliminarUnProv();
+                    break;
+                case 4:
+                    local.mostrarUnProveedor();
                     break;
                 default:
                     System.out.println("La opcion ingresada no es valida");
@@ -584,7 +609,6 @@ public class Menu {
         Teclado t = new Teclado();
         int opc;
         do{
-            opc = modificarCliente();
             switch (opc){
                 case 0:
                     System.out.println("Saliendo de Modificación de Cliente...");
@@ -603,6 +627,36 @@ public class Menu {
                     break;
                 case 5:
                     cliente.setEmail(t.cargarEmail());
+                    break;
+                default:
+                    System.out.println("La opcion ingresada no es correcta!\n");
+            }
+        }while(opc != 0);
+    }
+
+    public void modificarProvSalida(Proveedor proveedor){
+        Teclado t = new Teclado();
+        int opc;
+        do{
+            opc = t.menuModificarProveedor();
+            switch (opc){
+                case 1:
+                    proveedor.setNombre(t.cargarNombreCliente());
+                    break;
+                case 2:
+                    proveedor.setApellido(t.cargarApellido());
+                    break;
+                case 3:
+                    proveedor.setDomicilio(t.cargarDireccion());
+                    break;
+                case 4:
+                    proveedor.setTelefono(t.cargarTelefono());
+                    break;
+                case 5:
+                    proveedor.setEmail(t.cargarEmail());
+                    break;
+                case 0:
+                    System.out.println("Saliendo..");
                     break;
                 default:
                     System.out.println("La opcion ingresada no es correcta!\n");
