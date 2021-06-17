@@ -1,6 +1,7 @@
 package com.company.Utilidad;
 
 import com.company.Articulo.Articulo;
+import com.company.Articulo.Marca;
 import com.company.Local.Caja;
 import com.company.Local.DescTarjeta;
 import com.company.Local.Local;
@@ -449,6 +450,26 @@ public class Menu {
     }
 
     /**
+     * Método para cargar una nueva marca
+     * @param local
+     * @return La nueva marca creada
+     * @return Null, en caso de que ya exista
+     */
+    public Marca cargarNuevaMarca(Local local){
+        Teclado t = new Teclado();
+        Validacion v = new Validacion();
+        String nombre = t.cargarNombreMarca();
+
+        if (v.validacionMarcaNueva(local.getListaMarca(), nombre)){
+            return new Marca(nombre);
+        }else{
+            t.marcaYaExiste();
+        }
+
+        return null;
+    }
+
+    /**
      * Método para elegir cómo seguir en caso de que el nombre ingresado no corresponda a un artículo existente en los registros de local.
      * @return Opción elegida en forma de int. 1 - Intentar nuevamente. 2 - Agregar " + " al registro.");.
      */
@@ -554,7 +575,7 @@ public class Menu {
         Teclado t = new Teclado();
         int aux;
         do{
-            aux = menuModificiarArticulo();
+            aux = t.menuModificiarArticulo();
             switch (aux){
                 case 0:
                     System.out.println("Saliendo de Modificación de Artículo...");
@@ -607,7 +628,7 @@ public class Menu {
      */
     public void modificarClienteSalida(Cliente cliente){
         Teclado t = new Teclado();
-        int opc;
+        int aux;
         do{
             opc = modificarCliente();
             switch (opc){
@@ -678,4 +699,5 @@ public class Menu {
         System.out.println("\n0 - Salir");
         return sc.nextInt();
     }
+
 }
