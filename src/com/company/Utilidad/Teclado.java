@@ -336,7 +336,7 @@ public class Teclado {
      * Método para cargar por teclado el nombre de la tarjeta con la que se realizará el pago.
      * @return Opción elegida en forma de int.
      */
-    public int cargarTarjeta(){
+    public String cargarTarjeta(){
         System.out.println("1 - Visa");
         System.out.println("2 - Mastercard");
         System.out.println("3 - Cabal");
@@ -345,7 +345,7 @@ public class Teclado {
         System.out.println("6 - Naranja");
         System.out.println("Ingrese la tarjeta del cliente: ");
 
-        return sc.nextInt();
+        return sc.nextLine();
     }
 
     /**
@@ -368,13 +368,13 @@ public class Teclado {
      *         2 - Pasar Venta como Consumidor Final
      *         3 - Crear Nuevo Cliente
      */
-    public int clienteNoExiste(){
+    public String clienteNoExiste(){
         System.out.println( "El cliente buscado no existe. ");
         System.out.println("1 - Volver a cargar el nombre.");
         System.out.println("2 - Pasar venta como consumidor final.");
         System.out.println("3 - Crear nuevo cliente.");
         System.out.println("Ingrese la accion a realizar: ");
-        return sc.nextInt();
+        return sc.nextLine();
     }
 
     /**
@@ -806,13 +806,13 @@ public class Teclado {
      *          2 - Articulo nuevo.
      *          0 - Salir.
      */
-    public int articuloNoExiste(){
+    public String articuloNoExiste(){
         System.out.println("El articulo no existe.");
         System.out.println("1 - Volver a cargar el nombre");
         System.out.println("2 - Cargar un nuevo articulo");
         System.out.println("0 - No cargar el articulo");
         System.out.println("Seleccione la accion a realizar: ");
-        return sc.nextInt();
+        return sc.nextLine();
     }
 
     public void soloNumerosException(){
