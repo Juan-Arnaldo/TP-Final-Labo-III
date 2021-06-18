@@ -29,6 +29,7 @@ public class Menu {
         System.out.println("\n-------------------------------------------");
         System.out.println("------- Sistema de Gestión Contable -------");
         System.out.println("-------------------------------------------\n");
+        System.out.println("\tBienvenido al Local '" + local.getNombre() + "'. Dirección: " + local.getDireccion() + ".\n");
         Teclado t = new Teclado();
         int opc;
         do{
