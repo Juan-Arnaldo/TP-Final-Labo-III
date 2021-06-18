@@ -504,7 +504,7 @@ public class Local {
 
         if(mostrarListaArticuloOptimizada()){
             Teclado t2 = new Teclado();
-            int id = t2.cargarID();
+            int id = t2.cargarIDArticulo();
             for (Articulo aBuscar : listaArticulos.getLista()) {
                 if (aBuscar.getIdArticulo() == id) {
                     articulo = aBuscar;

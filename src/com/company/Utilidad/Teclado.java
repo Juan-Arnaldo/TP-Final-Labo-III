@@ -13,6 +13,75 @@ public class Teclado {
     private Scanner sc = new Scanner(System.in);
 
     /**
+     * Método para cargar la opción a elegir en el menú principal.
+     * @return opción.
+     */
+    public int cargarOpcionMenuInicio() {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Seleccionar caja.");
+        System.out.println("2 - Nueva caja.");
+        System.out.println("0 - Salir.");
+        return sc.nextInt();
+    }
+
+    /**
+     * Método para cargar la opción a elegir en el menú de caja.
+     * @return opción.
+     */
+    public int cargarOpcionMenuCaja() {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Nueva Venta.");
+        System.out.println("2 - Detalles del día.");
+        System.out.println("3 - Menú Artículos.");
+        System.out.println("4 - Menú Clientes.");
+        System.out.println("5 - Nueva Compra.");
+        System.out.println("6 - Menú Proveedores.");
+        System.out.println("6 - Menú Descuentos.");
+        System.out.println("0 - Salir.");
+        return sc.nextInt();
+    }
+
+    /**
+     * Método para cargar la opción a elegir en el menú de artículo.
+     * @return opción.
+     */
+    public int cargarOpcionMenuArticulo() {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Nuevo Articulo.");
+        System.out.println("2 - Editar Articulo.");
+        System.out.println("3 - Eliminar Articulo.");
+        System.out.println("4 - Mostrar Articulo.");
+        System.out.println("0 - Salir.");
+        return sc.nextInt();
+    }
+    /**
+     * Método para cargar la opción a elegir en el menú de cliente.
+     * @return opción.
+     */
+    public int cargarOpcionMenuCliente() {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Nuevo Cliente.");
+        System.out.println("2 - Editar Cliente.");
+        System.out.println("3 - Eliminar Cliente.");
+        System.out.println("4 - Mostrar Cliente.");
+        System.out.println("0 - Salir.");
+        return sc.nextInt();
+    }
+    /**
+     * Método para cargar la opción a elegir en el menú de proveedor.
+     * @return opción.
+     */
+    public int cargarOpcionMenuProv() {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Nuevo Proveedor.");
+        System.out.println("2 - Editar Proveedor.");
+        System.out.println("3 - Eliminar Proveedor.");
+        System.out.println("4 - Mostrar Proveedor.");
+        System.out.println("0 - Salir.");
+        return sc.nextInt();
+    }
+
+    /**
      * Método para consultar al usuario si desea continuar con lo que está realizando.
      * @return true en caso de que desee continuar; false en caso de que no desee continuar.
      */
@@ -33,19 +102,31 @@ public class Teclado {
         System.out.println("Ingrese el ID de la caja a seleccionar: ");
         return sc.nextInt();
     }
-
-    public int cargaStock() {
+    /**
+     * Método para cargar por teclado el stock de un artículo.
+     * @return stock cargado.
+     */
+    public int cargarStock() {
         System.out.println("Ingrese el stock: ");
         return sc.nextInt();
     }
 
-    public int cargaStockNuevamente(){
-        System.out.println("El stock ingresado no es correcto, ingrese 0 de no querer ingresar nuevamente:");
+    /**
+     * Método para cargar nuevamente por teclado stock en caso de que el ingresado sea negativo.
+     * @return stock cargado.
+     */
+    public int cargarNuevamenteStockNegativo(int stock){
+        System.out.println(stock + "no es un valor de stock válido. Debe ser positivo");
+        System.out.println("Intente nuevamente: ");
         return sc.nextInt();
     }
 
-    public int cargarID(){
-        System.out.println("Ingrese el id: ");
+    /**
+     * Método para cargar por teclado el ID del artículo a seleccionar.
+     * @return id del artículo seleccionado.
+     */
+    public int cargarIDArticulo(){
+        System.out.println("Ingrese el id del art: ");
         return sc.nextInt();
     }
 
@@ -70,15 +151,6 @@ public class Teclado {
     }
 
     /**
-     * Método para cargar por teclado el costo de un artículo.
-     * @return costo del artículo cargado.
-     */
-    public  double cargarCostoArticulo(){
-        System.out.println("Ingrese el costo del articulo: ");
-        return sc.nextDouble();
-    }
-
-    /**
      * Método para cargar por teclado el departamento de un artículo.
      * @return departamento del artículo cargado.
      */
@@ -88,23 +160,22 @@ public class Teclado {
     }
 
     /**
-     * Método para cargar por teclado la marca de un artículo.
-     * @return marca del artículo cargado.
+     * Método para cargar por teclado el costo de un artículo.
+     * @return costo del artículo cargado.
      */
-    public String cargarMarcaArticulo() {
-        System.out.println("Ingrese la marca del artículo: ");
-        return sc.nextLine();
-    }
-
     public double cargarCosto(){
         System.out.println("Ingrese el costo: ");
         return sc.nextDouble();
     }
 
-    public double cargarCostoNuevamente(){
-        System.out.println("El costo ingresado no es valido");
-        System.out.println("Ingrese uno mayor a 0: ");
-        return sc.nextDouble();
+    /**
+     * Método para cargar nuevamente por teclado stock en caso de que el ingresado sea negativo.
+     * @return stock cargado.
+     */
+    public double cargarNuevamenteCostoNegativo(double costo){
+        System.out.println(costo + "no es un valor de costo válido. Debe ser positivo");
+        System.out.println("Intente nuevamente: ");
+        return sc.nextInt();
     }
 
     /**
@@ -142,9 +213,9 @@ public class Teclado {
      * Método para consultar al usuario si desea continuar cargando artículos.
      * @return true en caso de que desee continuar; false en caso de que no desee continuar.
      */
-    public boolean continuarCargandoArticulos(){
-        System.out.println("¿Desea continuar cargando artículos?");
-        System.out.println("Presione 1 si es así. En caso contrario presione cualquier otro número.");
+    public boolean continuarCargandoLineasVenta(){
+        System.out.println("¿Desea continuar cargando lineas en la venta?");
+        System.out.println("Presione 1 si es así. Para finalizar venta presione cualquier otro número.");
         int aux = sc.nextInt();
         if(aux == 1){
             return true;
@@ -256,32 +327,52 @@ public class Teclado {
         return sc.nextInt();
     }
 
-    public int clienteNoExiste(){
-        System.out.println("El cliente buscado no existe. ");
+    /**
+     * Método para elegir cómo seguir en caso de que el cuit ingresado no corresponda a un cliente existente en los registros de local.
+     * @param cuit ingresado anteriormente.
+     * @return 1 - Intentar nuevamente.
+     *         2 - Pasar Venta como Consumidor Final
+     *         3 - Crear Nuevo Cliente
+     */
+    public int clienteNoExiste(int cuit){
+        System.out.println( cuit + "no pertenece a un cuit regitrado. ");
         System.out.println("1 - Volver a cargar el CUIT.");
         System.out.println("2 - Pasar venta como consumidor final.");
         System.out.println("3 - Crear nuevo cliente.");
-        System.out.println("4 - Ingrese la accion a realizar: ");
+        System.out.println("Ingrese la accion a realizar: ");
         return sc.nextInt();
     }
 
+    /**
+     * Método para elegir cómo seguir en caso de que el cuit ingresado no corresponda a un proveedor existente en los registros de local.
+     * @return 1 - Intentar nuevamente.
+     *         2 - Crear Nuevo Proveedor
+     */
     public int proveedorNoExiste(){
         System.out.println("El proveedor buscado no existe. ");
         System.out.println("1 - Volver a cargar el CUIT.");
         System.out.println("2 - Crear nuevo proveedor.");
-        System.out.println("3 - Ingrese la accion a realizar: ");
+        System.out.println("Ingrese la accion a realizar: ");
         return sc.nextInt();
     }
 
-
+    /**
+     * Método para cargar por teclado un porcentaje de un descuento de tipo tarjeta.
+     * @return nombre cargado.
+     */
     public int ingresePorcentajeDesc(){
-        System.out.println("Ingrese el porcentaje que quiere que tenga: ");
+        System.out.println("Ingrese el porcentaje a descontar: ");
         return sc.nextInt();
     }
 
-    public int ingresePorcentajeDescNuevamente() {
-        System.out.println("El porcentaje ingresado no es correcto, ingreselo nuevamente.");
-        System.out.println("(tiene que ser mayor a 0 y menor o igual a 100):");
+    /**
+     * Método para cargar nuevamente por teclado un porcentaje de un descuento de tipo tarjeta en caso de eque el igresado no sea válido.
+     * @return nombre cargado.
+     */
+    public int ingresePorcentajeDescNuevamente(int porcentaje) {
+        System.out.println( porcentaje + "no es u nporcentaje válido.");
+        System.out.println("Debe ser mayor a 0 y menor o igual a 100");
+        System.out.println("Ingrese nuevamente el porcentaje a descontar: ");
         return sc.nextInt();
     }
 
@@ -402,29 +493,51 @@ public class Teclado {
      * @return CUIT presuntamente corregido.
      */
     public String cargarNuevamenteCuitInvalido(String cuit) {
-        System.out.println(cuit + " no es un CUIT valido.");
+        System.out.println(cuit + " no cumple con las condiciones para ser un CUIT válido.");
         System.out.println("Ingrese nuevamente el CUIT: ");
         return sc.nextLine();
     }
+
+    /**
+     * Método para volver a cargar nuevamente el CUIT de una persona en caso de que el CUIT ingresado pertenezca a un cliente registrado.
+     * @param cuit cargado anteriormente.
+     * @return CUIT presuntamente corregido.
+     */
     public String cargarNuevamenteCuitPersona(String cuit) {
         System.out.println(cuit + " es el CUIT de una persona que ya existe en el registro.");
         System.out.println("Ingrese nuevamente el CUIT: ");
         return sc.nextLine();
     }
 
+    /**
+     * Método para volver a cargar el telefono de una persona en caso de que el telefono ingresado anteriormente no sea posible.
+     * @param telefono cargado anteriormente.
+     * @return telefono presuntamente corregido.
+     */
     public String cargarNuevamenteTelefonoPersona(String telefono) {
         System.out.println(telefono + " no es un numero de telefono valido.");
         System.out.println("Ingrese nuevamente el telefono: ");
         return sc.nextLine();
     }
+
+    /**
+     * Método para volver a cargar la localidad de una persona en caso de que la localidad ingresada anteriormente no sea posible.
+     * @param localidad cargada anteriormente.
+     * @return localidad presuntamente corregida.
+     */
     public String cargarNuevamenteLocalidadPersona(String localidad) {
-        System.out.println(localidad + " no es una localidad valida.");
+        System.out.println(localidad + " no es una localidad válida.");
         System.out.println("Ingrese nuevamente la localidad: ");
         return sc.nextLine();
     }
 
+    /**
+     * Método para volver a cargar el apellido de una persona en caso de que el apellido ingresado anteriormente no sea posible.
+     * @param apellido cargado anteriormente.
+     * @return apellido presuntamente corregido.
+     */
     public String cargarNuevamenteApellidoPersona(String apellido) {
-        System.out.println(apellido + " no es un apellido valido.");
+        System.out.println(apellido + " no es un apellido válido.");
         System.out.println("Ingrese nuevamente el apellido: ");
         return sc.nextLine();
     }
@@ -445,7 +558,7 @@ public class Teclado {
     }
 
     /**
-     * Método para volver a cargar por teclado el email luego de la validación fallida.
+     * Método para volver a cargar el email de una persona en caso de que el email ingresado anteriormente no sea posible.
      * @param email cargado anteriormente.
      * @return email presuntamente corregido.
      */
@@ -455,45 +568,37 @@ public class Teclado {
         return sc.nextLine();
     }
 
+    /**
+     * Método para volver a cargar el nombre de una persona en caso de que el nombre ingresado anteriormente no sea posible.
+     * @param nombre cargado anteriormente.
+     * @return nombre presuntamente corregido.
+     */
     public String cargarNuevamenteNombrePersona(String nombre) {
         System.out.println("\n" + nombre + " no es un nombre válido.");
         System.out.println("Ingrese nuevamente el nombre: ");
         return sc.nextLine();
     }
 
-
+    /**
+     * Método para cargar por teclado el nombre de una marca.
+     * @return nombre de la marca cargado.
+     */
     public String cargarNombreMarca() {
         System.out.println("Ingrese el nombre de la marca: ");
         return sc.nextLine();
     }
 
-    public String cargarNombreNuevaMarca(){
-        System.out.println("Ingrese el nombre de la nueva marca: ");
-        return sc.nextLine();
-    }
-
+    /**
+     * Método para cargar por teclado el nombre de una marca a buscar.
+     * @return nombre de la marca a buscar.
+     */
     public String cargarNombreMarcaBuscar(){
         System.out.println("Ingrese el nombre de la marca a buscar: ");
-
         return sc.nextLine();
     }
 
     public void marcaYaExiste(){
         System.out.println("La marca que deseo crear ya existe! ");
-    }
-
-    /**
-     * Metodo para ingresar lo que quiere modificar
-     * @return el numero
-     */
-    public int cargarOpcionMenuArticulo() {
-        System.out.println("Ingrese una opcion para continuar: ");
-        System.out.println("1 - Nuevo Articulo.");
-        System.out.println("2 - Editar Articulo.");
-        System.out.println("3 - Eliminar Articulo.");
-        System.out.println("4 - Mostrar Articulo.");
-        System.out.println("0 - Salir.");
-        return Integer.parseInt(sc.nextLine());
     }
 
     /**
@@ -569,6 +674,5 @@ public class Teclado {
         System.out.println("\n0. No cargar el articulo");
         return sc.nextInt();
     }
-
 }
 
