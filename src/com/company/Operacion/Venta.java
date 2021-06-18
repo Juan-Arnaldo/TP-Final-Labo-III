@@ -102,10 +102,11 @@ public class Venta extends Operacion {
     }
 
     public void mostrarVentaSinDesc(double total){
-        System.out.println("Cliente: " + getPersona().getNombre() + " " +getPersona().getApellido() + " " + getPersona().getCuit() +
-                "\nID venta: " + getIdOperacion() +
-                "\nMetodo de Pago: " + metodoPago + "\n");
+        System.out.println("\nID venta: " + getIdOperacion());
+        System.out.println("Cliente: " +getPersona().getApellido() + ", " + getPersona().getNombre() + ". CUIT: " + getPersona().getCuit());
+        System.out.println("\nMetodo de Pago: " + metodoPago + "\n");
         mostrarLineas();
         System.out.println("\nTotal: \t\t " + total);
+        System.out.println("\n---------------------------------------\n");
     }
 }
