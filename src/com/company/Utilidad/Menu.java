@@ -93,7 +93,7 @@ public class Menu {
 
             switch (opc) {
                 case 1 -> caja.nuevaVenta(cargarNuevaVenta(local, caja), local);
-                case 2 -> local.mostrarVentas();
+                case 2 -> menuDetalles(local, caja);
                 case 3 -> menuArticulo(local);
                 case 4 -> menuCliente(local);
                 case 5 -> local.nuevaCompra(cargarNuevaCompra(local));
@@ -105,6 +105,28 @@ public class Menu {
         }while (opc != 0);
     }
 
+    /**
+     * Método para mostrar las opciones dentro del menú de caja.
+     * @param local
+     */
+    public void menuDetalles (Local local, Caja caja) {
+        System.out.println("\n-----------------------------");
+        System.out.println("------- MENÚ DETALLES -------");
+        System.out.println("-----------------------------\n");
+        Teclado t = new Teclado();
+        int opc;
+        do{
+            opc = t.cargarOpcionMenuDetalles(caja.getIdCaja());
+
+            switch (opc) {
+                case 1 -> caja.mostrarDinero();
+                case 2 -> local.mostrarVentas(caja);
+                case 3 -> local.mostrarCompras();
+                case 0 -> System.out.println("\nSaliendo...\n");
+                default -> System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
+            }
+        }while (opc != 0);
+    }
 
     /**
      * Método para mostrar las opciones dentro del menú de articulo.
@@ -236,7 +258,7 @@ public class Menu {
 
         String cuit = t.cargarCuitProv(local.getListaProveedores());
 
-        String nombre = t.cargarNombreCliente();
+        String nombre = t.cargarNombreProveedor();
         String apellido = t.cargarApellido();
         String direc = t.cargarDireccion();
         String tel = t.cargarTelefono();
@@ -313,6 +335,7 @@ public class Menu {
             case 1 -> {
                 marca = cargarNuevaMarca(local); //TODO debería recibir el strin del nombre intentado, mostrarlo y cargarlo directamente.
                 local.nuevaMarca(marca);
+                System.out.println("\nMarca cargada exitosamente.\n");
                 return marca;
             }
             case 2 -> {
@@ -350,7 +373,7 @@ public class Menu {
                 case 1 -> proveedor = local.buscarProveedor();
                 case 2 -> {
                     local.nuevoProveedor(cargarNuevoProveedor(local));
-                    proveedor = local.buscarProveedor();
+                    proveedor = local.getListaProveedores().getElemento(local.getListaProveedores().getLista().size() - 1);
                 }
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
@@ -361,26 +384,37 @@ public class Menu {
         do {
 
             articuloComprado = local.buscarArticuloID();
-
+            boolean flag = false;
             while(articuloComprado == null) {
-                switch (t.nombreArticuloCompradoNoExiste()) {
+                int aux = t.nombreArticuloCompradoNoExiste();
+                switch (aux) {
                     case 1 -> articuloComprado = local.buscarArticuloID();
-                    case 2 -> local.nuevoArticulo(cargarNuevoArticulo(local));
+                    case 2 ->{
+                        local.nuevoArticulo(cargarNuevoArticulo(local));
+                        articuloComprado = local.getListaArticulos().getElemento(local.getListaArticulos().getLista().size() - 1);
+                        flag = true;
+                    }
                     default -> System.out.println("\nLa opcion ingresada no es valida.\n");
                 }
             }
 
-            cantidadComprada = t.cargarCantidadArticulo();
-            while(cantidadComprada < 1){
-                cantidadComprada = t.cantidadCeroONegativa(cantidadComprada);
+            if(!flag){
+                cantidadComprada = t.cargarCantidadArticulo();
+                while(cantidadComprada < 1){
+                    cantidadComprada = t.cantidadCeroONegativa(cantidadComprada);
+                }
+
+                costoLinea = t.cargarCostoLinea();
+                while(costoLinea <= 0){
+                    costoLinea = t.costoCeroONegativo(costoLinea);
+                }
+                nuevaCompra.agregarLinea(articuloComprado, cantidadComprada, costoLinea);
+                local.masStock(articuloComprado, cantidadComprada);
+                local.actualizarPrecio(articuloComprado);
+            }else {
+                nuevaCompra.agregarLinea(articuloComprado, articuloComprado.getStock(), articuloComprado.getCosto());
             }
 
-            costoLinea = t.cargarCostoLinea();
-            while(costoLinea <= 0){
-                costoLinea = t.costoCeroONegativo(costoLinea);
-            }
-
-            nuevaCompra.agregarLinea(articuloComprado, cantidadComprada, costoLinea);
         } while(t.continuarCargandoLineasCompra());
 
         return nuevaCompra;
@@ -401,7 +435,7 @@ public class Menu {
         Cliente cliente = local.buscarCliente();
 
         while (cliente == null){
-            cuitCliente = t.clienteNoExiste(cuitCliente);
+            cuitCliente = t.clienteNoExiste();
             switch (cuitCliente) {
                 case 1 -> cliente = local.buscarCliente();
                 case 2 -> cliente = local.getListaClientes().getElemento(0);
@@ -442,7 +476,7 @@ public class Menu {
                     int cant = nuevaVenta.cargarCantidadArticulo(art);
                     if(cant != 0){
                         nuevaVenta.agregarLinea(art, cant);
-                        local.nuevoStock(art,cant);
+                        local.menosStock(art,cant);
                         caja.actualizarDinero(nuevaVenta.generarTotal(local.getListaDescuento()));
                     }
                 }

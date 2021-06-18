@@ -7,8 +7,10 @@ public class Linea {
     private int cantidad;
     private double totalLinea;
 
-    public Linea (){
-
+    public Linea (Articulo articulo, int cantidad, double totalLinea){
+        this.articulo = articulo;
+        this.cantidad = cantidad;
+        this.totalLinea = totalLinea * cantidad;
     }
 
     public Linea(Articulo articulo, int cantidad){

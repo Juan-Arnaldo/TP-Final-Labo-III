@@ -2,14 +2,16 @@ package com.company.Operacion;
 
 import com.company.Articulo.Articulo;
 import com.company.Contenedor.ContenedorArrayList;
+import com.company.Local.DescTarjeta;
+import com.company.Local.Descuento;
 import com.company.Persona.Persona;
+import com.company.Utilidad.Validacion;
 
 import java.util.ArrayList;
 
 public class Compra extends Operacion {
 
     private int costo;
-    private ArrayList<Linea> listaLinea; // Está presente también en Venta, mover a Operación
 
     public Compra(Persona persona) {
         super(persona);
@@ -29,7 +31,14 @@ public class Compra extends Operacion {
      * @param cant
      */
     public void agregarLinea(Articulo aAgregar, int cant, double total){
-        Linea nueva = new Linea(aAgregar, cant);
-        listaLinea.add(nueva);
+        Linea nueva = new Linea(aAgregar, cant, total);
+        super.getListaLinea().agregar(nueva);
+    }
+
+
+    public void mostrarCompra(){
+        System.out.println("\nID compra: " + getIdOperacion() + "\nProveedor: " + getPersona().getNombre() + " " +getPersona().getApellido() + ", CUIT " + getPersona().getCuit());
+        mostrarLineas();
+        System.out.println("\n---------------------------------------\n");
     }
 }

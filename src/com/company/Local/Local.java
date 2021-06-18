@@ -403,22 +403,26 @@ public class Local {
     /**
      * Metodo para mostrar una lista de clientes optimizada
      */
-    public void mostrarListaProveedorOptimizada() {
+    public boolean mostrarListaProveedorOptimizada() {
+        boolean flag = false;
 
         Teclado t = new Teclado();
-        String nombre = t.cargarNombreCliente();
+        String nombre = t.cargarNombreProveedor();
         Validacion val = new Validacion();
 
         for (Proveedor aux : listaProveedores.getLista()){
             if (val.compararCaracter(nombre, aux.getNombre())){
                 System.out.println(aux.toStringOpt());
+                flag = true;
             }
         }
         for (Proveedor aux : listaProveedores.getLista()){
             if (val.compararCaracter(nombre, aux.getApellido())){
                 System.out.println(aux.toStringOpt());
+                flag = true;
             }
         }
+        return flag;
     }
 
     /**
@@ -514,11 +518,12 @@ public class Local {
     public Proveedor buscarProveedor() {
         Teclado t = new Teclado();
         Proveedor proveedor = null;
-        mostrarListaProveedorOptimizada();
-        String CUIT = t.cargarCuitProv(listaProveedores);
-        for (Proveedor aux : listaProveedores.getLista()){
-            if(aux.getCuit().equals(CUIT)){
-                proveedor = aux;
+        if(mostrarListaProveedorOptimizada()){
+            String CUIT = t.cargarCuitProv(listaProveedores);
+            for (Proveedor aux : listaProveedores.getLista()){
+                if(aux.getCuit().equals(CUIT)){
+                    proveedor = aux;
+                }
             }
         }
 
@@ -560,11 +565,6 @@ public class Local {
         return articulo;
     }
 
-
-
-
-
-
     /**
      * Método para verificar si determinado nombre ya figura en los registros vinculado a un artículo.
      * @param nombre - nombre a verificar.
@@ -590,7 +590,30 @@ public class Local {
     }
 
     /**
-     * Método para recorrer una lista de descuento y mostrar los descuentos vigentes.
+     * Método para recorrer una lista de ventas y mostrarlas.
+     */
+    public void mostrarVentas(Caja caja){
+        for (Operacion aMostrar : listaOperacion.getLista()){
+            if (aMostrar instanceof Venta){
+                if(((Venta) aMostrar).getIdCaja() == caja.getIdCaja())
+                    ((Venta) aMostrar).mostrarVenta(listaDescuento);
+            }
+        }
+    }
+
+    /**
+     * Método para recorrer una lista de compras y mostrarlas.
+     */
+    public void mostrarCompras(){
+        for (Operacion aMostrar : listaOperacion.getLista()){
+            if (aMostrar instanceof Compra){
+                ((Compra) aMostrar).mostrarCompra();
+            }
+        }
+    }
+
+    /**
+     * Método para recorrer una lista de descuentos y mostrarlos.
      */
     public void mostrarDescuentos(){
         for (Descuento desc : listaDescuento.getLista()){
@@ -606,8 +629,24 @@ public class Local {
      * Funcion para actualizar stock
      * @param art,stockpedido articulo a modificar y stock a restar
      */
-    public void nuevoStock(Articulo art, int stockPedido) {
+    public void menosStock(Articulo art, int stockPedido) {
         art.setStock(art.getStock() - stockPedido);
+    }
+
+    /**
+     * Metodo para actualizar stock
+     * @param art,stockComprado articulo a modificar y stock a sumar
+     */
+    public void masStock(Articulo art, int stockComprado) {
+        art.setStock(art.getStock() + stockComprado);
+    }
+
+    /**
+     * Meotodo para actualizar el precio
+     * @param art
+     */
+    public void actualizarPrecio(Articulo art){
+        art.generarPrecio();
     }
 
 
@@ -617,11 +656,12 @@ public class Local {
      * @return Caja seleccionada.
      */
     public Caja buscarCaja(int idCaja) {
-        if(listaCajas.getLista().get(idCaja) != null)
-            return listaCajas.getElemento(idCaja);
-        else
-            return listaCajas.getElemento(listaCajas.getLista().size()-1);
 
+        if(idCaja > listaCajas.getLista().size() - 1){
+            return listaCajas.getElemento(listaCajas.getLista().size()-1);
+        }else{
+            return listaCajas.getElemento(idCaja);
+        }
     }
 
     public String toString() {

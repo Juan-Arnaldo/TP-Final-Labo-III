@@ -30,12 +30,25 @@ public class Teclado {
     public int cargarOpcionMenuCaja() {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Nueva Venta.");
-        System.out.println("2 - Detalles del día.");
+        System.out.println("2 - Detalles.");
         System.out.println("3 - Menú Artículos.");
         System.out.println("4 - Menú Clientes.");
         System.out.println("5 - Nueva Compra.");
         System.out.println("6 - Menú Proveedores.");
         System.out.println("7 - Menú Descuentos.");
+        System.out.println("0 - Salir.");
+        return sc.nextInt();
+    }
+
+    /**
+     * Método para cargar la opción a elegir en el menú de caja.
+     * @return opción.
+     */
+    public int cargarOpcionMenuDetalles(int idCaja) {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Mostrar Dinero de la Caja " + idCaja + ".");
+        System.out.println("2 - Mostrar Ventas de la Caja " + idCaja + ".");
+        System.out.println("3 - Mostrar Compras.");
         System.out.println("0 - Salir.");
         return sc.nextInt();
     }
@@ -293,7 +306,7 @@ public class Teclado {
      * @return costo de la linea.
      */
     public double cargarCostoLinea() {
-        System.out.println("Ingrese el costo de la linea: ");
+        System.out.println("Ingrese el costo del articulo (Unitario): ");
         return sc.nextDouble();
     }
 
@@ -343,7 +356,7 @@ public class Teclado {
      *  2 - Agregar " + " al registro.");.
      */
     public int nombreArticuloCompradoNoExiste() {
-        System.out.println("El id no corresponde a un artículo registrado.");
+        System.out.println("El nombre no corresponde a un artículo registrado.");
         System.out.println("1 - Intentar nuevamente.");
         System.out.println("2 - Agregar nuevo Articulo. ");
         System.out.println("Seleccione la acción a realizar:");
@@ -352,14 +365,13 @@ public class Teclado {
 
     /**
      * Método para elegir cómo seguir en caso de que el cuit ingresado no corresponda a un cliente existente en los registros de local.
-     * @param cuit ingresado anteriormente.
      * @return 1 - Intentar nuevamente.
      *         2 - Pasar Venta como Consumidor Final
      *         3 - Crear Nuevo Cliente
      */
-    public int clienteNoExiste(int cuit){
-        System.out.println( cuit + "no pertenece a un cuit regitrado. ");
-        System.out.println("1 - Volver a cargar el CUIT.");
+    public int clienteNoExiste(){
+        System.out.println( "El cliente buscado no existe. ");
+        System.out.println("1 - Volver a cargar el nombre.");
         System.out.println("2 - Pasar venta como consumidor final.");
         System.out.println("3 - Crear nuevo cliente.");
         System.out.println("Ingrese la accion a realizar: ");
@@ -436,6 +448,22 @@ public class Teclado {
         }
         return nombre;
     }
+
+    /**
+     * Método para cargar por teclado el nombre de una Persona.
+     * @return nombre de la persona cargado.
+     */
+    public String cargarNombreProveedor() {
+        Validacion validacion = new Validacion();
+
+        System.out.println("Ingrese el nombre del proveedor: ");
+        String nombre = sc.nextLine();
+        while(!validacion.contieneSoloLetras(nombre)) {
+            nombre = cargarNuevamenteNombrePersona(nombre);
+        }
+        return nombre;
+    }
+
     /**
      * Método para cargar por teclado el apellido de una Persona.
      * @return apellido de la persona cargada.
@@ -738,9 +766,9 @@ public class Teclado {
      *    2 - Volver a intentarlo.
      */
     public int marcaBuscadaNoSeEncuentra(){
-        System.out.println("La marca buscada no existe, ingrese lo que quiera hacer: ");
-        System.out.println("1 - Crear una nueva marca ");
-        System.out.println("2 - Ingresar nuevamente ");
+        System.out.println("La marca buscada no existe. ");
+        System.out.println("1 - Crear una nueva marca. ");
+        System.out.println("2 - Ingresar nuevamente. ");
         System.out.println("Seleccione la accion a realizar: ");
         return sc.nextInt();
     }
@@ -753,7 +781,8 @@ public class Teclado {
      *          0 - Salir.
      */
     public int articuloNoExiste(){
-        System.out.println("1 - Volver a cargar el ID");
+        System.out.println("El articulo no existe.");
+        System.out.println("1 - Volver a cargar el nombre");
         System.out.println("2 - Cargar un nuevo articulo");
         System.out.println("0 - No cargar el articulo");
         System.out.println("Seleccione la accion a realizar: ");

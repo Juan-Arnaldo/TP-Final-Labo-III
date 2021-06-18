@@ -5,6 +5,8 @@ import com.company.Operacion.Venta;
 import com.company.Persona.Cliente;
 import com.company.Utilidad.Menu;
 
+import java.util.Scanner;
+
 public class Caja {
     private int idCaja;
     private double dinero;
@@ -18,10 +20,6 @@ public class Caja {
 
     public int getIdCaja() {
         return idCaja;
-    }
-
-    public void setIdCaja(int idCaja) {
-        this.idCaja = idCaja;
     }
 
     public double getDinero() {
@@ -42,13 +40,24 @@ public class Caja {
 
     /**
      * Metodo para cargar una nueva venta
+     * @param nuevaVenta a cargar en el registro
+     * @param local en cuyo registro se cargará la nueva venta
      */
-
     public void nuevaVenta(Venta nuevaVenta, Local local) {
         if(nuevaVenta.getListaLinea().getLista().size() > 0){
             nuevaVenta.setIdOperacion(local.getListaOperacion().getContadorId());
             local.getListaOperacion().agregar(nuevaVenta);
         }
+    }
+
+    /**
+     * Metodo para mostrar el dinero ingresado en la caja.
+     */
+    public void mostrarDinero() {
+        System.out.println("\nDinero generado en la Caja " + idCaja + ": $" + dinero + ".\n");
+        System.out.println("Presione ENTER para volver.");
+        Scanner sc = new Scanner(System.in);
+        sc.nextLine();
     }
 
     @Override
