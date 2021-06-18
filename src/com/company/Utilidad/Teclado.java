@@ -132,7 +132,7 @@ public class Teclado {
      */
     public int cargarStock() {
         System.out.println("Ingrese el stock: ");
-        return sc.nextInt();
+        return intValidado();
     }
 
     /**
@@ -142,7 +142,7 @@ public class Teclado {
     public int cargarNuevamenteStockNegativo(int stock){
         System.out.println(stock + "no es un valor de stock válido. Debe ser positivo");
         System.out.println("Intente nuevamente: ");
-        return sc.nextInt();
+        return intValidado();
     }
 
     /**
@@ -151,7 +151,7 @@ public class Teclado {
      */
     public int cargarIDArticulo(){
         System.out.println("Ingrese el id del art: ");
-        return sc.nextInt();
+        return intValidado();
     }
 
     /**
@@ -160,7 +160,7 @@ public class Teclado {
      */
     public int cargarIdDescuento(){
         System.out.println("Ingrese el id del descuento: ");
-        return sc.nextInt();
+        return intValidado();
     }
 
     /**
@@ -199,14 +199,7 @@ public class Teclado {
     public double cargarCosto(){
         Validacion v = new Validacion();
         System.out.println("Ingrese el costo: ");
-        String costoS;
-        do {
-            costoS = sc.nextLine();
-            if(!v.soloDouble(costoS)){
-                soloNumerosException();
-            }
-        }while (!v.soloDouble(costoS));
-        return Double.parseDouble(costoS);
+        return doubleValidado();
     }
 
     /**
@@ -217,14 +210,7 @@ public class Teclado {
         Validacion v = new Validacion();
         System.out.println(costo + "no es un valor de costo válido. Debe ser positivo");
         System.out.println("Intente nuevamente: ");
-        String costoS;
-        do {
-            costoS = sc.nextLine();
-            if(!v.soloDouble(costoS)){
-                soloNumerosException();
-            }
-        }while (!v.soloDouble(costoS));
-        return Double.parseDouble(costoS);
+        return doubleValidado();
     }
 
     /**
@@ -234,14 +220,7 @@ public class Teclado {
     public double cargarUtilidadArticulo() {
         Validacion v = new Validacion();
         System.out.println("Ingrese la utilidad del articulo: ");
-        String utilidadS;
-        do {
-            utilidadS = sc.nextLine();
-            if(!v.soloDouble(utilidadS)){
-                soloNumerosException();
-            }
-        }while (!v.soloDouble(utilidadS));
-        return Double.parseDouble(utilidadS);
+        return doubleValidado();
     }
 
     /**
@@ -253,14 +232,7 @@ public class Teclado {
         Validacion v = new Validacion();
         System.out.println(utilidad + " no es una utilidad válida. Se desea ganar dinero con las ventas.");
         System.out.println("Ingrese nuevamente la utilidad del articulo: ");
-        String utilidadS;
-        do {
-            utilidadS = sc.nextLine();
-            if(!v.soloDouble(utilidadS)){
-                soloNumerosException();
-            }
-        }while (!v.soloDouble(utilidadS));
-        return Double.parseDouble(utilidadS);
+        return doubleValidado();
     }
 
     /**
@@ -272,14 +244,7 @@ public class Teclado {
         Validacion v = new Validacion();
         System.out.println(utilidad + " no es una utilidad válida.");
         System.out.println("Ingrese nuevamente la utilidad del articulo: ");
-        String utilidadS;
-        do {
-            utilidadS = sc.nextLine();
-            if(!v.soloDouble(utilidadS)){
-                soloNumerosException();
-            }
-        }while (!v.soloDouble(utilidadS));
-        return Double.parseDouble(utilidadS);
+        return doubleValidado();
     }
 
     /**
@@ -316,7 +281,7 @@ public class Teclado {
      */
     public int cargarCantidadArticulo(){
         System.out.println("Ingrese la cantidad del articulo: ");
-        return sc.nextInt();
+        return intValidado();
     }
 
     /**
@@ -326,7 +291,7 @@ public class Teclado {
     public int cargarNuevamenteCantidadArticulo(int cantidad){
         System.out.println("No se puede vender la cantidad ingresada. ("+ cantidad+" en stock)");
         System.out.println("Ingrese nuevamente la cantidad del articulo: ");
-        return sc.nextInt();
+        return intValidado();
     }
 
     /**
@@ -337,7 +302,7 @@ public class Teclado {
     public int cantidadCeroONegativa(int cantidad) {
         System.out.println(cantidad + " no es una cantidad de artículos válida.");
         System.out.println("Ingrese nuevamente la cantidad del articulo: ");
-        return sc.nextInt();
+        return intValidado();
     }
 
     /**
@@ -347,14 +312,7 @@ public class Teclado {
     public double cargarCostoLinea() {
         Validacion v = new Validacion();
         System.out.println("Ingrese el costo del articulo (Unitario): ");
-        String costoS;
-        do {
-            costoS = sc.nextLine();
-            if(!v.soloDouble(costoS)){
-                soloNumerosException();
-            }
-        }while (!v.soloDouble(costoS));
-        return Double.parseDouble(costoS);
+        return doubleValidado();
     }
 
     /**
@@ -366,14 +324,7 @@ public class Teclado {
         Validacion v = new Validacion();
         System.out.println(costo + " no es un costo de línea válida.");
         System.out.println("Ingrese nuevamente el costo de la linea: ");
-        String costoS;
-        do {
-            costoS = sc.nextLine();
-            if(!v.soloDouble(costoS)){
-                soloNumerosException();
-            }
-        }while (!v.soloDouble(costoS));
-        return Double.parseDouble(costoS);
+        return doubleValidado();
     }
 
     /**
@@ -456,16 +407,7 @@ public class Teclado {
         Validacion val = new Validacion();
 
         System.out.println("Ingrese el porcentaje para el descuento: ");
-        porcentaje = sc.nextLine();
-
-        while(!aux){
-            aux = val.soloInt(porcentaje);
-            if(!aux){
-                porcentaje = ingresePorcentajeDescNuevamente(porcentaje);
-            }
-        }
-
-        return Integer.parseInt(porcentaje);
+        return intValidado();
     }
 
     /**
@@ -707,7 +649,7 @@ public class Teclado {
     public int cargarNuevamentePorcentaje(int porcentaje) {
         System.out.println("\n" + porcentaje + " no es un numero válido.");
         System.out.println("Ingrese nuevamente el porcentaje: ");
-        return sc.nextInt();
+        return intValidado();
     }
 
     /**
@@ -843,7 +785,7 @@ public class Teclado {
         System.out.println("1 - Crear una nueva marca. ");
         System.out.println("2 - Ingresar nuevamente. ");
         System.out.println("Seleccione la accion a realizar: ");
-        return sc.nextInt();
+        return intValidado();
     }
 
 
@@ -851,7 +793,7 @@ public class Teclado {
         System.out.println("El departamento buscado no existe, ingrese lo que quiera hacer: ");
         System.out.println("1. Crear un nuevo departamento ");
         System.out.println("2. Ingresar nuevamente ");
-        return sc.nextInt();
+        return intValidado();
     }
 
 
@@ -873,6 +815,30 @@ public class Teclado {
 
     public void soloNumerosException(){
         System.out.println("Error, solo se permite numeros!!\n");
+    }
+
+    public int intValidado() {
+        Validacion v = new Validacion();
+        String intS;
+        do {
+            intS = sc.nextLine();
+            if(!v.soloInt(intS)){
+                soloNumerosException();
+            }
+        }while (!v.soloInt(intS));
+        return Integer.parseInt(intS);
+    }
+
+    public double doubleValidado() {
+        Validacion v = new Validacion();
+        String doubleS;
+        do {
+            doubleS = sc.nextLine();
+            if(!v.soloDouble(doubleS)){
+                soloNumerosException();
+            }
+        }while (!v.soloDouble(doubleS));
+        return Double.parseDouble(doubleS);
     }
 }
 
