@@ -272,7 +272,7 @@ public class Teclado {
      * @return costo de la linea.
      */
     public double cargarCostoLinea() {
-        System.out.println("Ingrese el costo de la linea: ");
+        System.out.println("Ingrese el costo del articulo (Unitario): ");
         return sc.nextDouble();
     }
 
@@ -320,7 +320,7 @@ public class Teclado {
      * @return Opción elegida en forma de int. 1 - Intentar nuevamente. 2 - Agregar " + " al registro.");.
      */
     public int nombreArticuloCompradoNoExiste() {
-        System.out.println("El id no corresponde a un artículo registrado.");
+        System.out.println("El nombre no corresponde a un artículo registrado.");
         System.out.println("1 - Intentar nuevamente.");
         System.out.println("2 - Agregar nuevo Articulo. ");
         System.out.println("Seleccione la acción a realizar:");
@@ -399,6 +399,22 @@ public class Teclado {
         }
         return nombre;
     }
+
+    /**
+     * Método para cargar por teclado el nombre de una Persona.
+     * @return nombre de la persona cargado.
+     */
+    public String cargarNombreProveedor() {
+        Validacion validacion = new Validacion();
+
+        System.out.println("Ingrese el nombre del proveedor: ");
+        String nombre = sc.nextLine();
+        while(!validacion.contieneSoloLetras(nombre)) {
+            nombre = cargarNuevamenteNombrePersona(nombre);
+        }
+        return nombre;
+    }
+
     /**
      * Método para cargar por teclado el apellido de una Persona.
      * @return apellido de la persona cargada.

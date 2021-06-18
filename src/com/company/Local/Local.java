@@ -357,22 +357,26 @@ public class Local {
     /**
      * Metodo para mostrar una lista de clientes optimizada
      */
-    public void mostrarListaProveedorOptimizada() {
+    public boolean mostrarListaProveedorOptimizada() {
+        boolean flag = false;
 
         Teclado t = new Teclado();
-        String nombre = t.cargarNombreCliente();
+        String nombre = t.cargarNombreProveedor();
         Validacion val = new Validacion();
 
         for (Proveedor aux : listaProveedores.getLista()){
             if (val.compararCaracter(nombre, aux.getNombre())){
                 System.out.println(aux.toStringOpt());
+                flag = true;
             }
         }
         for (Proveedor aux : listaProveedores.getLista()){
             if (val.compararCaracter(nombre, aux.getApellido())){
                 System.out.println(aux.toStringOpt());
+                flag = true;
             }
         }
+        return flag;
     }
 
     /**
@@ -468,11 +472,12 @@ public class Local {
     public Proveedor buscarProveedor() {
         Teclado t = new Teclado();
         Proveedor proveedor = null;
-        mostrarListaProveedorOptimizada();
-        String CUIT = t.cargarCuitProv(listaProveedores);
-        for (Proveedor aux : listaProveedores.getLista()){
-            if(aux.getCuit().equals(CUIT)){
-                proveedor = aux;
+        if(mostrarListaProveedorOptimizada()){
+            String CUIT = t.cargarCuitProv(listaProveedores);
+            for (Proveedor aux : listaProveedores.getLista()){
+                if(aux.getCuit().equals(CUIT)){
+                    proveedor = aux;
+                }
             }
         }
 
@@ -514,11 +519,6 @@ public class Local {
         return articulo;
     }
 
-
-
-
-
-
     /**
      * Método para verificar si determinado nombre ya figura en los registros vinculado a un artículo.
      * @param nombre - nombre a verificar.
@@ -532,6 +532,7 @@ public class Local {
         return false;
     }
 
+
     public void mostrarVentas(){
         for (Operacion aMostrar : listaOperacion.getLista()){
             if (aMostrar instanceof Venta){
@@ -539,6 +540,7 @@ public class Local {
             }
         }
     }
+
 
     public void mostrarDescuentos(){
         for (Descuento desc : listaDescuento.getLista()){
@@ -552,8 +554,24 @@ public class Local {
      * Funcion para actualizar stock
      * @param art,stockpedido articulo a modificar y stock a restar
      */
-    public void nuevoStock(Articulo art, int stockPedido) {
+    public void menosStock(Articulo art, int stockPedido) {
         art.setStock(art.getStock() - stockPedido);
+    }
+
+    /**
+     * Metodo para actualizar stock
+     * @param art,stockComprado articulo a modificar y stock a sumar
+     */
+    public void masStock(Articulo art, int stockComprado) {
+        art.setStock(art.getStock() + stockComprado);
+    }
+
+    /**
+     * Meotodo para actualizar el precio
+     * @param art
+     */
+    public void actualizarPrecio(Articulo art){
+        art.generarPrecio();
     }
 
 

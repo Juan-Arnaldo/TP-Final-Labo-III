@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Compra extends Operacion {
 
     private int costo;
-    private ArrayList<Linea> listaLinea; // Está presente también en Venta, mover a Operación
 
     public Compra(Persona persona) {
         super(persona);
@@ -29,7 +28,7 @@ public class Compra extends Operacion {
      * @param cant
      */
     public void agregarLinea(Articulo aAgregar, int cant, double total){
-        Linea nueva = new Linea(aAgregar, cant);
-        listaLinea.add(nueva);
+        Linea nueva = new Linea(aAgregar, cant, total);
+        super.getListaLinea().agregar(nueva);
     }
 }

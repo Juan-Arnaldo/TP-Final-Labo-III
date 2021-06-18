@@ -91,7 +91,7 @@ public class Articulo {
         return precio;
     }
 
-    private void generarPrecio(){
+    public void generarPrecio(){
         precio = costo + (costo * utilidad / 100);
     }
 
