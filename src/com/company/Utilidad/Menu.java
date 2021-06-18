@@ -38,10 +38,10 @@ public class Menu {
 
                 do {
                     opc = t.cargarOpcionMenuInicio();
-                    if(!v.soloNumeros(opc)){
+                    if(!v.soloInt(opc)){
                         t.soloNumerosException();
                     }
-                }while (!v.soloNumeros(opc));
+                }while (!v.soloInt(opc));
                 Caja caja;
 
                 switch (opc) {
@@ -79,10 +79,10 @@ public class Menu {
         String idCaja;
         do {
             idCaja = teclado.cargarIdCaja();
-                if(!v.soloNumeros(idCaja)){
+                if(!v.soloInt(idCaja)){
                     t.soloNumerosException();
                 }
-            }while (!v.soloNumeros(idCaja));
+            }while (!v.soloInt(idCaja));
 
 
         return local.buscarCaja(Integer.parseInt(idCaja));
@@ -114,10 +114,10 @@ public class Menu {
         do{
             do {
                 opc = t.cargarOpcionMenuCaja();
-                if(!v.soloNumeros(opc)){
+                if(!v.soloInt(opc)){
                     t.soloNumerosException();
                 }
-            }while (!v.soloNumeros(opc));
+            }while (!v.soloInt(opc));
 
             System.out.println("\n----------------------------");
             System.out.println("------- MENÚ DE CAJA -------");
@@ -152,10 +152,10 @@ public class Menu {
         do{
             do {
                 opc = t.cargarOpcionMenuDetalles(caja.getIdCaja());
-                if(!v.soloNumeros(opc)){
+                if(!v.soloInt(opc)){
                     t.soloNumerosException();
                 }
-            }while (!v.soloNumeros(opc));
+            }while (!v.soloInt(opc));
 
             switch (opc) {
                 case "1" -> caja.mostrarDinero();
@@ -178,10 +178,10 @@ public class Menu {
         do {
             do {
                 opc = t.cargarOpcionMenuArticulo();
-                if(!v.soloNumeros(opc)){
+                if(!v.soloInt(opc)){
                     t.soloNumerosException();
                 }
-            }while (!v.soloNumeros(opc));
+            }while (!v.soloInt(opc));
 
             System.out.println("\n--------------------------------");
             System.out.println("------- MENÚ DE ARTICULO -------");
@@ -211,10 +211,10 @@ public class Menu {
         do {
             do {
                 opc = t.cargarOpcionMenuDescuento();
-                if(!v.soloNumeros(opc)){
+                if(!v.soloInt(opc)){
                     t.soloNumerosException();
                 }
-            }while (!v.soloNumeros(opc));
+            }while (!v.soloInt(opc));
 
             System.out.println("\n--------------------------------");
             System.out.println("------- MENÚ DE DESCUENTOS -------");
@@ -242,10 +242,10 @@ public class Menu {
         do {
             do {
                 opc = t.cargarOpcionMenuCliente();
-                if(!v.soloNumeros(opc)){
+                if(!v.soloInt(opc)){
                     t.soloNumerosException();
                 }
-            }while (!v.soloNumeros(opc));
+            }while (!v.soloInt(opc));
             System.out.println("\n-------------------------------");
             System.out.println("------- MENÚ DE CLIENTE -------");
             System.out.println("-------------------------------\n");
@@ -273,10 +273,10 @@ public class Menu {
         do {
             do {
                 opc = t.cargarOpcionMenuProv();
-                if(!v.soloNumeros(opc)){
+                if(!v.soloInt(opc)){
                     t.soloNumerosException();
                 }
-            }while (!v.soloNumeros(opc));
+            }while (!v.soloInt(opc));
 
             System.out.println("\n---------------------------------");
             System.out.println("------- MENÚ DE PROVEEDOR -------");

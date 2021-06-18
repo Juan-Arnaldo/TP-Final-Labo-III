@@ -197,8 +197,16 @@ public class Teclado {
      * @return costo del artículo cargado.
      */
     public double cargarCosto(){
+        Validacion v = new Validacion();
         System.out.println("Ingrese el costo: ");
-        return sc.nextDouble();
+        String costoS;
+        do {
+            costoS = sc.nextLine();
+            if(!v.soloDouble(costoS)){
+                soloNumerosException();
+            }
+        }while (!v.soloDouble(costoS));
+        return Double.parseDouble(costoS);
     }
 
     /**
@@ -206,9 +214,17 @@ public class Teclado {
      * @return stock cargado.
      */
     public double cargarNuevamenteCostoNegativo(double costo){
+        Validacion v = new Validacion();
         System.out.println(costo + "no es un valor de costo válido. Debe ser positivo");
         System.out.println("Intente nuevamente: ");
-        return sc.nextInt();
+        String costoS;
+        do {
+            costoS = sc.nextLine();
+            if(!v.soloDouble(costoS)){
+                soloNumerosException();
+            }
+        }while (!v.soloDouble(costoS));
+        return Double.parseDouble(costoS);
     }
 
     /**
@@ -216,8 +232,16 @@ public class Teclado {
      * @return utilidad del articulo.
      */
     public double cargarUtilidadArticulo() {
+        Validacion v = new Validacion();
         System.out.println("Ingrese la utilidad del articulo: ");
-        return sc.nextDouble();
+        String utilidadS;
+        do {
+            utilidadS = sc.nextLine();
+            if(!v.soloDouble(utilidadS)){
+                soloNumerosException();
+            }
+        }while (!v.soloDouble(utilidadS));
+        return Double.parseDouble(utilidadS);
     }
 
     /**
@@ -226,9 +250,17 @@ public class Teclado {
      * @return Utilidad presuntamente corregida.
      */
     public double cargarNuevamenteUtilidadNegativa(double utilidad) {
+        Validacion v = new Validacion();
         System.out.println(utilidad + " no es una utilidad válida. Se desea ganar dinero con las ventas.");
         System.out.println("Ingrese nuevamente la utilidad del articulo: ");
-        return sc.nextDouble();
+        String utilidadS;
+        do {
+            utilidadS = sc.nextLine();
+            if(!v.soloDouble(utilidadS)){
+                soloNumerosException();
+            }
+        }while (!v.soloDouble(utilidadS));
+        return Double.parseDouble(utilidadS);
     }
 
     /**
@@ -237,9 +269,17 @@ public class Teclado {
      * @return Utilidad presuntamente corregida.
      */
     public double cargarNuevamenteUtilidadExcesiva(double utilidad) {
+        Validacion v = new Validacion();
         System.out.println(utilidad + " no es una utilidad válida.");
         System.out.println("Ingrese nuevamente la utilidad del articulo: ");
-        return sc.nextDouble();
+        String utilidadS;
+        do {
+            utilidadS = sc.nextLine();
+            if(!v.soloDouble(utilidadS)){
+                soloNumerosException();
+            }
+        }while (!v.soloDouble(utilidadS));
+        return Double.parseDouble(utilidadS);
     }
 
     /**
@@ -305,8 +345,16 @@ public class Teclado {
      * @return costo de la linea.
      */
     public double cargarCostoLinea() {
+        Validacion v = new Validacion();
         System.out.println("Ingrese el costo del articulo (Unitario): ");
-        return sc.nextDouble();
+        String costoS;
+        do {
+            costoS = sc.nextLine();
+            if(!v.soloDouble(costoS)){
+                soloNumerosException();
+            }
+        }while (!v.soloDouble(costoS));
+        return Double.parseDouble(costoS);
     }
 
     /**
@@ -315,9 +363,17 @@ public class Teclado {
      * @return costo presuntamente corregido.
      */
     public double costoCeroONegativo(double costo) {
+        Validacion v = new Validacion();
         System.out.println(costo + " no es un costo de línea válida.");
         System.out.println("Ingrese nuevamente el costo de la linea: ");
-        return sc.nextDouble();
+        String costoS;
+        do {
+            costoS = sc.nextLine();
+            if(!v.soloDouble(costoS)){
+                soloNumerosException();
+            }
+        }while (!v.soloDouble(costoS));
+        return Double.parseDouble(costoS);
     }
 
     /**
@@ -403,7 +459,7 @@ public class Teclado {
         porcentaje = sc.nextLine();
 
         while(!aux){
-            aux = val.contieneNumPorcentaje(porcentaje);
+            aux = val.soloInt(porcentaje);
             if(!aux){
                 porcentaje = ingresePorcentajeDescNuevamente(porcentaje);
             }
