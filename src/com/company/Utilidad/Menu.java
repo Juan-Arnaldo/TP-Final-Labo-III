@@ -57,7 +57,7 @@ public class Menu {
                     case "0" -> System.out.println("\nSaliendo...\n");
                     default -> System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
                 }
-            }while (opc != "0");
+            }while (opc.equals("0"));
     }
 
     /**
@@ -135,7 +135,7 @@ public class Menu {
                 case "0" -> System.out.println("\nSaliendo...\n");
                 default -> System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
             }
-        }while (opc != "0");
+        }while (!opc.equals("0"));
     }
 
     /**
@@ -164,7 +164,7 @@ public class Menu {
                 case "0" -> System.out.println("\nSaliendo...\n");
                 default -> System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
             }
-        }while (opc != "0");
+        }while (!opc.equals("0"));
     }
 
     /**
@@ -197,7 +197,7 @@ public class Menu {
                 case "4" -> local.mostrarUnArticulo();
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
-        } while (opc != "0");
+        } while (!opc.equals("0"));
     }
 
     /**
@@ -228,7 +228,7 @@ public class Menu {
                 case "3" -> local.mostrarDescuentos();
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
-        } while (opc != "0");
+        } while (!opc.equals("0"));
     }
 
     /**
@@ -259,7 +259,7 @@ public class Menu {
                 case "4" -> local.mostrarUnCliente();
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
-        } while (opc != "0");
+        } while (!opc.equals("0"));
     }
 
     /**
@@ -291,7 +291,7 @@ public class Menu {
                 case "4" -> local.mostrarUnProveedor();
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
-        } while (opc != "0");
+        } while (!opc.equals("0"));
         System.out.println("---------------------------------------\n");
     }
 
@@ -305,7 +305,6 @@ public class Menu {
         System.out.println("------- NUEVO CLIENTE -------");
         System.out.println("-----------------------------\n");
         Teclado t = new Teclado();
-        Validacion validacion = new Validacion();
 
         String cuit = t.cargarCuitCliente(local.getListaClientes());
         String nombre = t.cargarNombreCliente();
@@ -476,10 +475,10 @@ public class Menu {
         Proveedor proveedor = local.buscarProveedor();
 
         while (proveedor == null){
-            int aux = t.proveedorNoExiste();
+            String aux = t.proveedorNoExiste();
             switch (aux) {
-                case 1 -> proveedor = local.buscarProveedor();
-                case 2 -> {
+                case "1" -> proveedor = local.buscarProveedor();
+                case "2" -> {
                     local.nuevoProveedor(cargarNuevoProveedor(local));
                     proveedor = local.getListaProveedores().getElemento(local.getListaProveedores().getLista().size() - 1);
                 }
@@ -494,10 +493,10 @@ public class Menu {
             articuloComprado = local.buscarArticuloID();
             boolean flag = false;
             while(articuloComprado == null) {
-                int aux = t.nombreArticuloCompradoNoExiste();
+                String aux = t.nombreArticuloCompradoNoExiste();
                 switch (aux) {
-                    case 1 -> articuloComprado = local.buscarArticuloID();
-                    case 2 ->{
+                    case "1" -> articuloComprado = local.buscarArticuloID();
+                    case "2" ->{
                         local.nuevoArticulo(cargarNuevoArticulo(local));
                         articuloComprado = local.getListaArticulos().getElemento(local.getListaArticulos().getLista().size() - 1);
                         flag = true;
@@ -721,14 +720,14 @@ public class Menu {
         System.out.println("------- MODIFICACION DE ARTICULO -------");
         System.out.println("----------------------------------------\n");
         Teclado t = new Teclado();
-        int aux;
+        String aux;
         do{
             switch (aux = t.menuModificiarArticulo(articulo)) {
-                case 1 -> {
+                case "1" -> {
                     articulo.setNombre(t.cargarNombreArticulo());
                     System.out.println("Nombre editado con exito.");
                 }
-                case 2 -> {
+                case "2" -> {
                     Departamento depto = local.buscarDepartamento();
                     while (depto == null) {
                         depto = menuDepartamentoNoExiste(local);
@@ -736,7 +735,7 @@ public class Menu {
                     articulo.setDepartamento(depto);
                     System.out.println("Departamento editad con exito.");
                 }
-                case 3 -> {
+                case "3" -> {
                     Marca marca = local.buscarMarca();
                     while (marca == null) {
                         marca = menuMarcaNoExiste(local);
@@ -744,22 +743,22 @@ public class Menu {
                     articulo.setMarca(marca);
                     System.out.println("Marca editada con exito.");
                 }
-                case 4 -> {
+                case "4" -> {
                     articulo.setCosto(t.cargarCosto());
                     System.out.println("Costo editado con exito.");
                 }
-                case 5 -> {
+                case "5" -> {
                     articulo.setUtilidad(t.cargarUtilidadArticulo());
                     System.out.println("Utilidad editada con exito.");
                 }
-                case 6 -> {
+                case "6" -> {
                     articulo.setStock(t.cargarStock());
                     System.out.println("Stock editado con exito.");
                 }
-                case 0 -> System.out.println("Saliendo...");
+                case "0" -> System.out.println("Saliendo...");
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
-        }while(aux != 0);
+        }while(aux.equals("0"));
     }
 
     /**
@@ -769,36 +768,36 @@ public class Menu {
     public void modificarClienteSalida(Cliente cliente){
 
         Teclado t = new Teclado();
-        int aux;
+        String aux;
         do{
             System.out.println("\n---------------------------------------");
             System.out.println("------- MODIFICACION DE CLIENTE -------");
             System.out.println("---------------------------------------\n");
             switch (aux = t.menuModificarCliente(cliente)) {
-                case 1 -> {
+                case "1" -> {
                     cliente.setNombre(t.cargarNombreCliente());
                     System.out.println("Nombre editado con exito.");
                 }
-                case 2 -> {
+                case "2" -> {
                     cliente.setApellido(t.cargarApellido());
                     System.out.println("Apellido editado con exito.");
                 }
-                case 3 -> {
+                case "3" -> {
                     cliente.setDomicilio(t.cargarDireccion());
                     System.out.println("Domicilio editado con exito.");
                 }
-                case 4 -> {
+                case "4" -> {
                     cliente.setTelefono(t.cargarTelefono());
                     System.out.println("Telefono editado con exito.");
                 }
-                case 5 -> {
+                case "5" -> {
                     cliente.setEmail(t.cargarEmail());
                     System.out.println("Email editado con exito.");
                 }
-                case 0 -> System.out.println("Saliendo..");
+                case "0" -> System.out.println("Saliendo..");
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
-        }while(aux != 0);
+        }while(aux.equals("0"));
     }
 
     /**
@@ -809,39 +808,39 @@ public class Menu {
         System.out.println("\n-----------------------------------------");
         System.out.println("------- MODIFICACION DE PROVEEDOR -------");
         System.out.println("-----------------------------------------\n");
-        int aux;
+        String aux;
         Teclado t = new Teclado();
         do{
             switch (aux = t.menuModificarProveedor(proveedor)){
-                case 1:
+                case "1":
                     proveedor.setNombre(t.cargarNombreCliente());
                     System.out.println("Nombre editado con exito.");
                     break;
-                case 2:
+                case "2":
                     proveedor.setApellido(t.cargarApellido());
                     System.out.println("Apellido editado con exito.");
                     break;
-                case 3:
+                case "3":
                     proveedor.setDomicilio(t.cargarDireccion());
                     System.out.println("Domicilio editado con exito.");
                     break;
-                case 4:
+                case "4":
                     proveedor.setTelefono(t.cargarTelefono());
                     System.out.println("Telefono editado con exito.");
                     break;
-                case 5:
+                case "5":
                     proveedor.setEmail(t.cargarEmail());
                     System.out.println("Email editado con exito.");
                     break;
-                case 6:
+                case "6":
                     proveedor.setLocalidad(t.cargarLocalidad());
                     System.out.println("Localidad editada con exito.");
-                case 0:
+                case "0":
                     System.out.println("Saliendo..");
                     break;
                 default:
                     System.out.println("\nLa opcion ingresada no es valida.\n");
             }
-        }while(aux != 0);
+        }while(aux.equals("0"));
     }
 }
