@@ -28,6 +28,10 @@ public class Venta extends Operacion {
         this.metodoPago = metodoPago;
     }
 
+    public int getIdCaja() {
+        return idCaja;
+    }
+
     public void setMetodoPago(String metodoPago) {
         this.metodoPago = metodoPago;
     }
@@ -78,13 +82,6 @@ public class Venta extends Operacion {
         super.getListaLinea().agregar(nueva);
     }
 
-    private void mostrarLineas() {
-        System.out.println("Cantidad \t Nombre Articulo \t Precio");
-        for (Linea linea : super.getListaLinea().getLista()){
-            System.out.println(linea.toString());
-        }
-    }
-
     public void mostrarVenta(ContenedorArrayList<DescTarjeta> listaDesc){
         Validacion v = new Validacion();
         Descuento desc = v.validacionDescuento(metodoPago, listaDesc);
@@ -97,7 +94,7 @@ public class Venta extends Operacion {
 
     public void mostrarVentaConDesc(double total, Descuento desc){
         System.out.println("Cliente: " + getPersona().getNombre() + " " +getPersona().getApellido() + " " + getPersona().getCuit() +
-                "\nID venta: " + idVenta +
+                "\nID venta: " + getIdOperacion() +
                 "\nMetodo de Pago: " + metodoPago);
 
         mostrarLineas();
@@ -106,7 +103,7 @@ public class Venta extends Operacion {
 
     public void mostrarVentaSinDesc(double total){
         System.out.println("Cliente: " + getPersona().getNombre() + " " +getPersona().getApellido() + " " + getPersona().getCuit() +
-                "\nID venta: " + idVenta +
+                "\nID venta: " + getIdOperacion() +
                 "\nMetodo de Pago: " + metodoPago + "\n");
         mostrarLineas();
         System.out.println("\nTotal: \t\t " + total);

@@ -514,11 +514,6 @@ public class Local {
         return articulo;
     }
 
-
-
-
-
-
     /**
      * Método para verificar si determinado nombre ya figura en los registros vinculado a un artículo.
      * @param nombre - nombre a verificar.
@@ -535,6 +530,23 @@ public class Local {
     public void mostrarVentas(){
         for (Operacion aMostrar : listaOperacion.getLista()){
             if (aMostrar instanceof Venta){
+                ((Venta) aMostrar).mostrarVenta(listaDescuento);
+            }
+        }
+    }
+
+    public void mostrarVentas(Caja caja){
+        for (Operacion aMostrar : listaOperacion.getLista()){
+            if (aMostrar instanceof Venta){
+                if(((Venta) aMostrar).getIdCaja() == caja.getIdCaja())
+                    ((Venta) aMostrar).mostrarVenta(listaDescuento);
+            }
+        }
+    }
+
+    public void mostrarCompras(){
+        for (Operacion aMostrar : listaOperacion.getLista()){
+            if (aMostrar instanceof Compra){
                 ((Venta) aMostrar).mostrarVenta(listaDescuento);
             }
         }
