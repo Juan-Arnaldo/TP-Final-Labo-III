@@ -114,6 +114,7 @@ public class Menu {
                     t.soloNumerosException();
                 }
             }while (!v.soloNumeros(opc));
+
             System.out.println("\n----------------------------");
             System.out.println("------- MENÚ DE CAJA -------");
             System.out.println("----------------------------\n");

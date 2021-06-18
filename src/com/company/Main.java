@@ -19,7 +19,7 @@ public class Main {
         Menu menu = new Menu();
         LocalJson json = new LocalJson();
 
-        Local local = hardcodearLocal(); // Esto descomentado hardcodea el local independientemente del archivo. Comentar la lectura para usarlo.
+        Local local = hardcodearLocalVacio(); // Esto descomentado hardcodea el local independientemente del archivo. Comentar la lectura para usarlo.
 
         //Local local = json.leerLocalArchivos();
 
@@ -29,7 +29,7 @@ public class Main {
 
     }
 
-    public static Local hardcodearLocal() {
+    public static Local hardcodearLocalVacio() {
         Local local = new Local(0, "Hijo", "Donde Vaya el Padre");
 
         Cliente cliente = new Cliente("Consumidor", "", "", "", "", "Final");
@@ -52,7 +52,7 @@ public class Main {
 //        Articulo art1 = new Articulo("Tornillo A", departamento, marca1, 20, 50, 100);
 //        Articulo art2 = new Articulo("Tornillo B", departamento, marca1, 20, 50, 50);
 //        Articulo art3 = new Articulo("Tornillo C", departamento, marca2, 20, 10, 100);
-
+//
 //        local.nuevoArticulo(art1);
 //        local.nuevoArticulo(art2);
 //        local.nuevoArticulo(art3);
