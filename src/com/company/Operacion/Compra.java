@@ -2,7 +2,10 @@ package com.company.Operacion;
 
 import com.company.Articulo.Articulo;
 import com.company.Contenedor.ContenedorArrayList;
+import com.company.Local.DescTarjeta;
+import com.company.Local.Descuento;
 import com.company.Persona.Persona;
+import com.company.Utilidad.Validacion;
 
 import java.util.ArrayList;
 
@@ -30,5 +33,13 @@ public class Compra extends Operacion {
     public void agregarLinea(Articulo aAgregar, int cant, double total){
         Linea nueva = new Linea(aAgregar, cant, total);
         super.getListaLinea().agregar(nueva);
+    }
+
+
+    public void mostrarVenta(ContenedorArrayList<DescTarjeta> listaDesc){
+        System.out.println("Proveedor: " + getPersona().getNombre() + " " +getPersona().getApellido() + ", CUIT " + getPersona().getCuit() +
+                "\nID compra: " + getIdOperacion());
+
+        mostrarLineas();
     }
 }

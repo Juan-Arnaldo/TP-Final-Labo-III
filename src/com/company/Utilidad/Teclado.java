@@ -31,12 +31,25 @@ public class Teclado {
     public int cargarOpcionMenuCaja() {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Nueva Venta.");
-        System.out.println("2 - Detalles del día.");
+        System.out.println("2 - Detalles.");
         System.out.println("3 - Menú Artículos.");
         System.out.println("4 - Menú Clientes.");
         System.out.println("5 - Nueva Compra.");
         System.out.println("6 - Menú Proveedores.");
         System.out.println("6 - Menú Descuentos.");
+        System.out.println("0 - Salir.");
+        return sc.nextInt();
+    }
+
+    /**
+     * Método para cargar la opción a elegir en el menú de caja.
+     * @return opción.
+     */
+    public int cargarOpcionMenuDetalles(int idCaja) {
+        System.out.println("Ingrese una opcion para continuar: ");
+        System.out.println("1 - Mostrar Dinero de la Caja " + idCaja + ".");
+        System.out.println("2 - Mostrar Ventas de la Caja " + idCaja + ".");
+        System.out.println("3 - Mostrar Compras.");
         System.out.println("0 - Salir.");
         return sc.nextInt();
     }

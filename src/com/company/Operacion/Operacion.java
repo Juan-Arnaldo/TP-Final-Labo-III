@@ -49,4 +49,12 @@ public class Operacion {
         return "Operacion N°" + idOperacion +
                 "\nPersona: " + persona.getNombre() + " CUIT: " + persona.getCuit() ;
     }
+
+
+    public void mostrarLineas() {
+        System.out.println("Cantidad \t Nombre Articulo \t Precio");
+        for (Linea linea : getListaLinea().getLista()){
+            System.out.println(linea.toString());
+        }
+    }
 }

@@ -542,6 +542,24 @@ public class Local {
     }
 
 
+    public void mostrarVentas(Caja caja){
+        for (Operacion aMostrar : listaOperacion.getLista()){
+            if (aMostrar instanceof Venta){
+                if(((Venta) aMostrar).getIdCaja() == caja.getIdCaja())
+                    ((Venta) aMostrar).mostrarVenta(listaDescuento);
+            }
+        }
+    }
+
+    public void mostrarCompras(){
+        for (Operacion aMostrar : listaOperacion.getLista()){
+            if (aMostrar instanceof Compra){
+                ((Venta) aMostrar).mostrarVenta(listaDescuento);
+            }
+        }
+    }
+
+
     public void mostrarDescuentos(){
         for (Descuento desc : listaDescuento.getLista()){
             if (desc instanceof DescTarjeta){

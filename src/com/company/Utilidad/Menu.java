@@ -93,7 +93,7 @@ public class Menu {
 
             switch (opc) {
                 case 1 -> caja.nuevaVenta(cargarNuevaVenta(local, caja), local);
-                case 2 -> local.mostrarVentas();
+                case 2 -> menuDetalles(local, caja);
                 case 3 -> menuArticulo(local);
                 case 4 -> menuCliente(local);
                 case 5 -> local.nuevaCompra(cargarNuevaCompra(local));
@@ -104,6 +104,28 @@ public class Menu {
         }while (opc != 0);
     }
 
+    /**
+     * Método para mostrar las opciones dentro del menú de caja.
+     * @param local
+     */
+    public void menuDetalles (Local local, Caja caja) {
+        System.out.println("\n-----------------------------");
+        System.out.println("------- MENÚ DETALLES -------");
+        System.out.println("-----------------------------\n");
+        Teclado t = new Teclado();
+        int opc;
+        do{
+            opc = t.cargarOpcionMenuDetalles(caja.getIdCaja());
+
+            switch (opc) {
+                case 1 -> caja.mostrarDinero();
+                case 2 -> local.mostrarVentas(caja);
+                case 3 -> local.mostrarCompras();
+                case 0 -> System.out.println("\nSaliendo...\n");
+                default -> System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
+            }
+        }while (opc != 0);
+    }
 
     /**
      * Método para mostrar las opciones dentro del menú de articulo.
