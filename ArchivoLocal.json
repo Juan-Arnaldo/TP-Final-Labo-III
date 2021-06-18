@@ -1,0 +1,39 @@
+{
+  "idLocal": 10,
+  "nombre": "Messi",
+  "direccion": "Messi",
+  "listaArticulos": {
+    "listaDeElementos": [],
+    "contadorId": 0
+  },
+  "listaClientes": {
+    "listaDeElementos": [],
+    "contadorId": 0
+  },
+  "listaProveedores": {
+    "listaDeElementos": [],
+    "contadorId": 0
+  },
+  "listaCajas": {
+    "listaDeElementos": [
+      {
+        "idCaja": 0,
+        "dinero": 0.0,
+        "idLocal": 10
+      }
+    ],
+    "contadorId": 1
+  },
+  "listaOperacion": {
+    "listaDeElementos": [],
+    "contadorId": 0
+  },
+  "listaDescuento": {
+    "listaDeElementos": [],
+    "contadorId": 0
+  },
+  "listaMarca": {
+    "listaDeElementos": [],
+    "contadorId": 0
+  }
+}

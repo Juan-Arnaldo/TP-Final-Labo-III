@@ -23,4 +23,8 @@ public class DescTarjeta extends Descuento {
                 "\nNombre de la Tarjeta: " + nombreTarjeta +
                 "\nPorcentaje: " + getPorcentaje() + " %" ;
     }
+
+    public String toStringOpt(){
+        return "ID: " + getIdDescuento() + " Nombre Tarjeta: " + nombreTarjeta +" Porcentaje: %" + getPorcentaje();
+    }
 }

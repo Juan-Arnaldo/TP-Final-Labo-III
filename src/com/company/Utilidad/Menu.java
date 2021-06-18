@@ -82,12 +82,12 @@ public class Menu {
      * @param local
      */
     public void menuCaja (Local local, Caja caja) {
-        System.out.println("\n----------------------------");
-        System.out.println("------- MENÚ DE CAJA -------");
-        System.out.println("----------------------------\n");
         Teclado t = new Teclado();
         int opc;
         do{
+            System.out.println("\n----------------------------");
+            System.out.println("------- MENÚ DE CAJA -------");
+            System.out.println("----------------------------\n");
             System.out.println("    Bienvenido a la Caja " + caja.getIdCaja() + "\n");
             opc = t.cargarOpcionMenuCaja();
 
@@ -98,6 +98,7 @@ public class Menu {
                 case 4 -> menuCliente(local);
                 case 5 -> local.nuevaCompra(cargarNuevaCompra(local));
                 case 6 -> menuProveedor(local);
+                case 7 -> menuDescuento(local);
                 case 0 -> System.out.println("\nSaliendo...\n");
                 default -> System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
             }
@@ -110,12 +111,12 @@ public class Menu {
      * @param local
      */
     public void menuArticulo(Local local) {
-        System.out.println("\n--------------------------------");
-        System.out.println("------- MENÚ DE ARTICULO -------");
-        System.out.println("--------------------------------\n");
         Teclado t = new Teclado();
         int opc;
         do {
+            System.out.println("\n--------------------------------");
+            System.out.println("------- MENÚ DE ARTICULO -------");
+            System.out.println("--------------------------------\n");
             opc = t.cargarOpcionMenuArticulo();
             switch (opc) {
                 case 1 -> local.nuevoArticulo(cargarNuevoArticulo(local));
@@ -128,16 +129,37 @@ public class Menu {
     }
 
     /**
+     * Método para mostrar las opciones dentro del menú de articulo.
+     * @param local
+     */
+    public void menuDescuento(Local local) {
+        Teclado t = new Teclado();
+        int opc;
+        do {
+            System.out.println("\n--------------------------------");
+            System.out.println("------- MENÚ DE DESCUENTOS -------");
+            System.out.println("--------------------------------\n");
+            opc = t.cargarOpcionMenuDescuento();
+            switch (opc) {
+                case 1 -> local.nuevoDescuentoTarjeta(cargarNuevoDescuentoTarjeta(local));
+                case 2 -> local.eliminarUnDescuento();
+                case 3 -> local.mostrarDescuentos();
+                default -> System.out.println("\nLa opcion ingresada no es valida.\n");
+            }
+        } while (opc != 0);
+    }
+
+    /**
      * Método para mostrar las opciones dentro del menú de cliente.
      * @param local
      */
     public void menuCliente(Local local) {
-        System.out.println("\n-------------------------------");
-        System.out.println("------- MENÚ DE CLIENTE -------");
-        System.out.println("-------------------------------\n");
         Teclado t = new Teclado();
         int opc;
         do {
+            System.out.println("\n-------------------------------");
+            System.out.println("------- MENÚ DE CLIENTE -------");
+            System.out.println("-------------------------------\n");
             opc = t.cargarOpcionMenuCliente();
             switch (opc) {
                 case 1 -> local.nuevoCliente(cargarNuevoCliente(local));
@@ -154,12 +176,12 @@ public class Menu {
      * @param local
      */
     public void menuProveedor(Local local) {
-        System.out.println("\n---------------------------------");
-        System.out.println("------- MENÚ DE PROVEEDOR -------");
-        System.out.println("---------------------------------\n");
         Teclado t = new Teclado();
         int opc;
         do {
+            System.out.println("\n---------------------------------");
+            System.out.println("------- MENÚ DE PROVEEDOR -------");
+            System.out.println("---------------------------------\n");
             opc = t.cargarOpcionMenuProv();
             switch (opc) {
                 case 1 -> local.nuevoProveedor(cargarNuevoProveedor(local));
@@ -169,6 +191,7 @@ public class Menu {
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
         } while (opc != 0);
+        System.out.println("---------------------------------------\n");
     }
 
     /**
@@ -195,6 +218,7 @@ public class Menu {
         String email = t.cargarEmail();
 
         System.out.println("Cliente cargado exitosamente.");
+        System.out.println("---------------------------------------\n");
 
         return new Cliente(nombre, direc, cuit, tel, email, apellido);
     }
@@ -218,6 +242,9 @@ public class Menu {
         String tel = t.cargarTelefono();
         String email = t.cargarEmail();
         String localidad = t.cargarLocalidad();
+
+        System.out.println("Proveedor cargado exitosamente.");
+        System.out.println("---------------------------------------\n");
 
         return new Proveedor(nombre, direc, cuit, tel, email, localidad, apellido);
     }
@@ -266,6 +293,9 @@ public class Menu {
             stock = t.cargarNuevamenteStockNegativo(stock);
         }
 
+        System.out.println("Articulo cargado exitosamente.");
+        System.out.println("---------------------------------------\n");
+
         return new Articulo(nombre, departamento, marca, costo, utilidad, stock);
     }
 
@@ -295,6 +325,7 @@ public class Menu {
             }
         }
     }
+
 
     /**
      * Método para cargar los datos de una nueva compra, con sus correspondientes validaciones.
@@ -436,12 +467,7 @@ public class Menu {
         System.out.println("----------------------------------\n");
         Teclado t = new Teclado();
         String nombre = t.cargarNombreDescuentoTarjeta();
-
         int porcentaje = t.ingresePorcentajeDesc();
-
-        while (porcentaje <= 0 || porcentaje > 100){
-            porcentaje = t.ingresePorcentajeDescNuevamente(porcentaje);
-        }
         String tarjeta = cargarTarjeta();
 
         return new DescTarjeta(porcentaje, tarjeta, nombre);
@@ -572,12 +598,13 @@ public class Menu {
      * @param cliente a modificar.
      */
     public void modificarClienteSalida(Cliente cliente){
-        System.out.println("\n---------------------------------------");
-        System.out.println("------- MODIFICACION DE CLIENTE -------");
-        System.out.println("---------------------------------------\n");
+
         Teclado t = new Teclado();
         int aux;
         do{
+            System.out.println("\n---------------------------------------");
+            System.out.println("------- MODIFICACION DE CLIENTE -------");
+            System.out.println("---------------------------------------\n");
             switch (aux = t.menuModificarCliente(cliente)) {
                 case 1 -> {
                     cliente.setNombre(t.cargarNombreCliente());
@@ -604,7 +631,6 @@ public class Menu {
             }
         }while(aux != 0);
     }
-
 
     /**
      * Método para modificar el proveedor recibido por parámetro.
