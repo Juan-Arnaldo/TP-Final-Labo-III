@@ -4,8 +4,6 @@ import com.company.Articulo.Articulo;
 import com.company.Contenedor.ContenedorArrayList;
 import com.company.Persona.Cliente;
 import com.company.Persona.Proveedor;
-
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Teclado {

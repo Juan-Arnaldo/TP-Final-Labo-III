@@ -104,7 +104,7 @@ public class Articulo {
                 "\nMarca: " + marca +
                 "\nStock: " + stock +
                 "\nCosto: " + costo +
-                "\nUtilidad: " + utilidad +
+                "\nUtilidad: %" + utilidad +
                 "\nPrecio Final: " + getPrecio() ;
     }
 

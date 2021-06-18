@@ -24,7 +24,7 @@ public class Main {
         LocalJson json = new LocalJson();
 
 
-       //local = json.leerLocalArchivos();
+       local = json.leerLocalArchivos();
 
         menu.menuInicio(local);
 
