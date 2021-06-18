@@ -384,7 +384,7 @@ public class Teclado {
      */
     public int proveedorNoExiste(){
         System.out.println("El proveedor buscado no existe. ");
-        System.out.println("1 - Volver a cargar el CUIT.");
+        System.out.println("1 - Volver a cargar el nombre.");
         System.out.println("2 - Crear nuevo proveedor.");
         System.out.println("Ingrese la accion a realizar: ");
         return sc.nextInt();
