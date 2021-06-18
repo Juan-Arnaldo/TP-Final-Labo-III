@@ -539,15 +539,15 @@ public class Menu {
         System.out.println("---------------------------\n");
 
         Teclado t = new Teclado();
-        int cuitCliente = -1;
+        String cuitCliente = "-1";
         Cliente cliente = local.buscarCliente();
 
         while (cliente == null){
             cuitCliente = t.clienteNoExiste();
             switch (cuitCliente) {
-                case 1 -> cliente = local.buscarCliente();
-                case 2 -> cliente = local.getListaClientes().getElemento(0);
-                case 3 -> {
+                case "1" -> cliente = local.buscarCliente();
+                case "2" -> cliente = local.getListaClientes().getElemento(0);
+                case "3" -> {
                     local.nuevoCliente(cargarNuevoCliente(local));
                     cliente = local.getListaClientes().getElemento(local.getListaClientes().getContadorId() - 1);
                 }
@@ -563,17 +563,17 @@ public class Menu {
             do {
                 Articulo art = local.buscarArticuloID();
 
-                while(art == null && cuitCliente != 0) {
+                while(art == null && !cuitCliente.equals("0")) {
                     cuitCliente = t.articuloNoExiste();
                     switch (cuitCliente){
-                        case 1 :
+                        case "1" :
                             art = local.buscarArticuloID();
                             break;
-                        case 2 :
+                        case "2" :
                             local.nuevoArticulo(cargarNuevoArticulo(local));
                             art = local.getListaArticulos().getElemento(local.getListaArticulos().getContadorId() - 1);
                             break;
-                        case 0 :
+                        case "0" :
                             break;
                         default:
                             System.out.println("\nLa opcion ingresada no es valida.\n");
