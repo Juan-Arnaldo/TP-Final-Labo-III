@@ -57,7 +57,7 @@ public class Menu {
                     case "0" -> System.out.println("\nSaliendo...\n");
                     default -> System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
                 }
-            }while (opc.equals("0"));
+            }while (!opc.equals("0"));
     }
 
     /**
@@ -118,11 +118,6 @@ public class Menu {
                     t.soloNumerosException();
                 }
             }while (!v.soloInt(opc));
-
-            System.out.println("\n----------------------------");
-            System.out.println("------- MENÚ DE CAJA -------");
-            System.out.println("----------------------------\n");
-            System.out.println("    Bienvenido a la Caja " + caja.getIdCaja() + "\n");
 
             switch (opc) {
                 case "1" -> caja.nuevaVenta(cargarNuevaVenta(local, caja), local);
@@ -482,6 +477,9 @@ public class Menu {
                     local.nuevoProveedor(cargarNuevoProveedor(local));
                     proveedor = local.getListaProveedores().getElemento(local.getListaProveedores().getLista().size() - 1);
                 }
+                case "3" ->{
+                    proveedor = local.getListaProveedores().getElemento(0);
+                }
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
         }
@@ -517,6 +515,7 @@ public class Menu {
                 }
                 nuevaCompra.agregarLinea(articuloComprado, cantidadComprada, costoLinea);
                 local.masStock(articuloComprado, cantidadComprada);
+                articuloComprado.setCosto(costoLinea);
                 local.actualizarPrecio(articuloComprado);
             }else {
                 nuevaCompra.agregarLinea(articuloComprado, articuloComprado.getStock(), articuloComprado.getCosto());
