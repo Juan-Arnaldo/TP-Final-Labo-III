@@ -104,6 +104,10 @@ public class Menu {
      * @param local
      */
     public void menuCaja (Local local, Caja caja) {
+        System.out.println("\n----------------------------");
+        System.out.println("------- MENÚ DE CAJA -------");
+        System.out.println("----------------------------\n");
+        System.out.println("    Bienvenido a la Caja " + caja.getIdCaja() + "\n");
         Teclado t = new Teclado();
         Validacion v = new Validacion();
         String opc;
@@ -119,7 +123,6 @@ public class Menu {
             System.out.println("------- MENÚ DE CAJA -------");
             System.out.println("----------------------------\n");
             System.out.println("    Bienvenido a la Caja " + caja.getIdCaja() + "\n");
-
 
             switch (opc) {
                 case "1" -> caja.nuevaVenta(cargarNuevaVenta(local, caja), local);
