@@ -1,6 +1,7 @@
 package com.company.Utilidad;
 
 import com.company.Articulo.Articulo;
+import com.company.Articulo.Departamento;
 import com.company.Articulo.Marca;
 import com.company.Contenedor.ContenedorArrayList;
 import com.company.Local.DescTarjeta;
@@ -134,6 +135,16 @@ public class Validacion {
     public boolean validacionMarcaNueva(ContenedorArrayList<Marca> listaMarca, String nombre){
         boolean flag = false;
         for (Marca aux : listaMarca.getLista()){
+            if(aux.getNombre().equalsIgnoreCase(nombre)){
+                flag = true;
+            }
+        }
+        return flag;
+    }
+
+    public boolean validacionDepartamentoNuevo(ContenedorArrayList<Departamento> listaDepa, String nombre){
+        boolean flag = false;
+        for (Departamento aux : listaDepa.getLista()){
             if(aux.getNombre().equalsIgnoreCase(nombre)){
                 flag = true;
             }

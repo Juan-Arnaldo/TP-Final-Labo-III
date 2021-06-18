@@ -1,6 +1,7 @@
 package com.company.Utilidad;
 
 import com.company.Articulo.Articulo;
+import com.company.Articulo.Departamento;
 import com.company.Articulo.Marca;
 import com.company.Local.Caja;
 import com.company.Local.DescTarjeta;
@@ -287,14 +288,17 @@ public class Menu {
         Teclado t = new Teclado();
         Validacion v = new Validacion();
 
-        String nombre, departamento;
+        String nombre;
         int stock ;
         double utilidad, costo;
         nombre = t.cargarNombreArticulo();
         while (local.nombreArticuloRepetido(nombre)) {
             nombre = t.cargarNuevamenteNombreArticulo(nombre);
         }
-        departamento = t.cargarDepartamentoArticulo();
+        Departamento departamento = local.buscarDepartamento();
+        while (departamento == null){
+            departamento = menuDepartamentoNoExiste(local);
+        }
 
         Marca marca = local.buscarMarca();
         while (marca == null){
@@ -352,6 +356,37 @@ public class Menu {
             }
         }
     }
+
+
+    /**
+     * Método para decidir qué hacer en caso de que el departamento no exista
+     * @param local
+     * @return
+     */
+    public Departamento menuDepartamentoNoExiste(Local local) {
+        Teclado t = new Teclado();
+        Departamento depto;
+
+        int aux = t.departamentoBuscadoNoSeEncuentra();
+        switch (aux) {
+            case 1 -> {
+                depto = cargarNuevoDepartamento(local); //TODO debería recibir el strin del nombre intentado, mostrarlo y cargarlo directamente.
+                local.nuevoDepartamento(depto);
+                return depto;
+            }
+            case 2 -> {
+                depto = local.buscarDepartamento();
+                return depto;
+            }
+            default -> {
+                System.out.println("\nLa opcion ingresada no es valida.\n");
+                return null;
+            }
+        }
+    }
+
+
+
 
 
     /**
@@ -535,6 +570,29 @@ public class Menu {
     }
 
     /**
+     * Método para cargar una nueva marca
+     * @param local
+     * @return El nuevo departamento creado
+     * Null, en caso de que ya exista
+     */
+    public Departamento cargarNuevoDepartamento(Local local){
+        System.out.println("\n--------------------------------");
+        System.out.println("------- NUEVO DEPARTAMENTO -------");
+        System.out.println("----------------------------------\n");
+        Teclado t = new Teclado();
+        Validacion v = new Validacion();
+        String nombre = t.cargarNombreDepartamento();
+
+        if (!v.validacionDepartamentoNuevo(local.getListaDepartamento(), nombre)){
+            return new Departamento(nombre);
+        }else{
+            t.departamentoYaExiste();
+        }
+
+        return null;
+    }
+
+    /**
      * Método para ingresar el metodo de pago
      * @return un String con el nombre del Enum
      */
@@ -602,8 +660,12 @@ public class Menu {
                     System.out.println("Nombre editado con exito.");
                 }
                 case 2 -> {
-                    articulo.setDepartamento(t.cargarDepartamentoArticulo());
-                    System.out.println("Departamento editado con exito.");
+                    Departamento depto = local.buscarDepartamento();
+                    while (depto == null) {
+                        depto = menuDepartamentoNoExiste(local);
+                    }
+                    articulo.setDepartamento(depto);
+                    System.out.println("Departamento editad con exito.");
                 }
                 case 3 -> {
                     Marca marca = local.buscarMarca();

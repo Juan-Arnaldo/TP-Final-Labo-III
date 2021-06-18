@@ -662,6 +662,12 @@ public class Teclado {
         return sc.nextLine();
     }
 
+
+    public String cargarNombreDepartamento() {
+        System.out.println("Ingrese el nombre del Departamento: ");
+        return sc.nextLine();
+    }
+
     /**
      * Método para cargar por teclado el nombre de una marca a buscar.
      * @return nombre de la marca a buscar.
@@ -671,11 +677,23 @@ public class Teclado {
         return sc.nextLine();
     }
 
+
+    public String cargarNombreDepartamentoBuscar(){
+        System.out.println("Ingrese el nombre del departamento a buscar: ");
+        return sc.nextLine();
+    }
+
+
     /**
      * Método para imprimir que una marca ya existe.
      */
+
     public void marcaYaExiste(){
         System.out.println("La marca que desea crear ya existe! ");
+    }
+
+    public void departamentoYaExiste(){
+        System.out.println("El departamento que desea crear ya existe! ");
     }
 
     /**
@@ -770,6 +788,15 @@ public class Teclado {
         System.out.println("Seleccione la accion a realizar: ");
         return sc.nextInt();
     }
+
+
+    public int departamentoBuscadoNoSeEncuentra(){
+        System.out.println("El departamento buscado no existe, ingrese lo que quiera hacer: ");
+        System.out.println("1. Crear un nuevo departamento ");
+        System.out.println("2. Ingresar nuevamente ");
+        return sc.nextInt();
+    }
+
 
     /**
      * Método para imprimir que un articulo no existe y pedir una opcion por teclado.

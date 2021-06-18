@@ -1,9 +1,9 @@
 package com.company.Articulo;
 
-public class Marca {
+public class Departamento {
     private String nombre;
 
-    public Marca(String nombre){
+    public Departamento(String nombre){
         this.nombre = nombre;
     }
 

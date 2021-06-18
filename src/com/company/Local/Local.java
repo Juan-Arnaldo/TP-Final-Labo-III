@@ -1,5 +1,6 @@
 package com.company.Local;
 
+import com.company.Articulo.Departamento;
 import com.company.Articulo.Marca;
 import com.company.Contenedor.ContenedorArrayList;
 import com.company.Operacion.Compra;
@@ -24,6 +25,7 @@ public class Local {
     private ContenedorArrayList<Operacion> listaOperacion;
     private ContenedorArrayList<DescTarjeta> listaDescuento;
     private ContenedorArrayList<Marca> listaMarca;
+    private ContenedorArrayList<Departamento> listaDepartamento;
 
 
     public Local(int idLocal, String nombre, String direccion) {
@@ -38,6 +40,7 @@ public class Local {
         this.listaOperacion = new ContenedorArrayList<Operacion>();
         this.listaDescuento = new ContenedorArrayList<DescTarjeta>();
         this.listaMarca = new ContenedorArrayList<Marca>();
+        this.listaDepartamento = new ContenedorArrayList<Departamento>();
     }
 
     public int getIdLocal() {
@@ -120,6 +123,14 @@ public class Local {
         this.listaMarca = listaMarca;
     }
 
+    public ContenedorArrayList<Departamento> getListaDepartamento() {
+        return listaDepartamento;
+    }
+
+    public void setListaDepartamento(ContenedorArrayList<Departamento> listaDepartamento) {
+        this.listaDepartamento = listaDepartamento;
+    }
+
     /**
      * Método para cargar un nuevo cliente al registro.
      * @param nuevoCliente a cargar.
@@ -191,6 +202,25 @@ public class Local {
     public void mostrarMarcas(){
         for (Marca marca : listaMarca.getLista()){
             System.out.println(marca.toString());
+        }
+    }
+
+    /**
+     * Método para ingresar un nuevo departamento
+     * @param deptoNuevo
+     */
+    public void nuevoDepartamento(Departamento deptoNuevo){
+        if (deptoNuevo != null){
+            listaDepartamento.agregar(deptoNuevo);
+        }
+    }
+
+    /**
+     * Método para mostrar la lista de departamentos
+     */
+    public void mostrarDeptos(){
+        for (Departamento depto : listaDepartamento.getLista()){
+            System.out.println(depto.toString());
         }
     }
 
@@ -294,6 +324,13 @@ public class Local {
         }
         for (Articulo aux : listaArticulos.getLista()){
             if (val.compararCaracter(nombre, aux.getMarca().getNombre())){
+                System.out.println(aux.toStringOpt());
+                flag = true;
+            }
+        }
+
+        for (Articulo aux : listaArticulos.getLista()){
+            if (val.compararCaracter(nombre, aux.getDepartamento().getNombre())){
                 System.out.println(aux.toStringOpt());
                 flag = true;
             }
@@ -508,6 +545,23 @@ public class Local {
             }
         }
 
+        return aBuscar;
+    }
+
+    /**
+     * Método para buscar un Departamento
+     * @return El departamento buscado
+     * @return Null, si no se encuentra
+     */
+    public Departamento buscarDepartamento(){
+        Teclado t = new Teclado();
+        Departamento aBuscar = null;
+        String nombre = t.cargarNombreDepartamentoBuscar();
+        for (Departamento depto : listaDepartamento.getLista()){
+            if (depto.getNombre().equals(nombre)){
+                aBuscar = depto;
+            }
+        }
         return aBuscar;
     }
 
