@@ -11,18 +11,18 @@ import java.util.ArrayList;
 
 public class Compra extends Operacion {
 
-    private int costo;
-
     public Compra(Persona persona) {
         super(persona);
     }
 
-    public int getCosto() {
-        return costo;
-    }
+    public double getCosto() {
+        double costo = 0;
 
-    public void setCosto(int costo) {
-        this.costo = costo;
+        for (Linea linea : getListaLinea().getLista()){
+            costo =+ linea.getTotalLinea();
+        }
+
+        return costo;
     }
 
     /**
@@ -36,10 +36,10 @@ public class Compra extends Operacion {
     }
 
 
-    public void mostrarVenta(ContenedorArrayList<DescTarjeta> listaDesc){
-        System.out.println("Proveedor: " + getPersona().getNombre() + " " +getPersona().getApellido() + ", CUIT " + getPersona().getCuit() +
-                "\nID compra: " + getIdOperacion());
-
+    public void mostrarCompra(){
+        System.out.println("\nID compra: " + getIdOperacion() + "\nProveedor: " + getPersona().getNombre() + " " +getPersona().getApellido() + ", CUIT " + getPersona().getCuit());
         mostrarLineas();
+        System.out.println("\nTotal: \t\t " + getCosto());
+        System.out.println("\n---------------------------------------\n");
     }
 }

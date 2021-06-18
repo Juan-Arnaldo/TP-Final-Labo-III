@@ -262,6 +262,37 @@ public class Local {
     }
 
     /**
+     * Método para eliminar un descuento
+     */
+    public void eliminarUnDescuento(){
+        Teclado t = new Teclado();
+        DescTarjeta desc = buscarDescuentoId();
+
+        if(desc != null) {
+            listaDescuento.eliminar(desc.getIdDescuento());
+        }else{
+            t.descuentoNoEncontrado();
+        }
+    }
+
+    private DescTarjeta buscarDescuentoId() {
+        DescTarjeta desc = null;
+        
+        if(mostrarListaDescuentoOptimizada()){
+            Teclado t2 = new Teclado();
+            int id = t2.cargarIdDescuento();
+            for (DescTarjeta aBuscar : listaDescuento.getLista()) {
+                if (aBuscar.getIdDescuento() == id) {
+                    desc = aBuscar;
+                }
+            }
+        }
+        return desc;
+    }
+    
+    
+
+    /**
      * Método para modificar un articulo
      */
     public void modificarUnArticulo(){
@@ -303,6 +334,21 @@ public class Local {
                 System.out.println(aux.toStringOpt());
                 flag = true;
             }
+        }
+        return flag;
+    }
+
+    /**
+     * Método para mostrar la lista de articulo de fomar optimizada
+     */
+    public boolean mostrarListaDescuentoOptimizada() {
+        boolean flag = false;
+
+        for (DescTarjeta aux : listaDescuento.getLista()){
+
+                System.out.println(aux.toStringOpt());
+                flag = true;
+
         }
         return flag;
     }
@@ -586,7 +632,9 @@ public class Local {
         return false;
     }
 
-
+    /**
+     * Método para recorrer una lista de descuento y mostrar ventas.
+     */
     public void mostrarVentas(){
         for (Operacion aMostrar : listaOperacion.getLista()){
             if (aMostrar instanceof Venta){
@@ -595,7 +643,9 @@ public class Local {
         }
     }
 
-
+    /**
+     * Método para recorrer una lista de ventas y mostrarlas.
+     */
     public void mostrarVentas(Caja caja){
         for (Operacion aMostrar : listaOperacion.getLista()){
             if (aMostrar instanceof Venta){
@@ -605,19 +655,26 @@ public class Local {
         }
     }
 
+    /**
+     * Método para recorrer una lista de compras y mostrarlas.
+     */
     public void mostrarCompras(){
         for (Operacion aMostrar : listaOperacion.getLista()){
             if (aMostrar instanceof Compra){
-                ((Venta) aMostrar).mostrarVenta(listaDescuento);
+                ((Compra) aMostrar).mostrarCompra();
             }
         }
     }
 
-
+    /**
+     * Método para recorrer una lista de descuentos y mostrarlos.
+     */
     public void mostrarDescuentos(){
         for (Descuento desc : listaDescuento.getLista()){
             if (desc instanceof DescTarjeta){
+                System.out.println("------------------------------");
                 System.out.println(desc.toString());
+                System.out.println("------------------------------");
             }
         }
     }

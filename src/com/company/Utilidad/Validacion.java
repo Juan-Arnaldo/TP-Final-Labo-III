@@ -94,7 +94,7 @@ public class Validacion {
         for (int x = 0; x < cadena.length(); x++) {
             char c = cadena.charAt(x);
             // Si no está entre a y z, ni entre A y Z
-            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
+            if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c == ' '))) {
                 return false;
             }
         }
@@ -104,8 +104,27 @@ public class Validacion {
     public boolean contieneNumCuit(String cadena) {
         for (int x = 0; x < cadena.length(); x++) {
             char c = cadena.charAt(x);
-            // Si no está entre a y z, ni entre A y Z
             if (!((c >= '0' && c <= '9') || (c == '-'))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean contieneNumTel(String cadena) {
+        for (int x = 0; x < cadena.length(); x++) {
+            char c = cadena.charAt(x);
+            if (!((c >= '0' && c <= '9') || (c == '+') || (c == ' '))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean contieneNumPorcentaje(String cadena) {
+        for (int x = 0; x < cadena.length(); x++) {
+            char c = cadena.charAt(x);
+            if (!((c >= '0' && c <= '9'))) {
                 return false;
             }
         }
