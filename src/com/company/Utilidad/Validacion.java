@@ -112,10 +112,20 @@ public class Validacion {
         return true;
     }
 
-    public boolean soloNumeros(String cadena){
+    public boolean soloInt(String cadena){
         for (int i = 0; i < cadena.length(); i++){
             char c = cadena.charAt(i);
             if(!(c >= '0' && c <= '9')){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean soloDouble(String cadena){
+        for (int i = 0; i < cadena.length(); i++){
+            char c = cadena.charAt(i);
+            if(!(c >= '0' && c <= '9' || (c == '.') )){
                 return false;
             }
         }
@@ -126,16 +136,6 @@ public class Validacion {
         for (int x = 0; x < cadena.length(); x++) {
             char c = cadena.charAt(x);
             if (!((c >= '0' && c <= '9') || (c == '+') || (c == ' '))) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean contieneNumPorcentaje(String cadena) {
-        for (int x = 0; x < cadena.length(); x++) {
-            char c = cadena.charAt(x);
-            if (!((c >= '0' && c <= '9'))) {
                 return false;
             }
         }
