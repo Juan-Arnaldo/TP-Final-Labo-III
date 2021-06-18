@@ -145,7 +145,10 @@ public class Menu {
             switch (opc) {
                 case 1 -> local.nuevoArticulo(cargarNuevoArticulo(local));
                 case 2 -> local.modificarUnArticulo();
-                case 3 -> local.eliminarUnArticulo();
+                case 3 -> {
+                    local.eliminarUnArticulo();
+                    System.out.println("Articulo borrado exitosamente.");
+                }
                 case 4 -> local.mostrarUnArticulo();
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
@@ -166,7 +169,9 @@ public class Menu {
             opc = t.cargarOpcionMenuDescuento();
             switch (opc) {
                 case 1 -> local.nuevoDescuentoTarjeta(cargarNuevoDescuentoTarjeta(local));
-                case 2 -> local.eliminarUnDescuento();
+                case 2 -> {
+                    local.eliminarUnDescuento();
+                    System.out.println("Descuento borrado exitosamente.");}
                 case 3 -> local.mostrarDescuentos();
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
@@ -188,7 +193,9 @@ public class Menu {
             switch (opc) {
                 case 1 -> local.nuevoCliente(cargarNuevoCliente(local));
                 case 2 -> local.modificarUnCliente();
-                case 3 -> local.eliminarUnCliente();
+                case 3 -> {
+                    local.eliminarUnCliente();
+                    System.out.println("Cliente borrado exitosamente.");}
                 case 4 -> local.mostrarUnCliente();
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
@@ -210,7 +217,9 @@ public class Menu {
             switch (opc) {
                 case 1 -> local.nuevoProveedor(cargarNuevoProveedor(local));
                 case 2 -> local.modificarUnProv();
-                case 3 -> local.eliminarUnProv();
+                case 3 -> {
+                    local.eliminarUnProv();
+                    System.out.println("Proveedor borrado exitosamente.");}
                 case 4 -> local.mostrarUnProveedor();
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
@@ -231,10 +240,6 @@ public class Menu {
         Validacion validacion = new Validacion();
 
         String cuit = t.cargarCuitCliente(local.getListaClientes());
-        while(validacion.validarCuitCliente(cuit, local.getListaClientes().getLista())) {
-            cuit = t.cargarNuevamenteCuitPersona(cuit);
-        }
-
         String nombre = t.cargarNombreCliente();
         String apellido = t.cargarApellido();
         String direc = t.cargarDireccion();
@@ -259,7 +264,6 @@ public class Menu {
         Teclado t = new Teclado();
 
         String cuit = t.cargarCuitProv(local.getListaProveedores());
-
         String nombre = t.cargarNombreProveedor();
         String apellido = t.cargarApellido();
         String direc = t.cargarDireccion();
