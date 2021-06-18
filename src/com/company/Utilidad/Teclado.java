@@ -676,7 +676,6 @@ public class Teclado {
      */
     public int menuModificiarArticulo(Articulo articulo){
         System.out.println("1 - Nombre: " + articulo.getNombre());
-        System.out.println("2 - Departamento: " + articulo.getDepartamento());
         System.out.println("3 - Marca: " + articulo.getMarca().getNombre());
         System.out.println("4 - Costo: " + articulo.getCosto());
         System.out.println("5 - Utilidad: " + articulo.getUtilidad());

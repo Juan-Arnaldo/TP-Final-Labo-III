@@ -256,14 +256,13 @@ public class Menu {
         Teclado t = new Teclado();
         Validacion v = new Validacion();
 
-        String nombre, departamento;
+        String nombre;
         int stock ;
         double utilidad, costo;
         nombre = t.cargarNombreArticulo();
         while (local.nombreArticuloRepetido(nombre)) {
             nombre = t.cargarNuevamenteNombreArticulo(nombre);
         }
-        departamento = t.cargarDepartamentoArticulo();
 
         Marca marca = local.buscarMarca();
         while (marca == null){
@@ -288,7 +287,7 @@ public class Menu {
             stock = t.cargarNuevamenteStockNegativo(stock);
         }
 
-        return new Articulo(nombre, departamento, marca, costo, utilidad, stock);
+        return new Articulo(nombre, marca, costo, utilidad, stock);
     }
 
     /**
@@ -571,10 +570,6 @@ public class Menu {
                     System.out.println("Nombre editado con exito.");
                 }
                 case 2 -> {
-                    articulo.setDepartamento(t.cargarDepartamentoArticulo());
-                    System.out.println("Departamento editado con exito.");
-                }
-                case 3 -> {
                     Marca marca = local.buscarMarca();
                     while (marca == null) {
                         marca = menuMarcaNoExiste(local);
@@ -582,15 +577,15 @@ public class Menu {
                     articulo.setMarca(marca);
                     System.out.println("Marca editada con exito.");
                 }
-                case 4 -> {
+                case 3 -> {
                     articulo.setCosto(t.cargarCosto());
                     System.out.println("Costo editado con exito.");
                 }
-                case 5 -> {
+                case 4 -> {
                     articulo.setUtilidad(t.cargarUtilidadArticulo());
                     System.out.println("Utilidad editada con exito.");
                 }
-                case 6 -> {
+                case 5 -> {
                     articulo.setStock(t.cargarStock());
                     System.out.println("Stock editado con exito.");
                 }

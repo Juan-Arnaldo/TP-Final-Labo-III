@@ -3,7 +3,6 @@ package com.company.Articulo;
 public class Articulo {
     private int idArticulo;
     private String nombre;
-    private String departamento;
     private Marca marca;
     private int stock;
     private double costo;
@@ -13,15 +12,13 @@ public class Articulo {
     /**
      * Constructor de una instancia de la clase Articulo.java.
      * @param nombre
-     * @param departamento
      * @param marca
      * @param costo
      * @param utilidad
      * @param stock
      */
-    public Articulo(String nombre, String departamento, Marca marca, double costo, double utilidad, int stock) {
+    public Articulo(String nombre, Marca marca, double costo, double utilidad, int stock) {
         this.nombre = nombre;
-        this.departamento = departamento;
         this.marca = marca;
         this.utilidad = utilidad;
         this.stock = stock;
@@ -43,14 +40,6 @@ public class Articulo {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
-    }
-
-    public String getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
     }
 
     public Marca getMarca() {
@@ -100,7 +89,6 @@ public class Articulo {
         return
                 "\n" + nombre +
                 "\nId: " + idArticulo +
-                "\nDepartamento: " + departamento +
                 "\nMarca: " + marca +
                 "\nStock: " + stock +
                 "\nCosto: " + costo +
