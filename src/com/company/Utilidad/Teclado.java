@@ -324,19 +324,19 @@ public class Teclado {
      * Método para cargar por teclado el metodo de pago
      * @return
      */
-    public int cargarMetodoPago(){
+    public String cargarMetodoPago(){
         System.out.println("1 - Efectivo");
         System.out.println("2 - Tarjeta");
         System.out.println("3 - Cheque");
         System.out.println("Ingrese el metodo con el que va a pagar: ");
-        return sc.nextInt();
+        return sc.nextLine();
     }
 
     /**
      * Método para cargar por teclado el nombre de la tarjeta con la que se realizará el pago.
      * @return Opción elegida en forma de int.
      */
-    public int cargarTarjeta(){
+    public String cargarTarjeta(){
         System.out.println("1 - Visa");
         System.out.println("2 - Mastercard");
         System.out.println("3 - Cabal");
@@ -345,7 +345,7 @@ public class Teclado {
         System.out.println("6 - Naranja");
         System.out.println("Ingrese la tarjeta del cliente: ");
 
-        return sc.nextInt();
+        return sc.nextLine();
     }
 
     /**
@@ -702,7 +702,7 @@ public class Teclado {
      * @param cliente
      * @return el numero
      */
-    public int menuModificarCliente(Cliente cliente){
+    public String menuModificarCliente(Cliente cliente){
         System.out.println("1 - Nombre: " + cliente.getNombre());
         System.out.println("2 - Apellido: " + cliente.getApellido());
         System.out.println("3 - Domicilio: " + cliente.getDomicilio());
@@ -710,7 +710,7 @@ public class Teclado {
         System.out.println("5 - Email: " + cliente.getEmail());
         System.out.println("0 - Salir");
         System.out.println("\nIngrese la opcion que quiera: ");
-        return Integer.parseInt(sc.nextLine());
+        return sc.nextLine();
     }
 
     /**
@@ -718,7 +718,7 @@ public class Teclado {
      * @param proveedor cargado anteriormente.
      * @return el numero
      */
-    public int menuModificarProveedor(Proveedor proveedor){
+    public String menuModificarProveedor(Proveedor proveedor){
         System.out.println("1 - Nombre: " + proveedor.getNombre());
         System.out.println("2 - Apellido: " + proveedor.getApellido());
         System.out.println("3 - Domicilio: " + proveedor.getDomicilio());
@@ -727,7 +727,7 @@ public class Teclado {
         System.out.println("6 - Localidad: " + proveedor.getLocalidad());
         System.out.println("0 - Salir");
         System.out.println("\nIngrese la opcion que quiera: ");
-        return Integer.parseInt(sc.nextLine());
+        return sc.nextLine();
     }
 
     /**
@@ -756,7 +756,7 @@ public class Teclado {
      * @param articulo cargado anteriormente.
      * @return el numero ingresado.
      */
-    public int menuModificiarArticulo(Articulo articulo){
+    public String menuModificiarArticulo(Articulo articulo){
         System.out.println("1 - Nombre: " + articulo.getNombre());
         System.out.println("2 - Departamento: " + articulo.getDepartamento());
         System.out.println("3 - Marca: " + articulo.getMarca().getNombre());
@@ -765,7 +765,7 @@ public class Teclado {
         System.out.println("6 - Stock: " + articulo.getStock());
         System.out.println("0 - Salir");
         System.out.println("Ingrese lo que quiere modificar: ");
-        return sc.nextInt();
+        return sc.nextLine();
     }
 
     /**
