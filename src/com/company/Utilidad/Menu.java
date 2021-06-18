@@ -177,11 +177,11 @@ public class Menu {
         String aux;
         do {
             do {
-                opc = t.cargarOpcionMenuArticulo();
-                if(!v.soloInt(opc)){
+                aux = t.cargarOpcionMenuArticulo();
+                if(!v.soloInt(aux)){
                     t.soloNumerosException();
                 }
-            }while (!v.soloInt(opc));
+            }while (!v.soloInt(aux));
 
             System.out.println("\n--------------------------------");
             System.out.println("------- MENÚ DE ARTICULO -------");
