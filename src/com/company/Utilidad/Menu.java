@@ -31,25 +31,33 @@ public class Menu {
         System.out.println("-------------------------------------------\n");
         System.out.println("\tBienvenido al Local '" + local.getNombre() + "'. Dirección: " + local.getDireccion() + ".\n");
         Teclado t = new Teclado();
-        int opc;
-        do{
-            opc = t.cargarOpcionMenuInicio();
-            Caja caja;
+        Validacion v = new Validacion();
+        String opc;
 
-            switch (opc) {
-                case 1 -> {
-                    caja = menuSeleccionCaja(local);
-                    menuCaja(local, caja);
+            do{
+
+                do {
+                    opc = t.cargarOpcionMenuInicio();
+                    if(!v.soloNumeros(opc)){
+                        t.soloNumerosException();
+                    }
+                }while (!v.soloNumeros(opc));
+                Caja caja;
+
+                switch (opc) {
+                    case "1" -> {
+                        caja = menuSeleccionCaja(local);
+                        menuCaja(local, caja);
+                    }
+                    case "2" -> {
+                        local.nuevaCaja();
+                        caja = local.getListaCajas().getElemento(local.getListaCajas().getLista().size() - 1);
+                        menuCaja(local, caja);
+                    }
+                    case "0" -> System.out.println("\nSaliendo...\n");
+                    default -> System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
                 }
-                case 2 -> {
-                    local.nuevaCaja();
-                    caja = local.getListaCajas().getElemento(local.getListaCajas().getLista().size() - 1);
-                    menuCaja(local, caja);
-                }
-                case 0 -> System.out.println("\nSaliendo...\n");
-                default -> System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
-            }
-        }while (opc != 0);
+            }while (opc != "0");
     }
 
     /**
@@ -64,8 +72,20 @@ public class Menu {
         if(local.getListaCajas().listaVacia())
             local.nuevaCaja();
         mostrarCajas(local);
-        int idCaja = teclado.cargarIdCaja();
-        return local.buscarCaja(idCaja);
+
+
+        Teclado t = new Teclado();
+        Validacion v = new Validacion();
+        String idCaja;
+        do {
+            idCaja = teclado.cargarIdCaja();
+                if(!v.soloNumeros(idCaja)){
+                    t.soloNumerosException();
+                }
+            }while (!v.soloNumeros(idCaja));
+
+
+        return local.buscarCaja(Integer.parseInt(idCaja));
     }
 
     /**
@@ -85,26 +105,33 @@ public class Menu {
      */
     public void menuCaja (Local local, Caja caja) {
         Teclado t = new Teclado();
-        int opc;
+        Validacion v = new Validacion();
+        String opc;
         do{
+            do {
+                opc = t.cargarOpcionMenuCaja();
+                if(!v.soloNumeros(opc)){
+                    t.soloNumerosException();
+                }
+            }while (!v.soloNumeros(opc));
             System.out.println("\n----------------------------");
             System.out.println("------- MENÚ DE CAJA -------");
             System.out.println("----------------------------\n");
             System.out.println("    Bienvenido a la Caja " + caja.getIdCaja() + "\n");
-            opc = t.cargarOpcionMenuCaja();
+
 
             switch (opc) {
-                case 1 -> caja.nuevaVenta(cargarNuevaVenta(local, caja), local);
-                case 2 -> menuDetalles(local, caja);
-                case 3 -> menuArticulo(local);
-                case 4 -> menuCliente(local);
-                case 5 -> local.nuevaCompra(cargarNuevaCompra(local));
-                case 6 -> menuProveedor(local);
-                case 7 -> menuDescuento(local);
-                case 0 -> System.out.println("\nSaliendo...\n");
+                case "1" -> caja.nuevaVenta(cargarNuevaVenta(local, caja), local);
+                case "2" -> menuDetalles(local, caja);
+                case "3" -> menuArticulo(local);
+                case "4" -> menuCliente(local);
+                case "5" -> local.nuevaCompra(cargarNuevaCompra(local));
+                case "6" -> menuProveedor(local);
+                case "7" -> menuDescuento(local);
+                case "0" -> System.out.println("\nSaliendo...\n");
                 default -> System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
             }
-        }while (opc != 0);
+        }while (opc != "0");
     }
 
     /**
@@ -116,18 +143,24 @@ public class Menu {
         System.out.println("------- MENÚ DETALLES -------");
         System.out.println("-----------------------------\n");
         Teclado t = new Teclado();
-        int opc;
+        Validacion v = new Validacion();
+        String opc;
         do{
-            opc = t.cargarOpcionMenuDetalles(caja.getIdCaja());
+            do {
+                opc = t.cargarOpcionMenuDetalles(caja.getIdCaja());
+                if(!v.soloNumeros(opc)){
+                    t.soloNumerosException();
+                }
+            }while (!v.soloNumeros(opc));
 
             switch (opc) {
-                case 1 -> caja.mostrarDinero();
-                case 2 -> local.mostrarVentas(caja);
-                case 3 -> local.mostrarCompras();
-                case 0 -> System.out.println("\nSaliendo...\n");
+                case "1" -> caja.mostrarDinero();
+                case "2" -> local.mostrarVentas(caja);
+                case "3" -> local.mostrarCompras();
+                case "0" -> System.out.println("\nSaliendo...\n");
                 default -> System.out.println("Opcion erronea.\nVuelva a intentarlo.\n");
             }
-        }while (opc != 0);
+        }while (opc != "0");
     }
 
     /**
@@ -136,23 +169,31 @@ public class Menu {
      */
     public void menuArticulo(Local local) {
         Teclado t = new Teclado();
-        int opc;
+        Validacion v = new Validacion();
+        String opc;
         do {
+            do {
+                opc = t.cargarOpcionMenuArticulo();
+                if(!v.soloNumeros(opc)){
+                    t.soloNumerosException();
+                }
+            }while (!v.soloNumeros(opc));
+
             System.out.println("\n--------------------------------");
             System.out.println("------- MENÚ DE ARTICULO -------");
             System.out.println("--------------------------------\n");
-            opc = t.cargarOpcionMenuArticulo();
+
             switch (opc) {
-                case 1 -> local.nuevoArticulo(cargarNuevoArticulo(local));
-                case 2 -> local.modificarUnArticulo();
-                case 3 -> {
+                case "1" -> local.nuevoArticulo(cargarNuevoArticulo(local));
+                case "2" -> local.modificarUnArticulo();
+                case "3" -> {
                     local.eliminarUnArticulo();
                     System.out.println("Articulo borrado exitosamente.");
                 }
-                case 4 -> local.mostrarUnArticulo();
+                case "4" -> local.mostrarUnArticulo();
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
-        } while (opc != 0);
+        } while (opc != "0");
     }
 
     /**
@@ -161,21 +202,29 @@ public class Menu {
      */
     public void menuDescuento(Local local) {
         Teclado t = new Teclado();
-        int opc;
+        Validacion v = new Validacion();
+        String opc;
         do {
+            do {
+                opc = t.cargarOpcionMenuDescuento();
+                if(!v.soloNumeros(opc)){
+                    t.soloNumerosException();
+                }
+            }while (!v.soloNumeros(opc));
+
             System.out.println("\n--------------------------------");
             System.out.println("------- MENÚ DE DESCUENTOS -------");
             System.out.println("--------------------------------\n");
-            opc = t.cargarOpcionMenuDescuento();
+
             switch (opc) {
-                case 1 -> local.nuevoDescuentoTarjeta(cargarNuevoDescuentoTarjeta(local));
-                case 2 -> {
+                case "1" -> local.nuevoDescuentoTarjeta(cargarNuevoDescuentoTarjeta(local));
+                case "2" -> {
                     local.eliminarUnDescuento();
                     System.out.println("Descuento borrado exitosamente.");}
-                case 3 -> local.mostrarDescuentos();
+                case "3" -> local.mostrarDescuentos();
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
-        } while (opc != 0);
+        } while (opc != "0");
     }
 
     /**
@@ -184,22 +233,29 @@ public class Menu {
      */
     public void menuCliente(Local local) {
         Teclado t = new Teclado();
-        int opc;
+        Validacion v = new Validacion();
+        String opc;
         do {
+            do {
+                opc = t.cargarOpcionMenuCliente();
+                if(!v.soloNumeros(opc)){
+                    t.soloNumerosException();
+                }
+            }while (!v.soloNumeros(opc));
             System.out.println("\n-------------------------------");
             System.out.println("------- MENÚ DE CLIENTE -------");
             System.out.println("-------------------------------\n");
-            opc = t.cargarOpcionMenuCliente();
+
             switch (opc) {
-                case 1 -> local.nuevoCliente(cargarNuevoCliente(local));
-                case 2 -> local.modificarUnCliente();
-                case 3 -> {
+                case "1" -> local.nuevoCliente(cargarNuevoCliente(local));
+                case "2" -> local.modificarUnCliente();
+                case "3" -> {
                     local.eliminarUnCliente();
                     System.out.println("Cliente borrado exitosamente.");}
-                case 4 -> local.mostrarUnCliente();
+                case "4" -> local.mostrarUnCliente();
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
-        } while (opc != 0);
+        } while (opc != "0");
     }
 
     /**
@@ -208,22 +264,30 @@ public class Menu {
      */
     public void menuProveedor(Local local) {
         Teclado t = new Teclado();
-        int opc;
+        Validacion v = new Validacion();
+        String opc;
         do {
+            do {
+                opc = t.cargarOpcionMenuProv();
+                if(!v.soloNumeros(opc)){
+                    t.soloNumerosException();
+                }
+            }while (!v.soloNumeros(opc));
+
             System.out.println("\n---------------------------------");
             System.out.println("------- MENÚ DE PROVEEDOR -------");
             System.out.println("---------------------------------\n");
-            opc = t.cargarOpcionMenuProv();
+
             switch (opc) {
-                case 1 -> local.nuevoProveedor(cargarNuevoProveedor(local));
-                case 2 -> local.modificarUnProv();
-                case 3 -> {
+                case "1" -> local.nuevoProveedor(cargarNuevoProveedor(local));
+                case "2" -> local.modificarUnProv();
+                case "3" -> {
                     local.eliminarUnProv();
                     System.out.println("Proveedor borrado exitosamente.");}
-                case 4 -> local.mostrarUnProveedor();
+                case "4" -> local.mostrarUnProveedor();
                 default -> System.out.println("\nLa opcion ingresada no es valida.\n");
             }
-        } while (opc != 0);
+        } while (opc != "0");
         System.out.println("---------------------------------------\n");
     }
 

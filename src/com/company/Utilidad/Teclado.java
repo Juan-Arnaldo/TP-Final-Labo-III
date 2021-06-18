@@ -13,19 +13,20 @@ public class Teclado {
      * Método para cargar la opción a elegir en el menú principal.
      * @return opción.
      */
-    public int cargarOpcionMenuInicio() {
+    public String cargarOpcionMenuInicio() {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Seleccionar caja.");
         System.out.println("2 - Nueva caja.");
         System.out.println("0 - Salir.");
-        return sc.nextInt();
+        return sc.nextLine();
     }
+
 
     /**
      * Método para cargar la opción a elegir en el menú de caja.
      * @return opción.
      */
-    public int cargarOpcionMenuCaja() {
+    public String cargarOpcionMenuCaja() {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Nueva Venta.");
         System.out.println("2 - Detalles.");
@@ -35,73 +36,73 @@ public class Teclado {
         System.out.println("6 - Menú Proveedores.");
         System.out.println("7 - Menú Descuentos.");
         System.out.println("0 - Salir.");
-        return sc.nextInt();
+        return sc.nextLine();
     }
 
     /**
      * Método para cargar la opción a elegir en el menú de caja.
      * @return opción.
      */
-    public int cargarOpcionMenuDetalles(int idCaja) {
+    public String cargarOpcionMenuDetalles(int idCaja) {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Mostrar Dinero de la Caja " + idCaja + ".");
         System.out.println("2 - Mostrar Ventas de la Caja " + idCaja + ".");
         System.out.println("3 - Mostrar Compras.");
         System.out.println("0 - Salir.");
-        return sc.nextInt();
+        return sc.nextLine();
     }
 
     /**
      * Método para cargar la opción a elegir en el menú de artículo.
      * @return opción.
      */
-    public int cargarOpcionMenuArticulo() {
+    public String cargarOpcionMenuArticulo() {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Nuevo Articulo.");
         System.out.println("2 - Editar Articulo.");
         System.out.println("3 - Eliminar Articulo.");
         System.out.println("4 - Mostrar Articulo.");
         System.out.println("0 - Salir.");
-        return sc.nextInt();
+        return sc.nextLine();
     }
 
     /**
      * Método para cargar la opción a elegir en el menú de artículo.
      * @return opción.
      */
-    public int cargarOpcionMenuDescuento() {
+    public String cargarOpcionMenuDescuento() {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Nuevo Descuento.");
         System.out.println("2 - Eliminar Descuento.");
         System.out.println("3 - Mostrar Descuento.");
         System.out.println("0 - Salir.");
-        return sc.nextInt();
+        return sc.nextLine();
     }
     /**
      * Método para cargar la opción a elegir en el menú de cliente.
      * @return opción.
      */
-    public int cargarOpcionMenuCliente() {
+    public String cargarOpcionMenuCliente() {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Nuevo Cliente.");
         System.out.println("2 - Editar Cliente.");
         System.out.println("3 - Eliminar Cliente.");
         System.out.println("4 - Mostrar Cliente.");
         System.out.println("0 - Salir.");
-        return sc.nextInt();
+        return sc.nextLine();
     }
     /**
      * Método para cargar la opción a elegir en el menú de proveedor.
      * @return opción.
      */
-    public int cargarOpcionMenuProv() {
+    public String cargarOpcionMenuProv() {
         System.out.println("Ingrese una opcion para continuar: ");
         System.out.println("1 - Nuevo Proveedor.");
         System.out.println("2 - Editar Proveedor.");
         System.out.println("3 - Eliminar Proveedor.");
         System.out.println("4 - Mostrar Proveedor.");
         System.out.println("0 - Salir.");
-        return sc.nextInt();
+        return sc.nextLine();
     }
 
     /**
@@ -121,9 +122,9 @@ public class Teclado {
      * Método para cargar por teclado el ID de la caja a seleccionar.
      * @return id de la caja seleccionada.
      */
-    public int cargarIdCaja() {
+    public String cargarIdCaja() {
         System.out.println("Ingrese el ID de la caja a seleccionar: ");
-        return sc.nextInt();
+        return sc.nextLine();
     }
     /**
      * Método para cargar por teclado el stock de un artículo.
@@ -812,6 +813,10 @@ public class Teclado {
         System.out.println("0 - No cargar el articulo");
         System.out.println("Seleccione la accion a realizar: ");
         return sc.nextInt();
+    }
+
+    public void soloNumerosException(){
+        System.out.println("Error, solo se permite numeros!!\n");
     }
 }
 

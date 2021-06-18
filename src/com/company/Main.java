@@ -19,10 +19,9 @@ public class Main {
         Menu menu = new Menu();
         LocalJson json = new LocalJson();
 
-        Local local = new Local(0, " ", " ");
-        local = hardcodearLocal(); // Esto descomentado hardcodea el local independientemente del archivo. Comentar la lectura para usarlo.
+        Local local = hardcodearLocal(); // Esto descomentado hardcodea el local independientemente del archivo. Comentar la lectura para usarlo.
 
-//        local = json.leerLocalArchivos();
+        //Local local = json.leerLocalArchivos();
 
         menu.menuInicio(local);
 
@@ -38,7 +37,10 @@ public class Main {
 
         local.nuevaCaja();
 
-//        Proveedor prov = new Proveedor("Proveedo", "", "", "", "", "mdp", "Final");
+        Proveedor prov = new Proveedor("Proveedor", "", "", "", "", "MDP", "Final");
+        local.nuevoProveedor(prov);
+
+
 //        Proveedor prov1 = new Proveedor("Juan Ignacio", "asd", "222", "321", "juan@gmail.com", "vidal","arnaldo");
 //        Proveedor prov2 = new Proveedor("Martin Arnaldo", "asd", "333", "321", "juan@gmail.com", "batan","menem");
 
