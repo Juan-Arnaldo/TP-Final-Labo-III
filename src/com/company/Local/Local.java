@@ -563,11 +563,12 @@ public class Local {
      * @return Caja seleccionada.
      */
     public Caja buscarCaja(int idCaja) {
-        if(listaCajas.getLista().get(idCaja) != null)
-            return listaCajas.getElemento(idCaja);
-        else
-            return listaCajas.getElemento(listaCajas.getLista().size()-1);
 
+        if(idCaja > listaCajas.getLista().size() - 1){
+            return listaCajas.getElemento(listaCajas.getLista().size()-1);
+        }else{
+            return listaCajas.getElemento(idCaja);
+        }
     }
 
     public String toString() {
